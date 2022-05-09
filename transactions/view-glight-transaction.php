@@ -51,12 +51,21 @@
 			</li>
 		  </ol>
 		</nav>
-	
+		<?php 
+    		include '../db/dbconnection.php';  
+			$M_ID = $_GET['Id']; 
+			$receipt_num = $_GET['rNum']; 
+			$receipt_date = $_GET['rDate'];
+			$sql = "SELECT * FROM GLight_receipt WHERE GLight_id = '".$M_ID."' AND receipt_num = '".$receipt_num."' AND receipt_date = '".$receipt_date."'";  
+			$result = $conn->query($sql);   
+			if (mysqli_num_rows($result) > 0) { 
+				$row = mysqli_fetch_array($result);
+		?>
 		<div>
 			<div class="container flex flex-wrap justify-between items-center mx-auto">
 				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">View Light Transaction</h2>
 				<div class="button">
-					<a href="edit-glight-transaction.php?name=transaction">
+					<a href="edit-glight-transaction.php?name=transaction&rNum=<?php echo $row['receipt_num']; ?>&rDate=<?php echo $row['receipt_date']; ?>&Id=<?php echo $row['GLight_id']; ?>">
 						<button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
 							<i class="fa-solid fa-pencil"></i>&nbsp; Edit Transaction
 						</button>
@@ -74,10 +83,12 @@
 								</button>
 								<div class="p-6 text-center">
 									<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-									<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this transaction?</h3>
-									<button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+									<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this transaction?</h3> 
+									<a href="../php/glight-transaction.php?method=delete&rNum=<?php echo $row['receipt_num']; ?>&rDate=<?php echo $row['receipt_date']; ?>&Id=<?php echo $row['GLight_id']; ?>">
+										<button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
 										Yes, I'm sure
-									</button>
+										</button>
+									</a>
 									<button data-modal-toggle="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
 								</div>
 							</div>
@@ -92,21 +103,21 @@
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Light ID</label>
-						<input type="text" id="id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="G000" disabled readonly>
+						<input type="text" id="id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['GLight_id']; ?>" disabled readonly>
 					</div>
 				 	<div class="relative z-0 w-full mb-6 group">
 						<label for="member" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member ID</label>
-						<input type="text" id="member" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" placeholder="M000" disabled required>
+						<input type="text" id="member" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_id']; ?>" disabled required>
 					 </div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="receipt" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Receipt Number</label>
-						<input type="text" id="receipt" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="R000" disabled readonly>
+						<input type="text" id="receipt" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['receipt_num']; ?>" disabled readonly>
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Receipt Date</label>
-						<input type="text" id="date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="29-04-2022" disabled readonly>
+						<input type="text" id="date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['receipt_date']; ?>" disabled readonly>
 					 </div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
@@ -114,20 +125,23 @@
 						<label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Amount</label>
 						<div class="flex">
 						  	<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
-							<input type="text" id="amount" class="rounded-none rounded-r-lg bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" placeholder="2,000">
+							<input type="text" id="amount" class="rounded-none rounded-r-lg bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['receipt_amount']; ?>">
 						</div>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recorded By</label>
-						<input type="text" id="user" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="Admin" disabled readonly>
+						<input type="text" id="user" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['username']; ?>" disabled readonly>
 					</div>
 				</div>
 				<div class="relative z-0 w-full mb-6 group">
 					<label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remarks</label>
-					<textarea id="remarks" rows="3" cols="125" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" disabled readonly></textarea>
+					<textarea id="remarks" rows="3" cols="125" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" disabled readonly><?php echo $row['remarks']; ?></textarea>
 				</div>
 			</form>
 		</div>
+		<?php 
+			}
+		?>
 	</div>
 	</div>
 	

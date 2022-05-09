@@ -52,19 +52,28 @@
 		  </ol>
 		</nav>
 		
+			<?php 
+		    	include '../db/dbconnection.php';  
+				$M_ID = $_GET['Id']; 
+		    	$sql = "SELECT * FROM GLight WHERE GLight_id = '".$M_ID."'"; 	  
+		    	$result = $conn->query($sql);  
+				if (mysqli_num_rows($result) > 0) {
+		  		// output data of each row
+		  		$row = mysqli_fetch_array($result); 
+			?>
 		<div>
 			<div class="container flex flex-wrap justify-between items-center mx-auto">
 				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">View Guang-Ming Light</h2>
 				<div class="button">
-					<a href="edit-blantern.php?name=transaction">
+					<a href="edit-glight.php?name=transaction&Id=<?php echo $row['GLight_id']; ?>">
 						<button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
 							<i class="fa-solid fa-pencil"></i>&nbsp; Edit Light
 						</button>
 					</a>
 					
-					<button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-modal-toggle="popup-modal">
-						<i class="fa-solid fa-trash-can"></i>&nbsp; Delete Light
-					</button>
+						<button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-modal-toggle="popup-modal">
+							<i class="fa-solid fa-trash-can"></i>&nbsp; Delete Light
+						</button>
 					
 					<div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
 						<div class="relative w-full h-full max-w-md p-4 md:h-auto">
@@ -74,10 +83,12 @@
 								</button>
 								<div class="p-6 text-center">
 									<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-									<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this light?</h3>
-									<button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-										Yes, I'm sure
-									</button>
+									<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this light?</h3> 
+									<a href="../php/glight.php?method=delete&Id=<?php echo $row['GLight_id'];?>">
+										<button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+											Yes, I'm sure
+										</button>
+									</a>
 									<button data-modal-toggle="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
 								</div>
 							</div>
@@ -92,11 +103,11 @@
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Light ID</label>
-						<input type="text" id="id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="G000" disabled readonly>
+						<input type="text" id="id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400"  value="<?php echo $row['GLight_id']; ?>" disabled readonly>
 					</div>
 				 	<div class="relative z-0 w-full mb-6 group">
 						<label for="member" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member ID</label>
-						<input type="text" id="member" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="M000" disabled readonly>
+						<input type="text" id="member" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_id']; ?>"  disabled readonly>
 					 </div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
@@ -104,22 +115,22 @@
 						<label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Price</label>
 						<div class="flex">
 						  	<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
-							<input type="text" id="price" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-none rounded-r-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="5,000" disabled readonly>
+							<input type="text" id="price" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-none rounded-r-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['price']; ?>"  disabled readonly>
 						</div>
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Contact Number</label>
-						<input type="text" id="contact" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="0123456789" disabled readonly>
+						<input type="text" id="contact" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['contact_num']; ?>" disabled readonly>
 					</div>
 				 </div>
 				<div class="relative z-0 w-full mb-6 group">
 					<label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remarks</label>
-					<textarea id="remarks" rows="3" cols="125" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" disabled readonly></textarea>
+					<textarea id="remarks" rows="3" cols="125" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" disabled readonly><?php echo $row['remarks']; ?> </textarea>
 				</div>
 			</form>
 			
 			<div class="container flex flex-wrap justify-between items-center mx-auto pt-4">
-				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">View Lantern Transaction</h2>
+				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">View Guang-Ming Light Transaction</h2>
 				<div class="button">
 					<a href="create-glight-transaction.php?name=transaction&aside=glight-transaction">
 						<button type="button" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
@@ -135,8 +146,8 @@
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 						<tr>
-							<th scope="col" class="px-6 py-3">Receipt date</th>
 							<th scope="col" class="px-6 py-3">Receipt no</th>
+							<th scope="col" class="px-6 py-3">Receipt date</th>
 							<th scope="col" class="px-6 py-3">Member id</th>
 							<th scope="col" class="px-6 py-3">Amount</th>
 							<th scope="col" class="px-6 py-3">
@@ -144,44 +155,43 @@
 							</th>
 						</tr>
 					</thead>
+					<?php 
+						$M_ID = $_GET['Id']; 
+				    	$ssql = "SELECT * FROM GLight_receipt WHERE GLight_id = '".$M_ID."'";  
+				    	$rresult = $conn->query($ssql);  
+						if (mysqli_num_rows($rresult) > 0) {
+				  		// output data of each row
+				  			while($rrow = mysqli_fetch_array($rresult)){
+					?>
 					<tbody>
 						<tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
 							<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-								<a href="view-glight-transaction.php?name=transaction" class="dark:hover:text-blue-500 md:hover:text-blue-700">29-10-2021</a>
+								<a href="view-glight-transaction.php?name=transaction&rNum=<?php echo $rrow['receipt_num']; ?>&rDate=<?php echo $rrow['receipt_date']; ?>&Id=<?php echo $rrow['GLight_id']; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $rrow['receipt_num']; ?></a>
 							</th>
 							<td class="px-6 py-4">
-								R021
+								<?php echo $rrow['receipt_date']; ?>
 							</td>
 							<td class="px-6 py-4">
-								M000
+								<?php echo $rrow['member_id']; ?>
 							</td>
 							<td class="px-6 py-4">
-								RM 1,000
+								<?php echo $rrow['receipt_amount']; ?>
 							</td>
 							<td class="px-6 py-4 text-right">
-								<a href="edit-glight-transaction.php?name=transaction" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+								<a href="edit-glight-transaction.php?name=transaction&rNum=<?php echo $rrow['receipt_num']; ?>&rDate=<?php echo $rrow['receipt_date']; ?>&Id=<?php echo $rrow['GLight_id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
 							</td>
-						</tr>
-						<tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-							<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-								<a href="view-glight-transaction.php?name=transaction" class="dark:hover:text-blue-500 md:hover:text-blue-700">28-02-2021</a>
-							</th>
-							<td class="px-6 py-4">
-								R020
-							</td>
-							<td class="px-6 py-4">
-								M001
-							</td>
-							<td class="px-6 py-4">
-								RM 1,000
-							</td>
-							<td class="px-6 py-4 text-right">
-								<a href="edit-glight-transaction.php?name=transaction" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-							</td>
-						</tr>
+						</tr> 
 					</tbody>
+					<?php 
+				  		 	}	
+						}
+					?>
 				</table>
 			</div>
+			
+			<?php
+			}
+			?>
 			
 			<nav aria-label="Page navigation" class="mt-6 mb-2 text-center">
 			  <ul class="inline-flex -space-x-px">

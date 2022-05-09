@@ -10,6 +10,30 @@
 			document.documentElement.classList.remove('dark');
 		}
 	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script> 
+	$(document).ready(function(){
+	    $('.search-box input[type="text"]').on("keyup input", function(){
+	        /* Get input value on change */
+	        var inputVal = $(this).val();
+	        var resultDropdown = $(".result"); 
+	        if(inputVal.length){
+	            $.get("../ajax/backend-search-glight.php", {term: inputVal}).done(function(data){
+	                // Display the returned data in browser
+	                resultDropdown.html(data);  
+	            });
+	        } else{
+	            resultDropdown.empty();
+	        }
+	    });
+	    
+	    // Set search input value on click of result item
+	    $(document).on("click", ".result p", function(){
+	        $(".search-box").find('input[type="text"]').val($(this).text());
+	        $(".result").empty();
+	    });
+	});
+	</script>
 	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
 	<script src="https://kit.fontawesome.com/b41521ee1f.js"></script>
 	<link rel="stylesheet" href="../styles/style.css">
@@ -52,7 +76,7 @@
 			<form>
 				<div class="relative z-0 w-full mb-6 group"> 
 					<label for="simple-search" class="sr-only">Search</label>
-						<div class="relative w-full">
+						<div class="relative w-full search-box">
 							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 								<svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
 							</div>
@@ -61,56 +85,7 @@
 				</div>
 			</form>
 						
-			<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-						<tr>
-							<th scope="col" class="px-6 py-3">Light id</th>
-							<th scope="col" class="px-6 py-3">Member id</th>
-							<th scope="col" class="px-6 py-3">Price</th>
-							<th scope="col" class="px-6 py-3">Contact no</th>
-							<th scope="col" class="px-6 py-3">
-								<span class="sr-only">Edit</span>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-							<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-								<a href="view-glight.php?name=transaction" class="dark:hover:text-blue-500 md:hover:text-blue-700">G000</a>
-							</th>
-							<td class="px-6 py-4">
-								M000
-							</td>
-							<td class="px-6 py-4">
-								RM 5,000
-							</td>
-							<td class="px-6 py-4">
-								0123456789
-							</td>
-							<td class="px-6 py-4 text-right">
-								<a href="edit-glight.php?name=transaction" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-							</td>
-						</tr>
-						<tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-							<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-								<a href="view-glight.php?name=transaction" class="dark:hover:text-blue-500 md:hover:text-blue-700">G001</a>
-							</th>
-							<td class="px-6 py-4">
-								M001
-							</td>
-							<td class="px-6 py-4">
-								RM 4,500
-							</td>
-							<td class="px-6 py-4">
-								0192345678
-							</td>
-							<td class="px-6 py-4 text-right">
-								<a href="edit-glight.php?name=transaction" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="relative overflow-x-auto shadow-md sm:rounded-lg result">
 			</div>
 			
 			<nav aria-label="Page navigation" class="mt-6 mb-2 text-center">
