@@ -3,7 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://kit.fontawesome.com/b41521ee1f.js"></script>
 	<script>
 		if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
 			document.documentElement.classList.add('dark');
@@ -11,32 +10,8 @@
 			document.documentElement.classList.remove('dark');
 		}
 	</script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script>
-	$(document).ready(function(){
-		$('.search-box input[type="text"]').on("keyup input", function(){
-			/* Get input value on change */
-			var inputVal = $(this).val();
-			var resultDropdown = $(this).siblings(".result");
-			if(inputVal.length){
-				$.get("backend-search-member.php", {term: inputVal}).done(function(data){
-					// Display the returned data in browser
-					resultDropdown.html(data);
-				});
-			} else{
-				resultDropdown.empty();
-			}
-		});
-
-		// Set search input value on click of result item
-		$(document).on("click", ".result p", function(){
-			$(this).parents(".search-box").find('input[type="text"]').val($(this).text());
-			$(this).parent(".result").empty();
-		});
-	});
-	</script>
 	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+	<script src="https://kit.fontawesome.com/b41521ee1f.js"></script>
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
@@ -45,14 +20,14 @@
 <body class="dark:bg-gray-900">
 	<?php
 		include('../templates/header.php');
-	?>
+	?>	
 	
 	<div class="container flex flex-wrap mx-auto">
-	
-	<?php
-		include('../templates/member-aside.php');
-	?>
 		
+	<?php
+		include('../templates/transaction-aside.php');
+	?>
+	
 	<div class="mx-auto">
 		<nav class="flex mb-4" aria-label="Breadcrumb">
 		  <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -65,14 +40,14 @@
 			<li>
 			  <div class="flex items-center">
 				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Search Member</p>
+				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Search Guang-Ming Light</p>
 			  </div>
 			</li>
 		  </ol>
 		</nav>
 	
 		<div>
-			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Search Member</h2>
+			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Search Guang-Ming Light</h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			<form>
 				<div class="relative z-0 w-full mb-6 group"> 
@@ -90,11 +65,11 @@
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 						<tr>
-							<th scope="col" class="px-6 py-3">Member id</th>
+							<th scope="col" class="px-6 py-3">Light id</th>
 							<th scope="col" class="px-6 py-3">Mem. name (en)</th>
-							<th scope="col" class="px-6 py-3">Mem. name (ch)</th>
-							<th scope="col" class="px-6 py-3">Mem. type</th>
-							<th scope="col" class="px-6 py-3">Mem. status</th>
+							<th scope="col" class="px-6 py-3">Mem. name (cn)</th>
+							<th scope="col" class="px-6 py-3">Receipt no</th>
+							<th scope="col" class="px-6 py-3">Receipt date</th>
 							<th scope="col" class="px-6 py-3">
 								<span class="sr-only">Edit</span>
 							</th>
@@ -103,7 +78,7 @@
 					<tbody>
 						<tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
 							<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-								<a href="view-member.php?name=member" class="dark:hover:text-blue-500 md:hover:text-blue-700">M000</a>
+								<a href="view-glight.php?name=transaction" class="dark:hover:text-blue-500 md:hover:text-blue-700">G001</a>
 							</th>
 							<td class="px-6 py-4">
 								John Doe Si Yan
@@ -112,18 +87,18 @@
 								都思严
 							</td>
 							<td class="px-6 py-4">
-								Permanent
+								R001
 							</td>
 							<td class="px-6 py-4">
-								Active
+								11/1/2022
 							</td>
 							<td class="px-6 py-4 text-right">
-								<a href="edit-member.php?name=member" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+								<a href="edit-glight.php?name=transaction" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
 							</td>
 						</tr>
 						<tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
 							<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-								<a href="view-member.php?name=member" class="dark:hover:text-blue-500 md:hover:text-blue-700">M001</a>
+								<a href="view-glight.php?name=transaction" class="dark:hover:text-blue-500 md:hover:text-blue-700">G000</a>
 							</th>
 							<td class="px-6 py-4">
 								Jane Doe Si Wen
@@ -132,13 +107,13 @@
 								都思温
 							</td>
 							<td class="px-6 py-4">
-								Normal
+								R000
 							</td>
 							<td class="px-6 py-4">
-								Inactive
+								10/1/2022
 							</td>
 							<td class="px-6 py-4 text-right">
-								<a href="edit-member.php?name=member" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+								<a href="edit-glight.php?name=transaction" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
 							</td>
 						</tr>
 					</tbody>
@@ -173,13 +148,13 @@
 	</div>
 	</div>
 	
-	<!--Toast: Delete Member-->
-	<div id="toast-delete-member" class="hidden flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
+	<!--Toast: Delete Light-->
+	<div id="toast-delete-light" class="hidden flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
 		 <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		</div>
-		<div class="ml-3 text-sm font-normal">Member has been deleted.</div>
-		<button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-delete-member" aria-label="Close">
+		<div class="ml-3 text-sm font-normal">Light has been deleted.</div>
+		<button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-delete-light" aria-label="Close">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		</button>
 	</div>

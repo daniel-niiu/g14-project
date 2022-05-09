@@ -46,13 +46,13 @@
 	<?php
 		include('../templates/header.php');
 	?>
-	
+
 	<div class="container flex flex-wrap mx-auto">
-	
+
 	<?php
-		include('../templates/member-aside.php');
+		include('../templates/product-aside.php');
 	?>
-		
+
 	<div class="mx-auto">
 		<nav class="flex mb-4" aria-label="Breadcrumb">
 		  <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -65,17 +65,17 @@
 			<li>
 			  <div class="flex items-center">
 				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Search Member</p>
+				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Search Products</p>
 			  </div>
 			</li>
 		  </ol>
 		</nav>
-	
+
 		<div>
-			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Search Member</h2>
+			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Search Products</h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			<form>
-				<div class="relative z-0 w-full mb-6 group"> 
+				<div class="relative z-0 w-full mb-6 group">
 					<label for="simple-search" class="sr-only">Search</label>
 						<div class="relative w-full">
 							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -85,66 +85,70 @@
 						</div>
 				</div>
 			</form>
-						
+
 			<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 						<tr>
-							<th scope="col" class="px-6 py-3">Member id</th>
-							<th scope="col" class="px-6 py-3">Mem. name (en)</th>
-							<th scope="col" class="px-6 py-3">Mem. name (ch)</th>
-							<th scope="col" class="px-6 py-3">Mem. type</th>
-							<th scope="col" class="px-6 py-3">Mem. status</th>
-							<th scope="col" class="px-6 py-3">
-								<span class="sr-only">Edit</span>
-							</th>
+							<th scope="col" class="px-6 py-3">Product Code</th>
+							<th scope="col" class="px-6 py-3">Product Name</th>
+							<th scope="col" class="px-6 py-3">Unit Price</th>
+							<th scope="col" class="px-6 py-3">Availability</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-							<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-								<a href="view-member.php?name=member" class="dark:hover:text-blue-500 md:hover:text-blue-700">M000</a>
-							</th>
 							<td class="px-6 py-4">
-								John Doe Si Yan
+								CD 8053
 							</td>
 							<td class="px-6 py-4">
-								都思严
+								12mm Green Sandalwood Beads
 							</td>
 							<td class="px-6 py-4">
-								Permanent
+								RM 15.00
 							</td>
 							<td class="px-6 py-4">
-								Active
+								Enabled
 							</td>
-							<td class="px-6 py-4 text-right">
-								<a href="edit-member.php?name=member" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-							</td>
+
 						</tr>
+
 						<tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-							<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-								<a href="view-member.php?name=member" class="dark:hover:text-blue-500 md:hover:text-blue-700">M001</a>
-							</th>
 							<td class="px-6 py-4">
-								Jane Doe Si Wen
+								BL 4649
 							</td>
 							<td class="px-6 py-4">
-								都思温
+								Blessing Lantern
 							</td>
 							<td class="px-6 py-4">
-								Normal
+								RM 22.00
 							</td>
 							<td class="px-6 py-4">
-								Inactive
+								Enabled
 							</td>
-							<td class="px-6 py-4 text-right">
-								<a href="edit-member.php?name=member" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-							</td>
+
 						</tr>
+
+						<tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+							<td class="px-6 py-4">
+								TB 3395
+							</td>
+							<td class="px-6 py-4">
+								Tablet
+							</td>
+							<td class="px-6 py-4">
+								RM 11.00
+							</td>
+							<td class="px-6 py-4">
+								Disabled
+							</td>
+
+						</tr>
+
 					</tbody>
 				</table>
 			</div>
-			
+
 			<nav aria-label="Page navigation" class="mt-6 mb-2 text-center">
 			  <ul class="inline-flex -space-x-px">
 				<li>
@@ -168,30 +172,19 @@
 				</li>
 			  </ul>
 			</nav>
-			
+
 		</div>
 	</div>
 	</div>
-	
-	<!--Toast: Delete Member-->
-	<div id="toast-delete-member" class="hidden flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
-		 <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
-			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-		</div>
-		<div class="ml-3 text-sm font-normal">Member has been deleted.</div>
-		<button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-delete-member" aria-label="Close">
-			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-		</button>
-	</div>
-	
+
 	<hr class="border-gray-300 dark:border-gray-600 mt-4"/>
-	
+
 	<footer>
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4">Disclaimer: This is a student work in progress for SWE40001/SWE40002 Software Engineering Project A/B of Swinburne University of Technology, Sarawak (2022).</p>
 	</footer>
-	
+
 	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
-	
+
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
 		var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
