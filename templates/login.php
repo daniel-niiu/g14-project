@@ -17,13 +17,13 @@
 					<div class="flex justify-between">
 						<div class="flex items-start">
 							<div class="flex items-center h-5">
-								<input id="show" onclick="showPassword()" type="checkbox" value="" class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800">
+								<input id="show" type="checkbox" value="" class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required="">
 							</div>
 							<label for="show" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Show password</label>
 						</div>
 						<div class="flex items-start">
 							<div class="flex items-center h-5">
-								<input id="remember" type="checkbox" value="" class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800">
+								<input id="remember" type="checkbox" value="" class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required="">
 							</div>
 							<label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
 						</div>
@@ -35,15 +35,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-function showPassword(){
-  var x = document.getElementById("password");
-  	if (x.type === "password") {
-    	x.type = "text";
-  	} 
-	else {
-    	x.type = "password";
-  	}
-}
-</script>
