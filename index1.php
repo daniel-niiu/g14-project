@@ -41,11 +41,7 @@ if(isset($_POST['btn_submit'])){
 <body class="dark:bg-gray-900">
 	<?php
 		include('templates/header.php');
-	?>
-	
-	<?php
-		include('templates/login.php');
-	?>
+	?> 
 	
 	<div class="dashboard">
 		<div class="container flex flex-wrap justify-between items-center mx-auto pl-4 pr-4">

@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 if(isset($_POST['page'])){ 
     // Include pagination library file 
     include_once '../php/Pagination.class.php';  
@@ -9,12 +10,12 @@ if(isset($_POST['page'])){
     // Set some useful configuration 
     $baseURL = 'get-member-data.php'; 
     $offset = !empty($_POST['page'])?$_POST['page']:0; 
-    $limit = 5; 
+    $limit = 10; 
      
     // Set conditions for search 
     $whereSQL = ''; 
     if(!empty($_POST['keywords'])){ 
-        $whereSQL = " WHERE (member_id LIKE '%".$_POST['keywords']."%' OR member_name LIKE '%".$_POST['keywords']."%')"; 
+        $whereSQL = " WHERE (member_id LIKE '%".$_POST['keywords']."%' OR member_chi_name LIKE '%".$_POST['keywords']."%' OR member_eng_name LIKE '%".$_POST['keywords']."%')"; 
     } 
     /*
     if(isset($_POST['filterBy']) && $_POST['filterBy'] != ''){ 
@@ -48,9 +49,11 @@ if(isset($_POST['page'])){
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">Member id</th>
-                    <th scope="col" class="px-6 py-3">Member name</th>
-                    <th scope="col" class="px-6 py-3">Member type</th>
-                    <th scope="col" class="px-6 py-3">Contact no</th>
+                    <th scope="col" class="px-6 py-3">Member id</th>
+                    <th scope="col" class="px-6 py-3">Mem. name (en)</th>
+                    <th scope="col" class="px-6 py-3">Mem. name (ch)</th>
+                    <th scope="col" class="px-6 py-3">Mem. type</th>
+                    <th scope="col" class="px-6 py-3">Mem. status</th>
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
@@ -63,9 +66,10 @@ if(isset($_POST['page'])){
             ?>
             <tr class='border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700'>
                 <th scope='row' class='px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap'><a href='view-member.php?name=member&Id=<?php echo $row["member_id"]; ?>' class='dark:hover:text-blue-500 md:hover:text-blue-700'><?php echo $row['member_id']; ?></a></th>
-                <td class='px-6 py-4'><?php echo $row['member_name'];?></td>
+                <td class='px-6 py-4'><?php echo $row['member_chi_name'];?></td>
+                <td class='px-6 py-4'><?php echo $row['member_eng_name'];?></td>
                 <td class='px-6 py-4'><?php echo $row['member_type']; ?></td>
-                <td class='px-6 py-4'><?php echo $row['member_tel']; ?></td>
+                <td class='px-6 py-4'><?php echo $row['member_status']; ?></td>
                 <td class='px-6 py-4 text-right'><a href='edit-member.php?name=member&Id=<?php echo $row["member_id"];?>' class='font-medium text-blue-600 dark:text-blue-500 hover:underline'>Edit</a></td>
             </tr>
             <?php 
