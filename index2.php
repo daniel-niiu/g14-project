@@ -204,7 +204,7 @@
 	<div class="admin-shortcuts mt-2 mb-1">
 		<div class="container flex flex-wrap justify-between items-center mx-auto pl-4 pr-4">
 			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Administrative Shortcuts</h3>
-			<button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm text-gray-900 bg-white rounded-lg  hover:text-blue-700 dark:text-white dark:bg-gray-900 dark:hover:text-gray-300" data-modal-toggle="authentication-modal3">
+			<button type="button" id="filterbtn" onclick="checkCBs()" class="py-2.5 px-5 mr-2 mb-2 text-sm text-gray-900 bg-white rounded-lg  hover:text-blue-700 dark:text-white dark:bg-gray-900 dark:hover:text-gray-300" data-modal-toggle="authentication-modal3">
 				<i class="fa-solid fa-filter"></i> Filter
 			</button>
 
@@ -216,37 +216,37 @@
             				</button>
             				<div class="px-6 py-6 lg:px-8">
                 				<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Select your Preferences</h3>
-                				<form class="space-y-6" action="#">
+                				<form name="form1" class="space-y-6" action="#">
 									<div class="flex items-center mb-4">
-										 <input id="create-members" name="preference" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
+										 <input id="create-members" name="preference" type="checkbox" value="1" onclick="chkcontrol(0)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
 										 <label for="create-members" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Member</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="search-members" name="preference" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="search-members" name="preference" type="checkbox" value="2" onclick="chkcontrol(1)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="search-members" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search Member</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="create-tablet" name="preference" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="create-tablet" name="preference" type="checkbox" value="3" onclick="chkcontrol(2)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="create-tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Memorial Tablet</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="search-tablet" name="preference" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="search-tablet" name="preference" type="checkbox" value="4" onclick="chkcontrol(3)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="search-tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search Memorial Tablet</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="create-blantern" name="preference" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="create-blantern" name="preference" type="checkbox" value="5" onclick="chkcontrol(4)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="create-blantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Blessing Lantern</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="search-blantern" name="preference" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="search-blantern" name="preference" type="checkbox" value="6" onclick="chkcontrol(5)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="search-blantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search Blessing Lantern</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="create-glantern" name="preference" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="create-glantern" name="preference" type="checkbox" value="7" onclick="chkcontrol(6)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="create-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Guang-Ming Light</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="search-glantern" name="preference" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="search-glantern" name="preference" type="checkbox" value="8" onclick="chkcontrol(7)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="search-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search Guang-Ming Light</label>
 									 </div>
 
@@ -274,11 +274,11 @@
 
 		<div class="column">
 			<div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-				<a id="a" href="#2">
+				<a id="a1" href="#2">
 					<div class="color2"></div>
 					<div class="p-5">
-						<h5 id="h5" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden">Noteworthy technology acquisitions 2021</h5>
-						<p id="p" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+						<h5 id="h51" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden">Noteworthy technology acquisitions 2021</h5>
+						<p id="p1" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
 					</div>
 				</a>
 			</div>
@@ -286,11 +286,11 @@
 
 		<div class="column">
 			<div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-				<a id="a" href="#3">
+				<a id="a2" href="#3">
 					<div class="color3"></div>
 					<div class="p-5">
-						<h5 id="h5" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden">Noteworthy technology acquisitions 2021</h5>
-						<p id="p" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+						<h5 id="h52" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden">Noteworthy technology acquisitions 2021</h5>
+						<p id="p2" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
 					</div>
 				</a>
 			</div>
@@ -368,6 +368,7 @@
 	</footer>
 
 	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<script>
 
@@ -380,6 +381,28 @@
 
 	    }
 
+		}
+
+
+		function chkcontrol(j) {
+
+			total = 0;
+
+			for(i=0;i<document.form1.preference.length;i++){
+
+				if(document.form1.preference[i].checked) {
+
+					total += 1;
+
+				}
+
+			}
+
+			if (total > 3) {
+				alert("You cannot select more than 3 preferences.")
+				document.form1.preference[j].checked = false
+			}
+			return false;
 		}
 
 		function filterPreference()
@@ -396,11 +419,9 @@
 
 			checkcount = 0;
 
-					if (checkcount > 3) {
 
-						clearcheck();
 
-					}
+
 
 					if (createmem.checked)  {
 
@@ -413,18 +434,18 @@
 
 					if (searchmem.checked) {
 
-						document.getElementById('h5').innerHTML = "Search Members";
-						document.getElementById('p').innerHTML = "Look up an existing member.";
-						document.getElementById('a').href = "/FYP/g14-project-main/members/search-member.php";
+						document.getElementById('h51').innerHTML = "Search Members";
+						document.getElementById('p1').innerHTML = "Look up an existing member.";
+						document.getElementById('a1').href = "/FYP/g14-project-main/members/search-member.php";
 						checkcount++;
 
 					}
 
 					if (createtab.checked) {
 
-						document.getElementById('h5').innerHTML = "Create Memorial Tablets";
-						document.getElementById('p').innerHTML = "Create a new memorial tablet entry.";
-						document.getElementById('a').href = "/FYP/g14-project-main/transactions/create-tablet.php";
+						document.getElementById('h52').innerHTML = "Create Memorial Tablets";
+						document.getElementById('p2').innerHTML = "Create a new memorial tablet entry.";
+						document.getElementById('a2').href = "/FYP/g14-project-main/transactions/create-tablet.php";
 						checkcount++;
 
 					}
@@ -437,7 +458,6 @@
 						checkcount++;
 
 					}
-
 
 					if (createblant.checked) {
 
@@ -472,13 +492,6 @@
 						document.getElementById('p').innerHTML = "Search for an existing guang-ming light.";
 						document.getElementById('a').href = "/FYP/g14-project-main/transactions/search-glight.php";
 						checkcount++;
-
-					}
-
-
-					if (checkcount > 3) {
-
-						clearcheck();
 
 					}
 
