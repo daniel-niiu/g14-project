@@ -1,23 +1,5 @@
 <?php
-
-include "db/dbconnection.php";
-session_start();
-if(isset($_POST['btn_submit'])){
-	$sql = "SELECT * FROM admin WHERE admin_username = '".$_POST['username']."' AND admin_password = '".$_POST['password']."'";  
-	$result = $conn->query($sql);
-
-	if ($result->num_rows > 0) {
-	  // output data of each row
-	  while($row = $result->fetch_assoc()) {
-		$_SESSION["username"] = $row['admin_username'];
-		$_SESSION["password"] = $row['admin_password'];
-		$_SESSION["status"] = $row['admin_status'];
-	  }
-	  header('Location: index1.php');
-	} else {
-	  echo "<script>alert('Please try again!!!');</script>"; 
-	} 
-}
+include "db/dbconnection.php";    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -113,90 +95,58 @@ if(isset($_POST['btn_submit'])){
 				</div> 
 			</div>
 		</div>
+		<div id="test">
+			
+		</div>
 		<hr class="border-gray-300 dark:border-gray-600"/>
-		
+		<?php
+		$sql = "SELECT * FROM reminder ORDER BY reminder_date LIMIT 0,3";  
+		?>
 		<div class="container pt-4 pl-4 mx-auto">
 			<ol class="relative border-l border-gray-200 dark:border-gray-700">
+				<?php 
+					$result = $conn->query($sql); 
+					if ($result->num_rows > 0) {
+					// output data of each row
+					while($row = $result->fetch_assoc()) {
+				?>
 				<li class="mb-8 ml-6">
 					<div class="container flex flex-wrap justify-between items-center mx-auto">
 						<span class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
 							<svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
 						</span>
-						<h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">Flowbite Application UI v2.0.0 <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">Latest</span></h3>
+						<h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white"><?php echo $row['title']; ?><span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">Latest</span></h3>
 
 						<div class="flex items-end md:order-2">
-						<button data-dropdown-toggle="dropdown1" class="text-black hover:text-gray-600 font-medium rounded-lg text-sm pl-4 py-2.5 text-center inline-flex items-center dark:text-white dark:hover:text-gray-300 float-right" type="button"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button>
+						<button data-dropdown-toggle="dropdown<?php echo $row['reminder_id']; ?>" class="text-black hover:text-gray-600 font-medium rounded-lg text-sm pl-4 py-2.5 text-center inline-flex items-center dark:text-white dark:hover:text-gray-300 float-right" type="button"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button>
 
-						<div id="dropdown1" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1054.4px, 983.6px, 0px);">
+						<div id="dropdown<?php echo $row['reminder_id']; ?>" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1054.4px, 983.6px, 0px);">
 							<ul class="py-1" aria-labelledby="dropdown">
 								<li>
-									<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" data-modal-toggle="authentication-modal-content">Edit Content</a>
+								<!--onclick="myFunction(<?php //echo $row['reminder_id']; ?>)"-->
+									<a href="#" name="reminder" tag="<?php echo $row['reminder_id']; ?>" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" data-modal-toggle="authentication-modal-content">Edit Content</a>
 								</li>
 								<li>
-									<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" data-modal-toggle="popup-modal">Delete Content</a>
+									<a href="#" name="reminder-delete" tag="<?php echo $row['reminder_id']; ?>" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" data-modal-toggle="popup-modal">Delete Content</a>
 								</li>
 							</ul>
 						</div>
 						</div>
 					</div>
 				
-					<time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">On January 13th, 2022</time>
-					<p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce &amp; Marketing pages.</p>
-				</li>
-				
-				<li class="mb-8 ml-6">
-					<div class="container flex flex-wrap justify-between items-center mx-auto">
-						<span class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-							<svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-						</span>
-						<h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Flowbite Figma v1.3.0</h3>
-					
-						<div class="flex items-end md:order-2">
-						<button data-dropdown-toggle="dropdown1" class="text-black hover:text-gray-600 font-medium rounded-lg text-sm pl-4 py-2.5 text-center inline-flex items-center dark:text-white dark:hover:text-gray-300 float-right" type="button"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button>
+					<time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+						<?php 
 
-						<div id="dropdown1" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1054.4px, 983.6px, 0px);">
-							<ul class="py-1" aria-labelledby="dropdown">
-								<li>
-									<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" data-modal-toggle="authentication-modal-content">Edit Content</a>
-								</li>
-								<li>
-									<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" data-modal-toggle="popup-modal">Delete Content</a>
-								</li>
-							</ul>
-						</div>
-						</div>
-					</div>
-					
-					<time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">On December 7th, 2021</time>
-					<p class="text-base font-normal text-gray-500 dark:text-gray-400">All of the pages and components are first designed in Figma and we keep a parity between the two versions even as we update the project.</p>
-					</li>
-				
-					<li class="mb-8 ml-6">
-					<div class="container flex flex-wrap justify-between items-center mx-auto">
-						<span class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-						<svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-						</span>
-						<h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Flowbite Library v1.2.2</h3>
-					
-						<div class="flex items-end md:order-2">
-						<button data-dropdown-toggle="dropdown1" class="text-black hover:text-gray-600 font-medium rounded-lg text-sm pl-4 py-2.5 text-center inline-flex items-center dark:text-white dark:hover:text-gray-300 float-right" type="button"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button>
-
-						<div id="dropdown1" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1054.4px, 983.6px, 0px);">
-							<ul class="py-1" aria-labelledby="dropdown">
-								<li>
-									<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" data-modal-toggle="authentication-modal-content">Edit Content</a>
-								</li>
-								<li>
-									<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" data-modal-toggle="popup-modal">Delete Content</a>
-								</li>
-							</ul>
-						</div>
-						</div>
-					</div>	
-					
-					<time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">On December 2nd, 2021</time>
-					<p class="text-base font-normal text-gray-500 dark:text-gray-400">Get started with dozens of web components and interactive elements built on top of Tailwind CSS.</p>
+							$date = $row['reminder_date']; 
+							echo "On ".date("l, F d, Y",strtotime($date)); 
+							?> 
+					</time>
+					<p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400"><?php echo $row['remarks']; ?></p>
 				</li>
+				<?php
+					}
+				}
+				?> 
 			</ol>
 			
 			<div id="authentication-modal-content" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
@@ -205,24 +155,25 @@ if(isset($_POST['btn_submit'])){
             			<button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal-content">
                 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
             			</button>
-            			<div class="px-6 py-6 lg:px-8">
+            			<div class="px-6 py-6 lg:px-8"> 
                 			<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Edit Reminder</h3>
-                			<form class="space-y-6" action="#">
+                			<form class="space-y-6" method="post" action="php/reminder.php?method=update">
                     			<div>
                         			<label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
-                        			<input type="text" name="title" id="reminder-title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="Title" required>
+                        			<input type="text" name="title" id="edit-reminder-title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="" required>
                     			</div>
                     			<div>
                         			<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date</label>
-                        			<input type="date" name="date" id="reminder-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="24-4-2022" required>
+                        			<input type="date" name="date" id="edit-reminder-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="" required>
                     			</div>
                     			<div>
                         			<label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Content</label>
-                        			<input type="text" name="content" id="reminder-content" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="Description" required>
+                        			<input type="text" name="content" id="edit-reminder-content" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="" required>
                     			</div>
-                    			<button type="submit" name="button" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    			<input type="submit" name="button" id="edit-reminder-submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" value="Submit">
+                    			<input type="hidden" id="edit-reminder-id" name="reminderid" value="">
                 			</form>
-            			</div>
+            			</div> 
         			</div>
     			</div>
 			</div> 
@@ -236,7 +187,7 @@ if(isset($_POST['btn_submit'])){
 						<div class="p-6 text-center">
 							<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
 							<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this reminder?</h3>
-							<button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">Yes, I'm sure</button>
+							<a id="delete-reminder"><button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">Yes, I'm sure</button></a>
 							<button data-modal-toggle="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
 						</div>
 					</div>
@@ -363,9 +314,13 @@ if(isset($_POST['btn_submit'])){
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		</button>
 	</div>
-	
+	<?php 
+	if($_GET['title'] == "reminderadd" && $_GET['success'] == "success")
+	{
+	?>
+
 	<!--Toast: Add Reminder-->
-	<div id="toast-add-reminder" class="hidden flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
+	<div id="toast-add-reminder" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
 		<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
 		</div>
@@ -375,8 +330,13 @@ if(isset($_POST['btn_submit'])){
 		</button>
 	</div>
 	
+	<?php 
+	} 
+	if($_GET['title'] == "reminderedit" && $_GET['success'] == "success")
+	{
+	?>
 	<!--Toast: Edit Reminder-->
-	<div id="toast-edit-reminder" class="hidden flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
+	<div id="toast-edit-reminder" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
 		<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
 		</div>
@@ -386,8 +346,13 @@ if(isset($_POST['btn_submit'])){
 		</button>
 	</div>
 	
+	<?php 
+	}
+	if($_GET['title'] == "reminderdelete" && $_GET['success'] == "success")
+	{
+	?>
 	<!--Toast: Delete Reminder-->
-	<div id="toast-delete-reminder" class="hidden flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
+	<div id="toast-delete-reminder" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
 		 <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		</div>
@@ -396,7 +361,9 @@ if(isset($_POST['btn_submit'])){
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		</button>
 	</div>
-	
+	<?php
+	}
+	?>
 	<!--Toast: Filter Preferences-->
 	<div id="toast-success-filter" class="hidden flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
 		<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
@@ -441,7 +408,6 @@ if(isset($_POST['btn_submit'])){
 			</div>
 		</div>
 	</div>
-	
 	<hr class="border-gray-300 dark:border-gray-600 mt-4"/>
 	
 	<footer>
@@ -451,6 +417,28 @@ if(isset($_POST['btn_submit'])){
 	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
 	
 	<script>
+		var login = document.getElementById('loginTemplate');
+		login.classList.remove('hidden');
+		var toast_user = document.getElementById('toast-danger-user');
+		<?php
+
+		if($_SESSION["status"] == "T"){  
+		?>
+		login.classList.add('hidden');
+		toast_user.classList.add('hidden');
+
+			//var login = document.getElementById(\"loginTemplate\"); 
+			//echo "
+		//<script>
+			//alert('asd')
+		<?php
+		}
+		else{
+		?> 
+			toast_user.remove('hidden');
+		<?php
+		}
+		?>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
 		var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
@@ -490,7 +478,42 @@ if(isset($_POST['btn_submit'])){
 				}
 			}
 
-		});
-	</script> 
+		}); 
+</script> 
+
+<script src="script/jquery.min.js"></script>
+<script> 
+    $(function(){
+        $("a[name='reminder']").on('click', function(){
+            var reminder_id = $(this).attr('tag');   
+            //alert(reminder_id);
+            
+            $.ajax({
+			    dataType: 'json',
+			    method: "POST",
+			    url: "php/json_index.php",
+		        data: {
+		            reminder_id: reminder_id
+		        },  
+		        success: function(data){ 
+		        	$('#edit-reminder-title').val(data.reminderTitle);
+		        	$('#edit-reminder-date').val(data.reminderDate);
+		        	$('#edit-reminder-content').val(data.reminderRemarks); 
+   					$('#edit-reminder-id').val(data.reminderID); 
+            		console.log(data);
+        		}, 
+				error: function(data) {
+				    console.log("error: ", data);
+				}
+            })
+            
+           //delete-reminder-button 
+        });
+        $("a[name='reminder-delete']").on('click', function(){
+            var reminder_id = $(this).attr('tag');    
+            $('#delete-reminder').attr('href',"php/reminder.php?method=delete&Id="+reminder_id);  
+        });
+    });
+</script>
 </body>
 </html>
