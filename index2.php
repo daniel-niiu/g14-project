@@ -399,7 +399,7 @@
 			}
 
 			if (total > 3) {
-
+				alert("You cannot select more than 3 preferences.")
 				document.form1.preference[j].checked = false
 			}
 			return false;
