@@ -4,6 +4,7 @@ include_once '../php/Pagination.class.php';
  
 // Include database configuration file 
 require_once '../db/dbconnection.php';  
+isLoggedIn();
 // Set some useful configuration 
 $baseURL = '../php/get-tablet-transaction-data.php'; 
 $limit = 10; 
@@ -80,8 +81,7 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 			</li>
 		  </ol>
 		</nav>
-		<?php 
-		   	include '../db/dbconnection.php';  
+		<?php  
 			$M_ID = $_GET['Id']; 
 		    $sql = "SELECT * FROM Tablet WHERE tablet_id = '".$M_ID."'"; 	 
 			$result = $conn->query($sql);  

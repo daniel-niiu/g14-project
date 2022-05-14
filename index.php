@@ -1,5 +1,6 @@
 <?php
 include "db/dbconnection.php";    
+isMainPageLoggedIn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -433,9 +434,16 @@ include "db/dbconnection.php";
 			//alert('asd')
 		<?php
 		}
-		else{
+		else if($_SESSION["status"] == "F"){
 		?> 
-			toast_user.remove('hidden');
+			login.classList.remove('hidden');
+			toast_user.classList.remove('hidden');
+		<?php
+		}
+		else{ 
+		?>
+			login.classList.add('hidden');
+			toast_user.classList.add('hidden');
 		<?php
 		}
 		?>

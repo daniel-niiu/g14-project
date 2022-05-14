@@ -1,3 +1,7 @@
+<?php
+include "../db/dbconnection.php";    
+isLoggedIn();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,8 +57,7 @@
 		</nav>
 		
 		<div> 
-			<?php 
-		    	include '../db/dbconnection.php';  
+			<?php  
 				$M_ID = $_GET['Id']; 
 				$rNum = $_GET['receiptNum'];
 				$rDate = $_GET['receiptDate'];

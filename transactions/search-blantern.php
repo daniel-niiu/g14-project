@@ -4,6 +4,7 @@ include_once '../php/Pagination.class.php';
  
 // Include database configuration file 
 require_once '../db/dbconnection.php';  
+isLoggedIn();
 // Set some useful configuration 
 $baseURL = '../php/get-blantern-data.php'; 
 $limit = 10; 

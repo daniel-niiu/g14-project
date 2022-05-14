@@ -1,3 +1,7 @@
+<?php
+include "../db/dbconnection.php";    
+isLoggedIn();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,8 +57,7 @@
 		  </ol>
 		</nav>
 	
-		<?php 
-		   	include '../db/dbconnection.php';  
+		<?php  
 			$M_ID = $_GET['Id']; 
 		    $sql = "SELECT * FROM Tablet WHERE tablet_id = '".$M_ID."'"; 	 
 			$result = $conn->query($sql);  

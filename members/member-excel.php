@@ -36,7 +36,7 @@ if(isset($_POST['btn_export'])){
             //$lineData = array($row[0], $row['member_name'], $row['member_ic'], $row['member_gender'], $row['member_age'], $row['member_tel'], $row['member_job'], $row['member_type']); 
             $array = array();
             foreach ($row as $data) {
-                array_push($array,$data);
+                array_push($array,$data); 
             }
             array_walk($array, 'filterData'); 
             $excelData .= implode("\t", array_values($array)) . "\n"; 

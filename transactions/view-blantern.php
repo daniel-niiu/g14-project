@@ -1,3 +1,7 @@
+<?php
+include "../db/dbconnection.php";    
+isLoggedIn();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,8 +55,7 @@
 			</li>
 		  </ol>
 		</nav>  
-		<?php 
-		   	include '../db/dbconnection.php';  
+		<?php  
 			$M_ID = $_GET['Id']; 
 		    $sql = "SELECT * FROM BLantern WHERE BLantern_id = '".$M_ID."'"; 	 
 			$result = $conn->query($sql);  

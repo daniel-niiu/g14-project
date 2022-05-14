@@ -1,3 +1,7 @@
+<?php
+include "../db/dbconnection.php";    
+isLoggedIn();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

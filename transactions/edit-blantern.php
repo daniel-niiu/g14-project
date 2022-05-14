@@ -1,3 +1,7 @@
+<?php
+include "../db/dbconnection.php";    
+isLoggedIn();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,8 +57,7 @@
 		  </ol>
 		</nav>
 	
-			<?php 
-		    	include '../db/dbconnection.php';  
+			<?php  
 				$M_ID = $_GET['Id']; 
 		    	//$sql = "SELECT * FROM GLight,GLight_Receipt WHERE GLight_id = '".$M_ID."' GROUP BY GLight_id"; 	 
 				$sql = "SELECT * FROM BLantern WHERE BLantern_id = '".$M_ID."'"; 

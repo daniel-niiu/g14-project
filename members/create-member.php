@@ -1,3 +1,7 @@
+<?php
+include "../db/dbconnection.php";    
+isLoggedIn();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +63,7 @@
 				 	<div class="relative z-0 w-full mb-6 group">
 						<label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Status</label>
 						<label for="checkbox" class="inline-flex relative items-center cursor-pointer mt-1">
-						  <input type="checkbox" value="Active" id="checkbox" name="checkbox" class="sr-only peer" checked>
+						  <input type="checkbox"id="checkbox" name="checkbox" class="sr-only peer"  value="Active" checked>
 						  <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
 						  <span id="status" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Active</span>
 						</label>
@@ -73,8 +77,8 @@
 						document.getElementById('status').innerHTML = 'Active'; 
 					} 
 					else{
-						this.value = 'Inactive';
-						document.getElementById('status').innerHTML = 'Inactive'; 
+						this.value = 'InActive'; 
+						document.getElementById('status').innerHTML = 'InActive'; 
 					}
 				});
 				</script>
@@ -98,11 +102,7 @@
 						<input type="text" id="citizen" name="citizen" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Malaysian">
 					</div>
 				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Age</label>
-						<input type="text" name="age" id="age" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="30">
-					</div>
+				<div class="grid xl:grid-cols-2 xl:gap-6"> 
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Gender</label>
 						<select id="gender" name="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -110,8 +110,6 @@
 						  <option value="female">Female</option>
 						</select>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="dob" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date of Birth</label>
 						<div class="relative">
@@ -121,22 +119,22 @@
   							<input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="dob" name="dob" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
 						</div>
 					</div>
+				 </div>
+				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Contact Number</label>
 						<input type="text" id="contact" name="contact" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="0123456789">
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="job" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Occupation</label>
 						<input type="text" id="job" name="job" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Worker">
 					</div>
+				 </div>
+				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Address</label>
 						<input type="text" id="address" name="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="12, Kuching Road, Lane 34">
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="member" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Type</label>
 						<select id="member" name="member" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -145,6 +143,8 @@
 						  <option value="non-member">Non-member</option>
 						</select>
 					</div>
+				 </div>
+				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="accept-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date of Admission</label>
 						<div class="relative">
@@ -154,12 +154,12 @@
   							<input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="accept-date" name="accept-date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
 						</div>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="recommender-id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recommender's ID</label>
 						<input type="text" id="recommender-id" name="recommender-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="M001">
 					</div>
+				 </div>
+				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="recommender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recommender's Name</label>
 						<input type="text" id="recommender" name="recommender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jane Doe">

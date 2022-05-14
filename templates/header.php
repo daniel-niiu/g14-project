@@ -45,7 +45,15 @@ error_reporting(0);
 							<a class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer" data-modal-toggle="authentication-modal4">Edit User</a>								
 						</li>
 						<li>
-							<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign Out</a>
+							<a 
+							<?php  
+								if (str_contains($_SERVER['REQUEST_URI'], 'index.php')) { 
+									echo 'href="templates/logout.php"' ;
+								}
+								else{
+									echo 'href="../templates/logout.php"';
+								}
+							?> class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign Out</a>
 						</li>
 					</ul>
 				</div>

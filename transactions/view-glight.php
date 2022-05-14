@@ -1,3 +1,7 @@
+<?php
+include "../db/dbconnection.php";    
+isLoggedIn();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,8 +56,7 @@
 		  </ol>
 		</nav>
 		 
-			<?php 
-		    	include '../db/dbconnection.php';  
+			<?php  
 				$M_ID = $_GET['Id']; 
 		    	//$sql = "SELECT * FROM GLight,GLight_Receipt WHERE GLight_id = '".$M_ID."' GROUP BY GLight_id"; 	 
 				$sql = "SELECT * FROM GLight_Receipt AS glight_r, GLight AS glight WHERE glight.GLight_id = '".$M_ID."' AND glight_r.GLight_id = '".$M_ID."'"; 

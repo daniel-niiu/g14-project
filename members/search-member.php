@@ -4,6 +4,7 @@ include_once '../php/Pagination.class.php';
  
 // Include database configuration file 
 require_once '../db/dbconnection.php';  
+isLoggedIn();
 // Set some useful configuration 
 $baseURL = 'get-member-data.php'; 
 $limit = 10; 

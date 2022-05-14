@@ -1,11 +1,6 @@
 <?php
-/*
-    include '../db/dbconnection.php';  
-// Check connection 
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-} 
-*/
+include "../db/dbconnection.php";    
+isLoggedIn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,10 +56,9 @@ if ($conn->connect_error) {
 		  </ol>
 		</nav>
 	
-					<?php 
-		    	include '../db/dbconnection.php';  
+					<?php  
 					$M_ID = $_GET['Id']; 
-		    	$sql = "SELECT * FROM member WHERE member_id = '".$M_ID."'"; 	 
+		    	$sql = "SELECT * FROM member WHERE member_id = '".$M_ID."'"; 	  
 		    	$result = $conn->query($sql);  
 					if (mysqli_num_rows($result) > 0) {
 		  			// output data of each row
@@ -111,24 +105,40 @@ if ($conn->connect_error) {
 						<input type="text" id="id" name="id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_id']; ?>" disabled readonly>
 					</div>
 				 	<div class="relative z-0 w-full mb-6 group">
-						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name</label>
-						<input type="text" id="name" name="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_name']; ?>"disabled readonly>
+						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Status</label>
+						<input type="text" id="name" name="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_status']; ?>"disabled readonly>
+					 </div>
+				 </div>
+				<div class="grid xl:grid-cols-2 xl:gap-6">
+					<div class="relative z-0 w-full mb-6 group">
+						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name(English)</label>
+						<input type="text" id="id" name="id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_eng_name']; ?>" disabled readonly>
+					</div>
+				 	<div class="relative z-0 w-full mb-6 group">
+						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name(Chinese)</label>
+						<input type="text" id="name" name="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_chi_name']; ?>"disabled readonly>
 					 </div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="ic" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">NRIC</label>
-						<input type="text" id="ic" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="001234-56-7890" value="<?php echo $row['member_ic']; ?>" disabled readonly>
+						<input type="text" id="ic" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php 
+						echo $row['member_ic']; ?>" disabled readonly>
 					 </div>
 					 <div class="relative z-0 w-full mb-6 group">
 						<label for="citizen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Citizenship</label>
-						<input type="text" id="citizen" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="Malaysian" value="<?php echo $row['member_citizenship']; ?>" disabled readonly>
+						<input type="text" id="citizen" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_citizenship']; ?>" disabled readonly>
 					</div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Age</label>
-						<input type="text" id="age" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_age']; ?>" disabled readonly>
+						<input type="text" id="age" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php  
+    					date_default_timezone_set("Asia/Kuala_Lumpur");
+					  	$today = date("Y-m-d");
+					  	$diff = date_diff(date_create($row['member_dob']), date_create($today));
+					  	echo $diff->format('%y');
+					?>" disabled readonly>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Gender</label>

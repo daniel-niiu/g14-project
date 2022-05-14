@@ -1,4 +1,6 @@
-<?php 
+<?php
+include "../db/dbconnection.php";    
+isLoggedIn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,11 +61,10 @@
 			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Edit Member</h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			
-			<?php 
-    	include '../db/dbconnection.php';  
+			<?php  
 			$M_ID = $_GET['Id'];
-    	$sql = "SELECT * FROM member WHERE member_id = '".$M_ID."'"; 	 
-    	$result = $conn->query($sql);  
+	    	$sql = "SELECT * FROM member WHERE member_id = '".$M_ID."'"; 	 
+	    	$result = $conn->query($sql);  
 			if (mysqli_num_rows($result) > 0) {
   			// output data of each row
   				while($row = mysqli_fetch_array($result)){   
@@ -77,7 +78,7 @@
 					 	<div class="relative z-0 w-full mb-6 group">
 							<label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Status</label>
 							<label for="checkbox" class="inline-flex relative items-center cursor-pointer mt-1">
-							  <input type="checkbox" value="<?php echo $row['member_status']; ?>" id="checkbox" name="checkbox" class="sr-only peer" checked>
+							  <input type="checkbox"id="checkbox" name="checkbox" value="<?php echo $row['member_status']; ?>"  class="sr-only peer" checked>
 							  <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
 							  <span id="status" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $row['member_status']; ?></span>
 							</label>
@@ -118,7 +119,12 @@
 					<div class="grid xl:grid-cols-2 xl:gap-6">
 						<div class="relative z-0 w-full mb-6 group">
 							<label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Age</label>
-							<input type="text" name="age" id="age" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="30" value="<?php echo $row['member_age']; ?>">
+							<input type="text" name="age" id="age" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="30" value="<?php  
+							  $today = date("Y-m-d");
+							  $diff = date_diff(date_create($row['member_dob']), date_create($today));
+							  echo $diff->format('%y');
+							?>"
+							disabled readonly>
 						</div>
 						<div class="relative z-0 w-full mb-6 group">
 							<label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Gender</label>
