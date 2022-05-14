@@ -78,9 +78,17 @@ isLoggedIn();
 					 	<div class="relative z-0 w-full mb-6 group">
 							<label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Status</label>
 							<label for="checkbox" class="inline-flex relative items-center cursor-pointer mt-1">
-							  <input type="checkbox"id="checkbox" name="checkbox" value="<?php echo $row['member_status']; ?>"  class="sr-only peer" checked>
+							  <input type="checkbox"id="checkbox" name="checkbox" value="<?php echo $row['member_status']; ?>"  class="sr-only peer" 
+							  <?php 
+							  if($row['member_status'] == "Active"){
+							  	echo "checked";
+							  }
+							  else{ 
+							  }
+								?>>
 							  <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-							  <span id="status" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $row['member_status']; ?></span>
+							  <span id="status" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $row['member_status']; ?></span> 
+						  		<input type="hidden" id="checkbox_value" name="checkbox_value" value="<?php echo $row['member_status']; ?>">
 							</label>
 						</div> 
 					 </div>
@@ -88,11 +96,13 @@ isLoggedIn();
 					document.getElementById('checkbox').addEventListener('click', function(){
 						if(this.checked){
 							this.value = 'Active';
-							document.getElementById('status').innerHTML = 'Active';
+							document.getElementById('status').innerHTML = 'Active'; 
+							document.getElementById('checkbox_value').value = "Active";
 						} 
-						else{
-							this.value = 'Inactive';
-							document.getElementById('status').innerHTML = 'Inactive';
+						else{ 
+							this.value = 'InActive'; 
+							document.getElementById('status').innerHTML = 'InActive'; 
+							document.getElementById('checkbox_value').value = "InActive";
 						}
 					});
 					</script>

@@ -12,14 +12,14 @@ if($method === "add")
     $dobdate = date('Y-m-d', strtotime($dobdate)); 
     $acceptdate = str_replace('/', '-', $_POST['accept-date']);
     $acceptdate = date("Y-m-d", strtotime($acceptdate));
-    $sql = "INSERT INTO member (member_id, member_status, member_chi_name, member_eng_name, member_ic, member_citizenship, member_gender, member_dob, member_tel, member_job, member_address,member_type, recommender_id, recommender_name, accept_date, remarks) VALUES ('".$_POST['id']."','".$_POST['checkbox']."','".$_POST['chinese']."','".$_POST['english']."','".$_POST['ic']."','".$_POST['citizen']."','".$_POST['gender']."','".$dobdate."','".$_POST['contact']."','".$_POST['job']."','".$_POST['address']."','".$_POST['member']."','".$_POST['recommender']."','".$_POST['recommender-id']."','".$acceptdate."','".$_POST['remarks']."')";
-    //$result = $conn->query($sql);
+    $sql = "INSERT INTO member (member_id, member_status, member_chi_name, member_eng_name, member_ic, member_citizenship, member_gender, member_dob, member_tel, member_job, member_address,member_type, recommender_id, recommender_name, accept_date, remarks, admin_username) VALUES ('".$_POST['id']."','".$_POST['checkbox_value']."','".$_POST['chinese']."','".$_POST['english']."','".$_POST['ic']."','".$_POST['citizen']."','".$_POST['gender']."','".$dobdate."','".$_POST['contact']."','".$_POST['job']."','".$_POST['address']."','".$_POST['member']."','".$_POST['recommender-id']."','".$_POST['recommender']."','".$acceptdate."','".$_POST['remarks']."', '".$_SESSION['username']."')";
+    echo $sql;
     
-    if (!mysqli_query($conn,$sql)) {
-        header("Location: ../members/create-member.php?name=member&aside=create-member&success=fail");
+    if (mysqli_query($conn,$sql)) {
+        header("Location: ../members/create-member.php?name=member&aside=create-member&success=success");
     } 
     else{
-        header("Location: ../members/create-member.php?name=member&aside=create-member&success=success");
+        header("Location: ../members/create-member.php?name=member&aside=create-member&success=fail");
     }
     
 
@@ -51,7 +51,7 @@ if($method === "update")
     $dobdate = date('Y-m-d', strtotime($dobdate)); 
     $acceptdate = str_replace('/', '-', $_POST['accept-date']);
     $acceptdate = date("Y-m-d", strtotime($acceptdate));
-    $sql = "UPDATE member SET member_eng_name = '".$_POST['english']."', member_chi_name = '".$_POST['chinese']."', member_ic = '".$_POST['ic']."', member_citizenship= '".$_POST['citizen']."', member_gender= '".$_POST['gender']."', member_dob = '".$dobdate."', member_tel = '".$_POST['contact']."', member_job = '".$_POST['job']."', member_address = '".$_POST['address']."',member_type = '".$_POST['member']."', recommender_id = '".$_POST['recommender-id']."', recommender_name = '".$_POST['recommender']."', accept_date = '".$acceptdate."', remarks = '".$_POST['remarks']."', member_status = '".$_POST['checkbox']."' WHERE member_id = '".$_GET['Id']."'";  
+    $sql = "UPDATE member SET member_eng_name = '".$_POST['english']."', member_chi_name = '".$_POST['chinese']."', member_ic = '".$_POST['ic']."', member_citizenship= '".$_POST['citizen']."', member_gender= '".$_POST['gender']."', member_dob = '".$dobdate."', member_tel = '".$_POST['contact']."', member_job = '".$_POST['job']."', member_address = '".$_POST['address']."',member_type = '".$_POST['member']."', recommender_id = '".$_POST['recommender-id']."', recommender_name = '".$_POST['recommender']."', accept_date = '".$acceptdate."', remarks = '".$_POST['remarks']."', member_status = '".$_POST['checkbox_value']."', admin_username = '".$_SESSION['username']."' WHERE member_id = '".$_GET['Id']."'";  
     //echo $sql;
     $result = $conn->query($sql);
     
