@@ -4,7 +4,7 @@ set autocommit = false;
 
 CREATE TABLE Admin (
     admin_username VARCHAR(20) NOT NULL,
-    admin_password VARCHAR(20) NOT NULL, 
+    admin_password VARCHAR(40) NOT NULL, 
     admin_status CHAR(1) NOT NULL, 
     admin_type VARCHAR(10) NOT NULL,
 
@@ -114,7 +114,7 @@ CREATE TABLE GLight_Receipt (
     PRIMARY KEY(Reminder_id)    
 );
 
-INSERT INTO Admin(admin_username, admin_password, admin_status, admin_type) VALUES ('admin','admin', 'T', 'admin');
+INSERT INTO Admin(admin_username, admin_password, admin_status, admin_type) VALUES ('admin',md5('admin'), 'T', 'admin');
 
 commit;
 
