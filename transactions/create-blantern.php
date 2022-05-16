@@ -16,6 +16,7 @@ isLoggedIn();
 	</script>
 	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
 	<script src="https://kit.fontawesome.com/b41521ee1f.js"></script>
+	<script src="https://unpkg.com/flowbite@1.4.4/dist/datepicker.js"></script>
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
