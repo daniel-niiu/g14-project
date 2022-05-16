@@ -78,7 +78,7 @@ isMainPageLoggedIn();
 							</button>
 							<div class="py-6 px-6 lg:px-8">
 								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">WhatsApp Broadcast</h3>
-								<form class="space-y-6" action="#">
+								<form class="space-y-6" action="members/whatsapp.php" method="post">
 									<div>
 										<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Image</label>
 										<input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file">
@@ -86,7 +86,7 @@ isMainPageLoggedIn();
 									</div>
 									<div>
 										<label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Message Content</label>
-										<textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="What do you wish to write?" required></textarea>
+										<textarea id="message" name="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="What do you wish to write?" required></textarea>
 									</div>
 									<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 								</form>
@@ -101,7 +101,7 @@ isMainPageLoggedIn();
 		</div>
 		<hr class="border-gray-300 dark:border-gray-600"/>
 		<?php
-		$sql = "SELECT * FROM reminder ORDER BY reminder_date LIMIT 0,3";  
+		$sql = "SELECT * FROM reminder ORDER BY reminder_id DESC LIMIT 0,3";  
 		?>
 		<div class="container pt-4 pl-4 mx-auto">
 			<ol class="relative border-l border-gray-200 dark:border-gray-700">
@@ -116,7 +116,7 @@ isMainPageLoggedIn();
 						<span class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
 							<svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
 						</span>
-						<h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white"><?php echo $row['title']; ?><!--span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">Latest</span--></h3>
+						<h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white"><?php echo $row['title']; ?><!--<span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">Latest</span>--></h3>
 
 						<div class="flex items-end md:order-2">
 						<button data-dropdown-toggle="dropdown<?php echo $row['reminder_id']; ?>" class="text-black hover:text-gray-600 font-medium rounded-lg text-sm pl-4 py-2.5 text-center inline-flex items-center dark:text-white dark:hover:text-gray-300 float-right" type="button"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button>
@@ -146,6 +146,10 @@ isMainPageLoggedIn();
 				</li>
 				<?php
 					}
+				}
+				else{
+					echo '
+					<p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">There has no event</p>';
 				}
 				?> 
 			</ol>
