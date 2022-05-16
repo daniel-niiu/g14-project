@@ -48,8 +48,7 @@ if(isset($_POST['page'])){
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3">Member id</th>
-                    <th scope="col" class="px-6 py-3">Member id</th>
+                <th scope="col" class="px-6 py-3">Member id</th> 
                     <th scope="col" class="px-6 py-3">Mem. name (en)</th>
                     <th scope="col" class="px-6 py-3">Mem. name (ch)</th>
                     <th scope="col" class="px-6 py-3">Mem. type</th>

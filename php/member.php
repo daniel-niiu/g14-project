@@ -6,14 +6,13 @@ $method = $_GET["method"];
 
 if($method === "add")
 {
-    global $conn;
-    //print_r($_POST['checkbox']);
+    global $conn; 
     $dobdate = str_replace('/', '-', $_POST['dob']);
     $dobdate = date('Y-m-d', strtotime($dobdate)); 
     $acceptdate = str_replace('/', '-', $_POST['accept-date']);
     $acceptdate = date("Y-m-d", strtotime($acceptdate));
     $sql = "INSERT INTO member (member_id, member_status, member_chi_name, member_eng_name, member_ic, member_citizenship, member_gender, member_dob, member_tel, member_job, member_address,member_type, recommender_id, recommender_name, accept_date, remarks, admin_username) VALUES ('".$_POST['id']."','".$_POST['checkbox_value']."','".$_POST['chinese']."','".$_POST['english']."','".$_POST['ic']."','".$_POST['citizen']."','".$_POST['gender']."','".$dobdate."','".$_POST['contact']."','".$_POST['job']."','".$_POST['address']."','".$_POST['member']."','".$_POST['recommender-id']."','".$_POST['recommender']."','".$acceptdate."','".$_POST['remarks']."', '".$_SESSION['username']."')";
-    echo $sql;
+    //echo $sql;
     
     if (mysqli_query($conn,$sql)) {
         header("Location: ../members/create-member.php?name=member&aside=create-member&success=success");
