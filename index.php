@@ -202,93 +202,93 @@ isMainPageLoggedIn();
 	<div class="admin-shortcuts mt-2 mb-1">
 		<div class="container flex flex-wrap justify-between items-center mx-auto pl-4 pr-4">
 			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Administrative Shortcuts</h3>
-			<button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm text-gray-900 bg-white rounded-lg  hover:text-blue-700 dark:text-white dark:bg-gray-900 dark:hover:text-gray-300" data-modal-toggle="authentication-modal3">
+			<button type="button" id="filterbtn" class="py-2.5 px-5 mr-2 mb-2 text-sm text-gray-900 bg-white rounded-lg  hover:text-blue-700 dark:text-white dark:bg-gray-900 dark:hover:text-gray-300" data-modal-toggle="authentication-modal3">
 				<i class="fa-solid fa-filter"></i> Filter
 			</button>
-			
+
 			<div id="authentication-modal3" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
     			<div class="relative w-full h-full max-w-md p-4 md:h-auto">
         			<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            			<button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal3">
-                			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+            			<button type="button" id="closebtn" onclick="clearcheck()" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal3">
+                			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
             				</button>
             				<div class="px-6 py-6 lg:px-8">
                 				<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Select your Preferences</h3>
-                				<form class="space-y-6" action="#">									
+                				<div id= "form1" name="form1" class="space-y-6">
 									<div class="flex items-center mb-4">
-										 <input id="create-members" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
+										 <input id="create-members" name="preference" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
 										 <label for="create-members" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Member</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="search-members" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="search-members" name="preference" type="checkbox" value="2" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="search-members" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search Member</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="create-tablet" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="create-tablet" name="preference" type="checkbox" value="3" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="create-tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Memorial Tablet</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="search-tablet" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="search-tablet" name="preference" type="checkbox" value="4" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="search-tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search Memorial Tablet</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="create-blantern" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="create-blantern" name="preference" type="checkbox" value="5" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="create-blantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Blessing Lantern</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="search-blantern" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="search-blantern" name="preference" type="checkbox" value="6" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="search-blantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search Blessing Lantern</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="create-glantern" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <input id="create-glantern" name="preference" type="checkbox" value="7" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 										 <label for="create-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Guang-Ming Light</label>
 									 </div>
 									 <div class="flex items-center mb-4">
-										 <input id="search-glantern" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-										 <label for="search-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Guang-Ming Light</label>
+										 <input id="search-glantern" name="preference" type="checkbox" value="8" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+										 <label for="search-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search Guang-Ming Light</label>
 									 </div>
-                    				
-                    				<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-                				</form>
+
+                    				<button id="btn_submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-modal-toggle="authentication-modal3">Submit</button>
+                				</div>
             				</div>
         			</div>
     			</div>
-			</div> 
+			</div>
 		</div>
 	</div>
 
 	<div class="row container flex flex-wrap justify-between items-center mx-auto">
 		<div class="column">
 			<div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-				<a href="#1">
+				<a id="a0" href="members/create-member.php">
 					<div class="color1"></div>
 					<div class="p-5">
-						<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden">Noteworthy technology acquisitions 2021</h5>
-						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+						<h5 id="h50" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden">Create Member</h5>
+						<p id="p0" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Create a new member.</p>
 					</div>
 				</a>
 			</div>
 		</div>
-		
+
 		<div class="column">
 			<div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-				<a href="#2">
+				<a id="a1" href="members/search-member.php">
 					<div class="color2"></div>
 					<div class="p-5">
-						<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden">Noteworthy technology acquisitions 2021</h5>
-						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+						<h5 id="h51" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden">Search Member</h5>
+						<p id="p1" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Search for an existing member.</p>
 					</div>
 				</a>
 			</div>
 		</div>
-		
+
 		<div class="column">
 			<div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-				<a href="#3">
+				<a id="a2" href="transactions/create-tablet.php">
 					<div class="color3"></div>
 					<div class="p-5">
-						<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden">Noteworthy technology acquisitions 2021</h5>
-						<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+						<h5 id="h52" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden">Create Memorial Tablet</h5>
+						<p id="p2" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Create a new tablet entry.</p>
 					</div>
 				</a>
 			</div>
@@ -386,8 +386,18 @@ isMainPageLoggedIn();
 		</button>
 	</div>
 	
+	<?php 
+    date_default_timezone_set("Asia/Kuala_Lumpur");
+	$date = date('Y-m-d');
+	$sql = "SELECT * FROM reminder WHERE reminder_date = '$date'";  
+	$query = $conn->query($sql);
+	if($query->num_rows > 0){ 
+	?>
 	<!--Toast: Reminder Reached Notification-->
-	<div id="toast-notification" class="hidden w-full max-w-xs p-4 text-gray-900 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-300 fixed bottom-5 left-5" role="alert">
+	<div id="toast-notification" class="
+		<?php 
+			if($query->num_rows == 0) echo "hidden";
+		?> w-full max-w-xs p-4 text-gray-900 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-300 fixed bottom-5 left-5" role="alert">
 		<div class="flex items-center mb-3">
 			<span class="mb-1 text-sm font-semibold text-gray-900 dark:text-white">New notification</span>
 			<button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-notification" aria-label="Close">
@@ -395,6 +405,9 @@ isMainPageLoggedIn();
 				<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 			</button>
 		</div>
+		<?php 
+			while($row = $query->fetch_assoc()){
+		?>
 		<div class="flex items-center">
 			<div class="relative inline-block shrink-0">
 				<img class="w-12 h-12 rounded-full" src="images/logo.png"/>
@@ -403,11 +416,15 @@ isMainPageLoggedIn();
 				</span>
 			</div>
 			<div class="ml-3 text-sm font-normal">
-				<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Flowbite Figma v1.3.0</h4>
-				<div class="text-sm font-normal">Get access to over 20+ pages including a dashboard layout...</div> 
+				<h4 class="text-sm font-semibold text-gray-900 dark:text-white"><?php echo $row['title']; ?></h4>
+				<div class="text-sm font-normal"><?php echo $row['remarks']; ?></div> 
 				<span class="text-xs font-medium text-blue-600 dark:text-blue-500">Today</span>   
 			</div>
 		</div>
+		<?php 
+			}
+		}
+		?>
 	</div>
 	<hr class="border-gray-300 dark:border-gray-600 mt-4"/>
 	
@@ -489,6 +506,61 @@ isMainPageLoggedIn();
 		}); 
 </script> 
 
+	<script>   
+	var shortcuts = [
+		{ value: 1, head: "Create Member", body: "Create a new member.", anchor: "members/create-member.php" },
+		{ value: 2, head: "Search Member", body: "Search for an existing member.", anchor: "members/search-member.php" },
+		{ value: 3, head: "Create Memorial Tablet", body: "Create a new tablet entry.", anchor: "transactions/create-tablet.php" },
+		{ value: 4, head: "Search Memorial Tablet", body: "Search for an existing tablet.", anchor: "transactions/search-tablet.php" },
+		{ value: 5, head: "Create Blessing Lantern", body: "Create a new lantern entry.", anchor: "transactions/create-blantern.php" },
+		{ value: 6, head: "Search Blessing Lantern", body: "Look up an existing lantern.", anchor: "transactions/search-blantern.php" },
+		{ value: 7, head: "Create Guang-Ming Light", body: "Create a new light entry.", anchor: "transactions/create-glight.php" },
+		{ value: 8, head: "Search Guang-Ming Light", body: "Look up an existing light.", anchor: "transactions/search-glight.php" }
+	]
+	 
+	var selection = new Array(); 
+	var btn = document.getElementById('btn_submit');
+	var form = document.getElementById('form1');
+
+	btn.addEventListener('click', function() {
+		var count = form.querySelectorAll('input[type="checkbox"]:checked').length;
+		console.log(count);
+		if(count == 3){ 
+			form.querySelectorAll('input').forEach(function (input){ 
+				if(input.type === 'checkbox' && input.checked){
+				selection.push(input.value);
+				} 
+			});
+			//console.log(selection);
+		  	//result1 = selection.filter(f => !selection.includes(f));
+
+		  	var result1 = shortcuts.filter(function(f){ 
+		  		return f.value == selection[0] || f.value == selection[1] || f.value == selection[2];
+
+		  	 //=> !selection.includes(f)
+		  	}); 
+		  	console.log(result1);
+		  	var i = 0;
+		  	result1.forEach(function (data){ 
+				var a = document.getElementById('a'+i);
+				var title = document.getElementById('h5'+i);
+				var content = document.getElementById('p'+i);
+				
+				a.setAttribute('href',data.anchor);
+				title.innerHTML = data.head;
+				content.innerHTML = data.body;
+				 
+				i++;
+		  	});
+		  	selection = new Array(); 
+		}
+		else{
+			alert("You cannot select less or more than 3 preferences.")
+		}
+	 });
+
+
+	</script>
 <script src="script/jquery.min.js"></script>
 <script> 
     $(function(){
