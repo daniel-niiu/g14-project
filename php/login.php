@@ -2,8 +2,12 @@
 
 include "../db/dbconnection.php";
 
+/*
+$_SESSION["status"] = '';
+echo "<script>alert('".$_SESSION["status"]."');</script>";
+*/
 if(isset($_POST['btn_submit'])){
-	$sql = "SELECT * FROM admin WHERE admin_username = '".$_POST['username']."' AND admin_password = '".$_POST['password']."'";  
+	$sql = "SELECT * FROM admin WHERE admin_username = '".$_POST['username']."' AND admin_password = '".md5($_POST['password'])."'";  
 	$result = $conn->query($sql); 
 	if ($result->num_rows > 0) {
 	  // output data of each row
@@ -14,6 +18,10 @@ if(isset($_POST['btn_submit'])){
 
 	  } 
 	  header('Location: ../index.php');
+	}
+	else{   
+		$_SESSION["status"] = 'F';
+		header('Location: ../index.php');
 	}
 }
 ?>

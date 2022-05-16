@@ -9,7 +9,7 @@ if($method === "add")
     //print_r($_POST['checkbox']); 
     $receiptdate = str_replace('/', '-', $_POST['date']);
     $receiptdate = date("Y-m-d", strtotime($receiptdate));
-    $sql = "INSERT INTO BLantern(BLantern_id, member_eng_name, member_chi_name, contact_num, blessing_price, votive_price, breceipt_num, vreceipt_num,     receipt_date, price, remarks) VALUES ('".$_POST['id']."','".$_POST['english']."','".$_POST['chinese']."','".$_POST['contact']."','".$_POST['blessing_price']."','".$_POST['votive_price']."','".$_POST['blessing_receipt']."','".$_POST['votive_receipt']."','".$receiptdate."','".$_POST['amount']."','".$_POST['remarks']."')";  
+    $sql = "INSERT INTO BLantern(BLantern_id, member_eng_name, member_chi_name, contact_num, blessing_price, votive_price, breceipt_num, vreceipt_num,     receipt_date, price, remarks, username) VALUES ('".$_POST['id']."','".$_POST['english']."','".$_POST['chinese']."','".$_POST['contact']."','".$_POST['blessing_price']."','".$_POST['votive_price']."','".$_POST['blessing_receipt']."','".$_POST['votive_receipt']."','".$receiptdate."','".$_POST['amount']."','".$_POST['remarks']."','".$_SESSION['username']."')";  
     if (!mysqli_query($conn,$sql)) {
         header("Location: ../transactions/create-blantern.php?name=transaction&aside=create-blantern&success=fail");
     } 

@@ -1,5 +1,10 @@
 <?php   
+if($_POST['message'] != ""){ 
+	header("Location: https://wa.me/?text=".$_POST['message']);
+}
 // Include database configuration file 
+//https://wa.me/08231231412?text=Halo%20name%20maya%20nadine
+/*
 require_once '../db/dbconnection.php'; 
 $query = 'SELECT member_tel FROM member';
 if ($result = $conn->query($query)) {
@@ -36,5 +41,5 @@ $text = "Hello all";
     }
     $result->free();
 }
-
+*/
 ?>
