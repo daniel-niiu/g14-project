@@ -41,7 +41,7 @@ body{
 @media only screen and (max-width: 1200px){
 .column {
 	padding: 0 10%;
-  }
+	}
 }
 
 /* Float four columns side by side */

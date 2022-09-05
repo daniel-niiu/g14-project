@@ -15,7 +15,7 @@ isMainPageLoggedIn();
 			document.documentElement.classList.remove('dark');
 		}
 	</script>
-	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.2/dist/flowbite.min.css" />
 	<link rel="stylesheet" href="styles/style.css">
 	<link rel="icon" type="image/x-icon" href="images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
@@ -79,11 +79,11 @@ isMainPageLoggedIn();
 							<div class="py-6 px-6 lg:px-8">
 								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">WhatsApp Broadcast</h3>
 								<form class="space-y-6" action="members/whatsapp.php" method="post">
-									<div>
+									<!--div>
 										<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Image</label>
 										<input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file">
 										<p class="mt-1 ml-1 text-xs text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (Max. 800x400px).</p>
-									</div>
+									</div-->
 									<div>
 										<label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Message Content</label>
 										<textarea id="message" name="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="What do you wish to write?" required></textarea>
@@ -96,9 +96,7 @@ isMainPageLoggedIn();
 				</div> 
 			</div>
 		</div>
-		<div id="test">
-			
-		</div>
+		
 		<hr class="border-gray-300 dark:border-gray-600"/>
 		<?php
 		$sql = "SELECT * FROM reminder ORDER BY reminder_id DESC LIMIT 0,3";  
@@ -116,7 +114,7 @@ isMainPageLoggedIn();
 						<span class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
 							<svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
 						</span>
-						<h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white"><?php echo $row['title']; ?><!--<span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">Latest</span>--></h3>
+						<h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white"><?php echo $row['title']; ?></h3>
 
 						<div class="flex items-end md:order-2">
 						<button data-dropdown-toggle="dropdown<?php echo $row['reminder_id']; ?>" class="text-black hover:text-gray-600 font-medium rounded-lg text-sm pl-4 py-2.5 text-center inline-flex items-center dark:text-white dark:hover:text-gray-300 float-right" type="button"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button>
@@ -201,7 +199,7 @@ isMainPageLoggedIn();
 		</div>
 	</div>
 
-		<hr class="border-gray-300 dark:border-gray-600"/>
+	<hr class="border-gray-300 dark:border-gray-600"/>
 	
 	<div class="admin-shortcuts mt-2 mb-1">
 		<div class="container flex flex-wrap justify-between items-center mx-auto pl-4 pr-4">
@@ -310,7 +308,7 @@ isMainPageLoggedIn();
 		</button>
 	</div>
 
-	<div id="toast-danger-user" class="hidden flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
+	<!--div id="toast-danger-user" class="hidden flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
 		<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		</div>
@@ -318,12 +316,12 @@ isMainPageLoggedIn();
 		<button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-danger-user" aria-label="Close">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		</button>
-	</div>
+	</div-->
+	
 	<?php 
 	if($_GET['title'] == "reminderadd" && $_GET['success'] == "success")
 	{
 	?>
-
 	<!--Toast: Add Reminder-->
 	<div id="toast-add-reminder" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
 		<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
@@ -379,16 +377,6 @@ isMainPageLoggedIn();
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		</button>
 	</div>
-
-	<div id="toast-warning-filter" class="hidden flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
-		<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200">
-			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
-		</div>
-		<div class="ml-3 text-sm font-normal">Insufficient choice. Please try again.</div>
-		<button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-warning" aria-label="Close">
-			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-		</button>
-	</div>
 	
 	<?php 
     date_default_timezone_set("Asia/Kuala_Lumpur");
@@ -436,7 +424,7 @@ isMainPageLoggedIn();
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4">Disclaimer: This is a student work in progress for SWE40001/SWE40002 Software Engineering Project A/B of Swinburne University of Technology, Sarawak (2022).</p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.2/dist/flowbite.js"></script>
 	
 	<script>
 		var login = document.getElementById('loginTemplate');
@@ -448,11 +436,7 @@ isMainPageLoggedIn();
 		?>
 		login.classList.add('hidden');
 		toast_user.classList.add('hidden');
-
-			//var login = document.getElementById(\"loginTemplate\"); 
-			//echo "
-		//<script>
-			//alert('asd')
+		
 		<?php
 		}
 		else if($_SESSION["status"] == "F"){
@@ -468,6 +452,9 @@ isMainPageLoggedIn();
 		<?php
 		}
 		?>
+	</script>
+	
+	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
 		var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
@@ -508,7 +495,7 @@ isMainPageLoggedIn();
 			}
 
 		}); 
-</script> 
+	</script> 
 
 	<script>   
 	var shortcuts = [
@@ -565,39 +552,40 @@ isMainPageLoggedIn();
 
 
 	</script>
-<script src="script/jquery.min.js"></script>
-<script> 
-    $(function(){
-        $("a[name='reminder']").on('click', function(){
-            var reminder_id = $(this).attr('tag');   
-            //alert(reminder_id);
-            
-            $.ajax({
-			    dataType: 'json',
-			    method: "POST",
-			    url: "php/json_index.php",
-		        data: {
-		            reminder_id: reminder_id
-		        },  
-		        success: function(data){ 
-		        	$('#edit-reminder-title').val(data.reminderTitle);
-		        	$('#edit-reminder-date').val(data.reminderDate);
-		        	$('#edit-reminder-content').val(data.reminderRemarks); 
-   					$('#edit-reminder-id').val(data.reminderID); 
-            		console.log(data);
-        		}, 
-				error: function(data) {
-				    console.log("error: ", data);
-				}
-            })
-            
-           //delete-reminder-button 
-        });
-        $("a[name='reminder-delete']").on('click', function(){
-            var reminder_id = $(this).attr('tag');    
-            $('#delete-reminder').attr('href',"php/reminder.php?method=delete&Id="+reminder_id);  
-        });
-    });
-</script>
+	
+	<script src="script/jquery.min.js"></script>
+	<script> 
+		$(function(){
+			$("a[name='reminder']").on('click', function(){
+				var reminder_id = $(this).attr('tag');   
+				//alert(reminder_id);
+
+				$.ajax({
+					dataType: 'json',
+					method: "POST",
+					url: "php/json_index.php",
+					data: {
+						reminder_id: reminder_id
+					},  
+					success: function(data){ 
+						$('#edit-reminder-title').val(data.reminderTitle);
+						$('#edit-reminder-date').val(data.reminderDate);
+						$('#edit-reminder-content').val(data.reminderRemarks); 
+						$('#edit-reminder-id').val(data.reminderID); 
+						console.log(data);
+					}, 
+					error: function(data) {
+						console.log("error: ", data);
+					}
+				})
+
+			   //delete-reminder-button 
+			});
+			$("a[name='reminder-delete']").on('click', function(){
+				var reminder_id = $(this).attr('tag');    
+				$('#delete-reminder').attr('href',"php/reminder.php?method=delete&Id="+reminder_id);  
+			});
+		});
+	</script>
 </body>
 </html>
