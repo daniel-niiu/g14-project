@@ -69,11 +69,11 @@ isLoggedIn();
 				<div class="container flex flex-wrap justify-between items-center mx-auto">
 					<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">View Guang Ming Light</h2>
 					<div class="flex justify-between">
-						<!--a href="edit-member.php?name=member&Id=<?php echo $row['member_id']; ?>"-->
+						<a href="edit-glight.php?name=transaction&Id=<?php echo $row['GLight_id']; ?>">
 							<button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-								<i class="fa-solid fa-pencil"></i>&nbsp; Edit Record
+								<i class="fa-solid fa-pencil"></i>&nbsp; Edit Light
 							</button>
-						<!--/a-->
+						</a>
 
 						<button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-modal-toggle="delete-popup-modal">
 							<i class="fa-solid fa-trash-can"></i>&nbsp; Delete Record
@@ -88,10 +88,12 @@ isLoggedIn();
 									<div class="p-6 text-center">
 										<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
 										<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this record?</h3>
-										<!--a href="../php/member.php?Id=</?php echo $row['member_id'];?>&method=delete"--><button data-modal-toggle="delete-popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+										<a href="../php/glight.php?method=delete&Id=<?php echo $row['GLight_id'];?>">
+										<button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
 											Yes, I'm sure
-										</button><!--/a-->
-										<button data-modal-toggle="delete-popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
+										</button>
+									</a>										
+									<button data-modal-toggle="delete-popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
 									</div>
 								</div>
 							</div>
