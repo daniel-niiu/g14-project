@@ -47,10 +47,33 @@ error_reporting(0);
 					</ul-->
 					<ul class="py-1" aria-labelledby="dropdown">
 						<li>
-							<a class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer" data-modal-toggle="authentication-modal4">Add Account</a>
+							<a 
+                             <?php 
+                             if($_GET['name'] == 'account'){
+                              	echo "href='create-account.php?name=account&aside=create-account'";
+							 }
+                             else if($_GET['name'] == ''){
+                             	echo "href='accounts/create-account.php?name=account&aside=create-account'";
+							 }
+                             else if($_GET['name'] == 'member'){
+                                 echo "href='../accounts/create-account.php?name=account&aside=create-account'";
+                             }
+                             else if($_GET['name'] == 'transaction'){
+                                 echo "href='../accounts/create-account.php?name=account&aside=create-account'";
+                             }
+                             else if($_GET['name'] == 'product'){
+                                 echo "href='../accounts/create-account.php?name=account&aside=create-account'";
+                             }
+                             else if($_GET['name'] == 'stock'){
+                                 echo "href='../accounts/create-account.php?name=account&aside=create-account'";
+                             }
+                             else{ 
+                                  echo "href='../accounts/create-account.php?name=account&aside=create-account'";
+                              } 
+                             ?> class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer">Account Settings</a>
 						</li>
 						<li>
-							<a class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer" data-modal-toggle="authentication-modal5">Edit Account</a>
+							<a class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer" data-modal-toggle="authentication-modal5">Edit Password</a>
 						</li>
 					</ul>
 					<ul class="py-1" aria-labelledby="dropdown">
@@ -67,44 +90,7 @@ error_reporting(0);
 						</li>
 					</ul>
 				</div>
-				
-				<div id="authentication-modal4" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-					<div class="relative w-full h-full max-w-md p-4 md:h-auto">
-						<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-							<button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal4">
-								<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-							</button>
-							<div class="px-6 py-6 lg:px-8">
-								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add User Account</h3>
-									<form class="space-y-6" action="#">
-										<div>
-											<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email Address</label>
-											<input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter your email address here" required>
-										</div>
-										<div>
-											<label for="current-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">New Password</label>
-											<input type="password" name="new-password" id="new-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter your password here" required>
-										</div>
-										<div>
-											<label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Confirm Password</label>
-											<input type="password" name="confirm-password" id="confirm-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Confirm your password here" required>
-										</div>
-										<div>
-											<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Type</label>
-											
-											<input type="radio" name="account-type" id="administrator" value="Administrator">
-											<label for="administrator" class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Administrator</label>
-											
-											<input type="radio" name="account-type" id="operator" class="ml-6" value="Operator">
-											<label for="operator" class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Operator</label>
-										</div>
-										<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-									</form>
-							</div>
-						</div>
-					</div>
-				</div> 
-				
+			
 				<div id="authentication-modal5" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
 					<div class="relative w-full h-full max-w-lg p-4 md:h-auto">
 						<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -143,32 +129,8 @@ error_reporting(0);
 											<input type="password" name="confirm-password" id="confirm-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Confirm your new password here" required>
 										</div>
 										
-										<div class="grid lg:grid-cols-2 lg:gap-8">
-											<div class="relative z-0 w-full group mb-1">
-												<button type="button" class="w-full text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center" data-modal-toggle="popup-modal">Delete Account</button>
-											</div>
-											<div class="relative z-0 w-full group my-auto">
-												<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-											</div>
-										</div>
+										<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 										
-										<div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-											<div class="relative w-full h-full max-w-md p-4 md:h-auto">
-												<div class="relative bg-gray-200 rounded-lg shadow dark:bg-gray-500">
-													<button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="popup-modal">
-														<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-													</button>
-													<div class="p-6 text-center">
-														<svg class="mx-auto mb-4 text-gray-600 w-14 h-14 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-														<h3 class="mb-5 text-lg font-normal text-gray-900 dark:text-white">Are you sure you want to delete this account?</h3>
-														<!--a href="../php/member.php?Id=</?php echo $row['member_id'];?>&method=delete"--><button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-															Yes, I'm sure
-														</button><!--/a-->
-														<button data-modal-toggle="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-500 dark:text-white dark:border-gray-700 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
-													</div>
-												</div>
-											</div>
-										</div>
 									</form>
 							</div>
 						</div>
@@ -203,6 +165,10 @@ error_reporting(0);
 							   echo "href='../members/create-member.php?name=member&aside=create-member'";
 							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
+						   else if($_GET['name'] == 'account'){
+							   echo "href='../members/create-member.php?name=member&aside=create-member'";
+							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
+						   }
 						   else{ 
 								echo "href='../create-member.php?name=member&aside=create-member'";
 							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
@@ -227,6 +193,10 @@ error_reporting(0);
 							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
 						   else if($_GET['name'] == 'stock'){
+							   echo "href='../transactions/create-tablet.php?name=transaction&aside=create-tablet'";
+							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
+						   }
+						   else if($_GET['name'] == 'account'){
 							   echo "href='../transactions/create-tablet.php?name=transaction&aside=create-tablet'";
 							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
@@ -257,6 +227,10 @@ error_reporting(0);
 							   echo "href='../products/create-product.php?name=product&aside=create-product'";
 							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
+						   else if($_GET['name'] == 'account'){
+							   echo "href='../products/create-product.php?name=product&aside=create-product'";
+							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
+						   }
 						   else{ 
 								echo "href='../create-product.php?name=product&aside=create-product'";
 							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
@@ -281,6 +255,10 @@ error_reporting(0);
 							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
 						   else if($_GET['name'] == 'product'){
+							   echo "href='../stocks/stock-in.php?name=stock&aside=stock-in'";
+							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
+						   }
+						   else if($_GET['name'] == 'account'){
 							   echo "href='../stocks/stock-in.php?name=stock&aside=stock-in'";
 							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
