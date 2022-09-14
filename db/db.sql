@@ -114,8 +114,32 @@ CREATE TABLE GLight_Receipt (
     PRIMARY KEY(Reminder_id)    
 );
 
+ CREATE TABLE Product (
+    product_id INT(10) NOT NULL AUTO_INCREMENT,
+    product_status BOOLEAN NOT NULL, 
+    product_name VARCHAR(30) NOT NULL,
+	product_name_chi VARCHAR(30) NOT NULL,
+	unit_price INT(3) NOT NULL,
+    remarks VARCHAR(200),   
+
+    PRIMARY KEY(product_id)
+    
+);
+
+ CREATE TABLE Stock (
+    product_name VARCHAR(30) NOT NULL,
+	stock_date DATE NOT NULL,
+	stock_summary VARCHAR(200),
+    remarks VARCHAR(200),
+	receipt_no INT(6) NOT NULL,
+	stock_in INT(3) NOT NULL,
+	stock_out INT(3) NOT NULL,
+	balance_left INT(5) NOT NULL,
+	stock_remarks VARCHAR(200),
+
+    PRIMARY KEY(receipt_no)   
+);
+
 INSERT INTO Admin(admin_username, admin_password, admin_status, admin_type) VALUES ('admin',md5('admin'), 'T', 'admin');
 
 commit;
-
- 
