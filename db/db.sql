@@ -130,12 +130,11 @@ CREATE TABLE GLight_Receipt (
     product_name VARCHAR(30) NOT NULL,
 	stock_date DATE NOT NULL,
 	stock_summary VARCHAR(200),
-    remarks VARCHAR(200),
 	receipt_no INT(6) NOT NULL,
 	stock_in INT(3) NOT NULL,
 	stock_out INT(3) NOT NULL,
 	balance_left INT(5) NOT NULL,
-	stock_remarks VARCHAR(200),
+	remarks VARCHAR(200),
 
     PRIMARY KEY(receipt_no)   
 );
