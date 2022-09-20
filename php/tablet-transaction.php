@@ -19,9 +19,9 @@ if($method === "add")
     $remarks = $_POST["remarks"]; 
 
     $sql = "  
-        INSERT INTO TABLET_Receipt(Tablet_id, receipt_num, receipt_date, receipt_amount, member_eng_name , member_chi_name, remarks)
+        INSERT INTO TABLET_Receipt(Tablet_id, receipt_num, receipt_date, receipt_amount, member_eng_name , member_chi_name, remarks,username)
         VALUES
-        ('$id','$receipt','$receiptdate','$amount','$english','$chinese','$remarks')"; 
+        ('$id','$receipt','$receiptdate','$amount','$english','$chinese','$remarks', '".$_SESSION['username']."')"; 
     //$result = $conn->query($sql);
     
     if (!mysqli_query($conn,$sql)) {

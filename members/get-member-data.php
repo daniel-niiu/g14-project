@@ -65,8 +65,8 @@ if(isset($_POST['page'])){
             ?>
             <tr class='border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700'>
                 <th scope='row' class='px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap'><a href='view-member.php?name=member&Id=<?php echo $row["member_id"]; ?>' class='dark:hover:text-blue-500 md:hover:text-blue-700'><?php echo $row['member_id']; ?></a></th>
-                <td class='px-6 py-4'><?php echo $row['member_chi_name'];?></td>
                 <td class='px-6 py-4'><?php echo $row['member_eng_name'];?></td>
+                <td class='px-6 py-4'><?php echo $row['member_chi_name'];?></td>
                 <td class='px-6 py-4'><?php echo $row['member_type']; ?></td>
                 <td class='px-6 py-4'><?php echo $row['member_status']; ?></td>
                 <td class='px-6 py-4 text-right'><a href='edit-member.php?name=member&Id=<?php echo $row["member_id"];?>' class='font-medium text-blue-600 dark:text-blue-500 hover:underline'>Edit</a></td>

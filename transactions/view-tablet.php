@@ -10,7 +10,7 @@ $baseURL = '../php/get-tablet-transaction-data.php';
 $limit = 10; 
  
 // Count of all records 
-$query   = $conn->query("SELECT COUNT(*) as rowNum FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.tablet_id = tr.Tablet_id"); 
+$query   = $conn->query("SELECT COUNT(*) as rowNum FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.tablet_id = tr.Tablet_id  AND t.tablet_id = '".$_GET['Id']."'"); 
 
 $result  = $query->fetch_assoc(); 
 $rowCount= $result['rowNum']; 
@@ -26,7 +26,7 @@ $pagConfig = array(
 $pagination =  new Pagination($pagConfig); 
  
 // Fetch records based on the limit    
-$query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.tablet_id = tr.Tablet_id ORDER BY tr.receipt_num LIMIT $limit");  
+$query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.tablet_id = tr.Tablet_id AND t.tablet_id = '".$_GET['Id']."' ORDER BY tr.receipt_num LIMIT $limit");  
 ?>
 <!DOCTYPE html>
 <html lang="en">

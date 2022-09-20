@@ -68,11 +68,11 @@ isLoggedIn();
 								</button>
 								<div class="py-6 px-6 lg:px-8">
 									<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Import Record</h3>
-									<form class="space-y-6">
+									<form class="space-y-6" method="post" action="glight_import.php" id="import_excel_form" enctype="multipart/form-data">
 										<div>
 											<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload File</label>
-											<input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file">
-											<p class="mt-1 ml-1 text-xs text-gray-500 dark:text-gray-300">**Comma Separated Values (.csv) File only.</p>
+											<input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" name="excel" type="file">
+											<p class="mt-1 ml-1 text-xs text-gray-500 dark:text-gray-300">**Excel (.xlsx) File only.</p>
 										</div>
 										<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 									</form>

@@ -1,5 +1,7 @@
 <?php
 
+include("../php/SimpleXLSXGen.php");
+
 if(isset($_POST['btn_export'])){
 
     include_once '../db/dbconnection.php'; 
@@ -8,52 +10,32 @@ if(isset($_POST['btn_export'])){
     $check=implode(", ", $checkbox);
     $explodedata = explode(", ",$check);
     //print_r($explodedata);
-    //print_r($check);  
-    // Filter the excel data 
-    function filterData(&$str){ 
-        $str = preg_replace("/\t/", "\\t", $str); 
-        $str = preg_replace("/\r?\n/", "\\n", $str); 
-        if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"'; 
-    } 
-     
-    // Excel file name for download 
-    $fileName = "members-data_" . date('Y-m-d') . ".xls"; 
-     
-    // Column names 
-    //$fields = array('ID', 'NAME', 'IC', 'GENDER', 'AGE', 'CONTACT', 'OCCUPATION', 'MEMBER TYPE'); 
-    //echo $check;
-     
-    // Display column names as first row 
-    $excelData = implode("\t", array_values($fields)) . "\n"; 
-     
-    //echo "SELECT $check FROM member ORDER BY member_id ASC";
-    // Fetch records from database  
-    $query = $conn->query("SELECT $check FROM member ORDER BY member_id ASC");  
-    if($query->num_rows > 0){ 
-        // Output each row of the data 
-        //while($row = $query->fetch_assoc()){  
-        while($row = mysqli_fetch_array($query, MYSQLI_NUM)){
-            //$lineData = array($row[0], $row['member_name'], $row['member_ic'], $row['member_gender'], $row['member_age'], $row['member_tel'], $row['member_job'], $row['member_type']); 
-            $array = array();
-            foreach ($row as $data) {
-                array_push($array,$data); 
-            }
-            array_walk($array, 'filterData'); 
-            $excelData .= implode("\t", array_values($array)) . "\n"; 
-        } 
+    //print_r($check);    
+    $excelData = array($fields);  
+
+    $sql = "SELECT $check FROM member ORDER BY member_id ASC";
+    $res = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($res) > 0) { 
+        foreach($res as $row){ 
+            $rowdata = array();
+            foreach($explodedata as $data){
+                array_push($rowdata , $row[$data]);
+            } 
+            $excelData = array_merge($excelData, array($rowdata)); 
+        }  
     }else{ 
         $excelData .= 'No records found...'. "\n"; 
     } 
-     
-    // Headers for download 
-    header("Content-Type: application/vnd.ms-excel"); 
-    header("Content-Disposition: attachment; filename=\"$fileName\""); 
-     
-    // Render excel data 
-    echo $excelData; 
-     
-    exit;
     
+    $fileName = "members-data_" . date('Y-m-d') . ".xlsx"; 
+    $xlsx = SimpleXLSXGen::fromArray($excelData);
+    $xlsx->downloadAs($fileName); // This will download the file to your local system
+
+
+    echo "<pre>";
+    print_r($excelData); 
+    exit;
+     
 }
 // Load the database configuration file 
 ?>
