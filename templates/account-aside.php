@@ -13,7 +13,7 @@
 		</ul>
 		<ul class="pt-4 mt-4 space-y-2 border-t border-gray-300 dark:border-gray-600">
 			<li>
-				<a href="search-account.php?name=account&aside=create-account" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "create-account") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
+				<a href="create-account.php?name=account&aside=create-account" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "create-account") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
                     <i class="fa-solid fa-plus"></i>
 					<span class="ml-4">Create Account</span>
 				</a>

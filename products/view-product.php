@@ -1,6 +1,32 @@
-<?php
-include "../db/dbconnection.php";    
+<?php 
+// Include pagination library file 
+include_once '../php/Pagination.class.php'; 
+ 
+// Include database configuration file 
+require_once '../db/dbconnection.php';  
 isLoggedIn();
+// Set some useful configuration 
+$baseURL = '../php/get-tablet-transaction-data.php'; 
+$limit = 10; 
+ 
+// Count of all records 
+$query   = $conn->query("SELECT COUNT(*) as rowNum FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.tablet_id = tr.Tablet_id"); 
+
+$result  = $query->fetch_assoc(); 
+$rowCount= $result['rowNum']; 
+ 
+// Initialize pagination class 
+$pagConfig = array( 
+    'baseURL' => $baseURL, 
+    'totalRows' => $rowCount, 
+    'perPage' => $limit, 
+    'contentDiv' => 'dataContainer', 
+    'link_func' => 'searchFilter' 
+); 
+$pagination =  new Pagination($pagConfig); 
+ 
+// Fetch records based on the limit    
+$query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.tablet_id = tr.Tablet_id ORDER BY tr.receipt_num LIMIT $limit");  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,14 +82,15 @@ isLoggedIn();
 		  </ol>
 		</nav>
 	
-					<?php  
-					$M_ID = $_GET['Id']; 
-		    	$sql = "SELECT * FROM product WHERE product_id = '".$M_ID."'"; 	  
-		    	$result = $conn->query($sql);  
-					if (mysqli_num_rows($result) > 0) {
-		  			// output data of each row
-		  				$row = mysqli_fetch_array($result); 
-					?>
+        <?php  
+        $M_ID = $_GET['Id']; 
+        $sql = "SELECT * FROM product WHERE product_id = '".$M_ID."'"; 	  
+        $result = $conn->query($sql);  
+        if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+            $row = mysqli_fetch_array($result); 
+        ?>
+		
 		<div>
 			<div class="container flex flex-wrap justify-between items-center mx-auto">
 				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">View Product</h2>
@@ -74,14 +101,15 @@ isLoggedIn();
 						</button>
 					</a>
 					
-					<button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-modal-toggle="popup-modal">
+					<button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-modal-toggle="delete-popup-modal">
 						<i class="fa-solid fa-trash-can"></i>&nbsp; Delete Product
 					</button> 
+					
 					<div id="delete-popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
 						<div class="relative w-full h-full max-w-md p-4 md:h-auto">
 							<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
 								<button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="delete-popup-modal">
-									<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+									<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg> 
 								</button>
 								<div class="p-6 text-center">
 									<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -96,6 +124,7 @@ isLoggedIn();
 					</div>
 				</div>
 			</div> 
+			
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			
 			<form>
@@ -111,11 +140,11 @@ isLoggedIn();
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="eng" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product Name(English)</label>
+						<label for="eng" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product Name (English)</label>
 						<input type="text" id="eng" name="eng" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['product_eng_name']; ?>" disabled readonly>
 					</div>
 				 	<div class="relative z-0 w-full mb-6 group">
-						<label for="chi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product Name(Chinese)</label>
+						<label for="chi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product Name (Chinese)</label>
 						<input type="text" id="chi" name="chi" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['product_chi_name']; ?>"disabled readonly>
 					 </div>
 				 </div>
@@ -150,7 +179,7 @@ isLoggedIn();
 			<div class="container flex flex-wrap justify-between items-center mx-auto pt-4">
 				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">View Product Stocks</h2>
 				<div class="button">
-					<a href="create-product-product.php?name=product&aside=product-product">
+					<a href="../stocks/stock-in.php?name=stock&aside=stock-in">
 						<button type="button" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
 							<i class="fa-solid fa-plus-minus"></i>&nbsp; Stock In/Out
 						</button>
@@ -184,8 +213,8 @@ isLoggedIn();
 			                    	<a href="view-product-product.php?name=transaction&Id=<?php echo $row["product_id"]; ?>&receiptNum=<?php echo $row['receipt_num']; ?>&receiptDate=<?php echo $row['receipt_date'];?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt_date"]; ?></a>
 			                    </th> 
 			                    <td class="px-6 py-4"><?php echo $row["receipt_num"]; ?></td>
-			                    <td class="px-6 py-4"><?php echo $row["product_eng_name"]; ?></td>
-			                    <td class="px-6 py-4"><?php echo $row["product_chi_name"]; ?></td>
+			                    <td class="px-6 py-4"><!--?php echo $row["product_eng_name"]; ?--></td>
+			                    <td class="px-6 py-4"><!--?php echo $row["product_chi_name"]; ?--></td>
 			                    <td class="px-6 py-4"><?php echo $row["receipt_amount"]; ?></td>
 			                    <td class="px-6 py-4 text-right">
 			                    	<a href="edit-product-product.php?name=transaction&Id=<?php echo $row["product_id"]; ?>&receiptNum=<?php echo $row['receipt_num']; ?>&receiptDate=<?php echo $row['receipt_date'];?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
@@ -195,7 +224,7 @@ isLoggedIn();
 			                } 
 			            }
 		                else{ 
-		                    echo '<tr><td colspan="5">No records found...</td></tr>'; 
+		                    echo '<tr><td colspan="6">No records found...</td></tr>'; 
 		                } 
                     	?> 
 					</tbody>
@@ -206,9 +235,6 @@ isLoggedIn();
 			    <?php echo $pagination->createLinks(); ?>   
 			</nav>		
 		</div>
-		<?php
-		 
-		?>
 	</div>
 	</div>
 	

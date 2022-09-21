@@ -45,58 +45,31 @@ isLoggedIn();
 			<li>
 			  <div class="flex items-center">
 				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<a href="../products/view-product.php" class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">View Product</a>
-			  </div>
-			</li>
-			<li>
-			  <div class="flex items-center">
-				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">View Stock</p>
+				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Stock In/Out</p>
 			  </div>
 			</li>
 		  </ol>
 		</nav>
 		
 		<div>
-			<div class="container flex flex-wrap justify-between items-center mx-auto">
-				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">View Stock</h2>
-				<div class="button">
-					<a href="#">
-						<button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-							<i class="fa-solid fa-pencil"></i>&nbsp; Edit Stock
-						</button>
-					</a>
-					
-					<button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-modal-toggle="delete-popup-modal">
-						<i class="fa-solid fa-trash-can"></i>&nbsp; Delete Stock
-					</button> 
-					<div id="delete-popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-						<div class="relative w-full h-full max-w-md p-4 md:h-auto">
-							<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-								<button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="delete-popup-modal">
-									<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-								</button>
-								<div class="p-6 text-center">
-									<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-									<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this record?</h3>
-									<a href="../php/product.php?Id=<?php echo $row['product_id'];?>&method=delete"><button data-modal-toggle="delete-popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-										Yes, I'm sure
-									</button></a>
-									<button data-modal-toggle="delete-popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> 
-			
+			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Stock In/Out</h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			
-			<form>
+			<form method="post" action="../php/member.php?method=add">
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product Name*</label>
-						<input type="text" id="name" name="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="Product Name" disabled readonly>
+						<label for="ID" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product ID</label>
+						<input type="text" id="ID" name="ID" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product ID" required>
+					</div>
+					<div class="relative z-0 w-full mb-6 group">
+						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product Name (English)</label>
+						<input type="text" id="name" name="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" placeholder="Product Name" disabled readonly>
+					</div>
+				</div>
+				<div class="grid xl:grid-cols-2 xl:gap-6">
+					<div class="relative z-0 w-full mb-6 group">
+						<label for="chi-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product Name (Chinese)</label>
+						<input type="text" id="chi-name" name="chi-name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" placeholder="产品名称" disabled readonly>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date</label>
@@ -104,7 +77,7 @@ isLoggedIn();
   							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
     							<svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
   							</div>
-  							<input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="date" name="date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 pl-10" value="<?php echo date("d-m-Y", strtotime($row['inst_date'])); ?>" disabled readonly>
+  							<input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
 						</div>
 					</div>
 				</div>
@@ -112,22 +85,22 @@ isLoggedIn();
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="summary" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Summary</label>
-						<input type="text" id="summary" name="summary" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="Leave a summary..." disabled readonly>
+						<input type="text" id="summary" name="summary" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a summary...">
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="receipt" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Receipt Number</label>
-						<input type="text" id="receipt" name="receipt" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="Receipt Number" disabled readonly>
+						<input type="text" id="receipt" name="receipt" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Receipt Number">
 					 </div>
 				</div>
 				
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="stock-in" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Stock In</label>
-						<input type="text" id="stock-in" name="stock-in" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="Stock In" disabled readonly>
+						<input type="text" id="stock-in" name="stock-in" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Stock In">
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="stock-out" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Stock Out</label>
-						<input type="text" id="stock-out" name="stock-out" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="Stock Out" disabled readonly>
+						<input type="text" id="stock-out" name="stock-out" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Stock Out">
 					 </div>
 				</div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
@@ -135,33 +108,23 @@ isLoggedIn();
 						<label for="balance" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Balance</label>
 						<div class="flex">
 							 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
-							 <input type="text" id="balance" name="balance" class="rounded-none rounded-r-lg bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="Balance" disabled readonly>
+							 <input type="text" id="balance" name="balance" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Balance">
 						</div>
 					 </div>
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recorded By</label>
-						<input type="text" id="user" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['username']; ?>" disabled readonly>
-					</div>
-				</div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="record-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recorded On</label>
-						<input type="text" id="record-date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['username']; ?>" disabled readonly>
-					</div>
 				</div>
 				
 				<div class="relative z-0 w-full mb-6 group">
 					<label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remarks</label>
-					<textarea id="remarks" name="remarks" rows="3" cols="125" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a remark..." disabled readonly></textarea>
+					<textarea id="remarks" name="remarks" rows="3" cols="125" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a remark..."></textarea>
 				</div>
-				
 				 <button type="submit" name="btn_submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="float:right;">Submit</button>
 			</form>
+
 		</div>
 	</div>
 	</div>
 	
-	<!--Edit Stock: Success Toast-->
+	<!--Stock In/Out: Success Toast-->
 	<?php 
 	$success = $_GET['success']; 
 	if($success == "success"){
@@ -170,7 +133,7 @@ isLoggedIn();
 		<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
 		</div>
-		<div class="ml-3 text-sm font-normal">Record modified successfully.</div>
+		<div class="ml-3 text-sm font-normal">Record logged successfully.</div>
 		<button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		</button>
