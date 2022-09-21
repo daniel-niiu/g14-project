@@ -41,7 +41,7 @@ if($_FILES["excel"]["name"] != '')
                 } 
                 $i++;
             }  
-            header("Location: transactions/create-tablet.php?name=transaction&aside=create-tablet");
+            header("Location: create-tablet.php?name=transaction&aside=create-tablet");
         }
         else if($_GET['type'] == "transaction")
         { 
@@ -62,7 +62,7 @@ if($_FILES["excel"]["name"] != '')
                 } 
                 $i++;
             } 
-            header("Location: transactions/create-tablet.php?name=transaction&aside=create-tablet");
+            header("Location: create-tablet.php?name=transaction&aside=create-tablet");
         }
 
         else{

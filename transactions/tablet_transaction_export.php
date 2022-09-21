@@ -48,9 +48,9 @@ if(isset($_POST['btn_export'])){
     $xlsx = SimpleXLSXGen::fromArray($excelData);
     $xlsx->downloadAs($fileName); // This will download the file to your local system 
     echo "<pre>"; 
-    print_r($excelData);
+    print_r($excelData); 
      
-    //exit; 
+    exit; 
 }
 // Load the database configuration file 
 ?>

@@ -38,17 +38,18 @@ if($_FILES["excel"]["name"] != '')
                 $insert_glight_data = "'$row[0]', '$row[1]', '$row[2]', '$row[3]', '$row[4]', '$row[5]'"; 
                 $row[6] = str_replace('/', '-', $row[6]);
                 $date = date('Y-m-d',strtotime($row[6]));
-                echo $row[6] , " ", $date;
+                $row[6] , " ", $date;
                 $insert_receipt_data = "'$row[0]', '$row[7]', '$date', '$row[8]'";  
 
                 $query="INSERT INTO glight(".$Glight_data.") values (".$insert_glight_data.");";
                 $qquery="INSERT INTO glight_receipt(".$Glight_receipt_data.") values (".$insert_receipt_data.");";    
                 
-                //mysqli_query($conn,$query);
-                //mysqli_query($conn,$qquery);
+                mysqli_query($conn,$query);
+                mysqli_query($conn,$qquery);
             } 
             $i++;
         } 
+        header("Location: create-glight.php?name=transaction&aside=create-glight");
         $message = '<div class="alert alert-success">Data Imported Successfully</div>';
         //header("Location: create-glight.php?name=transaction&aside=create-glight");
     }
