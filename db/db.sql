@@ -41,8 +41,8 @@ CREATE TABLE Tablet(
     price double(10,2) DEFAULT NULL,
     ancestor_eng_name varchar(30) DEFAULT NULL,
     ancestor_chi_name varchar(10) DEFAULT NULL,
-    contact_num1 int(12) DEFAULT NULL, 
-    contact_num2 int(12) DEFAULT NULL,
+    contact_num1 varchar(20) DEFAULT NULL, 
+    contact_num2 varchar(20) DEFAULT NULL,
     address varchar(100) NOT NULL,
     member_eng_name VARCHAR(30) NOT NULL,    
     member_chi_name VARCHAR(10) NOT NULL,
@@ -56,11 +56,11 @@ CREATE TABLE BLantern(
     BLantern_id varchar(10) NOT NULL,
     member_eng_name VARCHAR(30) NOT NULL,    
     member_chi_name VARCHAR(10) NOT NULL,
-    contact_num int(12) NOT NULL, 
+    contact_num VARCHAR(20) NOT NULL, 
     blessing_price double(10,2) NOT NULL,
     votive_price double(10,2) NOT NULL,    
-    breceipt_num VARCHAR(8) NOT NULL,        
-    vreceipt_num VARCHAR(8) NOT NULL,
+    breceipt_num VARCHAR(10) NOT NULL,        
+    vreceipt_num VARCHAR(10) NOT NULL,
     receipt_date date NOT NULL,        
     price double(10,2) NOT NULL,    
     remarks varchar(200) DEFAULT NULL,    
@@ -74,7 +74,7 @@ CREATE TABLE GLight(
     member_eng_name VARCHAR(30) NOT NULL,    
     member_chi_name VARCHAR(10) NOT NULL,
     price DOUBLE(8,2) NOT NULL,    
-    contact_num INT(12) NOT NULL,
+    contact_num VARCHAR(20) NOT NULL,
     remarks VARCHAR(200),
 
     PRIMARY KEY(GLight_id)  
@@ -82,13 +82,14 @@ CREATE TABLE GLight(
 
 CREATE TABLE Tablet_Receipt (
     Tablet_id VARCHAR(10) NOT NULL,
-    receipt_num INT(8) NOT NULL,    
+    receipt_num VARCHAR(10) NOT NULL,    
     receipt_date DATE NOT NULL, 
     receipt_amount DOUBLE(10,2) NOT NULL,
     member_eng_name VARCHAR(30) NOT NULL,    
     member_chi_name VARCHAR(10) NOT NULL,
     remarks VARCHAR(200),
-    username VARCHAR(20),
+    username VARCHAR(20),    
+    recordedOn DATETIME,
 
     PRIMARY KEY(Tablet_id, receipt_num,receipt_date),
         FOREIGN KEY (Tablet_id) REFERENCES Tablet(Tablet_id)
@@ -96,7 +97,7 @@ CREATE TABLE Tablet_Receipt (
 
 CREATE TABLE GLight_Receipt (
     GLight_id VARCHAR(10) NOT NULL,
-    receipt_num INT(8) NOT NULL,    
+    receipt_num VARCHAR(10) NOT NULL,    
     receipt_date DATE NOT NULL, 
     receipt_amount DOUBLE(10,2) NOT NULL,
     username VARCHAR(20) NOT NULL,
@@ -116,10 +117,10 @@ CREATE TABLE GLight_Receipt (
 
   CREATE TABLE Product (
     product_id varchar(10) NOT NULL,
-    product_status BOOLEAN NOT NULL, 
+    product_status VARCHAR(12) NOT NULL, 
     product_eng_name VARCHAR(30) NOT NULL,
-	product_chi_name VARCHAR(10) NOT NULL,
-	unit_price double(10,2) DEFAULT NULL,
+    product_chi_name VARCHAR(10) NOT NULL,
+    unit_price double(10,2) DEFAULT NULL,
     remarks VARCHAR(200),   
 
     PRIMARY KEY(product_id)
@@ -127,10 +128,10 @@ CREATE TABLE GLight_Receipt (
 );
 
  CREATE TABLE Stock (
-    product_name VARCHAR(30) NOT NULL,
+      product_name VARCHAR(30) NOT NULL,
 	stock_date DATE NOT NULL,
 	stock_summary VARCHAR(200),
-	receipt_no INT(6) NOT NULL,
+	receipt_no VARCHAR(10) NOT NULL,
 	stock_in INT(3) NOT NULL,
 	stock_out INT(3) NOT NULL,
 	balance_left INT(5) NOT NULL,
