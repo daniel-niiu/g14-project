@@ -60,7 +60,7 @@
                     </button>
                     <div class="px-6 py-6 lg:px-8">
                         <h3 class="mb-6 text-xl font-medium text-gray-900 dark:text-white">What would you like to export?</h3>
-                        <form>
+                        <form action="../transactions/tablet_transaction_export.php" method="post">
 							<div class="mb-4">
                                 <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400">Choose a type</label>
                                 <input type="radio" name="export-type" id="tablet" value="Memorial Tablet">
@@ -73,12 +73,12 @@
                             <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400">Choose a period</label>
                             <div class="flex mb-6">
 								<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-									<select id="period" class="text-gray-900 text-sm rounded-lg dark:text-white focus:ring-0 dark:focus:ring-0 bg-transparent border-0">
+									<select id="period" name="period" class="text-gray-900 text-sm rounded-lg dark:text-white focus:ring-0 dark:focus:ring-0 bg-transparent border-0">
 										<option value="Monthly" selected>Monthly</option>
 										<option value="Yearly">Yearly</option>
 									</select>
 								</span>
-								<select id="period-details" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+								<select id="period-details" name="period-details" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="period1" selected>Period 1</option>
                                     <option value="period2">Period 2</option>
                                 </select>
@@ -132,16 +132,16 @@
                     </button>
                     <div class="px-6 py-6 lg:px-8">
                         <h3 class="mb-6 text-xl font-medium text-gray-900 dark:text-white">What would you like to export?</h3>
-                        <form>	
+                        <form action="../transactions/blantern_export.php" method="post">
                             <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400">Choose a period</label>
                             <div class="flex mb-6">
 								<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-									<select id="period" class="text-gray-900 text-sm rounded-lg dark:text-white focus:ring-0 dark:focus:ring-0 bg-transparent border-0">
+									<select id="period" name="period" class="text-gray-900 text-sm rounded-lg dark:text-white focus:ring-0 dark:focus:ring-0 bg-transparent border-0">
 										<option value="Monthly" selected>Monthly</option>
 										<option value="Yearly">Yearly</option>
 									</select>
 								</span>
-								<select id="period-details" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+								<select id="period-details" name="period-details" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="period1" selected>Period 1</option>
                                     <option value="period2">Period 2</option>
                                 </select>
@@ -195,16 +195,16 @@
                     </button>
                     <div class="px-6 py-6 lg:px-8">
                         <h3 class="mb-6 text-xl font-medium text-gray-900 dark:text-white">What would you like to export?</h3>
-                        <form>	
+                        <form action="../transactions/glight_export.php" method="post">
                             <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400">Choose a period</label>
                             <div class="flex mb-6">
 								<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-									<select id="period" class="text-gray-900 text-sm rounded-lg dark:text-white focus:ring-0 dark:focus:ring-0 bg-transparent border-0">
+									<select id="period" name="period" class="text-gray-900 text-sm rounded-lg dark:text-white focus:ring-0 dark:focus:ring-0 bg-transparent border-0">
 										<option value="Monthly" selected>Monthly</option>
 										<option value="Yearly">Yearly</option>
 									</select>
 								</span>
-								<select id="period-details" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+								<select id="period-details" name="period-details" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="period1" selected>Period 1</option>
                                     <option value="period2">Period 2</option>
                                 </select>
