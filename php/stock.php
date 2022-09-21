@@ -9,12 +9,12 @@ if($method === "add")
 	
     global $conn;
 
-    $prodname = $_POST["prodname"];
+    $prodname = $_POST["name"];
     $date = $_POST["date"];
 	$summary = $_POST["summary"];
-    $receiptno = $_POST["recieptno"];
-	$stockin = $_POST["stockin"];
-	$stockout = $_POST["stockout"];
+    $receiptno = $_POST["receipt"];
+	$stockin = $_POST["stock-in"];
+	$stockout = $_POST["stock-out"];
 	$balance = $_POST["balance"];
     $remarks = $_POST["remarks"];
 
