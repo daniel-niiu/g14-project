@@ -10,7 +10,7 @@ if($method === "add")
 
 
     $id = $_POST["id"];
-    $status = $_POST["status"];
+    $status = $_POST["checkbox_value"];
 	$english = $_POST["english"];
     $chinese = $_POST["chinese"];
 	$price = $_POST["price"]; 
@@ -54,7 +54,7 @@ if($method === "update")
     global $conn;
 
 	$id = $_GET["Id"];
-    $status = $_POST['status'];
+    $status = $_POST['checkbox_value'];
 	$english = $_POST["english"];
     $chinese = $_POST["chinese"];
 	$price = $_POST["price"]; 
