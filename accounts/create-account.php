@@ -53,47 +53,42 @@ isLoggedIn();
 
 		<div>
 			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Create Account</h2>
-			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
-			
-			<!--?php  
-			$M_ID = $_GET['Id'];
-	    	$sql = "SELECT * FROM member WHERE member_id = '".$M_ID."'"; 	 
-	    	$result = $conn->query($sql);  
-			if (mysqli_num_rows($result) > 0) {
-  			// output data of each row
-  				while($row = mysqli_fetch_array($result)){   
-			?-->
-			
-			<form method="post" action="#">
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-                    <div class="relative z-0 w-full mb-6 group">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
-                        <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Who will be using the account?">
-                    </div>
+			<hr class="border-gray-300 dark:border-gray-600 my-3"/> 
+			<form method="post" action="../php/account.php?method=add">
+				<div class="grid xl:grid-cols-2 xl:gap-6"> 
                     <div class="relative z-0 w-full mb-6 group">
                         <label for="email" class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email Address*</label>
                         <input type="text" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter the email address here">
                     </div> 
+                    <div class="relative z-0 w-full mb-6 group">
+                        <label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Type</label> 
+						<input type="radio" name="account-type" id="admin" value="admin" onclick="verifyCheck()">
+						<label for="admin" class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Administrator</label>
+
+						<input type="radio" name="account-type" id="oper" class="ml-6" value="oper" onclick="verifyCheck()">
+						<label for="oper" class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Operator</label>
+                	</div>
                  </div>
 				
                 <div class="grid xl:grid-cols-2 xl:gap-6">
                     <div class="relative z-0 w-full mb-6 group">
-						<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Type</label>
+						<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Status</label> 
+						<input type="radio" name="account-status" value="T">
+						<label for="admin" class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">True</label>
 
-						<input type="radio" name="account-type" id="admin" value="Administrator" onClick="disable()">
-						<label for="admin" class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Administrator</label>
-
-						<input type="radio" name="account-type" id="oper" class="ml-6" value="Operator" onClick="disable()">
-						<label for="oper" class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Operator</label>
+						<input type="radio" name="account-status" class="ml-6" value="F">
+						<label for="oper" class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">False</label>
                 	</div>
                     <div class="relative z-0 w-full mb-6 group">
                         <label for="department" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Department</label>
-                        <select id="department" name="department" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                          <option value="All" selected>-- Select a department --</option>
-                          <option value="Membership">Membership</option>
-                          <option value="Transaction">Transaction</option>
-                          <option value="Product & Stocks">Product &amp; Stocks</option>
-                        </select>
+                        <input id="check_member" type="checkbox" name="checkbox[]" value="M" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="name" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Membership</label>
+
+                        <input id="check_trans" type="checkbox" name="checkbox[]" value="T" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="name" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Transaction</label>
+
+                        <input id="check_prod" type="checkbox" name="checkbox[]" value="P" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="name" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product &amp; Stocks</label> 
                		</div>
 				</div>
 				
@@ -115,18 +110,7 @@ isLoggedIn();
 	</footer>
 	
 	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
-	
-
-    <script>
-        function disable() {
-            if (document.getElementById('admin').checked) {
-                document.getElementById("department").disabled = true;
-            }
-            if (document.getElementById('oper').checked) {
-                document.getElementById("department").disabled = false;
-            }
-        }
-    </script>
+	 
 	
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
@@ -169,6 +153,22 @@ isLoggedIn();
 			}
 
 		});
+		function verifyCheck()
+		{ 
+			if (document.getElementById('admin').checked) {
+				var rates = document.getElementsByName('checkbox[]'); 
+				for(var i = 0; i < rates.length; i++){
+				    rates[i].disabled = true;
+				    rates[i].checked = false;
+				} 
+			} 
+			if (document.getElementById('oper').checked) {
+				var rates = document.getElementsByName('checkbox[]'); 
+				for(var i = 0; i < rates.length; i++){
+				    rates[i].disabled = false;
+				} 
+			} 
+		}
 	</script>
 </body>
 </html>

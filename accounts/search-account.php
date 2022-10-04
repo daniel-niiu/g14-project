@@ -10,7 +10,7 @@ $baseURL = '../php/get-blantern-data.php';
 $limit = 10; 
  
 // Count of all records 
-$query   = $conn->query("SELECT COUNT(*) as rowNum FROM BLantern"); 
+$query   = $conn->query("SELECT COUNT(*) as rowNum FROM admin"); 
 
 $result  = $query->fetch_assoc(); 
 $rowCount= $result['rowNum']; 
@@ -26,7 +26,7 @@ $pagConfig = array(
 $pagination =  new Pagination($pagConfig); 
  
 // Fetch records based on the limit   
-$query = $conn->query("SELECT * FROM BLantern ORDER BY BLantern_id LIMIT $limit");  
+$query = $conn->query("SELECT * FROM admin ORDER BY admin_username LIMIT $limit");  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +49,7 @@ $query = $conn->query("SELECT * FROM BLantern ORDER BY BLantern_id LIMIT $limit"
 	    var keywords = $('#simple-search').val();    
 	    $.ajax({
 	        type: 'POST',
-	        url: '../php/get-blantern-data.php',
+	        url: '../php/get-account-data.php',
 	        data:'page='+page_num+'&keywords='+keywords,
 	        beforeSend: function () {
 	            //$('.loading-overlay').show();
@@ -115,9 +115,9 @@ $query = $conn->query("SELECT * FROM BLantern ORDER BY BLantern_id LIMIT $limit"
 					<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 						<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 							<tr>
-								<th scope="col" class="px-6 py-3">Name</th>
-								<th scope="col" class="px-6 py-3">Email Address</th>
+								<th scope="col" class="px-6 py-3">Username</th>
 								<th scope="col" class="px-6 py-3">Account Type</th>
+								<th scope="col" class="px-6 py-3">Account Status</th>
 								<th scope="col" class="px-6 py-3">
 									<span class="sr-only">Edit</span>
 								</th>
@@ -130,16 +130,16 @@ $query = $conn->query("SELECT * FROM BLantern ORDER BY BLantern_id LIMIT $limit"
 				            ?>
 							<tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
 								<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-									<a href="view-blantern.php?name=transaction&Id=</?php echo $row['BLantern_id']; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row['BLantern_id']; ?></a>
+									<a href="edit-account.php?name=account&aside=search-account&Id=<?php echo $row['admin_username']; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row['admin_username']; ?></a>
 								</th>
 								<td class="px-6 py-4">
-									<?php echo $row['member_eng_name']; ?>
+									<?php echo $row['admin_type']; ?>
 								</td>
 								<td class="px-6 py-4">
-									<?php echo $row['member_chi_name']; ?>
+									<?php echo $row['admin_status']; ?>
 								</td>
 								<td class="px-6 py-4 text-right">
-									<a href="edit-blantern.php?name=transaction&Id=<?php echo $row['BLantern_id']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+									<a href="edit-account.php?name=account&aside=search-account&Id=<?php echo $row['admin_username']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
 								</td>
 							</tr>
 				            <?php
