@@ -32,10 +32,10 @@ isMainPageLoggedIn();
 	
 	<div class="dashboard">
 		<div class="container flex flex-wrap justify-between items-center mx-auto pl-4 pr-4">
-			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Dashboard</h3>
+			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $lang['index_dashboard'];?></h3>
 			<div class="button">
 				<button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-modal-toggle="authentication-modal">
-					<i class="fa-solid fa-plus"></i>&nbsp; Reminders
+					<i class="fa-solid fa-plus"></i>&nbsp; <?php echo $lang['index_reminder'];?>
 				</button>
 				
 				<div id="authentication-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
@@ -45,21 +45,21 @@ isMainPageLoggedIn();
                 				<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
             				</button>
             				<div class="px-6 py-6 lg:px-8">
-                				<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Create Reminder</h3>
+                				<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $lang['index_reminder_create_title']; ?></h3>
                 				<form class="space-y-6" action="php/reminder.php?method=add" method="post">
                     				<div>
-                        				<label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
+                        				<label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_reminder_title']; ?></label>
                         				<input type="text" name="title" id="reminder-title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Insert your title here" required>
                     				</div>
                     				<div>
-                        				<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date</label>
+                        				<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_reminder_date']; ?></label>
                         				<input type="date" name="date" id="reminder-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                     				</div>
                     				<div>
-                        				<label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Content</label>
+                        				<label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_reminder_content']; ?></label>
                         				<input type="text" name="content" id="reminder-content" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Insert your content here" required>
                     				</div>
-                    				<button type="submit" name="button" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    				<button type="submit" name="button" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><?php echo $lang['index_reminder_submit']; ?></button>
                 				</form>
             				</div>
         				</div>
@@ -67,7 +67,7 @@ isMainPageLoggedIn();
 				</div> 
 				
 				<button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-modal-toggle="broadcast-modal">
-					<i class="fa-brands fa-whatsapp"></i>&nbsp; Broadcast
+					<i class="fa-brands fa-whatsapp"></i>&nbsp; <?php echo $lang['index_broadcast']; ?>
 				</button>
 				
 				<div id="broadcast-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
@@ -77,7 +77,7 @@ isMainPageLoggedIn();
 								<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
 							</button>
 							<div class="py-6 px-6 lg:px-8">
-								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">WhatsApp Broadcast</h3>
+								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $lang['index_whatsapp_title']; ?></h3>
 								<form class="space-y-6" action="members/whatsapp.php" method="post">
 									<!--div>
 										<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Image</label>
@@ -159,21 +159,21 @@ isMainPageLoggedIn();
                 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
             			</button>
             			<div class="px-6 py-6 lg:px-8"> 
-                			<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Edit Reminder</h3>
+                			<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $lang['index_reminder_edit_title']; ?></h3>
                 			<form class="space-y-6" method="post" action="php/reminder.php?method=update">
                     			<div>
-                        			<label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
+                        			<label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_reminder_title']; ?></label>
                         			<input type="text" name="title" id="edit-reminder-title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="" required>
                     			</div>
                     			<div>
-                        			<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date</label>
+                        			<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_reminder_date']; ?></label>
                         			<input type="date" name="date" id="edit-reminder-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="" required>
                     			</div>
                     			<div>
-                        			<label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Content</label>
+                        			<label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_reminder_content']; ?></label>
                         			<input type="text" name="content" id="edit-reminder-content" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="" required>
                     			</div>
-                    			<input type="submit" name="button" id="edit-reminder-submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" value="Submit">
+                    			<input type="submit" name="button" id="edit-reminder-submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" value="<?php echo $lang['index_reminder_submit']; ?>">
                     			<input type="hidden" id="edit-reminder-id" name="reminderid" value="">
                 			</form>
             			</div> 
@@ -189,9 +189,9 @@ isMainPageLoggedIn();
 						</button>
 						<div class="p-6 text-center">
 							<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-							<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this reminder?</h3>
-							<a id="delete-reminder"><button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">Yes, I'm sure</button></a>
-							<button data-modal-toggle="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
+							<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"><?php echo $lang['index_reminder_delete']; ?></h3>
+							<a id="delete-reminder"><button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"><?php echo $lang['index_reminder_delete_confirm']; ?></button></a>
+							<button data-modal-toggle="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"><?php echo $lang['index_reminder_delete_cancel']; ?></button>
 						</div>
 					</div>
 				</div>
@@ -203,9 +203,9 @@ isMainPageLoggedIn();
 	
 	<div class="admin-shortcuts mt-2 mb-1">
 		<div class="container flex flex-wrap justify-between items-center mx-auto pl-4 pr-4">
-			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Administrative Shortcuts</h3>
+			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $lang['index_shortcuts'];?></h3>
 			<button type="button" id="filterbtn" class="py-2.5 px-5 mr-2 mb-2 text-sm text-gray-900 bg-white rounded-lg  hover:text-blue-700 dark:text-white dark:bg-gray-900 dark:hover:text-gray-300" data-modal-toggle="authentication-modal3">
-				<i class="fa-solid fa-filter"></i> Filter
+				<i class="fa-solid fa-filter"></i> <?php echo $lang['index_filter']; ?>
 			</button>
 
 			<div id="authentication-modal3" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
@@ -215,42 +215,42 @@ isMainPageLoggedIn();
                 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
             				</button>
             				<div class="px-6 py-6 lg:px-8">
-                				<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Select your Preferences</h3>
+                				<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $lang['index_filter_title']; ?></h3>
                 				<div id= "form1" name="form1" class="space-y-6">
 									<div class="flex items-center mb-4">
 										 <input id="create-members" name="preference" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
-										 <label for="create-members" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Member</label>
+										 <label for="create-members" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_filter_create_mem']; ?></label>
 									 </div>
 									 <div class="flex items-center mb-4">
 										 <input id="search-members" name="preference" type="checkbox" value="2" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-										 <label for="search-members" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search Member</label>
+										 <label for="search-members" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_filter_search_mem']; ?></label>
 									 </div>
 									 <div class="flex items-center mb-4">
 										 <input id="create-tablet" name="preference" type="checkbox" value="3" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-										 <label for="create-tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Memorial Tablet</label>
+										 <label for="create-tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_filter_create_tablet']; ?></label>
 									 </div>
 									 <div class="flex items-center mb-4">
 										 <input id="search-tablet" name="preference" type="checkbox" value="4" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-										 <label for="search-tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search Memorial Tablet</label>
+										 <label for="search-tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_filter_search_tablet']; ?></label>
 									 </div>
 									 <div class="flex items-center mb-4">
 										 <input id="create-blantern" name="preference" type="checkbox" value="5" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-										 <label for="create-blantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Blessing Lantern</label>
+										 <label for="create-blantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_filter_create_blessing']; ?></label>
 									 </div>
 									 <div class="flex items-center mb-4">
 										 <input id="search-blantern" name="preference" type="checkbox" value="6" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-										 <label for="search-blantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search Blessing Lantern</label>
+										 <label for="search-blantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_filter_search_blessing']; ?></label>
 									 </div>
 									 <div class="flex items-center mb-4">
 										 <input id="create-glantern" name="preference" type="checkbox" value="7" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-										 <label for="create-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create Guang-Ming Light</label>
+										 <label for="create-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_filter_create_light']; ?></label>
 									 </div>
 									 <div class="flex items-center mb-4">
 										 <input id="search-glantern" name="preference" type="checkbox" value="8" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-										 <label for="search-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search Guang-Ming Light</label>
+										 <label for="search-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $lang['index_filter_search_light']; ?></label>
 									 </div>
 
-                    				<button id="btn_submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-modal-toggle="authentication-modal3">Submit</button>
+                    				<button id="btn_submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-modal-toggle="authentication-modal3"><?php echo $lang['index_reminder_submit']; ?></button>
                 				</div>
             				</div>
         			</div>

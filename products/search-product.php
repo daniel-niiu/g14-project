@@ -65,24 +65,24 @@ $query = $conn->query("SELECT * FROM product ORDER BY product_id LIMIT $limit");
 			<li class="inline-flex items-center">
 			  <a href="../index.php" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
 				<svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-				Home
+				<?php echo $search_product['home']; ?>
 			  </a>
 			</li>
 			<li>
 			  <div class="flex items-center">
 				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Search Product</p>
+				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400"><?php echo $search_product['title']; ?></p>
 			  </div>
 			</li>
 		  </ol>
 		</nav>
 	
 		<div>
-			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Search Product</h2>
+			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $search_product['title']; ?></h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			<form>
 				<div class="relative z-0 w-full mb-6 group"> 
-					<label for="simple-search" class="sr-only">Search</label>
+					<label for="simple-search" class="sr-only"><?php echo $search_product['search']; ?></label>
 						<div class="relative w-full search-box">
 							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none ">
 								<svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
@@ -99,12 +99,12 @@ $query = $conn->query("SELECT * FROM product ORDER BY product_id LIMIT $limit");
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-							<th scope="col" class="px-6 py-3">Product id</th>
-							<th scope="col" class="px-6 py-3">Product name (en)</th>
-							<th scope="col" class="px-6 py-3">Product name (ch)</th>
-							<th scope="col" class="px-6 py-3">Product status</th>
+							<th scope="col" class="px-6 py-3"><?php echo $search_product['product_id']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $search_product['product_eng_name']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $search_product['product_chi_name']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $search_product['product_status']; ?></th>
                             <th scope="col" class="px-6 py-3">
-                                <span class="sr-only">Edit</span>
+                                <span class="sr-only"><?php echo $search_product['btnedit']; ?></span>
                             </th>
                         </tr>
                     </thead>
@@ -118,7 +118,7 @@ $query = $conn->query("SELECT * FROM product ORDER BY product_id LIMIT $limit");
                             <td class='px-6 py-4'><?php echo $row['product_eng_name'];?></td>
                             <td class='px-6 py-4'><?php echo $row['product_chi_name'];?></td>
                             <td class='px-6 py-4'><?php echo $row['product_status']; ?></td>
-                            <td class='px-6 py-4 text-right'><a href='edit-product.php?name=product&Id=<?php echo $row["product_id"];?>' class='font-medium text-blue-600 dark:text-blue-500 hover:underline'>Edit</a></td>
+                            <td class='px-6 py-4 text-right'><a href='edit-product.php?name=product&Id=<?php echo $row["product_id"];?>' class='font-medium text-blue-600 dark:text-blue-500 hover:underline'><?php echo $search_product['btnedit']; ?></a></td>
                         </tr>
 			            <?php 
 			                } 

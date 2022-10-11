@@ -7,7 +7,7 @@
             <li>
                 <h3 class="flex items-center p-2 text-base font-semibold text-gray-900 rounded-lg dark:text-white">
                     <i class="fa-solid fa-box-archive"></i>
-                    <span class="ml-4">Manage Products</span>
+                    <span class="ml-4"><?php echo $product_aside['title']; ?></span>
                 </h3>
             </li>
         </ul>
@@ -15,19 +15,19 @@
             <li>
                 <a href="create-product.php?name=product&aside=create-product" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "create-product") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
                     <i class="fa-solid fa-plus"></i>
-                    <span class="ml-4">Create Product</span>
+                    <span class="ml-4"><?php echo $product_aside['title1']; ?></span>
                 </a>
             </li>
             <li>
                 <a href="search-product.php?name=product&aside=search-product" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "search-product") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <span class="ml-4">Search Product</span>
+                    <span class="ml-4"><?php echo $product_aside['title2']; ?></span>
                 </a>
             </li>
             <li>
                 <a class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-white dark:text-gray-400 group cursor-pointer" data-modal-toggle="export-modal">
                     <i class="fa-solid fa-file-export"></i>
-                    <span class="ml-4">Export Record</span>
+                    <span class="ml-4"><?php echo $product_aside['title3']; ?></span>
                 </a>
             </li>
         </ul>
@@ -41,9 +41,9 @@
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
             </button>
             <div class="px-6 py-6 lg:px-8">
-                <h3 class="mb-6 text-xl font-medium text-gray-900 dark:text-white">What would you like to export?</h3>
+                <h3 class="mb-6 text-xl font-medium text-gray-900 dark:text-white"><?php echo $export_product['title']; ?></h3>
                 <form>	
-					<label for="product-record" class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400">Choose a product</label>
+					<label for="product-record" class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"><?php echo $export_product['title1']; ?></label>
 					<select id="product-record" name="product" class="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 						<option value="product1" selected>Product 1</option>
 						<option value="product2">Product 2</option>
@@ -51,7 +51,7 @@
 						<option value="product4">Product 4</option>
 					</select>
 					
-					<label class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400">Choose a period</label>
+					<label class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"><?php echo $export_product['title2']; ?></label>
                     <div class="flex mb-6">
                         <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                             <select id="period" class="text-gray-900 text-sm rounded-lg dark:text-white focus:ring-0 dark:focus:ring-0 bg-transparent border-0">
@@ -65,7 +65,7 @@
                         </select>
                     </div>
 					
-                    <input type="submit" name="btn_export" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" value="Export">
+                    <input type="submit" name="btn_export" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" value="<?php echo $export_product['btn_export']; ?>">
                 </form>
             </div>
         </div>

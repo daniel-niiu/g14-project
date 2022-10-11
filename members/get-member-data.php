@@ -6,6 +6,8 @@ if(isset($_POST['page'])){
      
     // Include database configuration file 
     require_once '../db/dbconnection.php';  
+
+    require_once '../php/config.php';  
      
     // Set some useful configuration 
     $baseURL = 'get-member-data.php'; 
@@ -46,18 +48,18 @@ if(isset($_POST['page'])){
     <!-- Data list container --> 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">Member id</th> 
-                    <th scope="col" class="px-6 py-3">Mem. name (en)</th>
-                    <th scope="col" class="px-6 py-3">Mem. name (ch)</th>
-                    <th scope="col" class="px-6 py-3">Mem. type</th>
-                    <th scope="col" class="px-6 py-3">Mem. status</th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="sr-only">Edit</span>
-                    </th>
-                </tr>
-            </thead>
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3"><?php echo $search_member_info['member_id']; ?></th>
+                            <th scope="col" class="px-6 py-3"><?php echo $search_member_info['member_eng_name']; ?></th>
+                            <th scope="col" class="px-6 py-3"><?php echo $search_member_info['member_chi_name']; ?></th>
+                            <th scope="col" class="px-6 py-3"><?php echo $search_member_info['member_type']; ?></th>
+                            <th scope="col" class="px-6 py-3"><?php echo $search_member_info['member_status']; ?></th>
+                            <th scope="col" class="px-6 py-3">
+                                <span class="sr-only"><?php echo $search_member_info['btnedit']; ?></span>
+                            </th>
+                        </tr>
+                    </thead>
             <tbody>  
             <?php 
             if($query->num_rows > 0){
@@ -69,7 +71,7 @@ if(isset($_POST['page'])){
                 <td class='px-6 py-4'><?php echo $row['member_chi_name'];?></td>
                 <td class='px-6 py-4'><?php echo $row['member_type']; ?></td>
                 <td class='px-6 py-4'><?php echo $row['member_status']; ?></td>
-                <td class='px-6 py-4 text-right'><a href='edit-member.php?name=member&Id=<?php echo $row["member_id"];?>' class='font-medium text-blue-600 dark:text-blue-500 hover:underline'>Edit</a></td>
+                <td class='px-6 py-4 text-right'><a href='edit-member.php?name=member&Id=<?php echo $row["member_id"];?>' class='font-medium text-blue-600 dark:text-blue-500 hover:underline'><?php echo $search_member_info['btnedit']; ?></a></td>
             </tr>
             <?php 
                 } 
