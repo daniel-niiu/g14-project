@@ -4,6 +4,8 @@ include "../db/dbconnection.php";
 
 $method = $_GET["method"];
 
+
+date_default_timezone_set("Asia/Kuala_Lumpur");
 if($method === "add")
 {
     global $conn;
@@ -17,11 +19,11 @@ if($method === "add")
     $remarks = $_POST["remarks"];
 
     $sql = "  
-        INSERT INTO PRODUCT(product_id, product_status, product_eng_name, product_chi_name, unit_price, remarks)
+        INSERT INTO PRODUCT(product_id, product_status, product_eng_name, product_chi_name, unit_price, remarks, recordedBy, recordedOn)
         VALUES
-        ('$id','$status','$english','$chinese','$price','$remarks')
+        ('$id','$status','$english','$chinese','$price','$remarks', '".$_SESSION['username']."', '".date("Y-m-d h:i:s")."')
     ";
-    echo $sql; 
+    //echo $sql; 
     //$result = $conn->query($sql);
    
     if (!mysqli_query($conn,$sql)) {
@@ -62,7 +64,7 @@ if($method === "update")
  
     $sql = "
         UPDATE product
-        SET product_status = '$status', product_eng_name = '$english', product_chi_name = '$chinese', unit_price = '$price', remarks = '$remarks'
+        SET product_status = '$status', product_eng_name = '$english', product_chi_name = '$chinese', unit_price = '$price', remarks = '$remarks', recordedBy = '".$_SESSION['username']."', recordedOn = '".date("Y-m-d h:i:s")."'
        WHERE product_id = '$id'
     
     ";

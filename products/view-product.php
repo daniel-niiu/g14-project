@@ -10,7 +10,7 @@ $baseURL = '../php/get-tablet-transaction-data.php';
 $limit = 10; 
  
 // Count of all records 
-$query   = $conn->query("SELECT COUNT(*) as rowNum FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.tablet_id = tr.Tablet_id"); 
+$query   = $conn->query("SELECT COUNT(*) as rowNum FROM stock AS s, product AS p WHERE p.product_id = s.product_id"); 
 
 $result  = $query->fetch_assoc(); 
 $rowCount= $result['rowNum']; 
@@ -26,7 +26,7 @@ $pagConfig = array(
 $pagination =  new Pagination($pagConfig); 
  
 // Fetch records based on the limit    
-$query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.tablet_id = tr.Tablet_id ORDER BY tr.receipt_num LIMIT $limit");  
+$query = $conn->query("SELECT s.product_id AS PID, s.receipt_no AS receipt, s.stock_date AS date, s.stock_in AS stock_in, s.stock_out AS stock_out, s.balance_left AS balance FROM stock AS s, product AS p WHERE p.product_id = s.product_id ORDER BY s.stock_date LIMIT 10");   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,13 +136,13 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recorded By</label>
-						<input type="text" id="user" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['username']; ?>" disabled readonly>
+						<input type="text" id="user" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['recordedBy']; ?>" disabled readonly>
 					</div>
 				</div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="record-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recorded On</label>
-						<input type="text" id="record-date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['username']; ?>" disabled readonly>
+						<input type="text" id="record-date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['recordedOn']; ?>" disabled readonly>
 					</div>
 				</div>
 				<div class="relative z-0 w-full mb-6 group">
@@ -171,8 +171,8 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 						<tr>
-							<th scope="col" class="px-6 py-3">Receipt date</th>
 							<th scope="col" class="px-6 py-3">Receipt no</th>
+							<th scope="col" class="px-6 py-3">Receipt date</th>
 							<th scope="col" class="px-6 py-3">Stock In</th>
 							<th scope="col" class="px-6 py-3">Stock Out</th>
 							<th scope="col" class="px-6 py-3">Balance</th>
@@ -188,14 +188,14 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 			            ?>
 			                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
 			                 	<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-			                    	<a href="view-product-product.php?name=transaction&Id=<?php echo $row["product_id"]; ?>&receiptNum=<?php echo $row['receipt_num']; ?>&receiptDate=<?php echo $row['receipt_date'];?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt_date"]; ?></a>
+			                    	<a href="../stocks/view-stock.php?name=stock&Id=<?php echo $row["PID"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt"]; ?></a>
 			                    </th> 
-			                    <td class="px-6 py-4"><?php echo $row["receipt_num"]; ?></td>
-			                    <td class="px-6 py-4"><!--?php echo $row["product_eng_name"]; ?--></td>
-			                    <td class="px-6 py-4"><!--?php echo $row["product_chi_name"]; ?--></td>
-			                    <td class="px-6 py-4"><?php echo $row["receipt_amount"]; ?></td>
+			                    <td class="px-6 py-4"><?php echo $row["date"]; ?></td>
+			                    <td class="px-6 py-4"><?php echo $row["stock_in"]; ?></td>
+			                    <td class="px-6 py-4"><?php echo $row["stock_out"]; ?></td>
+			                    <td class="px-6 py-4"><?php echo $row["balance"]; ?></td>
 			                    <td class="px-6 py-4 text-right">
-			                    	<a href="edit-product-product.php?name=transaction&Id=<?php echo $row["product_id"]; ?>&receiptNum=<?php echo $row['receipt_num']; ?>&receiptDate=<?php echo $row['receipt_date'];?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+			                    	<a href="../stocks/edit-stock.php?name=stock&Id=<?php echo $row["PID"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
 			                    </td>
 			                </tr>
 			            <?php
