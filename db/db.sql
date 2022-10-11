@@ -118,23 +118,26 @@ CREATE TABLE GLight_Receipt (
   CREATE TABLE Product (
     product_id varchar(10) NOT NULL,
     product_status VARCHAR(12) NOT NULL, 
-    product_eng_name VARCHAR(30) NOT NULL,
-    product_chi_name VARCHAR(30) NOT NULL,
+    product_eng_name VARCHAR(40) NOT NULL,
+    product_chi_name VARCHAR(40) NOT NULL,
     unit_price double(10,2) DEFAULT NULL,
-    remarks VARCHAR(200),   
+    remarks VARCHAR(200), 
+    recordedBy VARCHAR(30),    
+    recordedOn DATETIME,
+  
 
     PRIMARY KEY(product_id)
     
 );
 
  CREATE TABLE Stock (
-      product_name VARCHAR(30) NOT NULL,
+	product_id VARCHAR(30) NOT NULL,
 	stock_date DATE NOT NULL,
 	stock_summary VARCHAR(200),
 	receipt_no VARCHAR(10) NOT NULL,
-	stock_in INT(3) NOT NULL,
-	stock_out INT(3) NOT NULL,
-	balance_left INT(5) NOT NULL,
+	stock_in INT(5) NOT NULL,
+	stock_out INT(5) NOT NULL,
+	balance_left DOUBLE(10,2) NOT NULL,
 	remarks VARCHAR(200),
 
     PRIMARY KEY(receipt_no)   
