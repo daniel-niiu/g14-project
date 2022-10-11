@@ -7,8 +7,8 @@
 				<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Sign in to the platform</h3>
 				<form class="space-y-6" method="post" action="php/login.php">
 					<div>
-						<label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Username</label>
-						<input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Username" required="">
+						<label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email Address</label>
+						<input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="example@email.com" required="">
 					</div>
 					<div>
 						<label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>

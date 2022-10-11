@@ -1,13 +1,23 @@
 <?php
-	// for index pages
-	$lang = array(
-		//index
+	//header.php
+	$header = array(
+		//navbar
 		"header_membership" => "Membership",
 		"header_transaction" => "Transaction",
 		"header_product" => "Product",
 		"header_stock" => "Stock",
 		"header_en" => "EN",
 		"header_ch" => "CH",
+		//profile
+		"profile_user" => "Welcome, ".$_SESSION['username'],
+		"profile_acc_setting" => "Account Settings",
+		"profile_password" => "Edit Password",
+		"profile_signout" => "Sign Out",
+	);
+
+	//index.php
+	$index = array(
+		//titles
 		"index_dashboard" => "Dashboard",
 		"index_reminder" => "Reminder",
 		"index_broadcast" => "Broadcast",
@@ -21,8 +31,8 @@
 		"index_reminder_submit" => "Submit", 
 		"index_reminder_edit_title" => "Edit Reminder",
 		"index_reminder_delete" => "Are you sure you want to delete this reminder?", 
-		"index_reminder_delete_confirm" => "Yes, I'm sure",
-		"index_reminder_delete_cancel" => "No, cancel",
+		"confirm" => "Yes, I'm sure",
+		"cancel" => "No, cancel",
 		//whatsapp broadcast
 		"index_whatsapp_title" => "WhatsApp Broadcast", 
 		//filter preference
@@ -36,13 +46,16 @@
 		"index_filter_search_blessing" => "Search Blessing",
 		"index_filter_create_light" => "Create Guang-Ming Light",
 		"index_filter_search_light" => "Search Guang-Ming Light",
-		//profile
-		"profile_user" => "Welcome,".$_SESSION['username'],
-		"profile_acc_setting" => "Account Settings",
-		"profile_password" => "Edit Password",
-		"profile_signout" => "Sign Out",
-		//profile edit password
-		"profile_edit_title" => "Edit User Password"
+		//toasts
+		"toast_success_user" => "User details modified successfully.",
+		"toast_add_reminder" => "Reminder created successfully.",
+		"toast_edit_reminder" => "Reminder modified successfully.",
+		"toast_delete_reminder" => "Reminder has been deleted.",
+		"toast_success_filter" => "Shortcuts modified successfully.",
+		"toast_new_notification" => "New notification",
+		"toast_notification_today" => "Today",
+		//footer
+		"footer" => "Disclaimer: This is a student work in progress for SWE40001/SWE40002 Software Engineering Project A/B of Swinburne University of Technology, Sarawak (2022)."
 	);
 	// for create member sidebar
 	$aside_member_lang = array(

@@ -119,7 +119,7 @@ CREATE TABLE GLight_Receipt (
     product_id varchar(10) NOT NULL,
     product_status VARCHAR(12) NOT NULL, 
     product_eng_name VARCHAR(30) NOT NULL,
-    product_chi_name VARCHAR(10) NOT NULL,
+    product_chi_name VARCHAR(30) NOT NULL,
     unit_price double(10,2) DEFAULT NULL,
     remarks VARCHAR(200),   
 

@@ -115,7 +115,8 @@ $query = $conn->query("SELECT * FROM admin ORDER BY admin_username LIMIT $limit"
 					<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 						<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 							<tr>
-								<th scope="col" class="px-6 py-3">Username</th>
+								<th scope="col" class="px-6 py-3">Full Name</th>
+								<th scope="col" class="px-6 py-3">Email Address</th>
 								<th scope="col" class="px-6 py-3">Account Type</th>
 								<th scope="col" class="px-6 py-3">Account Status</th>
 								<th scope="col" class="px-6 py-3">
@@ -132,6 +133,9 @@ $query = $conn->query("SELECT * FROM admin ORDER BY admin_username LIMIT $limit"
 								<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
 									<a href="edit-account.php?name=account&aside=search-account&Id=<?php echo $row['admin_username']; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row['admin_username']; ?></a>
 								</th>
+								<td class="px-6 py-4">
+									<?php echo $row['admin_username']; ?>
+								</td>
 								<td class="px-6 py-4">
 									<?php echo $row['admin_type']; ?>
 								</td>

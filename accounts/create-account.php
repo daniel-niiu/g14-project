@@ -57,9 +57,40 @@ isLoggedIn();
 			<form method="post" action="../php/account.php?method=add">
 				<div class="grid xl:grid-cols-2 xl:gap-6"> 
                     <div class="relative z-0 w-full mb-6 group">
+                        <label for="name" class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Full Name*</label>
+                        <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter the full name here">
+                    </div> 
+                    <div class="relative z-0 w-full mb-6 group">
                         <label for="email" class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email Address*</label>
                         <input type="text" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter the email address here">
                     </div> 
+				 </div>
+				
+				<script>
+					document.getElementById('checkbox').addEventListener('click', function(){
+					if(this.checked){
+						this.value = 'T';
+						document.getElementById('status').innerHTML = 'Active'; 
+						document.getElementById('checkbox_value').value = "T";
+					} 
+					else{ 
+						this.value = 'F'; 
+						document.getElementById('status').innerHTML = 'Inactive'; 
+						document.getElementById('checkbox_value').value = "F";
+					}
+				});
+				</script>
+				
+                <div class="grid xl:grid-cols-2 xl:gap-6">
+					<div class="relative z-0 w-full mb-6 group">
+						<label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Status</label>
+						<label for="checkbox" class="inline-flex relative items-center cursor-pointer mt-1">
+						  <input type="checkbox" id="checkbox" name="checkbox" class="sr-only peer"  value="T" checked>
+						  <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+						  <span id="status" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Active</span>
+						  <input type="hidden" id="checkbox_value" name="checkbox_value" value="T">
+						</label>
+					</div>
                     <div class="relative z-0 w-full mb-6 group">
                         <label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Type</label> 
 						<input type="radio" name="account-type" id="admin" value="admin" onclick="verifyCheck()">
@@ -68,28 +99,20 @@ isLoggedIn();
 						<input type="radio" name="account-type" id="oper" class="ml-6" value="oper" onclick="verifyCheck()">
 						<label for="oper" class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Operator</label>
                 	</div>
-                 </div>
+				</div>
 				
                 <div class="grid xl:grid-cols-2 xl:gap-6">
-                    <div class="relative z-0 w-full mb-6 group">
-						<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Status</label> 
-						<input type="radio" name="account-status" value="T">
-						<label for="admin" class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">True</label>
-
-						<input type="radio" name="account-status" class="ml-6" value="F">
-						<label for="oper" class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">False</label>
-                	</div>
                     <div class="relative z-0 w-full mb-6 group">
                         <label for="department" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Department</label>
                         <input id="check_member" type="checkbox" name="checkbox[]" value="M" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                         <label for="name" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Membership</label>
 
-                        <input id="check_trans" type="checkbox" name="checkbox[]" value="T" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <input id="check_trans" type="checkbox" name="checkbox[]" value="T" class="ml-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                         <label for="name" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Transaction</label>
 
-                        <input id="check_prod" type="checkbox" name="checkbox[]" value="P" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <input id="check_prod" type="checkbox" name="checkbox[]" value="P" class="ml-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                         <label for="name" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product &amp; Stocks</label> 
-               		</div>
+                    </div>
 				</div>
 				
 				<div class="relative z-0 w-full mb-6 group">

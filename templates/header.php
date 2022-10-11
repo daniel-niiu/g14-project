@@ -46,13 +46,14 @@ error_reporting(0);
 				
 				<div class="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1054.4px, 983.6px, 0px);">
 					<div class="py-3 px-4">
-          				<span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400"><?php echo $lang['profile_user'];?></span>
+          				<span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400"><?php echo $header['profile_user'];?></span>
         			</div>
-					<!--ul class="py-1" aria-labelledby="dropdown">
+					<ul class="py-1" aria-labelledby="dropdown">
 						<li>
-							<button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5 mr-3"><p id="eng-lang">Language: English</p><p id="chi-lang">語言顯示：中文</p></button>
+							<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"><i class="fa-sharp fa-solid fa-earth-americas"></i>&nbsp; Display: EN</a>
+							<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"><i class="fa-sharp fa-solid fa-earth-asia"></i>&nbsp; 显示：中文</a>
 						</li>
-					</ul-->
+					</ul>
 					<ul class="py-1" aria-labelledby="dropdown">
 						<li>
 							<a 
@@ -86,10 +87,10 @@ error_reporting(0);
                             else {
                             	echo $name_href .= "&lang=ch'";
                             }
-                             ?> class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"><?php echo $lang['profile_acc_setting'];?></a>
+                             ?> class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"><?php echo $header['profile_acc_setting'];?></a>
 						</li>
 						<li>
-							<a class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer" data-modal-toggle="authentication-modal5"><?php echo $lang['profile_password'];?></a>
+							<a class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer" data-modal-toggle="authentication-modal5"><?php echo $header['profile_password'];?></a>
 						</li>
 					</ul>
 					<ul class="py-1" aria-labelledby="dropdown">
@@ -102,7 +103,7 @@ error_reporting(0);
 								else{
 									echo 'href="../templates/logout.php"';
 								}
-							?> class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><?php echo $lang['profile_signout'];?></a>
+							?> class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><?php echo $header['profile_signout'];?></a>
 						</li>
 					</ul>
 				</div>
@@ -114,7 +115,7 @@ error_reporting(0);
 								<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
 							</button>
 							<div class="px-6 py-6 lg:px-8">
-								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $lang['profile_edit_title'];?></h3>
+								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $header['profile_password'];?></h3>
 									<form class="space-y-6" action="#">
 										<div>
 											<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email Address</label>
@@ -163,7 +164,8 @@ error_reporting(0);
 					<li>
 						<a 
 						   <?php 
-                           $name_href = "";
+                           $name = "";
+						   $class = "";
 						   if($_GET['name'] == 'member')
 						   {
 								$name = "href='create-member.php?name=member&aside=create-member";
@@ -178,20 +180,6 @@ error_reporting(0);
 							   	$name =  "href='../members/create-member.php?name=member&aside=create-member";
 							   	$class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
-						   /*
-						   else if($_GET['name'] == 'product'){
-							   echo "href='../members/create-member.php?name=member&aside=create-member'";
-							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
-						   }
-						   else if($_GET['name'] == 'stock'){
-							   echo "href='../members/create-member.php?name=member&aside=create-member'";
-							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
-						   }
-						   else if($_GET['name'] == 'account'){
-							   echo "href='../members/create-member.php?name=member&aside=create-member'";
-							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
-						   }
-						   */
 						   else{ 
 								$name = "href='../create-member.php?name=member&aside=create-member";
 							   	$class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
@@ -199,12 +187,13 @@ error_reporting(0);
 
                             if($_GET['lang'] == 'en'){
                               	$name .= "&lang=en'";
-                              	echo $name;
                             }
                             else {
-                            	echo $name .= "&lang=ch'";
-                            }
-						   ?>><?php echo $lang['header_membership']; ?></a>
+                            	$name .= "&lang=ch'";
+                            };
+                            echo $name;
+                            echo $class;
+						   ?>><?php echo $header['header_membership']; ?></a>
 					</li>
 					<li>
 						<a 
@@ -223,20 +212,6 @@ error_reporting(0);
 							   $name = "href='../transactions/create-tablet.php?name=transaction&aside=create-tablet";
 							   $class = 'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
-						   /*
-						   else if($_GET['name'] == 'product'){
-							   echo "href='../transactions/create-tablet.php?name=transaction&aside=create-tablet'";
-							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
-						   }
-						   else if($_GET['name'] == 'stock'){
-							   echo "href='../transactions/create-tablet.php?name=transaction&aside=create-tablet'";
-							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
-						   }
-						   else if($_GET['name'] == 'account'){
-							   echo "href='../transactions/create-tablet.php?name=transaction&aside=create-tablet'";
-							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
-						   }
-						   */
 						   else{ 
 								$name = "href='../create-tablet.php?name=transaction&aside=create-tablet";
 							   	$class = 'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
@@ -248,14 +223,15 @@ error_reporting(0);
                             else {
                             	$name .= "&lang=ch'";
                             }
-                            //echo "<script>alert('".$name."');</script>";
                             echo $name;
                             echo $class;
-						   ?>><?php echo $lang['header_transaction']; ?></a>
+						   ?>><?php echo $header['header_transaction']; ?></a>
 					</li>
 					<li>
 						<a 
 						   <?php 
+                           $name = "";
+						   $class = "";
 						   if($_GET['name'] == 'product') 
 						   	{
 								$name = "href='create-product.php?name=product&aside=create-product";
@@ -270,20 +246,6 @@ error_reporting(0);
 							   $name = "href='../products/create-product.php?name=product&aside=create-product";
 							   $class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
-						   /*
-						   else if($_GET['name'] == 'transaction'){
-							   echo "href='../products/create-product.php?name=product&aside=create-product'";
-							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
-						   }
-						   else if($_GET['name'] == 'stock'){
-							   echo "href='../products/create-product.php?name=product&aside=create-product'";
-							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
-						   }
-						   else if($_GET['name'] == 'account'){
-							   echo "href='../products/create-product.php?name=product&aside=create-product'";
-							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
-						   }
-						   */
 						   else{ 
 								$name = "href='../create-product.php?name=product&aside=create-product";
 							   	$class = 'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
@@ -297,11 +259,13 @@ error_reporting(0);
                             }
                             echo $name;
                             echo $class;
-						   ?>><?php echo $lang['header_product']; ?></a>
+						   ?>><?php echo $header['header_product']; ?></a>
 					</li>
 					<li>
 						<a 
 						   <?php 
+                           $name = "";
+						   $class = "";
 						   if($_GET['name'] == 'stock') 
 						   {
 								$name = "href='stock-in.php?name=stock&aside=stock-in";
@@ -315,20 +279,6 @@ error_reporting(0);
 							   $name = "href='../stocks/stock-in.php?name=stock&aside=stock-in";
 							   $class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
-						   /*
-						   else if($_GET['name'] == 'transaction'){
-							   echo "href='../stocks/stock-in.php?name=stock&aside=stock-in'";
-							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
-						   }
-						   else if($_GET['name'] == 'product'){
-							   echo "href='../stocks/stock-in.php?name=stock&aside=stock-in'";
-							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
-						   }
-						   else if($_GET['name'] == 'account'){
-							   echo "href='../stocks/stock-in.php?name=stock&aside=stock-in'";
-							   	echo'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
-						   }
-						   */
 						   else{ 
 								$name = "href='../stock-in.php?name=stock&aside=stock-in";
 							   	$class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
@@ -336,18 +286,19 @@ error_reporting(0);
 
                             if($_GET['lang'] == 'en'){
                               	$name .= "&lang=en'";
-                              	echo $name;
                             }
                             else {
-                            	echo $name .= "&lang=ch'";
-                            }
-						   ?>><?php echo $lang['header_stock']; ?></a>
+                            	$name .= "&lang=ch'";
+                            };
+                            echo $name;
+                            echo $class;
+						   ?>><?php echo $header['header_stock']; ?></a>
 					</li>
 					<li>
-						<a id='lang-en'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onclick="changeLanguageENG()"><?php echo $lang['header_en']; ?></a>
+						<a id='lang-en'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onclick="changeLanguageENG()"><?php echo $header['header_en']; ?></a>
 					</li>
 					<li>
-						<a id='lang-ch' class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onclick="changeLanguageCHI()"><?php echo $lang['header_ch']; ?></a>
+						<a id='lang-ch' class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onclick="changeLanguageCHI()"><?php echo $header['header_ch']; ?></a>
 					</li>
 				</ul>
 			</div>
@@ -379,9 +330,9 @@ error_reporting(0);
 				<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.707 7.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L13 8.586V5h3a2 2 0 012 2v5a2 2 0 01-2 2H8a2 2 0 01-2-2V7a2 2 0 012-2h3v3.586L9.707 7.293zM11 3a1 1 0 112 0v2h-2V3z"></path><path d="M4 9a2 2 0 00-2 2v5a2 2 0 002 2h8a2 2 0 002-2H4V9z"></path></svg>
                 <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to quick export?</h3>
                 <a href="#">
-				<button data-modal-toggle="quick-export-modal" type="button" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">Yes, I'm sure</button>
+				<button data-modal-toggle="quick-export-modal" type="button" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"><?php echo $index['confirm']; ?></button>
 				</a>
-				<button data-modal-toggle="quick-export-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-6 py-2.5 text-center mr-2">No, cancel</button>
+				<button data-modal-toggle="quick-export-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-6 py-2.5 text-center mr-2"><?php echo $index['cancel']; ?></button>
             </div>
         </div>
     </div>
