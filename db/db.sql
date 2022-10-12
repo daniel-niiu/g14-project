@@ -2,18 +2,19 @@ Create database if not exists db_MMS;
 use db_MMS;
 set autocommit = false;
 
-CREATE TABLE Admin (
+CREATE TABLE Admin (    
+    admin_name VARCHAR(40) NOT NULL,
     admin_username VARCHAR(40) NOT NULL,
     admin_password VARCHAR(40) NOT NULL, 
     admin_status CHAR(1) NOT NULL, 
-    admin_type VARCHAR(10) NOT NULL,
+    admin_type VARCHAR(20) NOT NULL,
 
     PRIMARY KEY(admin_username)
 );
 
 CREATE TABLE Member (
     member_id VARCHAR(10) NOT NULL,
-    member_chi_name VARCHAR(10) NOT NULL,                                                                         
+    member_chi_name VARCHAR(30) NOT NULL,                                                                         
     member_eng_name VARCHAR(30) NOT NULL,
     member_ic VARCHAR(14) NOT NULL ,
     member_gender VARCHAR(6) NOT NULL ,
@@ -72,8 +73,8 @@ CREATE TABLE BLantern(
 CREATE TABLE GLight(
     GLight_id VARCHAR(20) NOT NULL,        
     member_eng_name VARCHAR(30) NOT NULL,    
-    member_chi_name VARCHAR(10) NOT NULL,
-    price DOUBLE(8,2) NOT NULL,    
+    member_chi_name VARCHAR(30) NOT NULL,
+    price DOUBLE(10,2) NOT NULL,    
     contact_num VARCHAR(20) NOT NULL,
     remarks VARCHAR(200),
 
@@ -86,7 +87,7 @@ CREATE TABLE Tablet_Receipt (
     receipt_date DATE NOT NULL, 
     receipt_amount DOUBLE(10,2) NOT NULL,
     member_eng_name VARCHAR(30) NOT NULL,    
-    member_chi_name VARCHAR(10) NOT NULL,
+    member_chi_name VARCHAR(30) NOT NULL,
     remarks VARCHAR(200),
     username VARCHAR(20),    
     recordedOn DATETIME,
@@ -135,14 +136,17 @@ CREATE TABLE GLight_Receipt (
 	stock_date DATE NOT NULL,
 	stock_summary VARCHAR(200),
 	receipt_no VARCHAR(10) NOT NULL,
-	stock_in INT(5) NOT NULL,
-	stock_out INT(5) NOT NULL,
+	stock_in INT(10) NOT NULL,
+	stock_out INT(10) NOT NULL,
 	balance_left DOUBLE(10,2) NOT NULL,
-	remarks VARCHAR(200),
+	remarks VARCHAR(200),    
+	recordedBy VARCHAR(30),    
+    	recordedOn DATETIME,
+
 
     PRIMARY KEY(receipt_no)   
 );
 
-INSERT INTO Admin(admin_username, admin_password, admin_status, admin_type) VALUES ('admin',md5('admin'), 'T', 'admin');
+INSERT INTO Admin(admin_name, admin_username, admin_password, admin_status, admin_type) VALUES ('admin', 'admin',md5('admin'), 'T', 'admin');
 
 commit;
