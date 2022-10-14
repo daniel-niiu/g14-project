@@ -15,10 +15,9 @@ isLoggedIn();
 			document.documentElement.classList.remove('dark');
 		}
 	</script> 
+	<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
 	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
-	<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script> 
 	<link rel="stylesheet" href="../styles/style.css">
-	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
 	<style>
 		#search{
@@ -28,12 +27,12 @@ isLoggedIn();
 			outline: 3px solid #ddd;
 		} 
 		/* The container <div> - needed to position the dropdown content */
-		.dropdown {
-		  position: relative; f
+		.result_dropdown {
+		  position: relative; 
 		}
 
 		/* Dropdown Content (Hidden by Default) */
-		.dropdown-content { 
+		.result_content { 
 		  /*position: absolute;*/
 		  background-color: #f6f6f6;
 		  min-width: 230px;
@@ -42,7 +41,7 @@ isLoggedIn();
 		}
 
 		/* Links inside the dropdown */
-		.dropdown-content p{
+		.result_content p{
 		  color: black;
 		  padding: 12px 16px;
 		  text-decoration: none;
@@ -50,7 +49,7 @@ isLoggedIn();
 		}
 
 		/* Change color of dropdown links on hover */
-		.dropdown-content p:hover {background-color: #f1f1f1}
+		.result_content p:hover {background-color: #f1f1f1}
 
 		#result{
 			/*position: absolute;*/
@@ -102,7 +101,7 @@ isLoggedIn();
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product Name*</label>
-						<div id="myDropdown" class="dropdown-content">
+						<div id="myDropdown" class="result_content">
 							<input type="text" id="search" name="search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Name or ID...">
 							<div class="list-group" id="result">
 							</div>
@@ -230,26 +229,14 @@ isLoggedIn();
 
 		});
 	</script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+ 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"> 
+	</script> 
 	<script> 
         $(document).ready(function () {
             $("#search").keyup(function(){
             	$('#result').html('');
-            	var searchField = $('#search').val();
-            	/*
-            	var expression = new RegExp(searchField, "i");
-
-            	$.getJson('fetch_stock_productname.php', function(data){
-            		$.each(data, function(key,value){
-            			if(value.name.search(expression) != -1 || value.id.search(expression) != -1){
-            				$('#result').append('<li class="list-group-item">'+value.id+ value.name+'</li>');
-            			}
-            		})
-            	})
-            	*/ 
+            	var searchField = $('#search').val(); 
             	$.ajax({
             		url: "fetch_stock_productname.php",
             		type: "post",
@@ -269,7 +256,6 @@ isLoggedIn();
 
 			 }); 
         });
-	</script>
-	
+	</script> 
 </body>
 </html>

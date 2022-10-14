@@ -131,7 +131,7 @@ $query = $conn->query("SELECT * FROM admin ORDER BY admin_username LIMIT $limit"
 				            ?>
 							<tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
 								<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-									<a href="edit-account.php?name=account&aside=search-account&Id=<?php echo $row['admin_username']; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row['admin_username']; ?></a>
+									<a href="edit-account.php?name=account&aside=search-account&Id=<?php echo $row['admin_username']; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row['admin_name']; ?></a>
 								</th>
 								<td class="px-6 py-4">
 									<?php echo $row['admin_username']; ?>

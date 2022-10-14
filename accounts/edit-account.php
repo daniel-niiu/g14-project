@@ -66,41 +66,60 @@ isLoggedIn();
 				<div class="grid xl:grid-cols-2 xl:gap-6"> 
 					<div class="relative z-0 w-full mb-6 group">
                         <label for="name" class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Full Name*</label>
-                        <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter the full name here">
+                        <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['admin_name']; ?>" disabled>
                     </div> 
                     <div class="relative z-0 w-full mb-6 group">
                         <label for="email" class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email Address*</label>
                         <input type="text" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter the email address here" 
-                        value="<?php echo $row['admin_username']; ?> " disabled="disabled">
+                        value="<?php echo $row['admin_username']; ?> " disabled>
                     </div> 
                  </div>
 				
                 <div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 mt-2 group">
-						<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Status</label> 
-						<?php 
-							if($row['admin_username'] == "admin")
-							{ 
-						?>
-						<input type="radio" name="account-status" value="T" <?php if($row['admin_status'] == "T") echo "checked disabled"; ?>>
-						<label class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Active</label>
-
-						<input type="radio" name="account-status" class="ml-6" value="F" <?php echo "disabled"; ?>>
-						<label class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Inactive</label>
-						<?php
-							}
-							else
-							{  
-						?>
-						<input type="radio" name="account-status" value="T" <?php if($row['admin_status'] == "T") echo "checked"; ?>>
-						<label class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Active</label>
-
-						<input type="radio" name="account-status" class="ml-6" value="F" <?php if($row['admin_status'] == "F") echo "checked"; ?>>
-						<label class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Inactive</label>
-						<?php
-							}
-						?>
+						
+							<label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Status</label>
+							<label for="checkbox" class="inline-flex relative items-center cursor-pointer mt-1">
+							  <input type="checkbox"id="checkbox" name="checkbox" value="<?php echo $row['admin_status']; ?>"  class="sr-only peer" 
+							  <?php 
+							  if($row['admin_status'] == "T"){
+							  	echo "checked";
+							  }
+							  else{ 
+							  }
+								?>>
+							  <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+							  <span id="status" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+							  	<?php 
+							  		$data = "";
+							  		if($row['admin_status'] == "T")
+							  		{
+							  			$data = "Active";
+							  		}
+							  		else
+							  		{
+							  			$data = "Inactive";
+							  		}
+							  		echo $data;
+							  	?>
+							  </span> 
+						  		<input type="hidden" id="checkbox_value" name="checkbox_value" value="<?php echo $row['admin_status']; ?>">
+							</label>
                 	</div>
+					<script>
+					document.getElementById('checkbox').addEventListener('click', function(){
+						if(this.checked){
+							this.value = 'Active';
+							document.getElementById('status').innerHTML = 'Active'; 
+							document.getElementById('checkbox_value').value = "T";
+						} 
+						else{ 
+							this.value = 'Inactive'; 
+							document.getElementById('status').innerHTML = 'Inactive'; 
+							document.getElementById('checkbox_value').value = "F";
+						}
+					});
+					</script>
                     <div class="relative z-0 w-full mb-6 group">
                     	<?php 
 							if($row['admin_username'] == "admin")

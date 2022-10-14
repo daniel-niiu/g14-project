@@ -12,9 +12,11 @@ if(isset($_POST['btn_submit'])){
 	if ($result->num_rows > 0) {
 	  // output data of each row
 	  while($row = $result->fetch_assoc()) {
+		$_SESSION["name"] = $row['admin_name'];
 		$_SESSION["username"] = $row['admin_username'];
 		$_SESSION["password"] = $row['admin_password'];
 		$_SESSION["status"] = $row['admin_status'];
+		$_SESSION["type"] = $row['admin_type'];
 
 	  } 
 	  header('Location: ../index.php');

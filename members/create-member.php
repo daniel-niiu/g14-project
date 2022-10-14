@@ -110,8 +110,8 @@ isLoggedIn();
 					} 
 					else{ 
 						this.value = 'InActive'; 
-						document.getElementById('status').innerHTML = 'InActive'; 
-						document.getElementById('checkbox_value').value = "InActive";
+						document.getElementById('status').innerHTML = 'Inactive'; 
+						document.getElementById('checkbox_value').value = "Inactive";
 					}
 				});
 				</script>

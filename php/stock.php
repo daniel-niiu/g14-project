@@ -19,7 +19,7 @@ if($method === "add")
 	$balance = $_POST["balance"];
     $remarks = $_POST["remarks"];
 
-    $sql = "INSERT INTO STOCK(product_id, stock_date, stock_summary, receipt_no, stock_in, stock_out, balance_left, remarks) VALUES('$prodID[0]','$date','$summary','$receiptno','$stockin','$stockout','$balance','$remarks')";  
+    $sql = "INSERT INTO STOCK(product_id, stock_date, stock_summary, receipt_no, stock_in, stock_out, balance_left, remarks, recordedBy, recordedOn) VALUES('$prodID[0]','$date','$summary','$receiptno','$stockin','$stockout','$balance','$remarks', '".$_SESSION['name']."', '".date("Y-m-d h:i:s")."')";  
     if (!mysqli_query($conn,$sql)) {
 		
         header("Location: ../stocks/stock-in.php?name=stock&aside=stock-in&success=fail");
@@ -48,7 +48,7 @@ if($method === "edit")
 	$balance = $_POST["balance"];
     $remarks = $_POST["remarks"];
 
-   	$sql = "UPDATE STOCK SET stock_summary = '$summary', stock_in = '$stockin', stock_out = '$stockout', balance_left = '$balance', remarks = '$remarks'
+   	$sql = "UPDATE STOCK SET stock_summary = '$summary', stock_in = '$stockin', stock_out = '$stockout', balance_left = '$balance', remarks = '$remarks', recordedBy = '".$_SESSION['name']."', recordedOn = '".date("Y-m-d h:i:s")."'
 		WHERE product_id = '$Id' AND receipt_no = '$receiptno' AND stock_date = '$date'";  
 	
     if (!mysqli_query($conn,$sql)) {

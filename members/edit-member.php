@@ -100,9 +100,9 @@ isLoggedIn();
 							document.getElementById('checkbox_value').value = "Active";
 						} 
 						else{ 
-							this.value = 'InActive'; 
-							document.getElementById('status').innerHTML = 'InActive'; 
-							document.getElementById('checkbox_value').value = "InActive";
+							this.value = 'Inactive'; 
+							document.getElementById('status').innerHTML = 'Inactive'; 
+							document.getElementById('checkbox_value').value = "Inactive";
 						}
 					});
 					</script>

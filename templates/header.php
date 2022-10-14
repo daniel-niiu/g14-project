@@ -55,6 +55,10 @@ error_reporting(0);
 						</li>
 					</ul>
 					<ul class="py-1" aria-labelledby="dropdown">
+						<?php 
+							if($_SESSION['type'] == "admin" && $_SESSION['username'] == "admin")
+							{ 
+						?>
 						<li>
 							<a 
                              <?php 
@@ -88,7 +92,10 @@ error_reporting(0);
                             	echo $name_href .= "&lang=ch'";
                             }
                              ?> class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"><?php echo $header['profile_acc_setting'];?></a>
-						</li>
+						</li> 
+						<?php 
+							}
+						?>
 						<li>
 							<a class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer" data-modal-toggle="authentication-modal5"><?php echo $header['profile_password'];?></a>
 						</li>
@@ -116,27 +123,44 @@ error_reporting(0);
 							</button>
 							<div class="px-6 py-6 lg:px-8">
 								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $header['profile_password'];?></h3>
-									<form class="space-y-6" action="#">
+									<form class="space-y-6" action="php/account.php?method=updatePassword" method="post">
 										<div>
 											<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email Address</label>
-											<input type="text" id="email" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="Admin" disabled readonly>
+											<input type="text" id="email" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $_SESSION['username']; ?>" disabled readonly>
 											<p class="text-xs font-normal text-red-500 dark:text-red-300 ml-1">*You are not allowed to modify the email address.</p>
 										</div>
 										<div>
 											<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Type</label>
 											
 											<input type="radio" name="account-type" id="administrator" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="Administrator" checked disabled readonly>
-											<label for="administrator" class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Administrator</label>
-											
-											<input type="radio" name="account-type" id="operator" class="ml-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="Operator" disabled readonly>
-											<label for="operator" class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Operator</label>
+											<label for="administrator" class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+												<?php 
+													if(str_contains($_SESSION['type'],"admin"))
+													{
+														echo "Administrator";
+													}
+													else
+													{ 
+														$data = ""; 
+														if(str_contains($_SESSION['type'], "M"))
+															$data .= "Member-";
+														if(str_contains($_SESSION['type'], "T"))
+															$data .= "Transaction-";
+														if(str_contains($_SESSION['type'], "P"))
+															$data .= "Product&Stock-";
+														echo "Operator(";
+														echo rtrim($data,"-");
+														echo ")";
+													}
+												?>
+											</label> 
 											
 											<p class="text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1">*You are not allowed to modify the account type.</p>
 										</div>
-										<!--div>
+										<div>
 											<label for="current-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Current Password</label>
 											<input type="password" name="current-password" id="current-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter your current password here" required>
-										</div-->
+										</div>
 										<div>
 											<label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">New Password</label>
 											<input type="password" name="password" id="edit-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter your new password here" required>
@@ -161,6 +185,11 @@ error_reporting(0);
 			
 			<div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
 				<ul class="flex flex-col p-4 mt-4 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 lg:bg-white md:dark:bg-gray-900 dark:border-gray-700">
+					<?php 
+
+						if(str_contains($_SESSION['type'], "M") || $_SESSION['type'] == "admin") 
+						{
+					?>
 					<li>
 						<a 
 						   <?php 
@@ -195,6 +224,11 @@ error_reporting(0);
                             echo $class;
 						   ?>><?php echo $header['header_membership']; ?></a>
 					</li>
+					<?php 
+						}
+					if(str_contains($_SESSION['type'], "T") || $_SESSION['type'] == "admin") 
+					{
+					?>
 					<li>
 						<a 
 						   <?php 
@@ -227,6 +261,12 @@ error_reporting(0);
                             echo $class;
 						   ?>><?php echo $header['header_transaction']; ?></a>
 					</li>
+
+					<?php 
+					}
+						if(str_contains($_SESSION['type'], "P") || $_SESSION['type'] == "admin") 
+						{
+					?>
 					<li>
 						<a 
 						   <?php 
@@ -260,7 +300,7 @@ error_reporting(0);
                             echo $name;
                             echo $class;
 						   ?>><?php echo $header['header_product']; ?></a>
-					</li>
+					</li> 
 					<li>
 						<a 
 						   <?php 
@@ -294,6 +334,9 @@ error_reporting(0);
                             echo $class;
 						   ?>><?php echo $header['header_stock']; ?></a>
 					</li>
+					<?php 
+						}
+					?>
 					<li>
 						<a id='lang-en'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onclick="changeLanguageENG()"><?php echo $header['header_en']; ?></a>
 					</li>
