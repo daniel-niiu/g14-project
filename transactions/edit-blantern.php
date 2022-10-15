@@ -17,6 +17,7 @@ isLoggedIn();
 	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
 	<script src="https://kit.fontawesome.com/b41521ee1f.js"></script>
 	<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
+	<script src="../script/script.js" type="text/javascript"></script> 
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
@@ -58,8 +59,7 @@ isLoggedIn();
 		</nav>
 	
 			<?php  
-				$M_ID = $_GET['Id']; 
-		    	//$sql = "SELECT * FROM GLight,GLight_Receipt WHERE GLight_id = '".$M_ID."' GROUP BY GLight_id"; 	 
+				$M_ID = $_GET['Id'];  
 				$sql = "SELECT * FROM BLantern WHERE BLantern_id = '".$M_ID."'"; 
 		    	$result = $conn->query($sql);  
 				if (mysqli_num_rows($result) > 0) {
@@ -69,25 +69,30 @@ isLoggedIn();
 		<div>
 			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Edit Blessing Lantern</h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>  
-			<form method="post" action="../php/blantern.php?method=update&Id=<?php echo $row['BLantern_id']; ?>">
+			<form method="post" action="../php/blantern.php?method=update&Id=<?php echo $row['BLantern_id']; ?>" onsubmit="return blessing_validation()">
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Lantern ID</label>
-						<input type="text" id="id" name="id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['BLantern_id']; ?>">
+						<input type="text" id="id" name="id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['BLantern_id']; ?>" disabled> 
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_id" style="display:none;">*Not allowed to empty and special character
+						</p>
 					</div>
 				 	<div class="relative z-0 w-full mb-6 group">
 						<label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name (English)</label>
 						<input type="text" id="english" name="english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_eng_name']; ?>">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_eng" style="display:none;">*Not allowed to empty, number and special character</p>
 					</div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name (Chinese)</label>
 						<input type="text" id="chinese" name="chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  value="<?php echo $row['member_chi_name']; ?>">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_chi" style="display:none;">*Not allowed to empty, number and special character</p>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Contact Number</label>
 						<input type="text" id="contact" name="contact" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  value="<?php echo $row['contact_num']; ?>">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co" style="display:none;">*Not allowed to empty and symbol</p>
 					</div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
@@ -97,6 +102,7 @@ isLoggedIn();
 						  	<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							<input type="text" id="blessing" name="blessing_price" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-none rounded-r-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400"  value="<?php echo $row['blessing_price']; ?>">
 						</div>
+						 <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="b_price" style="display:none;">*Not allowed to empty, alphabets and special character</p>
 					 </div>
 					 <div class="relative z-0 w-full mb-6 group">
 						<label for="votive" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Votive Price</label>
@@ -104,16 +110,21 @@ isLoggedIn();
 						  	<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							<input type="text" id="votive" name="votive_price" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-none rounded-r-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400"  value="<?php echo $row['votive_price']; ?>">
 						</div>
+						 <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="v_price" style="display:none;">*Not allowed to empty, alphabets and special character</p>
 					</div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="blessing" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Blessing Receipt</label>
-						<input type="text" id="blessing" name="blessing_receipt" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['breceipt_num']; ?>">
+						<input type="text" id="blessing_receipt" name="blessing_receipt" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['breceipt_num']; ?>">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_b_receipt" style="display:none;">*Not allowed to empty and special character
+						</p>
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="votive" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Votive Receipt</label>
-						<input type="text" id="votive" name="votive_receipt" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['vreceipt_num']; ?>">
+						<input type="text" id="votive_receipt" name="votive_receipt" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['vreceipt_num']; ?>">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_v_receipt" style="display:none;">*Not allowed to empty and special character
+						</p>
 					 </div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
@@ -130,6 +141,7 @@ isLoggedIn();
 			    				echo $date;  
   							 ?>" required>
 						</div>
+  						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_r_date" style="display:none;">*Not allowed to empty</p>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Receipt Amount</label>
@@ -137,6 +149,7 @@ isLoggedIn();
 						  	<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							<input type="text" id="amount" name="amount" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-none rounded-r-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['price']; ?>">
 						</div>
+						 <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="r_amount" style="display:none;">*Not allowed to empty, alphabets and special character</p>
 					 </div>
 				</div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">

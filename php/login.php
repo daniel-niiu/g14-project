@@ -19,7 +19,7 @@ if(isset($_POST['btn_submit'])){
 		$_SESSION["type"] = $row['admin_type'];
 
 	  } 
-	  header('Location: ../index.php');
+	  header('Location: ../index.php?lang=ch');
 	}
 	else{   
 		$_SESSION["status"] = 'F';

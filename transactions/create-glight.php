@@ -18,6 +18,7 @@ isLoggedIn();
 	<script src="https://kit.fontawesome.com/b41521ee1f.js"></script>
 	<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
 	<link rel="stylesheet" href="../styles/style.css">
+	<script src="../script/script.js" type="text/javascript"></script> 
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
 </head>
@@ -84,21 +85,25 @@ isLoggedIn();
 			</div>
 			
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
-			<form method="post" action="../php/glight.php?method=add">
+			<form method="post" action="../php/glight.php?method=add" onsubmit="return glight_validation()">
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Light ID*</label>
 						<input type="text" id="gl-id" name="gl-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="G000" required>
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_id" style="display:none;">*Not allowed to empty and special character
+						</p>
 					</div>
 				 	<div class="relative z-0 w-full mb-6 group">
 						<label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name (English)</label>
 						<input type="text" id="english" name="english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John Doe">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_eng" style="display:none;">*Not allowed to empty, number and special character</p>
 					</div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name (Chinese)</label>
 						<input type="text" id="chinese" name="chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="姓名">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_chi" style="display:none;">*Not allowed to empty, number and special character</p>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Price</label>
@@ -106,12 +111,15 @@ isLoggedIn();
 						  	<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							<input type="text" name="price" id="price" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="5,000">
 						</div>
+						 <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_price" style="display:none;">*Not allowed to empty, alphabets and special character</p>
 					 </div>
 				</div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="receipt" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Receipt Number</label>
 						<input type="text" id="receipt" name="receipt" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="R000">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_receipt" style="display:none;">*Not allowed to empty and special character
+						</p>
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Receipt Date*</label>
@@ -121,6 +129,7 @@ isLoggedIn();
   							</div>
   							<input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy" required>
 						</div>
+  						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_r_date" style="display:none;">*Not allowed to empty</p>
 					</div>
 				</div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
@@ -130,10 +139,12 @@ isLoggedIn();
 						  	<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							<input type="text" id="amount" name="amount" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="2,000">
 						</div>
+						 <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_amount" style="display:none;">*Not allowed to empty, alphabets and special character</p>
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Contact Number</label>
 						<input type="text" id="contact" name="contact" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="0123456789">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co" style="display:none;">*Not allowed to empty and symbol</p>
 					</div>
 				 </div>
 				<div class="relative z-0 w-full mb-6 group">

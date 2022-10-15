@@ -113,13 +113,13 @@ isLoggedIn();
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="receipt" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Receipt Number</label>
-						<input type="text" id="receipt" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['receipt_date']; ?>" disabled readonly>
+						<input type="text" id="receipt" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['receipt_num']; ?>" disabled readonly>
 					 </div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Receipt Date</label>
-						<input type="text" id="date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['receipt_num']; ?>" disabled readonly>
+						<input type="text" id="date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['receipt_date']; ?>" disabled readonly>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="receipt" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Receipt Amount</label>

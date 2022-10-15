@@ -44,9 +44,9 @@ if($method === "update")
     $receiptdate = str_replace('/', '-', $_POST['date']);
     $receiptdate = date("Y-m-d", strtotime($receiptdate));  
 
-    $sql = "UPDATE BLantern SET BLantern_id = '".$_POST['id']."', member_eng_name = '".$_POST['english']."', member_chi_name = '".$_POST['chinese']."', contact_num = '".$_POST['contact']."', blessing_price= '".$_POST['blessing_price']."', votive_price= '".$_POST['votive_price']."', breceipt_num = '".$_POST['blessing_receipt']."', vreceipt_num = '".$_POST['votive_receipt']."', receipt_date = '".$receiptdate."', price = '".$_POST['amount']."', remarks = '".$_POST['remarks']."' WHERE BLantern_id = '".$_GET['Id']."'";   
+    $sql = "UPDATE BLantern SET  member_eng_name = '".$_POST['english']."', member_chi_name = '".$_POST['chinese']."', contact_num = '".$_POST['contact']."', blessing_price= '".$_POST['blessing_price']."', votive_price= '".$_POST['votive_price']."', breceipt_num = '".$_POST['blessing_receipt']."', vreceipt_num = '".$_POST['votive_receipt']."', receipt_date = '".$receiptdate."', price = '".$_POST['amount']."', remarks = '".$_POST['remarks']."' WHERE BLantern_id = '".$id."'";   
     $result = $conn->query($sql);
-    header("Location: ../transactions/edit-blantern.php?name=member&Id=".$_POST['id']."&method=update");
+    header("Location: ../transactions/edit-blantern.php?name=transaction&Id=".$id."&method=update");
 
 }
 

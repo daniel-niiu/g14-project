@@ -17,6 +17,7 @@ isLoggedIn();
 	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
 	<script src="https://kit.fontawesome.com/b41521ee1f.js"></script>
 	<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
+	<script src="../script/script.js" type="text/javascript"></script> 
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
@@ -84,11 +85,13 @@ isLoggedIn();
 			</div>
 			
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
-			<form method="post" action="../php/tablet.php?method=add">
+			<form method="post" action="../php/tablet.php?method=add" onsubmit="return tablet_validation()">
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tablet ID*</label>
 						<input type="text" id="id" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="T000" required>
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_tid" style="display:none;">*Not allowed to empty and special character
+						</p>
 					</div>
 				 	<div class="relative z-0 w-full mb-6 group">
 						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Installation Date</label>
@@ -98,22 +101,26 @@ isLoggedIn();
   							</div>
   							<input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
 						</div>
+  							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_ins_date" style="display:none;">*Not allowed to empty</p>
 					 </div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="zone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zone</label>
 						<input type="text" id="zone" name="zone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_zone" style="display:none;">*Not allowed to empty, alphabets and special character</p>
 					 </div>
 					 <div class="relative z-0 w-full mb-6 group">
 						<label for="tier" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tier</label>
 						<input type="text" id="tier" name="tier" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_tier" style="display:none;">*Not allowed to empty, alphabets and special character</p>
 					</div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="row" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Row</label>
 						<input type="text" id="row" name="row" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_row" style="display:none;">*Not allowed to empty, alphabets and special character</p>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Price</label>
@@ -121,36 +128,42 @@ isLoggedIn();
 						  <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 						  <input type="text" id="price" name="price" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="40,500">
 						</div>
+						  <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_price" style="display:none;">*Not allowed to empty, alphabets and special character</p>
 				 </div>
 				</div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name (English)</label>
 						<input type="text" id="english" name="english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John Doe">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_m_eng" style="display:none;">*Not allowed to empty, number and special character</p>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name (Chinese)</label>
 						<input type="text" id="chinese" name="chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="姓名">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_m_chi" style="display:none;">*Not allowed to empty, number and special character</p>
 					</div>
 				</div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="contact1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Primary Contact</label>
 						<input type="text" id="contact1" name="contact1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="0123456789">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co1" style="display:none;">*Not allowed to empty and special character</p>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="contact2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Secondary Contact</label>
 						<input type="text" id="contact2" name="contact2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="0198765432">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co2" style="display:none;">*Not allowed to empty and special character</p>
 					</div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Address</label>
 						<input type="text" id="address" name="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="12, Kuching Road, Lane 34">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_add" style="display:none;">*Not allowed to empty and special character except comma</p>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Payment Type</label>
-						<select id="payment" name="payment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+						<select id="t_payment" name="payment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 						  <option value="lump-sum">Lump Sum Payment</option>
 						  <option value="over-time">Over Time Payment</option>
 						</select>
@@ -160,10 +173,12 @@ isLoggedIn();
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="ancestor-english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ancestor Name (English)</label>
 						<input type="text" id="ancestor-english" name="ancestor_english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jerry Doe">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_anc_eng" style="display:none;">*Not allowed to empty, number and special character</p>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="ancestor-english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ancestor Name (Chinese)</label>
+						<label for="ancestor-chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ancestor Name (Chinese)</label>
 						<input type="text" id="ancestor-chinese" name="ancestor_chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="姓名">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_anc_chi" style="display:none;">*Not allowed to empty, number and special character</p>
 					</div>
 				 </div>
 				<div class="relative z-0 w-full mb-6 group">
