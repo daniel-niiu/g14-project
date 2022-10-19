@@ -1,5 +1,5 @@
-<?php
-
+<?php 
+error_reporting(0);
 	$fileparts = explode('/',$_SERVER['REQUEST_URI']); 
 	$filename = array_pop($fileparts);    
 if (str_contains($filename, 'index.php')) { 
@@ -7,7 +7,6 @@ if (str_contains($filename, 'index.php')) {
 } 
 else 
 	include "../php/config.php"; 
-error_reporting(0);
 ?>
 <header>
 	<nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
@@ -23,7 +22,7 @@ error_reporting(0);
 			<?php
 			}
 			?>
-			<span class="self-center text-xl font-semibold dark:text-white inline-flex items-center p-2 ml-1 text-sm rounded-lg md:hidden">Tze Yin Membership<br/>Management Portal</span></a>
+			<span class="self-center text-xl font-semibold dark:text-white inline-flex items-center p-2 ml-1 text-sm rounded-lg md:hidden"><?php echo $page['portal'];?></span></a>
 			<div class="flex items-center md:order-2">
 				
 				<button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5 mr-3">
@@ -46,12 +45,11 @@ error_reporting(0);
 				
 				<div class="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1054.4px, 983.6px, 0px);">
 					<div class="py-3 px-4">
-          				<span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400"><?php echo $header['profile_user'];?></span>
+          				<span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400"><?php echo $page['profile-user'];?></span>
         			</div>
 					<ul class="py-1" aria-labelledby="dropdown">
 						<li>
-							<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"><i class="fa-sharp fa-solid fa-earth-americas"></i>&nbsp; Display: EN</a>
-							<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"><i class="fa-sharp fa-solid fa-earth-asia"></i>&nbsp; 显示：中文</a>
+							<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"><i class="fa-sharp fa-solid fa-earth-asia"></i>&nbsp; <?php echo $page['profile-language'];?></a>
 						</li>
 					</ul>
 					<ul class="py-1" aria-labelledby="dropdown">
@@ -86,18 +84,17 @@ error_reporting(0);
                              } 
                             if($_SESSION['lang'] == 'en'){
                               	echo $name_href .= "&lang=en'";
-                              	//echo "<script>alert('".$name_href."');</script>";
                             }
                             else {
                             	echo $name_href .= "&lang=ch'";
                             }
-                             ?> class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"><?php echo $header['profile_acc_setting'];?></a>
+                             ?> class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"><?php echo $page['profile-acc-settings'];?></a>
 						</li> 
 						<?php 
 							}
 						?>
 						<li>
-							<a class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer" data-modal-toggle="authentication-modal5"><?php echo $header['profile_password'];?></a>
+							<a class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer" data-modal-toggle="authentication-modal5"><?php echo $page['profile-password'];?></a>
 						</li>
 					</ul>
 					<ul class="py-1" aria-labelledby="dropdown">
@@ -110,7 +107,7 @@ error_reporting(0);
 								else{
 									echo 'href="../templates/logout.php"';
 								}
-							?> class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><?php echo $header['profile_signout'];?></a>
+							?> class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><?php echo $page['profile-signout'];?></a>
 						</li>
 					</ul>
 				</div>
@@ -122,55 +119,55 @@ error_reporting(0);
 								<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
 							</button>
 							<div class="px-6 py-6 lg:px-8">
-								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $header['profile_password'];?></h3>
+								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $page['profile-password'];?></h3>
 									<form class="space-y-6" action="php/account.php?method=updatePassword" method="post">
 										<div>
-											<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email Address</label>
+											<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['email-address'];?></label>
 											<input type="text" id="email" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $_SESSION['username']; ?>" disabled readonly>
-											<p class="text-xs font-normal text-red-500 dark:text-red-300 ml-1">*You are not allowed to modify the email address.</p>
+											<p class="text-xs font-normal text-red-500 dark:text-red-300 ml-1"><?php echo $account['email-title'];?></p>
 										</div>
 										<div>
-											<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Type</label>
+											<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['account-type'];?></label>
 											
 											<input type="radio" name="account-type" id="administrator" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="Administrator" checked disabled readonly>
-											<label for="administrator" class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+											<label class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-not-allowed">
 												<?php 
 													if(str_contains($_SESSION['type'],"admin"))
 													{
-														echo "Administrator";
+														echo $account['type-admin'];
 													}
 													else
 													{ 
 														$data = ""; 
 														if(str_contains($_SESSION['type'], "M"))
-															$data .= "Member-";
+															$data .= $page['membership']."-";
 														if(str_contains($_SESSION['type'], "T"))
-															$data .= "Transaction-";
+															$data .= $page['transaction']."-";
 														if(str_contains($_SESSION['type'], "P"))
-															$data .= "Product&Stock-";
-														echo "Operator(";
+															$data .= $account['product-stock']."-";
+														echo $account['type-oper']."(";
 														echo rtrim($data,"-");
 														echo ")";
 													}
 												?>
 											</label> 
 											
-											<p class="text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1">*You are not allowed to modify the account type.</p>
+											<p class="text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1"><?php echo $account['type-title'];?></p>
 										</div>
 										<div>
-											<label for="current-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Current Password</label>
-											<input type="password" name="current-password" id="current-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter your current password here" required>
+											<label for="current-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['old-password'];?></label>
+											<input type="password" name="current-password" id="current-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="<?php echo $account['current-password-placeholder'];?>" required>
 										</div>
 										<div>
-											<label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">New Password</label>
-											<input type="password" name="password" id="edit-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter your new password here" required>
+											<label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['new-password'];?></label>
+											<input type="password" name="password" id="edit-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="<?php echo $account['new-password-placeholder'];?>" required>
 										</div>
 										<div>
-											<label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Confirm Password</label>
-											<input type="password" name="confirm-password" id="confirm-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Confirm your new password here" required>
+											<label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['confirm-password'];?></label>
+											<input type="password" name="confirm-password" id="confirm-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="<?php echo $account['confirm-password-placeholder'];?>" required>
 										</div>
 										
-										<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+										<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><?php echo $form['submit'];?></button>
 										
 									</form>
 							</div>
@@ -222,7 +219,7 @@ error_reporting(0);
                             };
                             echo $name;
                             echo $class;
-						   ?>><?php echo $header['header_membership']; ?></a>
+						   ?>><?php echo $page['membership']; ?></a>
 					</li>
 					<?php 
 						}
@@ -259,7 +256,7 @@ error_reporting(0);
                             }
                             echo $name;
                             echo $class;
-						   ?>><?php echo $header['header_transaction']; ?></a>
+						   ?>><?php echo $page['transaction']; ?></a>
 					</li>
 
 					<?php 
@@ -299,7 +296,7 @@ error_reporting(0);
                             }
                             echo $name;
                             echo $class;
-						   ?>><?php echo $header['header_product']; ?></a>
+						   ?>><?php echo $page['product']; ?></a>
 					</li> 
 					<li>
 						<a 
@@ -332,16 +329,16 @@ error_reporting(0);
                             };
                             echo $name;
                             echo $class;
-						   ?>><?php echo $header['header_stock']; ?></a>
+						   ?>><?php echo $page['stock']; ?></a>
 					</li>
 					<?php 
 						}
 					?>
 					<li>
-						<a id='lang-en'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onclick="changeLanguageENG()"><?php echo $header['header_en']; ?></a>
+						<a id='lang-en'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onclick="changeLanguageENG()">EN</a>
 					</li>
 					<li>
-						<a id='lang-ch' class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onclick="changeLanguageCHI()"><?php echo $header['header_ch']; ?></a>
+						<a id='lang-ch' class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onclick="changeLanguageCHI()">CH</a>
 					</li>
 				</ul>
 			</div>
@@ -355,10 +352,10 @@ error_reporting(0);
 
 <div id="popover-left" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
     <div class="py-2 px-4 bg-gray-100 rounded-t-lg border-b border-gray-200 dark:border-gray-600 dark:bg-gray-700">
-        <h3 class="font-semibold text-gray-900 dark:text-white">Quick Export</h3>
+        <h3 class="font-semibold text-gray-900 dark:text-white"><?php echo $page['quick-export'];?></h3>
     </div>
     <div class="py-2 px-4">
-        <p>Export a detailed record of "Over Time Payment" for Tablet Transaction.</p>
+        <p><?php echo $page['quick-export-popout'];?></p>
     </div>
     <div data-popper-arrow></div>
 </div>
@@ -371,88 +368,88 @@ error_reporting(0);
             </button>
             <div class="p-6 text-center">				
 				<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.707 7.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L13 8.586V5h3a2 2 0 012 2v5a2 2 0 01-2 2H8a2 2 0 01-2-2V7a2 2 0 012-2h3v3.586L9.707 7.293zM11 3a1 1 0 112 0v2h-2V3z"></path><path d="M4 9a2 2 0 00-2 2v5a2 2 0 002 2h8a2 2 0 002-2H4V9z"></path></svg>
-                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to quick export?</h3>
+                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"><?php echo $page['quick-export-title'];?></h3>
                 <a href="#">
-				<button data-modal-toggle="quick-export-modal" type="button" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"><?php echo $index['confirm']; ?></button>
+				<button data-modal-toggle="quick-export-modal" type="button" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"><?php echo $form['confirm']; ?></button>
 				</a>
-				<button data-modal-toggle="quick-export-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-6 py-2.5 text-center mr-2"><?php echo $index['cancel']; ?></button>
+				<button data-modal-toggle="quick-export-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-6 py-2.5 text-center mr-2"><?php echo $form['cancel']; ?></button>
             </div>
         </div>
     </div>
 </div>
+
 <script>  
- 
-	function changeLanguageENG() {  
+function changeLanguageENG() {  
 
-		var str_url = window.location.href; 
-		if(str_url.includes("index.php") == true)
-		{  
-			if(str_url.includes("?lang=en") == true)
-			{
-				location.href = window.location.href;
-			}
-			else if(str_url.includes("?lang=ch") == true)
-			{ 
-				var temp = '';
-				temp = str_url.replace("?lang=ch","?lang=en")
-				location.href = temp;
-			}
-			else{ 
-				location.href = window.location.href+"?lang=en";
-			}
-		} 
-		else
-		{ 
-			if(str_url.includes("&lang=en") == true)
-			{
-				location.href = window.location.href;
-			}
-			else if(str_url.includes("&lang=ch") == true)
-			{ 
-				var temp = '';
-				temp = str_url.replace("&lang=ch","&lang=en")
-				location.href = temp;
-			}
-			else{
+    var str_url = window.location.href; 
+    if(str_url.includes("index.php") == true)
+    {  
+        if(str_url.includes("?lang=en") == true)
+        {
+            location.href = window.location.href;
+        }
+        else if(str_url.includes("?lang=ch") == true)
+        { 
+            var temp = '';
+            temp = str_url.replace("?lang=ch","?lang=en")
+            location.href = temp;
+        }
+        else{ 
+            location.href = window.location.href+"?lang=en";
+        }
+    } 
+    else
+    { 
+        if(str_url.includes("&lang=en") == true)
+        {
+            location.href = window.location.href;
+        }
+        else if(str_url.includes("&lang=ch") == true)
+        { 
+            var temp = '';
+            temp = str_url.replace("&lang=ch","&lang=en")
+            location.href = temp;
+        }
+        else{
 
-				location.href = window.location.href+"&lang=en";
-			}
-		}
-	}
-	function changeLanguageCHI() {   
-		var str_url = window.location.href;
-		if(str_url.includes("index.php") == true)
-		{  
-			if(str_url.includes("?lang=ch") == true)
-			{
-				location.href = window.location.href;
-			}
-			else if(str_url.includes("?lang=en") == true)
-			{ 
-				var temp = '';
-				temp = str_url.replace("?lang=en","?lang=ch");
-				location.href = temp;
-			}
-			else{ 
-				location.href = window.location.href+"?lang=ch";
-			}
-		} 
-		else
-		{ 
-			if(str_url.includes("&lang=ch") == true)
-			{
-				location.href = window.location.href;
-			}
-			else if(str_url.includes("&lang=en") == true)
-			{ 
-				var temp = '';
-				temp = str_url.replace("&lang=en","&lang=ch")
-				location.href = temp;
-			}
-			else{
+            location.href = window.location.href+"&lang=en";
+        }
+    }
+}
+function changeLanguageCHI() {   
+    var str_url = window.location.href;
+    if(str_url.includes("index.php") == true)
+    {  
+        if(str_url.includes("?lang=ch") == true)
+        {
+            location.href = window.location.href;
+        }
+        else if(str_url.includes("?lang=en") == true)
+        { 
+            var temp = '';
+            temp = str_url.replace("?lang=en","?lang=ch");
+            location.href = temp;
+        }
+        else{ 
+            location.href = window.location.href+"?lang=ch";
+        }
+    } 
+    else
+    { 
+        if(str_url.includes("&lang=ch") == true)
+        {
+            location.href = window.location.href;
+        }
+        else if(str_url.includes("&lang=en") == true)
+        { 
+            var temp = '';
+            temp = str_url.replace("&lang=en","&lang=ch")
+            location.href = temp;
+        }
+        else{
 
-				location.href = window.location.href+"&lang=ch";
-			}
-		}
-	}
+            location.href = window.location.href+"&lang=ch";
+        }
+    }
+}
 </script>

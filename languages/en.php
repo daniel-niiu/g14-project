@@ -1,185 +1,277 @@
 <?php
-	//header.php
-	$header = array(
+	$page = array(
 		//navbar
-		"header_membership" => "Membership",
-		"header_transaction" => "Transaction",
-		"header_product" => "Product",
-		"header_stock" => "Stock",
-		"header_en" => "EN",
-		"header_ch" => "CH",
+		"portal" => "Tze Yin Membership Management Portal",
+		"membership" => "Membership",
+		"transaction" => "Transaction",
+		"product" => "Product",
+		"stock" => "Stock",
+		//footer
+		"footer" => "Disclaimer: This is a student work in progress for SWE40001/SWE40002 Software Engineering Project A/B of Swinburne University of Technology, Sarawak (2022).",
+		//quick-export
+		"quick-export" => "Quick Export",
+		"quick-export-popout" => "Export a detailed record of 'Over Time Payment' from Tablet Transaction.",
+		"quick-export-title" => "Are you sure you want to quick export?",
 		//profile
-		"profile_user" => "Welcome, ".$_SESSION['username'],
-		"profile_acc_setting" => "Account Settings",
-		"profile_password" => "Edit Password",
-		"profile_signout" => "Sign Out",
+		"profile-user" => "Welcome, ".$_SESSION['username'],
+		"profile-acc-settings" => "Account Settings",
+		"profile-password" => "Edit Password",
+		"profile-signout" => "Sign Out",
+		"profile-language" => "Display: EN"
 	);
 
-	//index.php
-	$index = array(
-		//titles
-		"index_dashboard" => "Dashboard",
-		"index_reminder" => "Reminder",
-		"index_broadcast" => "Broadcast",
-		"index_shortcuts" => "Administrative Shortcuts",
-		"index_filter" => "Filter",
-		//reminder  
-		"index_reminder_create_title" => "Create Reminder", 
-		"index_reminder_title" => "Title", 
-		"index_reminder_date" => "Date", 
-		"index_reminder_content" => "Content", 
-		"index_reminder_submit" => "Submit", 
-		"index_reminder_edit_title" => "Edit Reminder",
-		"index_reminder_delete" => "Are you sure you want to delete this reminder?", 
+	$account = array(
+		//edit-password
+		"email-title" => "*You are not allowed to modify the email address.",
+		"type-title" => "*You are not allowed to modify the account type.",
+		"old-password" => "Current Password",
+		"new-password" => "New Password",
+		"confirm-password" => "Confirm Password",
+		//form
+		"full-name" => "Full Name",
+		"email-address" => "Email Address",
+		"account-status" => "Account Status",
+		"status-active" => "Active",
+		"status-inactive" => "Inactive",
+		"account-type" => "Account Type",
+		"type-admin" => "Administrator",
+		"type-oper" => "Operator",
+		"department" => "Department",
+		"product-stock" => "Product & Stock",
+		//placeholder
+		"current-password-placeholder" => "Enter your current password here",
+		"new-password-placeholder" => "Enter your new password here",
+		"confirm-password-placeholder" => "Confirm your new password here"
+	);
+
+	$form = array(
 		"confirm" => "Yes, I'm sure",
 		"cancel" => "No, cancel",
-		//whatsapp broadcast
-		"index_whatsapp_title" => "WhatsApp Broadcast", 
-		//filter preference
-		"index_filter" => "Filter",
-		"index_filter_title" => "Select your Preferences",
-		"index_filter_create_mem" => "Create Member",
-		"index_filter_search_mem" => "Search Member",
-		"index_filter_create_tablet" => "Create Memorial Tablet",
-		"index_filter_search_tablet" => "Search Memorial Tablet",
-		"index_filter_create_blessing" => "Create Blessing",
-		"index_filter_search_blessing" => "Search Blessing",
-		"index_filter_create_light" => "Create Guang-Ming Light",
-		"index_filter_search_light" => "Search Guang-Ming Light",
-		//toasts
-		"toast_success_user" => "User details modified successfully.",
-		"toast_add_reminder" => "Reminder created successfully.",
-		"toast_edit_reminder" => "Reminder modified successfully.",
-		"toast_delete_reminder" => "Reminder has been deleted.",
-		"toast_success_filter" => "Shortcuts modified successfully.",
-		"toast_new_notification" => "New notification",
-		"toast_notification_today" => "Today",
-		//footer
-		"footer" => "Disclaimer: This is a student work in progress for SWE40001/SWE40002 Software Engineering Project A/B of Swinburne University of Technology, Sarawak (2022)."
-	);
-	// for create member sidebar
-	$aside_member_lang = array(
-		//index
-		"header_membership" => "Manage Membership",
-		"header_create" => "Create Member",
-		"header_search" => "Search Member",
-		"header_export" => "Export Record", 
-		"header_title" => "What would you like to export?",
-		"member_id" => "Member ID",
-		"Eng_Name" => "English Name",
-		"Chi_Name" => "Chinese Name",
-		"NRIC" => "NRIC", 
-		"Citizenship" => "Citizenship",
-		"Gender" => "Gender",
-		"DOB" => "Date of Birth",
-		"Co_number" => "Contact Number", 
-		"Occupation" => "Occupation",
-		"Address" => "Address",
-		"Member_Type" => "Member Type", 
-		"Admission" => "Date of Admission",
-		"Recommender_ID" => "Recommender ID",
-		"Recommender_Name" => "Recommender Name",
-		"Remarks" => "Remarks",
-		"select" => "Select All",
-	);  
-	// for create and update member information
-	$member_info = array(
-		//index
-		"home" => "Home",
-		"Create Member" => "Create Member",
-		"Import" => "Import Record",
-		"Upload" => "Upload File",
-		"excel" => "Excel (.xlsx) File only", 
-		"btn_submit" => "Submit",
-		"member_id" => "Member ID",
-		"member_status" => "Member Status",
-		"Eng_Name" => "Member Name (English)",
-		"Chi_Name" => "Member Name (Chinese)",
-		"NRIC" => "NRIC", 
-		"Citizenship" => "Citizenship",
-		"Gender" => "Gender",
-		"Male" => "Male",
-		"Female" => "Female",
-		"DOB" => "Date of Birth",
-		"Co_number" => "Contact Number", 
-		"Occupation" => "Occupation",
-		"Address" => "Address",
-		"Member_Type" => "Member Type", 
-		"Normal" => "Normal", 
-		"Permanent" => "Permanent", 
-		"Non-member" => "Non-member", 
-		"Admission" => "Date of Admission",
-		"Recommender_ID" => "Recommender's ID",
-		"Recommender_Name" => "Recommender's Name",
-		"Remarks" => "Remarks"
-	);
-	// search member information
-	$search_member_info = array(
-		//index 
-		"home" => "Home",
-		"title" => "Search Member",
-		"search" => "Search",
-		"member_id" => "Member id",
-		"member_eng_name" => "Mem. name (en)", 
-		"member_chi_name" => "Mem. name (ch)", 
-		"member_type" => "Mem. type",
-		"member_status" => "Mem. status",
-		"btnedit" => "Edit"
-	);
-	// create product information
-	$create_product = array(
-		//index 
-		"home" => "Home",
-		"title" => "Create Product", 
-		"Import" => "Import Record",
-		"Upload" => "Upload File",
-		"excel" => "Excel (.xlsx) File only", 
-		"product_id" => "Product ID",
-		"product_eng_name" => "Product Name (English)", 
-		"product_chi_name" => "Product Name (Chinese)", 
-		"product_status" => "Product Status",
-		"unit_price" => "Unit Price",
+		//form
 		"remarks" => "Remarks",
-		"submit" => "Submit"
+		"submit" => "Submit",
+		//receipt
+		"receipt-num" => "Receipt Number",
+		"receipt-date" => "Receipt Date",
+		"receipt-amount" => "Receipt Amount",
+		//search
+		"btnedit" => "Edit",
+		"search" => "Search",
+		//view
+		"edit-record" => "Edit Record",
+		"delete-record" => "Delete Record",
+		"delete-record-title" => "Are you sure you want to delete this record?",
+		"recorded-by" => "Recorded By",
+		"recorded-on" => "Recorded On",
+		//warning
+		"id-warning" => "*Inclusion of special characters is not allowed, nor to be left empty.",
+		"word-warning" => "*Inclusion of numbers and special characters is not allowed, nor to be left empty.",
+		"number-warning" => "*Inclusion of wordings and special characters is not allowed, nor to be left empty.",
+		"empty-warning" => "*Not allowed to be left empty.",
+		"no-record-warning" => "No records found. Please try again."
 	);
-	// search product information
-	$search_product = array(
-		//index 
+
+	$title = array(
 		"home" => "Home",
-		"title" => "Search Product",  
-		"search" => "Search",  
-		"product_id" => "Product ID",
-		"product_eng_name" => "Product Name (EN)", 
-		"product_chi_name" => "Product Name (CH)", 
-		"product_status" => "Product Status",
-		"btnedit" => "Edit"
+		//membership
+		"create-member" => "Create Member",
+		"search-member" => "Search Member",
+		"view-member" => "View Member",
+		"edit-member" => "Edit Member",
+		//memorial tablet
+		"create-tablet" => "Create Memorial Tablet",
+		"search-tablet" => "Search Memorial Tablet",
+		"view-tablet" => "View Memorial Tablet",
+		"edit-tablet" => "Edit Memorial Tablet",
+		"view-transactions-table" => "View Tablet Transactions",
+		"add-tablet-transaction" => "Add Tablet Transaction",
+		"view-tablet-transaction" => "View Tablet Transaction",
+		"edit-tablet-transaction" => "Edit Tablet Transaction",
+		//blessing lantern
+		"create-blessing" => "Create Blessing Lantern",
+		"search-blessing" => "Search Blessing Lantern",
+		"view-blessing" => "View Blessing Lantern",
+		"edit-blessing" => "Edit Blessing Lantern",
+		//guang-ming light
+		"create-light" => "Create Guang-Ming Light",
+		"search-light" => "Search Guang-Ming Light",
+		"view-light" => "View Guang-Ming Light",
+		"edit-light" => "Edit Guang-Ming Light",
+		//product
+		"create-product" => "Create Product",
+		"search-product" => "Search Product",
+		"view-product" => "View Product",
+		"edit-product" => "Edit Product",
+		"view-product-stock" => "View Product Stocks",
+		//stocks
+		"stock-in" => "Stock In",
+		"stock-out" => "Stock Out",
+		"view-stock" => "View Stock",
+		"edit-stock" => "Edit Stock",
+		//account
+		"create-account" => "Create Account",
+		"search-account" => "Search Account",
+		"edit-account" => "Edit Account"
 	);
-	// search product information
-	$view_product = array(
-		//index 
-		"home" => "Home",
-		"title" => "Search Product",  
-		"search" => "Search",  
-		"product_id" => "Product ID",
-		"product_eng_name" => "Product Name (EN)", 
-		"product_chi_name" => "Product Name (CH)", 
-		"product_status" => "Product Status",
-		"btnedit" => "Edit"
+
+	$toast = array(
+		//index
+		"toast-success-password" => "Password modified successfully.",
+		"toast-add-reminder" => "Reminder created successfully.",
+		"toast-edit-reminder" => "Reminder modified successfully.",
+		"toast-delete-reminder" => "Reminder has been deleted.",
+		"toast-success-filter" => "Shortcuts modified successfully.",
+		"toast-new-notification" => "New notification",
+		"toast-notification-today" => "Today",
+		//record
+		"toast-success-create-record" => "Record created successfully",
+		"toast-fail-create-record" => "Record has been created before",
+		"toast-success-edit-record" => "Record modified successfully"
 	);
-	//export product information
-	$export_product = array(
-		//index  
-		"title" => "What would you like to export?",  
-		"titile1" => "Choose a product",  
-		"titile2" => "Choose a period",
-		"btn_export" => "Export"
+
+	$index = array(
+		//titles
+		"index-dashboard" => "Dashboard",
+		"index-reminder" => "Reminder",
+		"index-broadcast" => "Broadcast",
+		"index-shortcuts" => "Administrative Shortcuts",
+		"index-filter" => "Filter",
+		//reminder  
+		"index-reminder-create-title" => "Create Reminder", 
+		"index-reminder-title" => "Title", 
+		"index-reminder-date" => "Date", 
+		"index-reminder-content" => "Content", 
+		"index-reminder-edit-title" => "Edit Reminder",
+		"index-reminder-delete-title" => "Delete Reminder",
+		"index-reminder-delete" => "Are you sure you want to delete this reminder?", 
+		//whatsapp broadcast
+		"index-whatsapp-title" => "WhatsApp Broadcast", 
+		"index-whatsapp-message" => "Message Content", 
+		//filter preference
+		"index-filter-title" => "Select 3 Preferences as Shortcuts",
+		"body-create-member" => "Create a new member.",
+		"body-search-member" => "Search for an existing member.",
+		"body-create-tablet" => "Create a new tablet entry.",
+		"body-search-tablet" => "Search for an existing tablet entry.",
+		"body-create-blessing" => "Create a new lantern entry.",
+		"body-search-blessing" => "Search for an existing lantern entry.",
+		"body-create-light" => "Create a new light entry.",
+		"body-search-light" => "Search for an existing light entry.",
+		"body-create-product" => "Create a new product entry.",
+		"body-search-product" => "Search for an existing product entry.",
+		"body-stock-in" => "Create a new stock-in entry.",
+		"body-stock-out" => "Create a new stock-out entry.",
+		//placeholder
+		"reminder-title-placeholder" => "Insert your title here",
+		"reminder-content-placeholder" => "Insert your content here",
+		"whatsapp-content-placeholder" => "What do you wish to write?"
 	);
-	//product aside 
-	$product_aside = array(
-		//index  
-		"title" => "Manage Products",  
-		"title1" => "Create Product",  
-		"title2" => "Search Product",
-		"title3" => "Export Record"
+
+	$import = array(
+		"import-record" => "Import Record",
+		"import" => "Import",
+		//import file
+		"upload-file" => "Upload File",
+		"upload-warning" => "**Only Excel (.xlsx) File is accepted.",
+		//import: transaction
+		"import-tablet" => "Import Tablet Record",
+		"import-tablet-transaction" => "Import Transaction Record",
+	);  
+
+	$export = array(
+		"export-record" => "Export Record",
+		"export" => "Export",
+		//export file
+		"export-record-title" => "What would you like to export?",
+		"choose-type" => "Choose a type",
+		"choose-period" => "Choose a period",
+		"choose-product" => "Choose a product",
+		"period-monthly" => "Daily",
+		"period-yearly" => "Monthly",
+		//export: transaction
+		"tablet-transactions" => "Tablet Transactions"
+	);  
+
+	$member = array(
+		"manage-membership" => "Manage Membership",
+		//form: member
+		"member-id" => "Member ID",
+		"member-status" => "Member Status",
+		"status-active" => "Active",
+		"status-inactive" => "Inactive",
+		"eng-name" => "Member Name (English)",
+		"chi-name" => "Member Name (Chinese)",
+		"nric" => "NRIC", 
+		"citizenship" => "Citizenship",
+		"age" => "Age",
+		"gender" => "Gender",
+		"gender-male" => "Male",
+		"gender-female" => "Female",
+		"dob" => "Date of Birth",
+		"contact" => "Contact Number", 
+		"occupation" => "Occupation",
+		"address" => "Address",
+		"member-type" => "Member Type", 
+		"type-normal" => "Normal", 
+		"type-permanent" => "Permanent", 
+		"type-non-member" => "Non-member", 
+		"admission" => "Date of Admission",
+		"recommender-id" => "Recommender's ID",
+		"recommender-name" => "Recommender's Name",
+		"select-all" => "Select All"
+	);
+
+	$transaction = array(
+		"manage-transaction" => "Manage Transactions",
+		"memorial-tablet" => "Memorial Tablet",
+		"blessing-lantern" => "Blessing Lantern",
+		"guang-ming-light" => "Guang Ming Light",
+		//form: memorial tablet
+		"tablet-id" => "Tablet ID",
+		"inst-date" => "Installation Date",
+		"zone" => "Zone",
+		"tier" => "Tier",
+		"row" => "Row", 
+		"price" => "Price",
+		"contact-num1" => "Primary Contact",
+		"contact-num2" => "Secondary Contact",
+		"payment-type" => "Payment Type",
+		"type-lump-sum" => "Lump Sum Payment", 
+		"type-over-time" => "Over Time Payment",
+		"anc-eng-name" => "Ancestor Name (English)",
+		"anc-chi-name" => "Ancestor Name (Chinese)",
+		//search: memorial tablet
+		"search-anc-eng" => "Ancestor Name (EN)",
+		"search-anc-chi" => "Ancestor Name (CH)",
+		"search-mem-eng" => "Member Name (EN)",
+		"search-mem-chi" => "Member Name (CH)",
+		//form: blessing lantern
+		"lantern-id" => "Lantern ID",
+		"blessing-price" => "Blessing Price",
+		"votive-price" => "Votive Price",
+		"blessing-receipt" => "Blessing Receipt",
+		"votive-receipt" => "Votive Receipt",
+		//form: guang-ming light
+		"light-id" => "Light ID"
+	);
+
+	$product = array(
+		"manage-product" => "Manage Products",
+		//form: product
+		"product-id" => "Product ID",
+		"product-status" => "Product Status",
+		"status-available" => "Available",
+		"status-unavailable" => "Unavailable",
+		"eng-name" => "Product Name (English)",
+		"chi-name" => "Product Name (Chinese)",
+		"unit-price" => "Unit Price"
+	);
+
+	$stock = array(
+		"manage-stock" => "Manage Stocks",
+		//form: product
+		"product-name" => "Product Name",
+		"summary" => "Summary",
+		"balance" => "Balance"
 	);
 ?>

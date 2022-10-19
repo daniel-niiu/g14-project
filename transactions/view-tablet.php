@@ -64,19 +64,19 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 			<li class="inline-flex items-center">
 			  <a href="../index.php" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
 				<svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-				Home
+				<?php echo $title['home']; ?>
 			  </a>
 			</li>
 			<li>
 			  <div class="flex items-center">
 				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<a href="search-tablet.php?name=transaction" class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Search Memorial Tablet</a>
+				<a href="search-tablet.php?name=transaction" class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400"><?php echo $title['search-tablet']; ?></a>
 			  </div>
 			</li>
 			<li>
 			  <div class="flex items-center">
 				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">View Memorial Tablet</p>
+				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400"><?php echo $title['view-tablet']; ?></p>
 			  </div>
 			</li>
 		  </ol>
@@ -91,15 +91,15 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 		?>
 		<div>
 			<div class="container flex flex-wrap justify-between items-center mx-auto">
-				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">View Memorial Tablet</h2>
+				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['view-tablet']; ?></h2>
 				<div class="button">
 					<a href="edit-tablet.php?name=transaction&Id=<?php echo $row['tablet_id']; ?>">
 						<button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-							<i class="fa-solid fa-pencil"></i>&nbsp; Edit Record
+							<i class="fa-solid fa-pencil"></i>&nbsp; <?php echo $form['edit-record']; ?>
 						</button>
 					</a> 
 						<button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-modal-toggle="delete-popup-modal">
-							<i class="fa-solid fa-trash-can"></i>&nbsp; Delete Record
+							<i class="fa-solid fa-trash-can"></i>&nbsp; <?php echo $form['delete-record']; ?>
 						</button>
 					<div id="delete-popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
 						<div class="relative w-full h-full max-w-md p-4 md:h-auto">
@@ -109,13 +109,13 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 								</button>
 								<div class="p-6 text-center">
 									<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-									<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this record?</h3>
+									<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"><?php echo $form['delete-record-title']; ?></h3>
 									<a href="../php/tablet.php?name=transaction&method=delete&Id=<?php echo $row['tablet_id']; ?>">
 										<button data-modal-toggle="delete-popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-											Yes, I'm sure
+											<?php echo $form['confirm']; ?>
 										</button>
 									</a>  
-									<button data-modal-toggle="delete-popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
+									<button data-modal-toggle="delete-popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"><?php echo $form['cancel']; ?></button>
 								</div>
 							</div>
 						</div>
@@ -127,11 +127,11 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 			<form>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tablet ID*</label>
+						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['tablet-id']; ?></label>
 						<input type="text" id="id" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['tablet_id']; ?>" disabled readonly>
 					</div>
 				 	<div class="relative z-0 w-full mb-6 group">
-						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Installation Date</label>
+						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['inst-date']; ?></label>
 						<div class="relative">
   							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
     							<svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
@@ -142,21 +142,21 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="zone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zone</label>
+						<label for="zone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['zone']; ?></label>
 						<input type="text" id="zone" name="zone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['tablet_zone']; ?>" disabled readonly>
 					 </div>
 					 <div class="relative z-0 w-full mb-6 group">
-						<label for="tier" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tier</label>
+						<label for="tier" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['tier']; ?></label>
 						<input type="text" id="tier" name="tier" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['tablet_tier']; ?>" disabled readonly>
 					</div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="row" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Row</label>
+						<label for="row" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['row']; ?></label>
 						<input type="text" id="row" name="row" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['tablet_row']; ?>" disabled readonly>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Price</label>
+						<label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['price']; ?></label>
 						<div class="flex">
 						  <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 						  <input type="text" id="price" name="price" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['price']; ?>" disabled readonly>
@@ -165,68 +165,66 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 				</div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name (English)</label>
+						<label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['eng-name']; ?></label>
 						<input type="text" id="english" name="english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_eng_name']; ?>" disabled readonly>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name (Chinese)</label>
+						<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['chi-name']; ?></label>
 						<input type="text" id="chinese" name="chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_chi_name']; ?>" disabled readonly>
 					</div>
 				</div>				
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="contact1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Primary Contact</label>
+						<label for="contact1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['contact-num1']; ?></label>
 						<input type="text" id="contact1" name="contact1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['contact_num1']; ?>" disabled readonly>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="contact2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Secondary Contact</label>
+						<label for="contact2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['contact-num2']; ?></label>
 						<input type="text" id="contact2" name="contact2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['contact_num2']; ?>" disabled readonly>
 					</div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Address</label>
+						<label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['address']; ?></label>
 						<input type="text" id="address" name="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['address']; ?>" disabled readonly>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Payment Type</label>
-						<select id="payment" name="payment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readonly>
-						  <option value="<?php echo $row['payment_type']; ?>" selected><?php echo $row['payment_type']; ?></option> 
-						</select>
+						<label for="payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['payment-type']; ?></label>
+						<input type="text" id="payment" name="payment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['payment_type']; ?>" disabled readonly>
 					</div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="ancestor-english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ancestor Name (English)</label>
+						<label for="ancestor-english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['anc-eng-name']; ?></label>
 						<input type="text" id="ancestor-english" name="ancestor_english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['ancestor_eng_name']; ?>" disabled readonly>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="ancestor-english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ancestor Name (Chinese)</label>
+						<label for="ancestor-english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['anc-chi-name']; ?></label>
 						<input type="text" id="ancestor-chinese" name="ancestor_chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['ancestor_chi_name']; ?>" disabled readonly>
 					</div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recorded By</label>
+						<label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['recorded-by']; ?></label>
 						<input type="text" id="user" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['username']; ?>" disabled readonly>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="record-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recorded On</label>
+						<label for="record-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['recorded-on']; ?></label>
 						<input type="text" id="record-date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['username']; ?>" disabled readonly>
 					</div>
 				</div>
 				<div class="relative z-0 w-full mb-6 group">
-					<label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remarks</label>
+					<label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['remarks']; ?></label>
 					<textarea id="remarks" name="remarks" rows="3" cols="125" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a remark..." disabled readonly><?php echo $row['remarks']; ?></textarea>
 				</div> 
 			</form>
 			
 			<div class="container flex flex-wrap justify-between items-center mx-auto pt-4">
-				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">View Tablet Transactions</h2>
+				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['view-transactions-table']; ?></h2>
 				<div class="button">
 					<a href="create-tablet-transaction.php?name=transaction&aside=tablet-transaction&Id=<?php echo $row['tablet_id']; ?>">
 						<button type="button" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-							<i class="fa-solid fa-plus"></i>&nbsp; Add Transaction
+							<i class="fa-solid fa-plus"></i>&nbsp; <?php echo $title['add-tablet-transaction']; ?>
 						</button>
 					</a>
 				</div>
@@ -238,13 +236,13 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 						<tr>
-							<th scope="col" class="px-6 py-3">Receipt date</th>
-							<th scope="col" class="px-6 py-3">Receipt no</th>
-							<th scope="col" class="px-6 py-3">Mem. name (en)</th>
-							<th scope="col" class="px-6 py-3">Mem. name (cn)</th>
-							<th scope="col" class="px-6 py-3">Amount</th>
+							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-date']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-num']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-eng']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-chi']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-amount']; ?></th>
 							<th scope="col" class="px-6 py-3">
-								<span class="sr-only">Edit</span>
+								<span class="sr-only"><?php echo $form['btnedit']; ?></span>
 							</th>
 						</tr>
 					</thead>
@@ -262,14 +260,14 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 			                    <td class="px-6 py-4"><?php echo $row["member_chi_name"]; ?></td>
 			                    <td class="px-6 py-4"><?php echo $row["receipt_amount"]; ?></td>
 			                    <td class="px-6 py-4 text-right">
-			                    	<a href="edit-tablet-transaction.php?name=transaction&Id=<?php echo $row["Tablet_id"]; ?>&receiptNum=<?php echo $row['receipt_num']; ?>&receiptDate=<?php echo $row['receipt_date'];?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+			                    	<a href="edit-tablet-transaction.php?name=transaction&Id=<?php echo $row["Tablet_id"]; ?>&receiptNum=<?php echo $row['receipt_num']; ?>&receiptDate=<?php echo $row['receipt_date'];?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
 			                    </td>
 			                </tr>
 			            <?php
 			                } 
 			            }
 		                else{ 
-		                    echo '<tr><td colspan="5">No records found...</td></tr>'; 
+			                echo '<tr><td colspan="5">'.$form['no-record-warning'].'</td></tr>'; 
 		                } 
                     	?> 
 					</tbody>
@@ -291,7 +289,7 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 		<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
 		</div>
-		<div class="ml-3 text-sm font-normal">Record modified successfully.</div>
+		<div class="ml-3 text-sm font-normal"><?php echo $toast['toast-success-edit-record']; ?></div>
 		<button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		</button>
@@ -300,7 +298,7 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 	<hr class="border-gray-300 dark:border-gray-600 mt-4"/>
 	
 	<footer>
-		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4">Disclaimer: This is a student work in progress for SWE40001/SWE40002 Software Engineering Project A/B of Swinburne University of Technology, Sarawak (2022).</p>
+		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
 	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>

@@ -83,29 +83,31 @@ $query = $conn->query("SELECT * FROM Tablet ORDER BY tablet_id LIMIT $limit");
 			<li class="inline-flex items-center">
 			  <a href="../index.php" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
 				<svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-				Home
+				<?php echo $title['home']; ?>
 			  </a>
 			</li>
 			<li>
 			  <div class="flex items-center">
 				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Search Memorial Tablet</p>
+				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">
+				<?php echo $title['search-tablet']; ?></p>
 			  </div>
 			</li>
 		  </ol>
 		</nav>
 	
 		<div>
-			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Search Memorial Tablet</h2>
+			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">
+				<?php echo $title['search-tablet']; ?></h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			<form method="post">
 				<div class="relative z-0 w-full mb-6 group"> 
-					<label for="simple-search" class="sr-only">Search</label>
+					<label for="simple-search" class="sr-only"><?php echo $form['search']; ?></label>
 						<div class="relative w-full">
 							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 								<svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
 							</div>
-							<input type="text" size="120" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" onkeyup="searchFilter();" required>
+							<input type="text" size="120" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $form['search']; ?>" onkeyup="searchFilter();" required>
 						</div>
 				</div>
 			</form>
@@ -114,13 +116,14 @@ $query = $conn->query("SELECT * FROM Tablet ORDER BY tablet_id LIMIT $limit");
 					<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 						<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 							<tr>
-								<th scope="col" class="px-6 py-3">Tablet id</th>
-								<th scope="col" class="px-6 py-3">Anc. name (en)</th>
-								<th scope="col" class="px-6 py-3">Anc. name (ch)</th>
-								<th scope="col" class="px-6 py-3">Mem. name (en)</th>
-								<th scope="col" class="px-6 py-3">Mem. name (ch)</th>
 								<th scope="col" class="px-6 py-3">
-									<span class="sr-only">Edit</span>
+				<?php echo $transaction['tablet-id']; ?></th>
+								<th scope="col" class="px-6 py-3"><?php echo $transaction['search-anc-eng']; ?></th>
+								<th scope="col" class="px-6 py-3"><?php echo $transaction['search-anc-chi']; ?></th>
+								<th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-eng']; ?></th>
+								<th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-chi']; ?></th>
+								<th scope="col" class="px-6 py-3">
+									<span class="sr-only"><?php echo $form['btnedit']; ?></span>
 								</th>
 							</tr>
 						</thead>
@@ -137,14 +140,14 @@ $query = $conn->query("SELECT * FROM Tablet ORDER BY tablet_id LIMIT $limit");
 				                    <td class="px-6 py-4"><?php echo $row["ancestor_chi_name"]; ?></td>
 				                    <td class="px-6 py-4"><?php echo $row["member_eng_name"]; ?></td>
 				                    <td class="px-6 py-4"><?php echo $row["member_chi_name"]; ?></td>
-				                    <td class="px-6 py-4 text-right"><a href="edit-tablet.php?name=transaction&Id=<?php echo $row["tablet_id"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+				                    <td class="px-6 py-4 text-right"><a href="edit-tablet.php?name=transaction&Id=<?php echo $row["tablet_id"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
 				                    </td>
 				                </tr>
 				            <?php
 				                } 
 				            }
 			                else{ 
-			                    echo '<tr><td colspan="6">No records found...</td></tr>'; 
+			                	echo '<tr><td colspan="6">'.$form['no-record-warning'].'</td></tr>'; 
 			                } 
 	                    	?> 
 						</tbody>
@@ -161,7 +164,7 @@ $query = $conn->query("SELECT * FROM Tablet ORDER BY tablet_id LIMIT $limit");
 	<hr class="border-gray-300 dark:border-gray-600 mt-4"/>
 	
 	<footer>
-		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4">Disclaimer: This is a student work in progress for SWE40001/SWE40002 Software Engineering Project A/B of Swinburne University of Technology, Sarawak (2022).</p>
+		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
 	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>

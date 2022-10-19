@@ -40,26 +40,26 @@ isLoggedIn();
 			<li class="inline-flex items-center">
 			  <a href="../index.php" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
 				<svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-				<?php echo $member_info['home']; ?>
+				<?php echo $title['home']; ?>
 			  </a>
 			</li>
 			<li>
 			  <div class="flex items-center">
 				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<a href="search-member.php?name=member&aside=search-member" class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Search Member</a>
+				<a href="search-member.php?name=member&aside=search-member" class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400"><?php echo $title['search-member']; ?></a>
 			  </div>
 			</li>
 			<li>
 			  <div class="flex items-center">
 				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Edit Member</p>
+				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400"><?php echo $title['edit-member']; ?></p>
 			  </div>
 			</li>
 		  </ol>
 		</nav>
 
 		<div>
-			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">Edit Member</h2>
+			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['edit-member']; ?></h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			
 			<?php  
@@ -73,13 +73,12 @@ isLoggedIn();
 			<form method="post" action="../php/member.php?method=update&Id=<?php echo $M_ID; ?>" onsubmit="return member_validation()">
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 						<div class="relative z-0 w-full mb-6 group">
-							<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member ID*</label>
+							<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['member-id']; ?></label>
 							<input type="text"  id="mid" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="M000" value="<?php echo $row['member_id']; ?>" disabled>
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="pmid" style="display:none;">*Not allowed to empty and symbol
-							</p>
+							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="pmid" style="display:none;"><?php echo $form['id-warning']; ?></p>
 						</div>
 					 	<div class="relative z-0 w-full mb-6 group">
-							<label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Status</label>
+							<label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['member-status']; ?></label>
 							<label for="checkbox" class="inline-flex relative items-center cursor-pointer mt-1">
 							  <input type="checkbox"id="checkbox" name="checkbox" value="<?php echo $row['member_status']; ?>"  class="sr-only peer" 
 							  <?php 
@@ -99,44 +98,44 @@ isLoggedIn();
 					document.getElementById('checkbox').addEventListener('click', function(){
 						if(this.checked){
 							this.value = 'Active';
-							document.getElementById('status').innerHTML = 'Active'; 
+							document.getElementById('status').innerHTML = '<?php echo $member['status-active']; ?>'; 
 							document.getElementById('checkbox_value').value = "Active";
 						} 
 						else{ 
 							this.value = 'Inactive'; 
-							document.getElementById('status').innerHTML = 'Inactive'; 
+							document.getElementById('status').innerHTML = '<?php echo $member['status-inactive']; ?>'; 
 							document.getElementById('checkbox_value').value = "Inactive";
 						}
 					});
 					</script>
 					<div class="grid xl:grid-cols-2 xl:gap-6">
 					 	<div class="relative z-0 w-full mb-6 group">
-							<label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name (English)</label>
-							<input type="text" id="english" name="english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_eng_name']; ?>" placeholder="John Doe">
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_m_eng" style="display:none;">*Not allowed to empty, number and symbol</p>
+							<label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['eng-name']; ?></label>
+							<input type="text" id="english" name="english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_eng_name']; ?>" placeholder="<?php echo $member['eng-name']; ?>">
+							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_m_eng" style="display:none;"><?php echo $form['word-warning']; ?></p>
 						 </div>
 					 	<div class="relative z-0 w-full mb-6 group">
-							<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Name (Chinese)</label>
-							<input type="text" id="chinese" name="chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_chi_name']; ?>" placeholder="姓名">
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_m_chi" style="display:none;">*Not allowed to empty, number and symbol</p>
+							<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['chi-name']; ?></label>
+							<input type="text" id="chinese" name="chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_chi_name']; ?>" placeholder="<?php echo $member['chi-name']; ?>">
+							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_m_chi" style="display:none;"><?php echo $form['word-warning']; ?></p>
 						 </div>
 					</div>
 					<div class="grid xl:grid-cols-2 xl:gap-6">
 						<div class="relative z-0 w-full mb-6 group">
-							<label for="ic" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">NRIC</label>
-							<input type="text" id="nric" name="ic" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="001234-56-7890" value="<?php echo $row['member_ic']; ?>">
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_ic" style="display:none;">*Not allowed to empty, alphabets and symbol</p>
+							<label for="ic" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['nric']; ?></label>
+							<input type="text" id="nric" name="ic" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $member['nric']; ?>" value="<?php echo $row['member_ic']; ?>">
+							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_ic" style="display:none;"><?php echo $form['empty-warning']; ?></p>
 						 </div>
 						 <div class="relative z-0 w-full mb-6 group">
-							<label for="citizen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Citizenship</label>
-							<input type="text" id="citizen" name="citizen" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Malaysian" value="<?php echo $row['member_citizenship']; ?>">
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_citizen" style="display:none;">*Not allowed to empty, alphabets and symbol</p>
+							<label for="citizen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['citizenship']; ?></label>
+							<input type="text" id="citizen" name="citizen" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $member['citizenship']; ?>" value="<?php echo $row['member_citizenship']; ?>">
+							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_citizen" style="display:none;"><?php echo $form['word-warning']; ?></p>
 						</div>
 					 </div>
 					<div class="grid xl:grid-cols-2 xl:gap-6">
 						<div class="relative z-0 w-full mb-6 group">
-							<label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Age</label>
-							<input type="text" name="age" id="age" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="30" value="<?php  
+							<label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['age']; ?></label>
+							<input type="text" name="age" id="age" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $member['age']; ?>" value="<?php  
 							  $today = date("Y-m-d");
 							  $diff = date_diff(date_create($row['member_dob']), date_create($today));
 							  echo $diff->format('%y');
@@ -144,22 +143,22 @@ isLoggedIn();
 							disabled readonly>
 						</div>
 						<div class="relative z-0 w-full mb-6 group">
-							<label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Gender</label>
+							<label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['gender']; ?></label>
 							<select id="m_gender" name="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 							  <option value="Male" <?php
 							if($row['member_gender'] == "Male") 
 								echo "selected";
-						?>>Male</option>
+						?>><?php echo $member['gender-male']; ?></option>
 							  <option value="Female" <?php
 							if($row['member_gender'] == "Female") 
 								echo "selected";
-						?>>Female</option>
+						?>><?php echo $member['gender-female']; ?></option>
 							</select>
 						</div>
 					 </div>
 					<div class="grid xl:grid-cols-2 xl:gap-6">
 						<div class="relative z-0 w-full mb-6 group">
-							<label for="dob" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date of Birth</label>
+							<label for="dob" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['dob']; ?></label>
 							<div class="relative">
 	  							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 	    							<svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
@@ -170,47 +169,47 @@ isLoggedIn();
 							    $date = str_replace('-', '/', $date); 
 			    				echo $date;  
 			    				?>">
-						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_dob" style="display:none;">*Not allowed to empty</p>
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_dob" style="display:none;"><?php echo $form['empty-warning']; ?></p>
 							</div>
 						</div>
 						<div class="relative z-0 w-full mb-6 group">
-							<label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Contact Number</label>
-							<input type="text" id="co_contact" name="contact" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_tel']; ?>" placeholder="0123456789">
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co" style="display:none;">*Not allowed to empty and symbol</p>
+							<label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['contact']; ?></label>
+							<input type="text" id="co_contact" name="contact" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_tel']; ?>" placeholder="<?php echo $member['contact']; ?>">
+							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co" style="display:none;"><?php echo $form['empty-warning']; ?></p>
 						</div>
 					 </div>
 					<div class="grid xl:grid-cols-2 xl:gap-6">
 						<div class="relative z-0 w-full mb-6 group">
-							<label for="job" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Occupation</label>
-							<input type="text" id="m_job" name="job" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_job']; ?>" placeholder="Worker">
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_job" style="display:none;">*Not allowed to empty and symbol</p>
+							<label for="job" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['occupation']; ?></label>
+							<input type="text" id="m_job" name="job" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_job']; ?>" placeholder="<?php echo $member['occupation']; ?>">
+							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_job" style="display:none;"><?php echo $form['word-warning']; ?></p>
 						</div>
 						<div class="relative z-0 w-full mb-6 group">
-							<label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Address</label>
-							<input type="text" id="m_address" name="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_address']; ?>" placeholder="12, Kuching Road, Lane 34">
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_add" style="display:none;">*Not allowed to empty and symbol</p>
+							<label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['address']; ?></label>
+							<input type="text" id="m_address" name="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_address']; ?>" placeholder="<?php echo $member['address']; ?>">
+							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_add" style="display:none;"><?php echo $form['empty-warning']; ?></p>
 						</div>
 					 </div>
 					<div class="grid xl:grid-cols-2 xl:gap-6">
 						<div class="relative z-0 w-full mb-6 group">
-							<label for="member" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member Type</label>
+							<label for="member" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['member-type']; ?></label>
 							<select id="m_member" name="member" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 							  <option value="Normal" <?php
 							if($row['member_type'] == "Normal") 
 								echo "selected";
-						?>>Normal</option>
+						?>><?php echo $member['type-normal']; ?></option>
 							  <option value="Permanent" <?php
 							if($row['member_type'] == "Permanent") 
 								echo "selected";
-						?>>Permanent</option>
+						?>><?php echo $member['type-permanent']; ?></option>
 							  <option value="Non-member" <?php
 							if($row['member_type'] == "Non-member") 
 								echo "selected";
-						?>>Non-member</option>
+						?>><?php echo $member['type-non-member']; ?></option>
 							</select>
 						</div>
 						<div class="relative z-0 w-full mb-6 group">
-							<label for="accept-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date of Admission</label>
+							<label for="accept-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['admission']; ?></label>
 							<div class="relative">
 	  							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 	    							<svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
@@ -221,33 +220,33 @@ isLoggedIn();
 								    $date = str_replace('-', '/', $date); 
 				    				echo $date;  
 			    				?>" placeholder="dd/mm/yyyy">
-								<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_acc-date" style="display:none;">*Not allowed to empty and symbol</p>
+								<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_acc-date" style="display:none;"><?php echo $form['empty-warning']; ?></p>
 							</div>
 						</div>
 					 </div>
 					<div class="grid xl:grid-cols-2 xl:gap-6">
 						<div class="relative z-0 w-full mb-6 group">
-							<label for="recommender-id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recommender's ID</label>
-							<input type="text" id="m_recommender-id" name="recommender-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['recommender_id']; ?>" placeholder="M001">
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_rid" style="display:none;">*Not allowed to empty and symbol</p>
+							<label for="recommender-id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['recommender-id']; ?></label>
+							<input type="text" id="m_recommender-id" name="recommender-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['recommender_id']; ?>" placeholder="<?php echo $member['recommender-id']; ?>">
+							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_rid" style="display:none;"><?php echo $form['id-warning']; ?></p>
 						</div>
 						<div class="relative z-0 w-full mb-6 group">
-							<label for="recommender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recommender's Name</label>
-							<input type="text" id="m_recommender" name="recommender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['recommender_name']; ?>" placeholder="Jane Doe">
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_rname" style="display:none;">*Not allowed to empty and symbol</p>
+							<label for="recommender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['recommender-name']; ?></label>
+							<input type="text" id="m_recommender" name="recommender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['recommender_name']; ?>" placeholder="<?php echo $member['recommender-name']; ?>">
+							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_rname" style="display:none;"><?php echo $form['word-warning']; ?></p>
 						</div>
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remarks</label>
-						<textarea id="remarks" name="remarks" rows="3" cols="125" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a remark..."><?php echo $row['remarks']; ?></textarea>
+						<label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['remarks']; ?></label>
+						<textarea id="remarks" name="remarks" rows="3" cols="125" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $form['remarks']; ?>"><?php echo $row['remarks']; ?></textarea>
 					</div>
-					 <button type="submit" name="btn_submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="float:right;">Submit</button>
+					 <button type="submit" name="btn_submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="float:right;"><?php echo $form['submit']; ?></button>
 			</form>
 			<?php  
   				}
 			}
 			else{ 
-    			echo "No record exists!!"; 
+    			echo $form['no-record-warning']; 
     		}
 			?>
 		</div>
@@ -257,7 +256,7 @@ isLoggedIn();
 	<hr class="border-gray-300 dark:border-gray-600 mt-4"/>
 	
 	<footer>
-		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4">Disclaimer: This is a student work in progress for SWE40001/SWE40002 Software Engineering Project A/B of Swinburne University of Technology, Sarawak (2022).</p>
+		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
 	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>

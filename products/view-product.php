@@ -64,19 +64,19 @@ $query = $conn->query("SELECT s.product_id AS PID, s.receipt_no AS receipt, s.st
 			<li class="inline-flex items-center">
 			  <a href="../index.php" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
 				<svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-				Home
+				<?php echo $title['home']; ?>
 			  </a>
 			</li>
 			<li>
 			  <div class="flex items-center">
 				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<a href="search-product.php?name=product&aside=search-product" class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Search Product</a>
+				<a href="search-product.php?name=product&aside=search-product" class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400"><?php echo $title['search-product']; ?></a>
 			  </div>
 			</li>
 			<li>
 			  <div class="flex items-center">
 				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">View Product</p>
+				<p class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400"><?php echo $title['view-product']; ?></p>
 			  </div>
 			</li>
 		  </ol>
@@ -93,11 +93,11 @@ $query = $conn->query("SELECT s.product_id AS PID, s.receipt_no AS receipt, s.st
 		
 		<div>
 			<div class="container flex flex-wrap justify-between items-center mx-auto">
-				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">View Product</h2>
+				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['view-product']; ?></h2>
 				<div class="button">
 					<a href="edit-product.php?name=product&Id=<?php echo $row['product_id']; ?>">
 						<button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-							<i class="fa-solid fa-pencil"></i>&nbsp; Edit Product
+							<i class="fa-solid fa-pencil"></i>&nbsp; <?php echo $form['edit-record']; ?>
 						</button>
 					</a>
 				</div>
@@ -108,45 +108,45 @@ $query = $conn->query("SELECT s.product_id AS PID, s.receipt_no AS receipt, s.st
 			<form>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product ID</label>
+						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['product-id']; ?></label>
 						<input type="text" id="id" name="id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['product_id']; ?>" disabled readonly>
 					</div>
 				 	<div class="relative z-0 w-full mb-6 group">
-						<label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product Status</label>
+						<label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['product-status']; ?></label>
 						<input type="text" id="status" name="status" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['product_status']; ?>"disabled readonly>
 					 </div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="eng" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product Name (English)</label>
+						<label for="eng" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['eng-name']; ?></label>
 						<input type="text" id="eng" name="eng" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['product_eng_name']; ?>" disabled readonly>
 					</div>
 				 	<div class="relative z-0 w-full mb-6 group">
-						<label for="chi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Product Name (Chinese)</label>
+						<label for="chi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['chi-name']; ?></label>
 						<input type="text" id="chi" name="chi" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['product_chi_name']; ?>"disabled readonly>
 					 </div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Unit Price</label>
+						<label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['unit-price']; ?></label>
 						<div class="flex">
 							 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							 <input type="text" id="price" name="price" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-none rounded-r-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['unit_price']; ?>" disabled readonly>
 						</div>
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recorded By</label>
+						<label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['recorded-by']; ?></label>
 						<input type="text" id="user" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['recordedBy']; ?>" disabled readonly>
 					</div>
 				</div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="record-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Recorded On</label>
+						<label for="record-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['recorded-on']; ?></label>
 						<input type="text" id="record-date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['recordedOn']; ?>" disabled readonly>
 					</div>
 				</div>
 				<div class="relative z-0 w-full mb-6 group">
-					<label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remarks</label>
+					<label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['remarks']; ?></label>
 					<textarea id="remarks" rows="3" cols="125" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" disabled readonly><?php echo $row['remarks']; ?></textarea>
 				</div>
 			</form>
@@ -155,14 +155,7 @@ $query = $conn->query("SELECT s.product_id AS PID, s.receipt_no AS receipt, s.st
 			?>
 			
 			<div class="container flex flex-wrap justify-between items-center mx-auto pt-4">
-				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white">View Product Stocks</h2>
-				<div class="button">
-					<a href="../stocks/stock-in.php?name=stock&aside=stock-in">
-						<button type="button" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-							<i class="fa-solid fa-plus-minus"></i>&nbsp; Stock In/Out
-						</button>
-					</a>
-				</div>
+				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['view-product-stock']; ?></h2>
 			</div>
 			
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
@@ -171,13 +164,13 @@ $query = $conn->query("SELECT s.product_id AS PID, s.receipt_no AS receipt, s.st
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 						<tr>
-							<th scope="col" class="px-6 py-3">Receipt no</th>
-							<th scope="col" class="px-6 py-3">Receipt date</th>
-							<th scope="col" class="px-6 py-3">Stock In</th>
-							<th scope="col" class="px-6 py-3">Stock Out</th>
-							<th scope="col" class="px-6 py-3">Balance</th>
+							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-num']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-date']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $title['stock-in']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $title['stock-out']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $stock['balance']; ?></th>
 							<th scope="col" class="px-6 py-3">
-								<span class="sr-only">Edit</span>
+								<span class="sr-only"><?php echo $form['btnedit']; ?></span>
 							</th>
 						</tr>
 					</thead>
@@ -195,14 +188,14 @@ $query = $conn->query("SELECT s.product_id AS PID, s.receipt_no AS receipt, s.st
 			                    <td class="px-6 py-4"><?php echo $row["stock_out"]; ?></td>
 			                    <td class="px-6 py-4"><?php echo $row["balance"]; ?></td>
 			                    <td class="px-6 py-4 text-right">
-			                    	<a href="../stocks/edit-stock.php?name=stock&Id=<?php echo $row["PID"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+			                    	<a href="../stocks/edit-stock.php?name=stock&Id=<?php echo $row["PID"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
 			                    </td>
 			                </tr>
 			            <?php
 			                } 
 			            }
 		                else{ 
-		                    echo '<tr><td colspan="6">No records found...</td></tr>'; 
+			                echo '<tr><td colspan="6">'.$form['no-record-warning'].'</td></tr>'; 
 		                } 
                     	?> 
 					</tbody>
@@ -221,7 +214,7 @@ $query = $conn->query("SELECT s.product_id AS PID, s.receipt_no AS receipt, s.st
 		<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
 		</div>
-		<div class="ml-3 text-sm font-normal">Product modified successfully.</div>
+		<div class="ml-3 text-sm font-normal"><?php echo $toast['toast-success-edit-record']; ?></div>
 		<button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close">
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 		</button>
@@ -230,7 +223,7 @@ $query = $conn->query("SELECT s.product_id AS PID, s.receipt_no AS receipt, s.st
 	<hr class="border-gray-300 dark:border-gray-600 mt-4"/>
 	
 	<footer>
-		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4">Disclaimer: This is a student work in progress for SWE40001/SWE40002 Software Engineering Project A/B of Swinburne University of Technology, Sarawak (2022).</p>
+		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
 	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
