@@ -1,17 +1,17 @@
 <?php
 
-include "../db/dbconnection.php";
-
+include "../db/dbconnection.php"; 
 $method = $_GET["method"];
 
 if($method === "add")
 {
     global $conn;
  
-    $mid_sql = "SELECT EXISTS (SELECT * FROM TABLET WHERE tablet_id = '".$_POST['id']."')";
+    $mid_sql = "SELECT EXISTS (SELECT * FROM TABLET WHERE tablet_id = '".$_POST['id']."') AS row";
     $result = $conn->query($mid_sql);  
-    if (mysqli_num_rows($result) != 1) { 
-
+    $row = mysqli_fetch_array($result); 
+    if ($row['row'] == 0) { 
+        date_default_timezone_set("Asia/Kuala_Lumpur");
         $id = $_POST["id"];
         $installdate = str_replace('/', '-', $_POST['date']);
         $installdate = date('Y-m-d', strtotime($installdate));   
@@ -29,10 +29,11 @@ if($method === "add")
         $chinese = $_POST["chinese"]; 
         $remarks = $_POST["remarks"];
 
+
         $sql = "  
-            INSERT INTO TABLET(tablet_id, inst_date, tablet_zone, tablet_tier, tablet_row , price, ancestor_eng_name, ancestor_chi_name, contact_num1, contact_num2, address, payment_type, member_eng_name, member_chi_name, remarks)
+            INSERT INTO TABLET(tablet_id, inst_date, tablet_zone, tablet_tier, tablet_row , price, ancestor_eng_name, ancestor_chi_name, contact_num1, contact_num2, address, payment_type, member_eng_name, member_chi_name, remarks, recordedBy , recordedOn)
             VALUES
-            ('$id','$installdate','$zone','$tier','$row','$price','$ancestor_english','$ancestor_chinese','$contact1','$contact2','$address','$payment','$english','$chinese','$remarks')
+            ('$id','$installdate','$zone','$tier','$row','$price','$ancestor_english','$ancestor_chinese','$contact1','$contact2','$address','$payment','$english','$chinese','$remarks', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')
         ";  
        
         if (mysqli_query($conn,$sql)) {

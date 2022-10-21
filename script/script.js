@@ -466,7 +466,7 @@ function blessing_validation(){
 		v4 = true;
     }  
     //blessing does not accept empty
-    if(!blessing || !blessing.match(regex_price)){ 
+    if(blessing !=""  && !blessing.match(regex_price)){ 
 		document.getElementById('blessing').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
 		document.getElementById('b_price').style.display = "block"; 
         v5= false;
@@ -477,7 +477,7 @@ function blessing_validation(){
 		v5 = true;
     }   
     //votive does not accept empty
-    if(!votive || !votive.match(regex_price)){ 
+    if(votive!=""  && !votive.match(regex_price)){ 
 		document.getElementById('votive').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
 		document.getElementById('v_price').style.display = "block"; 
         v6= false;
@@ -488,7 +488,7 @@ function blessing_validation(){
 		v6 = true;
     } 
 
-    if(blessing_receipt == "" || !blessing_receipt.match(regex_spec_char)){  
+    if(blessing_receipt!=""  && !blessing_receipt.match(regex_spec_char)){  
 		document.getElementById('blessing_receipt').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
 		document.getElementById('p_b_receipt').style.display = "block";
         v7 = false; 
@@ -498,7 +498,7 @@ function blessing_validation(){
 		document.getElementById('p_b_receipt').style.display = "none";
 		v7 = true; 
     } 
-    if(votive_receipt == "" || !votive_receipt.match(regex_spec_char)){  
+    if(votive_receipt !="" && !votive_receipt.match(regex_spec_char)){  
 		document.getElementById('votive_receipt').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
 		document.getElementById('p_v_receipt').style.display = "block";
         v8 = false; 
@@ -548,7 +548,7 @@ function glight_validation(){
 	var regex_num_symbols= /[\d-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/;
 	var regex_dob= /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 
-    var id = document.getElementById('id').value; 
+    var id = document.getElementById('gl-id').value; 
     var english = document.getElementById('english').value;  
     var chinese = document.getElementById('chinese').value; 
     var price = document.getElementById('price').value;   
@@ -557,14 +557,14 @@ function glight_validation(){
     var contact = document.getElementById('contact').value;
     var date = document.getElementById('date').value;  
 
-	var v1,v2,v3,v4,v5,v6,v7,v8,v9,v10 = false;     
+	var v1,v2,v3,v4,v5,v6,v7,v8 = false;     
     if(id == "" || !id.match(regex_spec_char)){   
-		document.getElementById('id').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
+		document.getElementById('gl-id').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
 		document.getElementById('p_id').style.display = "block";
         v1 = false; 
     }   
     else{  
-		document.getElementById('id').className = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
+		document.getElementById('gl-id').className = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
 		document.getElementById('p_id').style.display = "none";
 		v1 = true; 
     } 
@@ -640,7 +640,7 @@ function glight_validation(){
 		document.getElementById('p_co').style.display = "none"; 
 		v8 = true;
     }   
-    if(v1 == true && v2 == true && v3 == true && v4 == true && v5 == true && v6 == true && v7 == true&& v8 == true){  
+    if(v1 == true && v2 == true && v3 == true && v4 == true && v5 == true && v6 == true && v7 == true && v8 == true){  
     	return true;
     } 
     else{

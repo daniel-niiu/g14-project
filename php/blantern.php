@@ -5,16 +5,21 @@ $method = $_GET["method"];
 
 if($method === "add")
 {
+    date_default_timezone_set("Asia/Kuala_Lumpur");
     global $conn;
-    //print_r($_POST['checkbox']); 
-    $receiptdate = str_replace('/', '-', $_POST['date']);
-    $receiptdate = date("Y-m-d", strtotime($receiptdate));
-    $sql = "INSERT INTO BLantern(BLantern_id, member_eng_name, member_chi_name, contact_num, blessing_price, votive_price, breceipt_num, vreceipt_num,     receipt_date, price, remarks, username) VALUES ('".$_POST['id']."','".$_POST['english']."','".$_POST['chinese']."','".$_POST['contact']."','".$_POST['blessing_price']."','".$_POST['votive_price']."','".$_POST['blessing_receipt']."','".$_POST['votive_receipt']."','".$receiptdate."','".$_POST['amount']."','".$_POST['remarks']."','".$_SESSION['username']."')";  
-    if (!mysqli_query($conn,$sql)) {
-        header("Location: ../transactions/create-blantern.php?name=transaction&aside=create-blantern&success=fail");
-    } 
+    $mid_sql = "SELECT EXISTS (SELECT * FROM BLantern WHERE BLantern_id = '".$_POST['id']."') AS row";
+    $result = $conn->query($mid_sql);   
+    $row = mysqli_fetch_array($result); 
+    if ($row['row'] == 0) { 
+        $receiptdate = str_replace('/', '-', $_POST['date']);
+        $receiptdate = date("Y-m-d", strtotime($receiptdate));
+        $sql = "INSERT INTO BLantern(BLantern_id, member_eng_name, member_chi_name, contact_num, blessing_price, votive_price, breceipt_num, vreceipt_num,     receipt_date, price, remarks, recordedBy , recordedOn) VALUES ('".$_POST['id']."','".$_POST['english']."','".$_POST['chinese']."','".$_POST['contact']."','".$_POST['blessing_price']."','".$_POST['votive_price']."','".$_POST['blessing_receipt']."','".$_POST['votive_receipt']."','".$receiptdate."','".$_POST['amount']."','".$_POST['remarks']."', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')";  
+        if (mysqli_query($conn,$sql)) {
+            header("Location: ../transactions/create-blantern.php?name=transaction&aside=create-blantern&success=success");
+        } 
+    }
     else{
-        header("Location: ../transactions/create-blantern.php?name=transaction&aside=create-blantern&success=success");
+        header("Location: ../transactions/create-blantern.php?name=transaction&aside=create-blantern&success=fail");
     }
     
 

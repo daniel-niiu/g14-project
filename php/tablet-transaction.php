@@ -6,9 +6,9 @@ $method = $_GET["method"];
 
 if($method === "add")
 {
-    global $conn;
+    global $conn; 
 
-
+    date_default_timezone_set("Asia/Kuala_Lumpur");
     $id = $_POST["id"];
     $receiptdate = str_replace('/', '-', $_POST['date']);
     $receiptdate = date('Y-m-d', strtotime($receiptdate));   
@@ -18,17 +18,21 @@ if($method === "add")
     $chinese = $_POST["chinese"]; 
     $remarks = $_POST["remarks"]; 
 
-    $sql = "  
-        INSERT INTO TABLET_Receipt(Tablet_id, receipt_num, receipt_date, receipt_amount, member_eng_name , member_chi_name, remarks,username)
-        VALUES
-        ('$id','$receipt','$receiptdate','$amount','$english','$chinese','$remarks', '".$_SESSION['username']."')"; 
-    //$result = $conn->query($sql);
-    
-    if (!mysqli_query($conn,$sql)) {
-        header("Location: ../transactions/create-tablet-transaction.php?name=transaction&aside=tablet-transaction&success=fail");
-    } 
+    $mid_sql = "SELECT EXISTS (SELECT * FROM TABLET_Receipt WHERE Tablet_id = '$id' AND receipt_date  = '$receiptdate' AND receipt_num = '$receipt') AS row";
+    $result = $conn->query($mid_sql);  
+    $row = mysqli_fetch_array($result); 
+    if($row['row'] == 0){
+
+        $sql = "  
+            INSERT INTO TABLET_Receipt(Tablet_id, receipt_num, receipt_date, receipt_amount, member_eng_name , member_chi_name, remarks, recordedBy , recordedOn)
+            VALUES
+            ('$id','$receipt','$receiptdate','$amount','$english','$chinese','$remarks', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')";  
+        if (mysqli_query($conn,$sql)) {
+            header("Location: ../transactions/create-tablet-transaction.php?name=transaction&aside=tablet-transaction&success=success");
+        } 
+    }
     else{
-        header("Location: ../transactions/create-tablet-transaction.php?name=transaction&aside=tablet-transaction&success=success");
+        header("Location: ../transactions/create-tablet-transaction.php?name=transaction&aside=tablet-transaction&success=fail");
     }  
 
 }
@@ -74,14 +78,7 @@ if($method === "update")
         SET receipt_num = '$receipt', receipt_date = '$receiptdate', receipt_amount = '$amount', member_eng_name = '$english', member_chi_name = '$chinese', remarks = '$remarks'
        WHERE Tablet_id = '$M_id' AND receipt_num = '$rNum' AND receipt_date = '$rDate'
     
-    ";
-    /*
-    echo $sql; 
-    $result = $conn->query($sql);
-   
-   header("Location: ../transactions/edit-tablet.php?name=transaction&Id=$id");
-
-   */
+    "; 
     if (!mysqli_query($conn,$sql)) {
         header("Location: ../transactions/view-tablet.php?name=transaction&Id=$M_id");
     } 

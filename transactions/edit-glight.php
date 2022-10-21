@@ -18,6 +18,7 @@ isLoggedIn();
 	<script src="https://kit.fontawesome.com/b41521ee1f.js"></script>
 	<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
 	<link rel="stylesheet" href="../styles/style.css">
+	<script src="../script/script.js" type="text/javascript"></script> 
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
 </head>
@@ -69,11 +70,12 @@ isLoggedIn();
 		<div>
 			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['edit-light']; ?></h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
-			<form method="post" action="../php/glight.php?method=update&Id=<?php echo $row['GLight_id']; ?>">
+			<form method="post" action="../php/glight.php?method=update&Id=<?php echo $row['GLight_id']; ?>" onsubmit="return glight_validation()">
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['light-id']; ?></label>
-						<input type="text" id="id" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['GLight_id']; ?>">
+						<input type="text" id="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['GLight_id']; ?>" disabled>
+						<input type="hidden" name="id" value="<?php echo $row['GLight_id']; ?>">
 					</div>
 				 	<div class="relative z-0 w-full mb-6 group">
 						<label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['eng-name']; ?></label>

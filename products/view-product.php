@@ -10,7 +10,7 @@ $baseURL = '../php/get-tablet-transaction-data.php';
 $limit = 10; 
  
 // Count of all records 
-$query   = $conn->query("SELECT COUNT(*) as rowNum FROM stock AS s, product AS p WHERE p.product_id = s.product_id"); 
+$query   = $conn->query("SELECT COUNT(*) as rowNum FROM stockin AS s, product AS p WHERE p.product_eng_name  = s.product_name"); 
 
 $result  = $query->fetch_assoc(); 
 $rowCount= $result['rowNum']; 

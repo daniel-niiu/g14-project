@@ -4,26 +4,33 @@ include "../db/dbconnection.php";
 
 $method = $_GET["method"];
 
+date_default_timezone_set("Asia/Kuala_Lumpur");
+
 if($method === "add")
 {
     global $conn;  
-    $mid_sql = "SELECT EXISTS (SELECT * FROM member WHERE member_id = '".$_POST['id']."')";
-    $result = $conn->query($mid_sql);  
-    if (mysqli_num_rows($result) != 1) { 
+    $mid_sql = "SELECT EXISTS (SELECT * FROM member WHERE member_id = '".$_POST['id']."') AS row";
+    $result = $conn->query($mid_sql);   
+    $row = mysqli_fetch_array($result); 
+    if ($row['row'] == 0) { 
         $dobdate = str_replace('/', '-', $_POST['dob']);
         $dobdate = date('Y-m-d', strtotime($dobdate)); 
         $acceptdate = str_replace('/', '-', $_POST['accept-date']);
         $acceptdate = date("Y-m-d", strtotime($acceptdate));
-        $sql = "INSERT INTO member (member_id, member_status, member_chi_name, member_eng_name, member_ic, member_citizenship, member_gender, member_dob, member_tel, member_job, member_address,member_type, recommender_id, recommender_name, accept_date, remarks, admin_username) VALUES ('".$_POST['id']."','".$_POST['checkbox_value']."','".$_POST['chinese']."','".$_POST['english']."','".$_POST['ic']."','".$_POST['citizen']."','".$_POST['gender']."','".$dobdate."','".$_POST['contact']."','".$_POST['job']."','".$_POST['address']."','".$_POST['member']."','".$_POST['recommender-id']."','".$_POST['recommender']."','".$acceptdate."','".$_POST['remarks']."', '".$_SESSION['name']."')";
-        //echo $sql;
+        $sql = "INSERT INTO member (member_id, member_status, member_chi_name, member_eng_name, member_ic, member_citizenship, member_gender, member_dob, member_tel, member_job, member_address,member_type, recommender_id, recommender_name, accept_date, remarks, recordedBy , recordedOn) VALUES ('".$_POST['id']."','".$_POST['checkbox_value']."','".$_POST['chinese']."','".$_POST['english']."','".$_POST['ic']."','".$_POST['citizen']."','".$_POST['gender']."','".$dobdate."','".$_POST['contact']."','".$_POST['job']."','".$_POST['address']."','".$_POST['member']."','".$_POST['recommender-id']."','".$_POST['recommender']."','".$acceptdate."','".$_POST['remarks']."', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')";
+        
         
         if (mysqli_query($conn,$sql)) {
             header("Location: ../members/create-member.php?name=member&aside=create-member&success=success");
         } 
+        
     }
+
+    
     else{
         header("Location: ../members/create-member.php?name=member&aside=create-member&success=fail");
     }
+    
     
 
 }
