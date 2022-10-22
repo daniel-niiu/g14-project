@@ -271,6 +271,7 @@ $query = $conn->query("SELECT product_id AS PID, receipt_no AS receipt, reciept_
 
 		});
 	</script>
+	
 </body>
 </html>
 
