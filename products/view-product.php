@@ -26,7 +26,8 @@ $pagConfig = array(
 $pagination =  new Pagination($pagConfig); 
  
 // Fetch records based on the limit    
-$query = $conn->query("SELECT s.product_id AS PID, s.receipt_no AS receipt, s.stock_date AS date, s.stock_in AS stock_in, s.stock_out AS stock_out, s.balance_left AS balance FROM stock AS s, product AS p WHERE p.product_id = s.product_id ORDER BY s.stock_date LIMIT 10");   
+$query = $conn->query("SELECT product_id AS PID, receipt_no AS receipt, reciept_date AS date, stock_in AS stock_in, balance_left AS balance FROM stockin AS s, product AS p WHERE p.product_id = product_id ORDER BY reciept_date LIMIT 10");   
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -181,7 +182,7 @@ $query = $conn->query("SELECT s.product_id AS PID, s.receipt_no AS receipt, s.st
 			            ?>
 			                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
 			                 	<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-			                    	<a href="../stocks/view-stock.php?name=stock&Id=<?php echo $row["PID"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt"]; ?></a>
+			                    	<a href="../stocks/view-stock-in.php?name=stock&Id=<?php echo $row["PID"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt"]; ?></a>
 			                    </th> 
 			                    <td class="px-6 py-4"><?php echo $row["date"]; ?></td>
 			                    <td class="px-6 py-4"><?php echo $row["stock_in"]; ?></td>
