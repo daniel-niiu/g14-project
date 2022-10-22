@@ -58,10 +58,10 @@ isLoggedIn();
 		</nav>
 		
 		<?php   
-			$ID = $_GET['Id']; 
+			$name = $_GET['name']; 
 			$receipt_No = $_GET['receiptNum']; 
 			$receipt_Date = $_GET['receiptDate']; 
-		    $sql = "SELECT p.remarks AS p_remarks, s.remarks AS s_remarks , p.product_eng_name AS eng_name, p.product_chi_name AS chi_name, s.product_id AS PID, s.receipt_no AS receipt, s.stock_date AS date, s.stock_in AS stock_in, s.stock_out AS stock_out, s.balance_left AS balance FROM stock AS s, product AS p WHERE p.product_id = s.product_id AND p.product_id = '".$ID."' AND s.receipt_no = '".$receipt_No."' AND s.stock_date = '".$receipt_Date."'"; 	  
+		    $sql = "SELECT remarks AS p_remarks, remarks AS s_remarks, product_name AS PID, receipt_no AS receipt, reciept_date AS date, stock_in AS stock_in, balance_left AS balance FROM stockin AS s, product AS p WHERE product_name = product_name AND product_name = '".$name."' AND receipt_no = '".$receipt_No."' AND reciept_date = '".$receipt_Date."'"; 	  
 		    $result = $conn->query($sql);  
 			if (mysqli_num_rows($result) > 0) {
 		  	// output data of each row
@@ -105,8 +105,8 @@ isLoggedIn();
 			<form>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $stock['product-name']; ?></label>
-						<input type="text" id="name" name="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['eng_name']."-".$row['chi_name'];?>" disabled readonly>
+						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo stock['product-name']; ?></label>
+						<input type="text" id="name" name="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['product_name'];?>" disabled readonly>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['receipt-date']; ?></label>
@@ -121,7 +121,7 @@ isLoggedIn();
 				
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="summary" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $stock['summary']; ?></label>
+						<label for="summary" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo stock['summary']; ?></label>
 						<input type="text" id="summary" name="summary" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['p_remarks']; ?>" disabled readonly>
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
@@ -136,7 +136,7 @@ isLoggedIn();
 						<input type="text" id="stock-in" name="stock-in" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['stock_in']; ?>" disabled readonly>
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="balance" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $stock['balance']; ?></label>
+						<label for="balance" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo stock['balance']; ?></label>
 						<div class="flex">
 							 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							 <input type="text" id="balance" name="balance" class="rounded-none rounded-r-lg bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['balance']; ?>" disabled readonly>
