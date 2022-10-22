@@ -232,7 +232,6 @@ isLoggedIn();
 			}
 
 		});
-	</script>
-	
+	</script>	
 </body>
 </html>
