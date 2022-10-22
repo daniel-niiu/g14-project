@@ -70,7 +70,7 @@ isLoggedIn();
 		<div>
 			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['edit-stock']; ?></h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
-			<form method="post" action="../php/stock.php?method=update>
+			<form method="post" action="../php/stock.php?method=update">
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $stock['product-name']; ?></label>
