@@ -8,8 +8,8 @@ if($method === "add")
 {
 	
     global $conn;
-
-    $prodname = $_POST["search"];  
+ 
+	$prodname = explode("-", $_POST["search"]); //array [0] - product ID, array [1] product english name, array [2] product chinese name
     $date = $_POST["date"];
 	$summary = $_POST["summary"];
     $receiptno = $_POST["receipt"];
@@ -17,7 +17,7 @@ if($method === "add")
 	$balance = $_POST["balance"];
     $remarks = $_POST["remarks"];
 
-    $sql = "INSERT INTO STOCKIN(product_name, reciept_date, stock_summary, receipt_no, stock_in, balance_left, remarks, recordedBy, recordedOn) VALUES('$prodname','$date','$summary','$receiptno','$stockin','$balance','$remarks', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')";  
+    $sql = "INSERT INTO STOCKIN(product_name, reciept_date, stock_summary, receipt_no, stock_in, balance_left, remarks, recordedBy, recordedOn) VALUES('$prodname[1]','$date','$summary','$receiptno','$stockin','$balance','$remarks', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')";  
     if (!mysqli_query($conn,$sql)) {
 		
         header("Location: ../stocks/stock-in.php?name=stock&aside=stock-in&success=fail");
@@ -29,6 +29,7 @@ if($method === "add")
         header("Location: ../stocks/stock-in.php?name=stock&aside=stock-in&success=success");
     
 	}  
+
 
 }
 

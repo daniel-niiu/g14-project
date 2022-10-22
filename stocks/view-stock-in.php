@@ -58,10 +58,10 @@ isLoggedIn();
 		</nav>
 		
 		<?php   
-			$name = $_GET['name']; 
+			$name = $_GET['productName']; 
 			$receipt_No = $_GET['receiptNum']; 
 			$receipt_Date = $_GET['receiptDate']; 
-		    $sql = "SELECT remarks AS p_remarks, remarks AS s_remarks, product_name AS PID, receipt_no AS receipt, reciept_date AS date, stock_in AS stock_in, balance_left AS balance FROM stockin AS s, product AS p WHERE product_name = product_name AND product_name = '".$name."' AND receipt_no = '".$receipt_No."' AND reciept_date = '".$receipt_Date."'"; 	  
+		    $sql = "SELECT p.remarks AS p_remarks, s.remarks AS s_remarks, s.product_name AS PName, receipt_no AS receipt, reciept_date AS date, stock_in AS stock_in, balance_left AS balance FROM stockin AS s, product AS p WHERE s.product_name = p.product_eng_name AND s.product_name = '".$name."' AND receipt_no = '".$receipt_No."' AND reciept_date = '".$receipt_Date."'"; 	  
 		    $result = $conn->query($sql);  
 			if (mysqli_num_rows($result) > 0) {
 		  	// output data of each row
@@ -71,7 +71,7 @@ isLoggedIn();
 			<div class="container flex flex-wrap justify-between items-center mx-auto">
 				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['view-stock']; ?></h2>
 				<div class="button">
-					<a href="edit-stock-in.php?name=stock&Id=<?php echo $row["PID"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>">
+					<a href="edit-stock-in.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>">
 						<button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
 							<i class="fa-solid fa-pencil"></i>&nbsp; <?php echo $form['edit-record']; ?>
 						</button>
@@ -89,7 +89,7 @@ isLoggedIn();
 								<div class="p-6 text-center">
 									<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
 									<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"><?php echo $form['delete-record-title']; ?></h3>
-									<a href="../php/stock.php?ID=<?php echo $row['PID'];?>&receiptNum=<?php echo $row['receipt'];?>&receiptDate=<?php echo $row['date'];?>&method=delete"><button data-modal-toggle="delete-popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+									<a href="../php/stock.php?productName=<?php echo $row['PName'];?>&receiptNum=<?php echo $row['receipt'];?>&receiptDate=<?php echo $row['date'];?>&method=delete"><button data-modal-toggle="delete-popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
 										<?php echo $form['confirm']; ?>
 									</button></a>
 									<button data-modal-toggle="delete-popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"><?php echo $form['cancel']; ?></button>
@@ -105,8 +105,8 @@ isLoggedIn();
 			<form>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo stock['product-name']; ?></label>
-						<input type="text" id="name" name="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['product_name'];?>" disabled readonly>
+						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $stock['product-name']; ?></label>
+						<input type="text" id="name" name="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['PName'];?>" disabled readonly>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['receipt-date']; ?></label>
@@ -121,7 +121,7 @@ isLoggedIn();
 				
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="summary" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo stock['summary']; ?></label>
+						<label for="summary" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $stock['summary']; ?></label>
 						<input type="text" id="summary" name="summary" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['p_remarks']; ?>" disabled readonly>
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
@@ -136,7 +136,7 @@ isLoggedIn();
 						<input type="text" id="stock-in" name="stock-in" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['stock_in']; ?>" disabled readonly>
 					 </div>
 					<div class="relative z-0 w-full mb-6 group">
-						<label for="balance" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo stock['balance']; ?></label>
+						<label for="balance" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $stock['balance']; ?></label>
 						<div class="flex">
 							 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							 <input type="text" id="balance" name="balance" class="rounded-none rounded-r-lg bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['balance']; ?>" disabled readonly>

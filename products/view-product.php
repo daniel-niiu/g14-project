@@ -25,8 +25,8 @@ $pagConfig = array(
 ); 
 $pagination =  new Pagination($pagConfig); 
  
-// Fetch records based on the limit    
-$query = $conn->query("SELECT product_id AS PID, receipt_no AS receipt, reciept_date AS date, stock_in AS stock_in, balance_left AS balance FROM stockin AS s, product AS p WHERE p.product_id = product_id ORDER BY reciept_date LIMIT 10");   
+// Fetch records based on the limit     
+$query = $conn->query("SELECT product_eng_name AS PName, receipt_no AS receipt, reciept_date AS date, stock_in AS stock_in, balance_left AS balance FROM stockin AS s, product AS p WHERE p.product_id = product_id ORDER BY reciept_date LIMIT 10");   
 
 ?>
 <!DOCTYPE html>
@@ -182,14 +182,14 @@ $query = $conn->query("SELECT product_id AS PID, receipt_no AS receipt, reciept_
 			            ?>
 			                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
 			                 	<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-			                    	<a href="../stocks/view-stock-in.php?name=stock&Id=<?php echo $row["PID"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt"]; ?></a>
+			                    	<a href="../stocks/view-stock-in.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt"]; ?></a>
 			                    </th> 
 			                    <td class="px-6 py-4"><?php echo $row["date"]; ?></td>
 			                    <td class="px-6 py-4"><?php echo $row["stock_in"]; ?></td>
 			                    <td class="px-6 py-4"><?php echo $row["stock_out"]; ?></td>
 			                    <td class="px-6 py-4"><?php echo $row["balance"]; ?></td>
 			                    <td class="px-6 py-4 text-right">
-			                    	<a href="../stocks/edit-stock.php?name=stock&Id=<?php echo $row["PID"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
+			                    	<a href="../stocks/edit-stock.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
 			                    </td>
 			                </tr>
 			            <?php
