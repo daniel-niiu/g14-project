@@ -24,7 +24,7 @@ isLoggedIn();
   			box-sizing: border-box;
 		}
 		#search:focus {
-			outline: 3px solid #ddd;
+			outline: 3px solid;
 		} 
 		/* The container <div> - needed to position the dropdown content */
 		.result_dropdown {
@@ -33,10 +33,9 @@ isLoggedIn();
 
 		/* Dropdown Content (Hidden by Default) */
 		.result_content { 
-		  /*position: absolute;*/
-		  background-color: #f6f6f6;
+		  /*background-color: #f6f6f6;*/
 		  min-width: 230px;
-		  border: 1px solid #ddd;
+		  border: 1px solid;
 		  z-index: 1;
 		}
 

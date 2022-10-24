@@ -19,12 +19,12 @@ isLoggedIn();
 	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
 	<link rel="stylesheet" href="../styles/style.css">
 	<title>Tze Yin Membership Management Portal</title>
-	<style>
+	<!--style>
 		#search{
   			box-sizing: border-box;
 		}
 		#search:focus {
-			outline: 3px solid #ddd;
+			outline: 3px solid;
 		} 
 		/* The container <div> - needed to position the dropdown content */
 		.result_dropdown {
@@ -33,10 +33,9 @@ isLoggedIn();
 
 		/* Dropdown Content (Hidden by Default) */
 		.result_content { 
-		  /*position: absolute;*/
-		  background-color: #f6f6f6;
+		  /*background-color: #f6f6f6;*/
 		  min-width: 230px;
-		  border: 1px solid #ddd;
+		  border: 1px solid;
 		  z-index: 1;
 		}
 
@@ -61,7 +60,7 @@ isLoggedIn();
 		.link-class:hover{
 			background-color: #f1f1f1;
 		}
-	</style>
+	</style-->
 </head>
 
 <body class="dark:bg-gray-900">
@@ -101,9 +100,9 @@ isLoggedIn();
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $stock['product-name'];?></label>
-						<div id="myDropdown" class="result_content">
+						<div id="myDropdown" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white hover:no-underline:hover">
 							<input type="text" id="search" name="search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $form['search'];?>">
-							<div class="list-group" id="result">
+							<div class="list-group" id="result" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
 							</div>
 						</div>
  

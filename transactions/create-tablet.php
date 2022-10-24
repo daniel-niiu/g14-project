@@ -147,19 +147,19 @@ isLoggedIn();
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="contact1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['contact-num1']; ?></label>
 						<input type="text" id="contact1" name="contact1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['contact-num1']; ?>">
-						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co1" style="display:none;"><?php echo $form['empty-warning']; ?></p>
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co1" style="display:none;"><?php echo $form['number-warning']; ?></p>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="contact2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['contact-num2']; ?></label>
 						<input type="text" id="contact2" name="contact2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['contact-num2']; ?>">
-						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co2" style="display:none;"><?php echo $form['empty-warning']; ?></p>
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co2" style="display:none;"><?php echo $form['number-warning']; ?></p>
 					</div>
 				 </div>
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['address']; ?></label>
 						<input type="text" id="address" name="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $member['address']; ?>">
-						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_add" style="display:none;"><?php echo $form['empty-warning']; ?></p>
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_add" style="display:none;"><?php echo $form['id-warning']; ?></p>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['payment-type']; ?></label>

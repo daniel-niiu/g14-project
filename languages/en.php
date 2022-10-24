@@ -1,7 +1,7 @@
 <?php
 	$page = array(
 		//navbar
-		"portal" => "Tze Yin Membership Management Portal",
+		"portal" => "Tze Yin Membership <br/> Management Portal",
 		"membership" => "Membership",
 		"transaction" => "Transaction",
 		"product" => "Product",
@@ -13,7 +13,7 @@
 		"quick-export-popout" => "Export a detailed record of 'Over Time Payment' from Tablet Transaction.",
 		"quick-export-title" => "Are you sure you want to quick export?",
 		//profile
-		"profile-user" => "Welcome, ".$_SESSION['username'],
+		"profile-user" => "Welcome, ".$_SESSION['name'],
 		"profile-acc-settings" => "Account Settings",
 		"profile-password" => "Edit Password",
 		"profile-signout" => "Sign Out",
@@ -63,10 +63,10 @@
 		"delete-record-title" => "Are you sure you want to delete this record?",
 		"recorded-by" => "Recorded By",
 		"recorded-on" => "Recorded On",
-		//warning
-		"id-warning" => "*Inclusion of special characters is not allowed, nor to be left empty.",
-		"word-warning" => "*Inclusion of numbers and special characters is not allowed, nor to be left empty.",
-		"number-warning" => "*Inclusion of wordings and special characters is not allowed, nor to be left empty.",
+		//warning 
+		"id-warning" => "*Not allowed to include special characters or be left empty.",
+		"word-warning" => "*Not allowed to include numbers, special characters or be left empty.",
+		"number-warning" => "*Not allowed to include wordings, special characters or be left empty.",
 		"empty-warning" => "*Not allowed to be left empty.",
 		"no-record-warning" => "No records found. Please try again."
 	);
@@ -185,9 +185,9 @@
 		"export-record-title" => "What would you like to export?",
 		"choose-type" => "Choose a type",
 		"choose-period" => "Choose a period",
+		"period-from" => "Starting Date",
+		"period-to" => "Ending Date",
 		"choose-product" => "Choose a product",
-		"period-monthly" => "Daily",
-		"period-yearly" => "Monthly",
 		//export: transaction
 		"tablet-transactions" => "Tablet Transactions"
 	);  

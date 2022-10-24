@@ -179,11 +179,11 @@ isLoggedIn();
 								<?php if(str_contains($acc_type,"M")) echo "checked"; ?>>
                         <label for="name" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $page['membership']; ?></label>
 
-                        <input id="check_trans" type="checkbox" name="checkbox[]" value="T" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        <input id="check_trans" type="checkbox" name="checkbox[]" value="T" class="ml-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 								<?php if(str_contains($acc_type,"T")) echo "checked"; ?>>
                         <label for="name" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $page['transaction']; ?></label>
 
-                        <input id="check_prod" type="checkbox" name="checkbox[]" value="P" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        <input id="check_prod" type="checkbox" name="checkbox[]" value="P" class="ml-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 								<?php if(str_contains($acc_type,"P")) echo "checked"; ?>>
                         <label for="name" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['product-stock']; ?></label> 
                         <?php	
