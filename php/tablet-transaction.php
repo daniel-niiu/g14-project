@@ -28,11 +28,11 @@ if($method === "add")
             VALUES
             ('$id','$receipt','$receiptdate','$amount','$english','$chinese','$remarks', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')";  
         if (mysqli_query($conn,$sql)) {
-            header("Location: ../transactions/create-tablet-transaction.php?name=transaction&aside=tablet-transaction&success=success");
+            header("Location: ../transactions/create-tablet-transaction.php?name=transaction&Id=$id&aside=tablet-transaction&success=success");
         } 
     }
     else{
-        header("Location: ../transactions/create-tablet-transaction.php?name=transaction&aside=tablet-transaction&success=fail");
+        header("Location: ../transactions/create-tablet-transaction.php?name=transaction&Id=$id&aside=tablet-transaction&success=fail");
     }  
 
 }

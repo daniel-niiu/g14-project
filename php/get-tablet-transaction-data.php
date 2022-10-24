@@ -6,16 +6,15 @@ if(isset($_POST['page'])){
     // Include database configuration file 
     require_once '../db/dbconnection.php';  
      
+    include "../php/config.php";  
+    
     // Set some useful configuration 
-    $baseURL = 'get-tablet-data.php'; 
+    $baseURL = 'get-tablet-transaction-data.php'; 
     $offset = !empty($_POST['page'])?$_POST['page']:0; 
     $limit = 10; 
      
     // Set conditions for search 
-    $whereSQL = '';  
-    if(!empty($_POST['keywords'])){ 
-        $whereSQL = " WHERE (tablet_id LIKE '%".$_POST['keywords']."%' OR member_chi_name LIKE '%".$_POST['keywords']."%' OR member_eng_name LIKE '%".$_POST['keywords']."%' OR ancestor_chi_name LIKE '%".$_POST['keywords']."%' OR ancestor_eng_name LIKE '%".$_POST['keywords']."%')"; 
-    } 
+    $whereSQL = '';   
 
     // Count of all records 
     $query   = $conn->query("SELECT COUNT(*) as rowNum FROM tablet ".$whereSQL);  
@@ -38,18 +37,18 @@ if(isset($_POST['page'])){
     <!-- Data list container --> 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">Light id</th>
-                    <th scope="col" class="px-6 py-3">Anc. name (en)</th>
-                    <th scope="col" class="px-6 py-3">Anc. name (ch)</th>
-                    <th scope="col" class="px-6 py-3">Mem. name (en)</th>
-                    <th scope="col" class="px-6 py-3">Mem. name (ch)</th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="sr-only">Edit</span>
-                    </th>
-                </tr>
-            </thead>
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3"><?php echo $form['receipt-date']; ?></th>
+                                <th scope="col" class="px-6 py-3"><?php echo $form['receipt-num']; ?></th>
+                                <th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-eng']; ?></th>
+                                <th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-chi']; ?></th>
+                                <th scope="col" class="px-6 py-3"><?php echo $form['receipt-amount']; ?></th>
+                                <th scope="col" class="px-6 py-3">
+                                    <span class="sr-only"><?php echo $form['btnedit']; ?></span>
+                                </th>
+                            </tr>
+                        </thead>
             <tbody>
                 <?php    
                     if($query->num_rows > 0){

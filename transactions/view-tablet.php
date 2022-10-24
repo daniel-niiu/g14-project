@@ -40,6 +40,24 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 			document.documentElement.classList.remove('dark');
 		}
 	</script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+	<script> 
+	function searchFilter(page_num) {
+	    page_num = page_num?page_num:0;   
+	    $.ajax({
+	        type: 'POST',
+	        url: '../php/get-tablet-transaction-data.php',
+	        data:'page='+page_num,
+	        beforeSend: function () {
+	            //$('.loading-overlay').show();
+	        },
+	        success: function (html) {
+	            $('#dataContainer').html(html);
+	            //$('.loading-overlay').fadeOut("slow");
+	        }
+	    });
+	} 
+	</script>
 	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
 	<script src="https://kit.fontawesome.com/b41521ee1f.js"></script>
 	<link rel="stylesheet" href="../styles/style.css">
@@ -232,51 +250,52 @@ $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.t
 			
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			
-			<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-						<tr>
-							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-date']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-num']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-eng']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-chi']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-amount']; ?></th>
-							<th scope="col" class="px-6 py-3">
-								<span class="sr-only"><?php echo $form['btnedit']; ?></span>
-							</th>
-						</tr>
-					</thead>
-					<tbody> 
-                    	<?php  	 
-			            if($query->num_rows > 0){
-			                while($row = $query->fetch_assoc()){
-			            ?>
-			                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-			                 	<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-			                    	<a href="view-tablet-transaction.php?name=transaction&Id=<?php echo $row["Tablet_id"]; ?>&receiptNum=<?php echo $row['receipt_num']; ?>&receiptDate=<?php echo $row['receipt_date'];?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt_date"]; ?></a>
-			                    </th> 
-			                    <td class="px-6 py-4"><?php echo $row["receipt_num"]; ?></td>
-			                    <td class="px-6 py-4"><?php echo $row["member_eng_name"]; ?></td>
-			                    <td class="px-6 py-4"><?php echo $row["member_chi_name"]; ?></td>
-			                    <td class="px-6 py-4"><?php echo $row["receipt_amount"]; ?></td>
-			                    <td class="px-6 py-4 text-right">
-			                    	<a href="edit-tablet-transaction.php?name=transaction&Id=<?php echo $row["Tablet_id"]; ?>&receiptNum=<?php echo $row['receipt_num']; ?>&receiptDate=<?php echo $row['receipt_date'];?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
-			                    </td>
-			                </tr>
-			            <?php
+			<div id="dataContainer">	
+				<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+					<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+						<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+							<tr>
+								<th scope="col" class="px-6 py-3"><?php echo $form['receipt-date']; ?></th>
+								<th scope="col" class="px-6 py-3"><?php echo $form['receipt-num']; ?></th>
+								<th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-eng']; ?></th>
+								<th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-chi']; ?></th>
+								<th scope="col" class="px-6 py-3"><?php echo $form['receipt-amount']; ?></th>
+								<th scope="col" class="px-6 py-3">
+									<span class="sr-only"><?php echo $form['btnedit']; ?></span>
+								</th>
+							</tr>
+						</thead>
+						<tbody> 
+	                    	<?php  	 
+				            if($query->num_rows > 0){
+				                while($row = $query->fetch_assoc()){
+				            ?>
+				                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+				                 	<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+				                    	<a href="view-tablet-transaction.php?name=transaction&Id=<?php echo $row["Tablet_id"]; ?>&receiptNum=<?php echo $row['receipt_num']; ?>&receiptDate=<?php echo $row['receipt_date'];?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt_date"]; ?></a>
+				                    </th> 
+				                    <td class="px-6 py-4"><?php echo $row["receipt_num"]; ?></td>
+				                    <td class="px-6 py-4"><?php echo $row["member_eng_name"]; ?></td>
+				                    <td class="px-6 py-4"><?php echo $row["member_chi_name"]; ?></td>
+				                    <td class="px-6 py-4"><?php echo $row["receipt_amount"]; ?></td>
+				                    <td class="px-6 py-4 text-right">
+				                    	<a href="edit-tablet-transaction.php?name=transaction&Id=<?php echo $row["Tablet_id"]; ?>&receiptNum=<?php echo $row['receipt_num']; ?>&receiptDate=<?php echo $row['receipt_date'];?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
+				                    </td>
+				                </tr>
+				            <?php
+				                } 
+				            }
+			                else{ 
+				                echo '<tr><td colspan="5">'.$form['no-record-warning'].'</td></tr>'; 
 			                } 
-			            }
-		                else{ 
-			                echo '<tr><td colspan="5">'.$form['no-record-warning'].'</td></tr>'; 
-		                } 
-                    	?> 
-					</tbody>
-				</table>
-			</div>
-			
-			<nav aria-label="Page navigation" class="mt-6 mb-2 text-center"> 
-			    <?php echo $pagination->createLinks(); ?>   
-			</nav>		
+	                    	?> 
+						</tbody>
+					</table>
+				</div>
+				<nav aria-label="Page navigation" class="mt-6 mb-2 text-center"> 
+				    <?php echo $pagination->createLinks(); ?>   
+				</nav>	
+			</div>	
 		</div>
 		<?php
 		} 

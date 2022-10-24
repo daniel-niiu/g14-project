@@ -6,12 +6,11 @@ include_once '../php/Pagination.class.php';
 require_once '../db/dbconnection.php';  
 isLoggedIn();
 // Set some useful configuration 
-$baseURL = '../php/get-tablet-transaction-data.php'; 
+$baseURL = '../php/get-stock-data.php'; 
 $limit = 10; 
  
 // Count of all records 
-$query   = $conn->query("SELECT COUNT(*) as rowNum FROM stockin AS s, product AS p WHERE p.product_eng_name  = s.product_name"); 
-
+$query = $conn->query("SELECT COUNT(*) as rowNum FROM stockin AS s, product AS p WHERE p.product_eng_name = s.product_name AND s.product_name = '".$_GET['productName']."'");  
 $result  = $query->fetch_assoc(); 
 $rowCount= $result['rowNum']; 
  
@@ -24,9 +23,9 @@ $pagConfig = array(
     'link_func' => 'searchFilter' 
 ); 
 $pagination =  new Pagination($pagConfig); 
- 
 // Fetch records based on the limit     
-$query = $conn->query("SELECT product_eng_name AS PName, receipt_no AS receipt, reciept_date AS date, stock_in AS stock_in, balance_left AS balance FROM stockin AS s, product AS p WHERE p.product_id = product_id ORDER BY reciept_date LIMIT 10");   
+
+$query = $conn->query("SELECT s.stock_in as stock, p.product_eng_name AS PName, s.receipt_no AS receipt, s.reciept_date AS date, s.balance_left AS balance FROM stockin AS s, product AS p WHERE p.product_eng_name = s.product_name AND s.product_name = '".$_GET['productName']."' ORDER BY reciept_date LIMIT 10");  
 
 ?>
 <!DOCTYPE html>
@@ -167,8 +166,7 @@ $query = $conn->query("SELECT product_eng_name AS PName, receipt_no AS receipt, 
 						<tr>
 							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-num']; ?></th>
 							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-date']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $title['stock-in']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $title['stock-out']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $title['stock-in']; ?></th> 
 							<th scope="col" class="px-6 py-3"><?php echo $stock['balance']; ?></th>
 							<th scope="col" class="px-6 py-3">
 								<span class="sr-only"><?php echo $form['btnedit']; ?></span>
@@ -185,11 +183,10 @@ $query = $conn->query("SELECT product_eng_name AS PName, receipt_no AS receipt, 
 			                    	<a href="../stocks/view-stock-in.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt"]; ?></a>
 			                    </th> 
 			                    <td class="px-6 py-4"><?php echo $row["date"]; ?></td>
-			                    <td class="px-6 py-4"><?php echo $row["stock_in"]; ?></td>
-			                    <td class="px-6 py-4"><?php echo $row["stock_out"]; ?></td>
+			                    <td class="px-6 py-4"><?php echo $row["stock"]; ?></td> 
 			                    <td class="px-6 py-4"><?php echo $row["balance"]; ?></td>
 			                    <td class="px-6 py-4 text-right">
-			                    	<a href="../stocks/edit-stock.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
+			                    	<a href="../stocks/edit-stock-in.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
 			                    </td>
 			                </tr>
 			            <?php

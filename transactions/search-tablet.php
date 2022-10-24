@@ -116,8 +116,7 @@ $query = $conn->query("SELECT * FROM Tablet ORDER BY tablet_id LIMIT $limit");
 					<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 						<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 							<tr>
-								<th scope="col" class="px-6 py-3">
-				<?php echo $transaction['tablet-id']; ?></th>
+								<th scope="col" class="px-6 py-3"><?php echo $transaction['tablet-id']; ?></th>
 								<th scope="col" class="px-6 py-3"><?php echo $transaction['search-anc-eng']; ?></th>
 								<th scope="col" class="px-6 py-3"><?php echo $transaction['search-anc-chi']; ?></th>
 								<th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-eng']; ?></th>

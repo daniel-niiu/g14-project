@@ -21,7 +21,7 @@ if($method === "add")
     $sql = "  
         INSERT INTO PRODUCT(product_id, product_status, product_eng_name, product_chi_name, unit_price, remarks, recordedBy, recordedOn)
         VALUES
-        ('$id','$status','$english','$chinese','$price','$remarks', '".$_SESSION['name']."', '".date("Y-m-d h:i:s")."')
+        ('$id','$status','$english','$chinese','$price','$remarks', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')
     ";
     //echo $sql; 
     //$result = $conn->query($sql);
