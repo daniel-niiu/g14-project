@@ -6,6 +6,8 @@ if(isset($_POST['page'])){
     // Include database configuration file 
     require_once '../db/dbconnection.php';  
      
+    include "../php/config.php";  
+    
     // Set some useful configuration 
     $baseURL = 'get-tablet-data.php'; 
     $offset = !empty($_POST['page'])?$_POST['page']:0; 
@@ -39,16 +41,16 @@ if(isset($_POST['page'])){
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">Light id</th>
-                    <th scope="col" class="px-6 py-3">Anc. name (en)</th>
-                    <th scope="col" class="px-6 py-3">Anc. name (ch)</th>
-                    <th scope="col" class="px-6 py-3">Mem. name (en)</th>
-                    <th scope="col" class="px-6 py-3">Mem. name (ch)</th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="sr-only">Edit</span>
-                    </th>
-                </tr>
+                            <tr>
+                                <th scope="col" class="px-6 py-3"><?php echo $transaction['tablet-id']; ?></th>
+                                <th scope="col" class="px-6 py-3"><?php echo $transaction['search-anc-eng']; ?></th>
+                                <th scope="col" class="px-6 py-3"><?php echo $transaction['search-anc-chi']; ?></th>
+                                <th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-eng']; ?></th>
+                                <th scope="col" class="px-6 py-3"><?php echo $transaction['search-mem-chi']; ?></th>
+                                <th scope="col" class="px-6 py-3">
+                                    <span class="sr-only"><?php echo $form['btnedit']; ?></span>
+                                </th>
+                            </tr>
             </thead>
             <tbody>
                 <?php    

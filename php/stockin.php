@@ -7,6 +7,7 @@ $method = $_GET["method"];
 if($method === "add")
 {
 	
+	date_default_timezone_set("Asia/Kuala_Lumpur");
     global $conn;
  
 	$prodname = explode("-", $_POST["search"]); //array [0] - product ID, array [1] product english name, array [2] product chinese name
@@ -33,12 +34,12 @@ if($method === "add")
 
 }
 
-if($method === "edit")
+if($method === "update")
 {
 	
     global $conn;
  
-    $name = $_POST["name"];
+    $name = $_POST["pName"];
     $date = $_POST["date"];
 	$summary = $_POST["summary"];
     $receiptno = $_POST["receipt"];
@@ -51,13 +52,13 @@ if($method === "edit")
 	
     if (!mysqli_query($conn,$sql)) {
 		
-        header("Location: ../stocks/view-stock-in.php?name=stock&name=$name");
+        header("Location: ../stocks/view-stock-in.php?name=stock&productName=$name&receiptNum=$receiptno&receiptDate=$date");
     
 	} 
 	
     else {
 		
-        header("Location: ../stocks/view-stock-in.php?name=stock&name=$name");
+        header("Location: ../stocks/view-stock-in.php?name=stock&productName=$name&receiptNum=$receiptno&receiptDate=$date");
     
 	}  
 	

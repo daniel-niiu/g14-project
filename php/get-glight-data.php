@@ -6,6 +6,8 @@ if(isset($_POST['page'])){
     // Include database configuration file 
     require_once '../db/dbconnection.php';  
      
+    include "../php/config.php";  
+    
     // Set some useful configuration 
     $baseURL = 'get-glight-data.php'; 
     $offset = !empty($_POST['page'])?$_POST['page']:0; 
