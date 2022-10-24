@@ -61,7 +61,8 @@ function member_validation(){
 		document.getElementById('p_ic').style.display = "none"; 
 		v4 = true;
     } 
-    if(!citizen ||  citizen.match(regex_ic_symbols)){ 
+    //if(!citizen ||  citizen.match(regex_ic_symbols)){ 
+    if(citizen != "" ||  citizen.match(regex_ic_symbols)){ 
 		document.getElementById('citizen').className  = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
         document.getElementById('p_citizen').style.display = "block"; 
         v5 = false;
@@ -146,14 +147,12 @@ function member_validation(){
     document.getElementById('m_gender').className  = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
 	document.getElementById('m_member').className  = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
 		 
-    if(v1 == false ||v2 == false ||v3 == false ||v4 == false ||v5 == false ||v6 == false ||v7 == false||v8 == false || v9 == false || v10 == false || v11 == false || v12 == false){  
+    if(v1 == false || v2 == false || v3 == false || v4 == false || v5 == false || v6 == false || v7 == false|| v8 == false || v9 == false || v10 == false || v11 == false || v12 == false){  
     	return false;
     }
     else{
     	return true;    // in success case
     }  
-    
-    
 }   
 
 
@@ -318,7 +317,7 @@ function tablet_validation(){
     } 
     document.getElementById('t_payment').className  = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
 
-    if(v1 == false ||v2 == false ||v3 == false ||v4 == false ||v5 == false ||v6 == false ||v7 == false||v8 == false || v9 == false || v10 == false || v11 == false || v12 == false || v13 == false){  
+    if(v1 == false || v2 == false || v3 == false || v4 == false || v5 == false || v6 == false || v7 == false|| v8 == false || v9 == false || v10 == false || v11 == false || v12 == false || v13 == false){  
     	return false;
     }
     else{
@@ -393,7 +392,7 @@ function tablet_transaction_validation(){
 		document.getElementById('p_chi').style.display = "none";
 		v6 = true;
     }  
-    if(v2 == false ||v3 == false ||v4 == false ||v5 == false ||v6 == false){  
+    if(v2 == false || v3 == false || v4 == false || v5 == false || v6 == false){  
     	return false;
     }
     else{
@@ -529,7 +528,7 @@ function blessing_validation(){
 		document.getElementById('r_amount').style.display = "none";
 		v10 = true;
     }  
-    if(v1 == true && v2 == true && v3 == true && v4 == true && v5 == true && v6 == true && v7 == true&& v8 == true && v9 == true && v10 == true){  
+    if(v1 == true && v2 == true && v3 == true && v4 == true && v5 == true && v6 == true && v7 == true && v8 == true && v9 == true && v10 == true){  
     	return true;
     } 
     else{
@@ -649,7 +648,6 @@ function glight_validation(){
 }
 
 
-
 function product_validation(){ 
 
 	var regex_price = /^[\d.]+$/; 
@@ -658,7 +656,7 @@ function product_validation(){
 	var regex_symbols= /[-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/;
 	var regex_add_symbols= /[-!$%^&*()_+|~=`{}\[\]:\/;<>?.@#]/; // without comma
 	var regex_ic_symbols= /[a-zA-Z!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/; // without - symbol
-	var regex_num_symbols= /[\d-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/;
+	var regex_num_symbols= /[-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/;
 	var regex_dob= /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 
     var id = document.getElementById('id').value; 
@@ -708,7 +706,7 @@ function product_validation(){
 		document.getElementById('p_price').style.display = "none";
 		v4 = true;
     } 
-    if(v1 == false ||v2 == false ||v3 == false ||v4 == false){  
+    if(v1 == false || v2 == false || v3 == false || v4 == false){  
     	return false;
     }
     else{

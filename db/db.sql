@@ -4,7 +4,7 @@ set autocommit = false;
 
 CREATE TABLE Admin (    
     admin_name VARCHAR(40) NOT NULL,
-    admin_username VARCHAR(40) NOT NULL,
+    admin_username VARCHAR(100) NOT NULL,
     admin_password VARCHAR(40) NOT NULL, 
     admin_status CHAR(1) NOT NULL, 
     admin_type VARCHAR(20) NOT NULL,

@@ -6,7 +6,7 @@ include "../db/dbconnection.php";
     $resultset = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
     $html = "";
     while( $row = mysqli_fetch_array($resultset) ) {
-        $html .= "<p class='clickme'>".$row['product_id']."-".$row['product_eng_name']."-".$row['product_chi_name']."</p>";
+        $html .= "<li class='clickme block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>".$row['product_id']."-".$row['product_eng_name']."-".$row['product_chi_name']."</li>";
     }
     echo $html;    
   

@@ -49,7 +49,7 @@ else
         			</div>
 					<ul class="py-1" aria-labelledby="dropdown">
 						<li>
-							<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"><i class="fa-sharp fa-solid fa-earth-asia"></i>&nbsp; <?php echo $page['profile-language'];?></a>
+							<a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer" onClick="onClick()"><i class="fa-sharp fa-solid fa-earth-asia"></i>&nbsp; <?php echo $page['profile-language'];?></a>
 						</li>
 					</ul>
 					<ul class="py-1" aria-labelledby="dropdown">
@@ -334,12 +334,6 @@ else
 					<?php 
 						}
 					?>
-					<li>
-						<a id='lang-en'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onclick="changeLanguageENG()">EN</a>
-					</li>
-					<li>
-						<a id='lang-ch' class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onclick="changeLanguageCHI()">CH</a>
-					</li>
 				</ul>
 			</div>
 		</div>
@@ -379,8 +373,27 @@ else
 </div>
 
 <script>  
+function onClick() {
+    var str_url = window.location.href; 
+	
+	if(str_url.includes("?lang=en") == true){
+		changeLanguageCHI();
+	}
+	else if(str_url.includes("&lang=en") == true){
+		changeLanguageCHI();
+	}
+	else if(str_url.includes("?lang=ch") == true){
+		changeLanguageENG();
+	}
+	else if(str_url.includes("&lang=ch") == true){
+		changeLanguageENG();
+	}
+    else{ 
+        location.href = window.location.href+"?lang=en";
+    }
+}
+	
 function changeLanguageENG() {  
-
     var str_url = window.location.href; 
     if(str_url.includes("index.php") == true)
     {  
@@ -416,6 +429,7 @@ function changeLanguageENG() {
         }
     }
 }
+	
 function changeLanguageCHI() {   
     var str_url = window.location.href;
     if(str_url.includes("index.php") == true)

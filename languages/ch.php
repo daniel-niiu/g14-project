@@ -13,7 +13,7 @@
 		"quick-export-popout" => "下载于<莲座交易>里选择“分期付款”的详细记录。",
 		"quick-export-title" => "您确定要快速下载此文件吗？",
 		//profile
-		"profile-user" => "欢迎您, ".$_SESSION['username'],
+		"profile-user" => "欢迎您, ".$_SESSION['name'],
 		"profile-acc-settings" => "账号设置",
 		"profile-password" => "修改密码",
 		"profile-signout" => "登出",
@@ -185,9 +185,9 @@
 		"export-record-title" => "您想要下载哪些资料?",
 		"choose-type" => "请选择您想要的类型",
 		"choose-period" => "请选择您想要的时间段",
+		"period-from" => "开始日期",
+		"period-to" => "结束日期",
 		"choose-product" => "请选择您想要的产品",
-		"period-monthly" => "按日份",
-		"period-yearly" => "按月份",
 		//export: transaction
 		"tablet-transactions" => "莲座交易"
 	);  
