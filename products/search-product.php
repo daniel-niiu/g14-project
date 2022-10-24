@@ -6,7 +6,7 @@ include_once '../php/Pagination.class.php';
 require_once '../db/dbconnection.php';  
 isLoggedIn();
 // Set some useful configuration 
-$baseURL = 'get-product-data.php'; 
+$baseURL = '../php/get-product-data.php'; 
 $limit = 10; 
  
 // Count of all records 
@@ -113,7 +113,7 @@ $query = $conn->query("SELECT * FROM product ORDER BY product_id LIMIT $limit");
 			                while($row = $query->fetch_assoc()){
 			            ?>
                         <tr class='border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700'>
-                            <th scope='row' class='px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap'><a href='view-product.php?name=product&Id=<?php echo $row["product_id"];?>' class='dark:hover:text-blue-500 md:hover:text-blue-700'><?php echo $row['product_id']; ?></a></th>
+                            <th scope='row' class='px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap'><a href='view-product.php?name=product&productName=<?php echo $row['product_eng_name'];?>&Id=<?php echo $row["product_id"];?>' class='dark:hover:text-blue-500 md:hover:text-blue-700'><?php echo $row['product_id']; ?></a></th>
                             <td class='px-6 py-4'><?php echo $row['product_eng_name'];?></td>
                             <td class='px-6 py-4'><?php echo $row['product_chi_name'];?></td>
                             <td class='px-6 py-4'><?php echo $row['product_status']; ?></td>
@@ -194,7 +194,7 @@ $query = $conn->query("SELECT * FROM product ORDER BY product_id LIMIT $limit");
 	    var keywords = $('#keywords').val();  
 	    $.ajax({
 	        type: 'POST',
-	        url: 'get-product-data.php',
+	        url: '../php/get-product-data.php',
 	        data:'page='+page_num+'&keywords='+keywords,
 	        beforeSend: function () {
 	            //$('.loading-overlay').show();
