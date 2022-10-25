@@ -50,9 +50,9 @@ if(isset($_POST['btn_export'])){
         $xlsx = SimpleXLSXGen::fromArray($excelData);
         $xlsx->downloadAs($fileName); // This will download the file to your local system 
         exit; 
-        header('Location: create-tablet.php?name=transaction&aside=create-tablet&lang=ch&export=success');
+        header('Location: create-tablet.php?name=transaction&aside=create-tablet&export=success');
     }else{ 
-        header('Location: create-tablet.php?name=transaction&aside=create-tablet&lang=ch&export=fail');
+        header('Location: create-tablet.php?name=transaction&aside=create-table&export=fail');
     }  
     /*
     echo "<pre>"; 

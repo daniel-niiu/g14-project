@@ -363,7 +363,19 @@ else
             <div class="p-6 text-center">				
 				<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.707 7.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L13 8.586V5h3a2 2 0 012 2v5a2 2 0 01-2 2H8a2 2 0 01-2-2V7a2 2 0 012-2h3v3.586L9.707 7.293zM11 3a1 1 0 112 0v2h-2V3z"></path><path d="M4 9a2 2 0 00-2 2v5a2 2 0 002 2h8a2 2 0 002-2H4V9z"></path></svg>
                 <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"><?php echo $page['quick-export-title'];?></h3>
-                <a href="#">
+                
+                <?php 
+				$url =  $_SERVER['REQUEST_URI'];
+				$file_name = basename(parse_url($url, PHP_URL_PATH)); 
+                if(str_contains($file_name,"index.php")){
+                	echo "<a href=\"php/quick_export.php\">";
+                }
+                else
+                {
+                	echo "<a href=\"../php/quick_export.php\">";
+                }
+                
+            	?>
 				<button data-modal-toggle="quick-export-modal" type="button" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"><?php echo $form['confirm']; ?></button>
 				</a>
 				<button data-modal-toggle="quick-export-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-6 py-2.5 text-center mr-2"><?php echo $form['cancel']; ?></button>
