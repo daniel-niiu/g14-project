@@ -140,7 +140,12 @@ $query = $conn->query("SELECT * FROM admin ORDER BY admin_username LIMIT $limit"
 									<?php echo $row['admin_type']; ?>
 								</td>
 								<td class="px-6 py-4">
-									<?php echo $row['admin_status']; ?>
+									<?php 
+										if($row['admin_status'] == 'T')
+											echo "Active"; 
+										else
+											echo "Inactive";
+									?>
 								</td>
 								<td class="px-6 py-4 text-right">
 									<a href="edit-account.php?name=account&aside=search-account&Id=<?php echo $row['admin_username']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>

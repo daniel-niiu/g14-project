@@ -56,12 +56,13 @@ isLoggedIn();
 			</li>
 		  </ol>
 		</nav>
-		
+
 		<?php   
-			$ID = $_GET['Id']; 
+			$name = $_GET['productName']; 
 			$receipt_No = $_GET['receiptNum']; 
 			$receipt_Date = $_GET['receiptDate']; 
-		    $sql = "SELECT p.remarks AS p_remarks, s.remarks AS s_remarks , p.product_eng_name AS eng_name, p.product_chi_name AS chi_name, s.product_id AS PID, s.receipt_no AS receipt, s.stock_date AS date, s.stock_in AS stock_in, s.stock_out AS stock_out, s.balance_left AS balance FROM stock AS s, product AS p WHERE p.product_id = s.product_id AND p.product_id = '".$ID."' AND s.receipt_no = '".$receipt_No."' AND s.stock_date = '".$receipt_Date."'"; 	  
+		    $sql = "SELECT stock_out,s.recordedBy, s.recordedOn, p.remarks AS p_remarks, s.remarks AS s_remarks, s.product_name AS PName, receipt_no AS receipt, reciept_date AS date, balance_left AS balance FROM stockout AS s, product AS p WHERE s.product_name = p.product_eng_name AND s.product_name = '".$name."' AND receipt_no = '".$receipt_No."' AND reciept_date = '".$receipt_Date."'"; 
+
 		    $result = $conn->query($sql);  
 			if (mysqli_num_rows($result) > 0) {
 		  	// output data of each row
@@ -71,7 +72,7 @@ isLoggedIn();
 			<div class="container flex flex-wrap justify-between items-center mx-auto">
 				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['view-stock']; ?></h2>
 				<div class="button">
-					<a href="edit-stock-out.php?name=stock&Id=<?php echo $row["PID"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>">
+					<a href="edit-stock-out.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>">
 						<button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
 							<i class="fa-solid fa-pencil"></i>&nbsp; <?php echo $form['edit-record']; ?>
 						</button>
@@ -106,7 +107,7 @@ isLoggedIn();
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $stock['product-name']; ?></label>
-						<input type="text" id="name" name="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['eng_name']."-".$row['chi_name'];?>" disabled readonly>
+						<input type="text" id="name" name="name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['PName'];?>" disabled readonly>
 					</div>
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['receipt-date']; ?></label>
@@ -146,11 +147,11 @@ isLoggedIn();
 				<div class="grid xl:grid-cols-2 xl:gap-6">
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['recorded-by']; ?></label>
-						<input type="text" id="user" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['username']; ?>" disabled readonly>
+						<input type="text" id="user" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['recordedBy']; ?>" disabled readonly>
 					</div> 
 					<div class="relative z-0 w-full mb-6 group">
 						<label for="record-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['recorded-on']; ?></label>
-						<input type="text" id="record-date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['username']; ?>" disabled readonly>
+						<input type="text" id="record-date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['recordedOn']; ?>" disabled readonly>
 					</div>
 				</div> 
 				<div class="relative z-0 w-full mb-6 group">

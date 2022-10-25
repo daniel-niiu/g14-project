@@ -5,7 +5,7 @@
 				
 			<div class="py-6 px-6 lg:px-8">
 				<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Sign in to the platform</h3>
-				<form class="space-y-6" method="post" action="php/login.php">
+				<form class="space-y-6">
 					<div>
 						<label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email Address</label>
 						<input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="example@email.com" required="">
@@ -35,11 +35,10 @@
 						</div>
                     </div>
 					
-					<button name="btn_submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="lsRememberMe()">Login to your account</button>
+					<button id="btn_login" name="btn_submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="lsRememberMe()">Login to your account</button>
                     
-					<div class="hidden flex text-red-500 dark:text-red-400">
-                        <i class="fa-solid fa-xmark"></i>
-						<p class="ml-2 text-xs">Login credentials are incorrect. Please try again.</p>
+					<div id="login_alert" class="hidden flex text-red-500 dark:text-red-400">
+                        <i class="fa-solid fa-xmark"></i><p class="ml-2 text-xs">Login credentials are incorrect. Please try again.</p>
                     </div>	
 					
 				</form>
@@ -52,19 +51,19 @@
 							</button>
 							<div class="py-6 px-6 lg:px-8">
 								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Forget Password</h3>
-								<form class="space-y-6" method="post" action="../php/accounts/account.php?method=forgetPassword">
+								<form class="space-y-6">
 									<div>
 										<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email Address</label>
 										<input type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Email Address" required="">
 										<p class="mt-1 ml-1 text-xs text-gray-500 dark:text-gray-300">Please enter your email address to recover your password.</p>
 									</div>
-									<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+									<button id="btn_forgot_pass" type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 									
-                                    <div class="hidden flex text-green-500 dark:text-green-400">
+                                    <div id="email_pass1" class="hidden flex text-green-500 dark:text-green-400">
                                         <i class="fa-solid fa-check"></i>
                                         <p class="ml-2 text-xs">Recovery password has been sent to your email.</p>
                                     </div>	
-                                    <div class="hidden flex text-red-500 dark:text-red-400">
+                                    <div id="email_pass2" class="hidden flex text-red-500 dark:text-red-400">
                                         <i class="fa-solid fa-xmark"></i>
                                         <p class="ml-2 text-xs">Email address cannot be found. Please try again.</p>
                                     </div>	
@@ -116,4 +115,53 @@
 		localStorage.checkbox = "";
 	  }
 	}
+</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$("#btn_login").on("click", function(e) {
+    e.preventDefault();
+    $.ajax({
+    	type: "POST",
+        url: "php/login.php",
+        data: { 
+        	do_login: "do_login",
+        	username: $("#username").val(), 
+        	password: $("#password").val() 
+        },
+        success:function(response) {
+        	if(response=="success")
+        	{
+        		$("#login_alert").addClass("hidden"); 
+        		window.location.href="index.php?lang=ch";
+        	}
+        	else
+        	{
+        		$("#login_alert").removeClass("hidden"); 
+	  		}
+  		}
+    });
+});
+$("#btn_forgot_pass").on("click", function(e) {
+    e.preventDefault();
+    $.ajax({
+    	type: "POST",
+        url: "php/login.php",
+        data: { 
+        	do_forgot_password: "do_forgot_password",
+        	email: $("#email").val()
+        },
+        success:function(response) {
+        	if(response=="success")
+        	{
+        		$("#email_pass1").removeClass("hidden");  
+        		$("#email_pass2").addClass("hidden"); 
+        	}
+        	else
+        	{
+        		$("#email_pass1").addClass("hidden");  
+        		$("#email_pass2").removeClass("hidden"); 
+	  		}
+  		}
+    });
+});
 </script>

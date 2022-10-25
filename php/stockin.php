@@ -5,8 +5,7 @@ include "../db/dbconnection.php";
 $method = $_GET["method"];
 
 if($method === "add")
-{
-	
+{ 
 	date_default_timezone_set("Asia/Kuala_Lumpur");
     global $conn;
  
@@ -47,18 +46,18 @@ if($method === "update")
 	$balance = $_POST["balance"];
     $remarks = $_POST["remarks"];
 
-   	$sql = "UPDATE STOCKIN SET stock_summary = '$summary', stock_in = '$stockin', balance_left = '$balance', remarks = '$remarks', recordedBy = '".$_SESSION['name']."', recordedOn = '".date("Y-m-d h:i:s")."'
+   	$sql = "UPDATE STOCKIN SET stock_summary = '$summary', stock_in = '$stockin', balance_left = '$balance', remarks = '$remarks'
 		WHERE product_name = '$name' AND receipt_no = '$receiptno' AND reciept_date = '$date'";  
 	
-    if (!mysqli_query($conn,$sql)) {
+    if (mysqli_query($conn,$sql)) {
 		
-        header("Location: ../stocks/view-stock-in.php?name=stock&productName=$name&receiptNum=$receiptno&receiptDate=$date");
+        header("Location: ../stocks/view-stock-in.php?name=stock&productName=$name&receiptNum=$receiptno&receiptDate=$date&status=success");
     
 	} 
 	
     else {
 		
-        header("Location: ../stocks/view-stock-in.php?name=stock&productName=$name&receiptNum=$receiptno&receiptDate=$date");
+        header("Location: ../stocks/view-stock-in.php?name=stock&productName=$name&receiptNum=$receiptno&receiptDate=$date&status=fail");
     
 	}  
 	

@@ -95,7 +95,7 @@ if($method === "update")
     //because disabled input
     $email = $_POST['hid_email'];
     if($email == "admin"){ 
-        //header("Location: ../accounts/search-account.php?name=account&aside=search-account");
+        header("Location: ../accounts/search-account.php?name=account&aside=search-account");
     }
     else{ 
         $acc_type = "";

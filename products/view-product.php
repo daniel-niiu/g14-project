@@ -26,7 +26,26 @@ $pagination =  new Pagination($pagConfig);
 // Fetch records based on the limit     
 
 $query = $conn->query("SELECT s.stock_in as stock, p.product_eng_name AS PName, s.receipt_no AS receipt, s.reciept_date AS date, s.balance_left AS balance FROM stockin AS s, product AS p WHERE p.product_eng_name = s.product_name AND s.product_name = '".$_GET['productName']."' ORDER BY reciept_date LIMIT 10");  
+//stock out
+$baseURL1 = '../php/get-stock-out-data.php';  
+ 
+// Count of all records 
+$query1 = $conn->query("SELECT COUNT(*) as rowNum FROM stockin AS s, product AS p WHERE p.product_eng_name = s.product_name AND s.product_name = '".$_GET['productName']."'");  
+$result1  = $query1->fetch_assoc(); 
+$rowCount1= $result1['rowNum']; 
+ 
+// Initialize pagination class 
+$pagConfig1 = array( 
+    'baseURL' => $baseURL, 
+    'totalRows' => $rowCount1, 
+    'perPage' => $limit, 
+    'contentDiv' => 'dataContainer', 
+    'link_func' => 'searchFilter' 
+); 
+$pagination1 =  new Pagination($pagConfig1); 
+// Fetch records based on the limit     
 
+$query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName, s.receipt_no AS receipt, s.reciept_date AS date, s.balance_left AS balance FROM stockout AS s, product AS p WHERE p.product_eng_name = s.product_name AND s.product_name = '".$_GET['productName']."' ORDER BY reciept_date LIMIT 10");   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -202,6 +221,57 @@ $query = $conn->query("SELECT s.stock_in as stock, p.product_eng_name AS PName, 
 			
 			<nav aria-label="Page navigation" class="mt-6 mb-2 text-center"> 
 			    <?php echo $pagination->createLinks(); ?>   
+			</nav>	
+
+
+			<div class="container flex flex-wrap justify-between items-center mx-auto pt-4">
+				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['view-product-stock']; ?></h2>
+			</div>
+			
+			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
+			
+			<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+						<tr>
+							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-num']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-date']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $title['stock-out']; ?></th> 
+							<th scope="col" class="px-6 py-3"><?php echo $stock['balance']; ?></th>
+							<th scope="col" class="px-6 py-3">
+								<span class="sr-only"><?php echo $form['btnedit']; ?></span>
+							</th>
+						</tr>
+					</thead>
+					<tbody> 
+                    	<?php  	 
+			            if($query1->num_rows > 0){
+			                while($row = $query1->fetch_assoc()){
+			            ?>
+			                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+			                 	<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+			                    	<a href="../stocks/view-stock-out.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt"]; ?></a>
+			                    </th> 
+			                    <td class="px-6 py-4"><?php echo $row["date"]; ?></td>
+			                    <td class="px-6 py-4"><?php echo $row["stock"]; ?></td> 
+			                    <td class="px-6 py-4"><?php echo $row["balance"]; ?></td>
+			                    <td class="px-6 py-4 text-right">
+			                    	<a href="../stocks/edit-stock-out.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
+			                    </td>
+			                </tr>
+			            <?php
+			                } 
+			            }
+		                else{ 
+			                echo '<tr><td colspan="6">'.$form['no-record-warning'].'</td></tr>'; 
+		                } 
+                    	?> 
+					</tbody>
+				</table>
+			</div>
+			
+			<nav aria-label="Page navigation" class="mt-6 mb-2 text-center"> 
+			    <?php echo $pagination1->createLinks(); ?>   
 			</nav>		
 		</div>
 	</div>
