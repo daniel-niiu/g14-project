@@ -61,7 +61,7 @@ isLoggedIn();
 			$name = $_GET['productName']; 
 			$receipt_No = $_GET['receiptNum']; 
 			$receipt_Date = $_GET['receiptDate']; 
-		    $sql = "SELECT s.recordedBy, s.recordedOn, p.remarks AS p_remarks, s.remarks AS s_remarks, s.product_name AS PName, receipt_no AS receipt, reciept_date AS date, stock_in AS stock_in, balance_left AS balance FROM stockin AS s, product AS p WHERE s.product_name = p.product_eng_name AND s.product_name = '".$name."' AND receipt_no = '".$receipt_No."' AND reciept_date = '".$receipt_Date."'"; 	  
+		    $sql = "SELECT p.product_id ,s.recordedBy, s.recordedOn, p.remarks AS p_remarks, s.remarks AS s_remarks, s.product_name AS PName, receipt_no AS receipt, reciept_date AS date, stock_in AS stock_in, balance_left AS balance FROM stockin AS s, product AS p WHERE s.product_name = p.product_eng_name AND s.product_name = '".$name."' AND receipt_no = '".$receipt_No."' AND reciept_date = '".$receipt_Date."'"; 	  
 		    $result = $conn->query($sql);  
 			if (mysqli_num_rows($result) > 0) {
 		  	// output data of each row
@@ -89,7 +89,7 @@ isLoggedIn();
 								<div class="p-6 text-center">
 									<svg class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
 									<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"><?php echo $form['delete-record-title']; ?></h3>
-									<a href="../php/stock.php?productName=<?php echo $row['PName'];?>&receiptNum=<?php echo $row['receipt'];?>&receiptDate=<?php echo $row['date'];?>&method=delete"><button data-modal-toggle="delete-popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+									<a href="../php/stockin.php?Id=<?php echo $row['product_id']; ?>&productName=<?php echo $row['PName'];?>&receiptNum=<?php echo $row['receipt'];?>&receiptDate=<?php echo $row['date'];?>&method=delete"><button data-modal-toggle="delete-popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
 										<?php echo $form['confirm']; ?>
 									</button></a>
 									<button data-modal-toggle="delete-popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"><?php echo $form['cancel']; ?></button>

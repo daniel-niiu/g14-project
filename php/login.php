@@ -2,12 +2,23 @@
 
 include "../db/dbconnection.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../../phpmailer/vendor/autoload.php';
+
+require '../../phpmailer/vendor/phpmailer/phpmailer/src/Exception.php';
+require '../../phpmailer/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require '../../phpmailer/vendor/phpmailer/phpmailer/src/SMTP.php'; 
+    
 /*
 $_SESSION["status"] = '';
 echo "<script>alert('".$_SESSION["status"]."');</script>";
 */
+//Login
 if(isset($_POST['do_login'])){
-	$sql = "SELECT * FROM admin WHERE admin_username = '".$_POST['username']."' AND admin_password = '".md5($_POST['password'])."'";  
+	$sql = "SELECT * FROM admin WHERE admin_username = '".$_POST['username']."' AND admin_password = '".md5($_POST['password'])."' AND admin_status='T'";  
 	$result = $conn->query($sql); 
 	if ($result->num_rows > 0) {
 	  // output data of each row
@@ -19,26 +30,25 @@ if(isset($_POST['do_login'])){
 		$_SESSION["type"] = $row['admin_type'];
 
 	  } 
-	  echo "success";
+	   echo "success";
 	}
-	else{   
-		$_SESSION["status"] = 'F'; 
+	else{    
 		echo "fail";
 	}
 	exit();
 } 
-if(isset($_POST['do_forgot_password'])){
-	
-    $mid_sql = "SELECT EXISTS (SELECT * FROM admin WHERE admin_username = '".$_POST['email']."') AS row";
+//forget password
+if(isset($_POST['do_forgot_password'])){ 
+    $mid_sql = "SELECT EXISTS (SELECT * FROM admin WHERE admin_username = '".$_POST['email']."' AND admin_status = 'T') AS row"; 
     $result = $conn->query($mid_sql);   
     $row = mysqli_fetch_array($result); 
-    if ($row['row'] == 0) {  
+    if ($row['row'] != 0) {  
 
     	$userpassword = generateRandomString();
         $name = "Tze Yin Member Management System";  // Name of your website or yours
         $to = $_POST['email'];  // mail of reciever
         $subject = "Forget Password";
-        $body = "The system was genereted a new password for you, the password is $userpassword";
+        $body = "This is a new password is $userpassword";
         $from = "angelxsting997@gmail.com";  // you mail
         $password = "ouyjodkprzmtpqhp";  // your gmail app password
 
@@ -71,8 +81,10 @@ if(isset($_POST['do_forgot_password'])){
         $mail->addAddress($to); // enter email address whom you want to send
         $mail->Subject = ("$subject");
         $mail->Body = $body;
-        if ($mail->send()) {
-	  		echo "success";
+        if ($mail->send()) { 
+            $sql = "UPDATE admin SET admin_password = '".md5($userpassword)."' WHERE admin_username = '".$to."'";  
+            if (mysqli_query($conn,$sql)) 
+	  		   echo "success";
 		}
 	}
 	else{    
@@ -80,5 +92,9 @@ if(isset($_POST['do_forgot_password'])){
 	}
     
 	exit();
+}
+
+function generateRandomString($length = 10) {
+    return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZw!@#$%^&*()_', ceil($length/strlen($x)) )),1,$length);
 }
 ?>

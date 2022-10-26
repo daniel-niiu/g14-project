@@ -68,26 +68,23 @@ if($method === "delete")
 {
 	
     global $conn;
- 
-	$name = $_GET['name']; 
+ 	$id = $_GET['Id'];
+	$name = $_GET['productName']; 
 	$receipt_No = $_GET['receiptNum']; 
 	$receipt_Date = $_GET['receiptDate']; 
 
 	$sql = "
 	        DELETE FROM STOCKIN WHERE product_name = '$name' AND receipt_no = '$receipt_No' AND reciept_date = '$receipt_Date'
 	"; 
-	
-    if (!mysqli_query($conn,$sql)) {
+    if (mysqli_query($conn,$sql)) {
 		
-        header("Location: ../stocks/view-stock-in.php?name=stock&name=$name");
+        header("Location: ../products/view-product.php?name=product&productName=$name&Id=$id&delete_status=success");
     
 	} 
 	
-    else {
-		
-        header("Location: ../stocks/view-stock-in.php?name=stock&name=$name");
-    
-	}  
+    else { 
+        header("Location: ../products/view-product.php?name=product&productName=$name&Id=$id&delete_status=fail"); 
+	} 
 	
 
 }

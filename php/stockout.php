@@ -65,9 +65,9 @@ if($method === "edit")
 if($method === "delete")
 {
 	
-    global $conn;
- 
-	$name = $_GET['name']; 
+    global $conn; 
+ 	$id = $_GET['Id'];
+	$name = $_GET['productName']; 
 	$receipt_No = $_GET['receiptNum']; 
 	$receipt_Date = $_GET['receiptDate']; 
 
@@ -75,16 +75,12 @@ if($method === "delete")
 	        DELETE FROM STOCKOUT WHERE product_name = '$name' AND receipt_no = '$receipt_No' AND reciept_date = '$receipt_Date'
 	"; 
 	
-    if (!mysqli_query($conn,$sql)) {
-		
-        header("Location: ../stocks/view-stock-out.php?name=stock&name=$name");
-    
+    if (mysqli_query($conn,$sql)) { 
+        header("Location: ../products/view-product.php?name=product&productName=$name&Id=$id&delete_status=success");  
 	} 
 	
-    else {
-		
-        header("Location: ../stocks/view-stock-out.php?name=stock&name=$name");
-    
+    else { 
+        header("Location: ../products/view-product.php?name=product&productName=$name&Id=$id&delete_status=fail");  
 	}  
 	
 

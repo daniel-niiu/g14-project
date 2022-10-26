@@ -120,7 +120,19 @@ else
 							</button>
 							<div class="px-6 py-6 lg:px-8">
 								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $page['profile-password'];?></h3>
-									<form class="space-y-6" action="php/account.php?method=updatePassword" method="post">
+
+					                <?php 
+									$url =  $_SERVER['REQUEST_URI'];
+									$file_name = basename(parse_url($url, PHP_URL_PATH)); 
+					                if(str_contains($file_name,"index.php")){
+										echo "<form class=\"space-y-6\" action=\"php/account.php?method=updatePassword\" method=\"post\">";
+					                }
+					                else
+					                {
+										echo "<form class=\"space-y-6\" action=\"../php/account.php?method=updatePassword\" method=\"post\">";
+					                }
+					                
+					            	?> 
 										<div>
 											<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['email-address'];?></label>
 											<input type="text" id="email" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $_SESSION['username']; ?>" disabled readonly>
@@ -154,21 +166,34 @@ else
 											
 											<p class="text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1"><?php echo $account['type-title'];?></p>
 										</div>
+										<?php 
+											if($_SESSION['username'] != "admin")
+											{
+										?>
 										<div>
 											<label for="current-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['old-password'];?></label>
 											<input type="password" name="current-password" id="current-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="<?php echo $account['current-password-placeholder'];?>" required>
 										</div>
 										<div>
 											<label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['new-password'];?></label>
-											<input type="password" name="password" id="edit-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="<?php echo $account['new-password-placeholder'];?>" required>
+											<input type="password" name="password" id="edit_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="<?php echo $account['new-password-placeholder'];?>" required>
 										</div>
 										<div>
 											<label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['confirm-password'];?></label>
-											<input type="password" name="confirm-password" id="confirm-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="<?php echo $account['confirm-password-placeholder'];?>" required>
-										</div>
-										
-										<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><?php echo $form['submit'];?></button>
-										
+											<input type="password" name="confirm-password" id="confirm_password" onkeyup="comfirmPassword()" r class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="<?php echo $account['confirm-password-placeholder'];?>" required>
+										</div> 
+	                                    <div id="correct_pass" class="hidden flex text-green-500 dark:text-green-400">
+	                                        <i class="fa-solid fa-check"></i>
+	                                        <p class="ml-2 text-xs">The password is match.</p>
+	                                    </div>	
+	                                    <div id="wrong_pass" class="hidden flex text-red-500 dark:text-red-400">
+	                                        <i class="fa-solid fa-xmark"></i>
+	                                        <p class="ml-2 text-xs">The password is incorrect. Please try again.</p>
+	                                    </div>	
+										<button type="submit" id="btn_forgotpw_submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><?php echo $form['submit'];?></button>
+										<?php 
+											}
+										?>
 									</form>
 							</div>
 						</div>
@@ -477,5 +502,24 @@ function changeLanguageCHI() {
             location.href = window.location.href+"&lang=ch";
         }
     }
+}
+function comfirmPassword(){
+	var pw1 = document.getElementById("edit_password").value;
+	var pw2 = document.getElementById("confirm_password").value;
+	var cpw = document.getElementById("correct_pass");
+	var wpw = document.getElementById("wrong_pass"); 
+	var btn = document.getElementById("btn_forgotpw_submit");
+	if(pw1 !== pw2)
+	{
+		cpw.classList.add("hidden");
+  		wpw.classList.remove("hidden");
+  		btn.disabled = true;
+	}
+	else
+	{
+		cpw.classList.remove("hidden");
+  		wpw.classList.add("hidden");
+  		btn.disabled = false;
+	}
 }
 </script>
