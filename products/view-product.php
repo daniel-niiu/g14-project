@@ -174,7 +174,7 @@ $query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName
 			?>
 			
 			<div class="container flex flex-wrap justify-between items-center mx-auto pt-4">
-				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['view-product-stock']; ?></h2>
+				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['view-product-stock-in']; ?></h2>
 			</div>
 			
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
@@ -225,7 +225,7 @@ $query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName
 
 
 			<div class="container flex flex-wrap justify-between items-center mx-auto pt-4">
-				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['view-product-stock']; ?></h2>
+				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['view-product-stock-out']; ?></h2>
 			</div>
 			
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>

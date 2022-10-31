@@ -6,6 +6,7 @@
 		"transaction" => "Transaction",
 		"product" => "Product",
 		"stock" => "Stock",
+		"analytics" => "Analytics",
 		//footer
 		"footer" => "Disclaimer: This is a student work in progress for SWE40001/SWE40002 Software Engineering Project A/B of Swinburne University of Technology, Sarawak (2022).",
 		//quick-export
@@ -102,7 +103,8 @@
 		"search-product" => "Search Product",
 		"view-product" => "View Product",
 		"edit-product" => "Edit Product",
-		"view-product-stock" => "View Product Stocks",
+		"view-product-stock-in" => "View Product Stock-Ins",
+		"view-product-stock-out" => "View Product Stock-Outs",
 		//stocks
 		"stock-in" => "Stock In",
 		"stock-out" => "Stock Out",
@@ -141,6 +143,8 @@
 		"index-reminder-title" => "Title", 
 		"index-reminder-date" => "Date", 
 		"index-reminder-content" => "Content", 
+		"index-reminder-null" => "Hello, ".$_SESSION['name']."!", 
+		"index-reminder-null-title" => "Tap the 'Add Reminder' button above and start recording reminders!", 
 		"index-reminder-edit-title" => "Edit Reminder",
 		"index-reminder-delete-title" => "Delete Reminder",
 		"index-reminder-delete" => "Are you sure you want to delete this reminder?", 
@@ -273,5 +277,13 @@
 		"product-name" => "Product Name",
 		"summary" => "Summary",
 		"balance" => "Balance"
+	);
+
+	$analytics = array(
+		"manage-analytics" => "Manage Analytics",
+		"membership" => "Membership Analytics",
+		"transaction" => "Transaction Analytics",
+		"product" => "Stock Analytics",
+		"category" => "Category"
 	);
 ?>

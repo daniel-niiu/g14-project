@@ -6,6 +6,7 @@
 		"transaction" => "交易管理",
 		"product" => "产品管理",
 		"stock" => "库存管理",
+		"analytics" => "统计管理",
 		//footer
 		"footer" => "声明：此作品为斯威本科技大学生于 2022 年为 SWE40001/SWE40002 软件工程科（甲、丙）所制的在制品。",
 		//quick-export
@@ -102,7 +103,8 @@
 		"search-product" => "搜索产品",
 		"view-product" => "鉴别产品",
 		"edit-product" => "编辑产品",
-		"view-product-stock" => "鉴别产品库存",
+		"view-product-stock-in" => "鉴别产品进货",
+		"view-product-stock-out" => "鉴别产品出货",
 		//stocks
 		"stock-in" => "库存进货",
 		"stock-out" => "库存出货",
@@ -141,6 +143,8 @@
 		"index-reminder-title" => "标题", 
 		"index-reminder-date" => "日期", 
 		"index-reminder-content" => "内容", 
+		"index-reminder-null" => "您好, ".$_SESSION['name']."！", 
+		"index-reminder-null-title" => "点击上方的 “添加笔录” 按钮并开始记载笔录！", 
 		"index-reminder-edit-title" => "修改笔录",
 		"index-reminder-delete-title" => "删除笔录",
 		"index-reminder-delete" => "您确定要删除此笔录吗？", 
@@ -218,7 +222,8 @@
 		"admission" => "入会日期",
 		"recommender-id" => "推荐人编号",
 		"recommender-name" => "推荐人姓名",
-		"select-all" => "选择全部"
+		"select-all" => "选择全部",
+		"select-null" => "请选择一个标题"
 	);
 
 	$transaction = array(
@@ -273,5 +278,13 @@
 		"product-name" => "产品名称",
 		"summary" => "摘要",
 		"balance" => "结存"
+	);
+
+	$analytics = array(
+		"manage-analytics" => "统计管理",
+		"membership" => "会员统计",
+		"transaction" => "交易统计",
+		"product" => "库存统计",
+		"category" => "类别"
 	);
 ?>

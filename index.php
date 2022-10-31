@@ -140,8 +140,8 @@ isMainPageLoggedIn();
 					}
 				}
 				else{
-					echo '
-					<p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">There has no event</p>';
+					echo '<p class="mt-2 text-base text-center font-bold text-gray-500 dark:text-gray-400">'.$index['index-reminder-null'].'</p>
+					<p class="mb-6 text-sm text-center font-normal text-gray-500 dark:text-gray-400">'.$index['index-reminder-null-title'].'</p>';
 				}
 				?> 
 			</ol>

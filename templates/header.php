@@ -227,7 +227,7 @@ else
 								$name =  "href='members/create-member.php?name=member&aside=create-member";
 							   	$class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 							}
-						   else if($_GET['name'] == 'transaction' || $_GET['name'] == 'product' || $_GET['name'] == 'stock' || $_GET['name'] == 'account'){ 
+						   else if($_GET['name'] == 'transaction' || $_GET['name'] == 'product' || $_GET['name'] == 'stock' || $_GET['name'] == 'account' || $_GET['name'] == 'analytics'){ 
 							   	$name =  "href='../members/create-member.php?name=member&aside=create-member";
 							   	$class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
@@ -264,7 +264,7 @@ else
 								$name = "href='transactions/create-tablet.php?name=transaction&aside=create-tablet";
 							   	$class = 'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 							}
-						   else if($_GET['name'] == 'member' || $_GET['name'] == 'product' || $_GET['name'] == 'stock' || $_GET['name'] == 'account'){
+						   else if($_GET['name'] == 'member' || $_GET['name'] == 'product' || $_GET['name'] == 'stock' || $_GET['name'] == 'account' || $_GET['name'] == 'analytics'){
 							   $name = "href='../transactions/create-tablet.php?name=transaction&aside=create-tablet";
 							   $class = 'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
@@ -304,7 +304,7 @@ else
 								$name = "href='products/create-product.php?name=product&aside=create-product";
 								$class = 'class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 							}
-						   else if($_GET['name'] == 'member' || $_GET['name'] == 'transaction' || $_GET['name'] == 'stock' || $_GET['name'] == 'account'){
+						   else if($_GET['name'] == 'member' || $_GET['name'] == 'transaction' || $_GET['name'] == 'stock' || $_GET['name'] == 'account' || $_GET['name'] == 'analytics'){
 							   $name = "href='../products/create-product.php?name=product&aside=create-product";
 							   $class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
@@ -337,7 +337,7 @@ else
 								$name = "href='stocks/stock-in.php?name=stock&aside=stock-in";
 							   	$class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 							}
-						   else if($_GET['name'] == 'member' || $_GET['name'] == 'transaction' || $_GET['name'] == 'product' || $_GET['name'] == 'account'){
+						   else if($_GET['name'] == 'member' || $_GET['name'] == 'transaction' || $_GET['name'] == 'product' || $_GET['name'] == 'account' || $_GET['name'] == 'analytics'){
 							   $name = "href='../stocks/stock-in.php?name=stock&aside=stock-in";
 							   $class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
 						   }
@@ -355,6 +355,39 @@ else
                             echo $name;
                             echo $class;
 						   ?>><?php echo $page['stock']; ?></a>
+					</li>
+					<li>
+						<a 
+						   <?php 
+                           $name = "";
+						   $class = "";
+						   if($_GET['name'] == 'analytics') 
+						   {
+								$name = "href='membership.php?name=analytics&aside=membership";
+								$class = "class='block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white' aria-current='page'"; 
+							}
+						   else if($_GET['name'] == ""){
+								$name = "href='analytics/membership.php?name=analytics&aside=membership";
+							   	$class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
+							}
+						   else if($_GET['name'] == 'member' || $_GET['name'] == 'transaction' || $_GET['name'] == 'product' || $_GET['name'] == 'account' || $_GET['name'] == 'stock'){
+							   $name = "href='../analytics/membership.php?name=analytics&aside=membership";
+							   $class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
+						   }
+						   else{ 
+								$name = "href='../membership.php?name=analytics&aside=membership";
+							   	$class ='class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"';
+							} 
+
+                            if($_GET['lang'] == 'en'){
+                              	$name .= "&lang=en'";
+                            }
+                            else {
+                            	$name .= "&lang=ch'";
+                            };
+                            echo $name;
+                            echo $class;
+						   ?>><?php echo $page['analytics']; ?></a>
 					</li>
 					<?php 
 						}
@@ -503,6 +536,7 @@ function changeLanguageCHI() {
         }
     }
 }
+	
 function comfirmPassword(){
 	var pw1 = document.getElementById("edit_password").value;
 	var pw2 = document.getElementById("confirm_password").value;
