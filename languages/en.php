@@ -242,11 +242,11 @@
 		"payment-type" => "Payment Type",
 		"type-lump-sum" => "Lump Sum Payment", 
 		"type-over-time" => "Over Time Payment",
-		"anc-eng-name" => "Ancestor Name (English)",
-		"anc-chi-name" => "Ancestor Name (Chinese)",
+		"anc-eng-name" => "Deceased's Name (English)",
+		"anc-chi-name" => "Deceased's Name (Chinese)",
 		//search: memorial tablet
-		"search-anc-eng" => "Ancestor Name (EN)",
-		"search-anc-chi" => "Ancestor Name (CH)",
+		"search-anc-eng" => "Deceased's Name (EN)",
+		"search-anc-chi" => "Deceased's Name (CH)",
 		"search-mem-eng" => "Member Name (EN)",
 		"search-mem-chi" => "Member Name (CH)",
 		//form: blessing lantern

@@ -243,11 +243,11 @@
 		"payment-type" => "付费类型",
 		"type-lump-sum" => "一次性付款", 
 		"type-over-time" => "分期付款",
-		"anc-eng-name" => "祖先英文姓名",
-		"anc-chi-name" => "祖先华文姓名",
+		"anc-eng-name" => "逝者英文姓名",
+		"anc-chi-name" => "逝者华文姓名",
 		//search: memorial tablet
-		"search-anc-eng" => "祖先英文姓名",
-		"search-anc-chi" => "祖先华文姓名",
+		"search-anc-eng" => "逝者英文姓名",
+		"search-anc-chi" => "逝者华文姓名",
 		"search-mem-eng" => "会员英文姓名",
 		"search-mem-chi" => "会员中文姓名",
 		//form: blessing lantern
