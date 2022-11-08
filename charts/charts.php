@@ -191,14 +191,14 @@ $tablet_monthly = array();
         ["Feb",  30.9, 69.5, 32.4],
         ["Mar",  25.4,   57, 25.7],
         ["Apr",  11.7, 18.8, 10.5],
-        ["May",  11.9, 17.6, 10.4],
+        ["May",  11.9, 12, 10.4],
         ["Jun",   8.8, 13.6,  7.7],
         ["Jul",   7.6, 12.3,  9.6],
         ["Aug",  12.3, 29.2, 10.6],
         ["Sep",  16.9, 42.9, 14.8],
         ["Oct", 12.8, 30.9, 11.6],
         ["Nov",  5.3,  7.9,  4.7],
-        ["Dev",  6.6,  8.4,  5.2] 
+        ["Dec",  6.6,  ,  5.2] 
       ]);
 
       var options = {
@@ -263,7 +263,7 @@ $tablet_monthly = array();
                       $temp_overs_time_array[] = array($date1,0); 
                   }
                   else 
-                    $temp_overs_time_array[] = array($date1,0); 
+                      $temp_overs_time_array[] = array($date1,0); 
                   if(count($tablet_array_lump_sum) != $k)
                   { 
                     if($tablet_array_lump_sum[$k][0] == $date1)
@@ -286,21 +286,6 @@ $tablet_monthly = array();
               ?>
             ]);
 
-            var options = {
-              chart: {
-                title: 'Box Office Earnings in First Two Weeks of Opening',
-                subtitle: 'in millions of dollars (USD)'
-              }
-              
-              ,
-              width: 700,
-              height: 500
-              
-            };
-
-            var chart = new google.charts.Line(document.getElementById('linechart_material1'));
-
-            chart.draw(data, google.charts.Line.convertOptions(options));
         } 
     </script>
   </head>

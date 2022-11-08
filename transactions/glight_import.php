@@ -5,6 +5,8 @@ include_once '../db/dbconnection.php';
 include '../../phpspreadsheet/vendor/autoload.php';
  
 
+date_default_timezone_set("Asia/Kuala_Lumpur");
+
 if($_FILES["excel"]["name"] != '')
 {
     $allowed_extension = array('xls', 'xlsx');
@@ -26,7 +28,7 @@ if($_FILES["excel"]["name"] != '')
         $header = "";
         $i=0;
         $Glight_data = "GLight_id, member_eng_name, member_chi_name, price, contact_num, remarks";
-        $Glight_receipt_data = "GLight_id, receipt_num, receipt_date, receipt_amount";
+        $Glight_receipt_data = "GLight_id, receipt_num, receipt_date, receipt_amount, recordedBy, recordedOn";
 
         $insert_glight_data = "";
         $insert_receipt_data = "";
@@ -35,10 +37,10 @@ if($_FILES["excel"]["name"] != '')
         { 
             $q="";
             if($i!=0){ 
-                $insert_glight_data = "'$row[0]', '$row[1]', '$row[2]', '$row[3]', '$row[4]', '$row[5]'"; 
+                $insert_glight_data = "'$row[0]', '$row[1]', '$row[2]', '$row[3]', '$row[4]', '$row[8]'"; 
                 $row[6] = str_replace('/', '-', $row[6]);
                 $date = date('Y-m-d',strtotime($row[6])); 
-                $insert_receipt_data = "'$row[0]', '$row[7]', '$date', '$row[8]'";  
+                $insert_receipt_data = "'$row[0]', '$row[5]', '$date', '$row[7]', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."'";  
 
                 $query="INSERT INTO glight(".$Glight_data.") values (".$insert_glight_data.");";
                 $qquery="INSERT INTO glight_receipt(".$Glight_receipt_data.") values (".$insert_receipt_data.");";    
@@ -48,7 +50,7 @@ if($_FILES["excel"]["name"] != '')
             } 
             $i++;
         } 
-        header("Location: create-glight.php?name=transaction&aside=create-glight");
+        header("Location: create-glight.php?name=transaction&aside=create-glight&import_status=success");
         $message = '<div class="alert alert-success">Data Imported Successfully</div>';
         //header("Location: create-glight.php?name=transaction&aside=create-glight");
     }

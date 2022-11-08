@@ -193,8 +193,11 @@ isMainPageLoggedIn();
 		</div>
 	</div>
 
+	<?php
+		if($_SESSION['type'] == "admin")
+		{
+	?>
 	<hr class="border-gray-300 dark:border-gray-600"/>
-	
 	<div class="admin-shortcuts mt-2 mb-1">
 		<div class="container flex flex-wrap justify-between items-center mx-auto pl-4 pr-4">
 			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $index['index-shortcuts'];?></h3>
@@ -344,6 +347,9 @@ isMainPageLoggedIn();
 		</div>
 	</div>
 	
+	<?php
+		}
+	?>
 	<!--Toast: Edit User-->
 	<div id="toast-success-user" class="hidden flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
 		<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">

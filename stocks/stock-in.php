@@ -210,7 +210,10 @@ isLoggedIn();
             	$.ajax({
             		url: "fetch_stock_productname.php",
             		type: "post",
-            		data: { value:searchField},
+            		data: { 
+            			value: searchField,
+            			type: "search"
+            		},
             		success: function(d){
             			$('#result').html(d);
             		}
