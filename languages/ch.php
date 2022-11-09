@@ -128,9 +128,13 @@
 		//member
 		"toast-success-create-record" => "记录已顺利被添加。",
 		"toast-fail-create-record" => "记录已存在于档案中。",
-		"toast-success-edit-record" => "记录已顺利被修改。"
-	);
+		"toast-success-edit-record" => "记录已顺利被修改。",
+		"toast-fail-edit-record" => "记录不顺利被修改。",
+		"toast-success-delete-record" => "记录已顺利被删除。",
+		"toast-fail-delete-record" => "记录不顺利被删除。"
 
+	);
+	
 	$index = array(
 		//titles
 		"index-dashboard" => "首页",

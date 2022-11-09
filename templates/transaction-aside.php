@@ -1,5 +1,6 @@
 <?php
 	$aside = $_GET['aside'];
+	session_start();
 ?>
 <aside class="w-72 mx-auto mb-4 pr-4" id="accordion-collapse" data-accordion="collapse">
 	<div class="overflow-y-auto py-4 px-4 bg-gray-100 rounded dark:bg-gray-800">
@@ -24,19 +25,19 @@
 				  <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
 					<ul>
 						<li>
-							<a href="create-tablet.php?name=transaction&aside=create-tablet" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "create-tablet") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
+							<a href="create-tablet.php?name=transaction&aside=create-tablet&lang=<?php echo $_SESSION['lang']; ?>" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "create-tablet") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
 								<i class="fa-solid fa-plus"></i>
 								<span class="ml-3"><?php echo $title['create-tablet']; ?></span>
 							</a>
 						</li>
 						<li>
-							<a href="search-tablet.php?name=transaction&aside=search-tablet" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "search-tablet") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
+							<a href="search-tablet.php?name=transaction&aside=search-tablet&lang=<?php echo $_SESSION['lang']; ?>" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "search-tablet") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
 								<i class="fa-solid fa-magnifying-glass"></i>
 								<span class="ml-3"><?php echo $title['search-tablet']; ?></span>
 							</a>
 						</li>
 						<li>
-							<a href="create-tablet-transaction.php?name=transaction&aside=tablet-transaction" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "tablet-transaction") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
+							<a href="create-tablet-transaction.php?name=transaction&aside=tablet-transaction&lang=<?php echo $_SESSION['lang']; ?>" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "tablet-transaction") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
 								<i class="fa-solid fa-file-circle-plus"></i>
 								<span class="ml-3"><?php echo $title['add-tablet-transaction']; ?></span>
 							</a>
@@ -103,13 +104,13 @@
 		  <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
 			<ul>
 				<li>
-					<a href="create-blantern.php?name=transaction&aside=create-blantern" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "create-blantern") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
+					<a href="create-blantern.php?name=transaction&aside=create-blantern&lang=<?php echo $_SESSION['lang']; ?>" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "create-blantern") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
 						<i class="fa-solid fa-plus"></i>
 						<span class="ml-3"><?php echo $title['create-blessing']; ?></span>
 					</a>
 				</li>
 				<li>
-					<a href="search-blantern.php?name=transaction&aside=search-blantern" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "search-blantern") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
+					<a href="search-blantern.php?name=transaction&aside=search-blantern&lang=<?php echo $_SESSION['lang']; ?>" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "search-blantern") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
 						<i class="fa-solid fa-magnifying-glass"></i>
 						<span class="ml-3"><?php echo $title['search-blessing']; ?></span>
 					</a>
@@ -166,13 +167,13 @@
 		  <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
 			<ul>
 				<li>
-					<a href="create-glight.php?name=transaction&aside=create-glight" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "create-glight") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
+					<a href="create-glight.php?name=transaction&aside=create-glight&lang=<?php echo $_SESSION['lang']; ?>" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "create-glight") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
 						<i class="fa-solid fa-plus"></i>
 						<span class="ml-3"><?php echo $title['create-light']; ?></span>
 					</a>
 				</li>
 				<li>
-					<a href="search-glight.php?name=transaction&aside=search-glight" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "search-glight") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
+					<a href="search-glight.php?name=transaction&aside=search-glight&lang=<?php echo $_SESSION['lang']; ?>" class="flex items-center p-2 pl-5 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 <?php if($aside == "search-glight") echo "md:text-blue-700 dark:text-white"; else echo "dark:hover:text-white dark:text-gray-400"?> hover:bg-gray-200 dark:hover:bg-gray-700 group">
 						<i class="fa-solid fa-magnifying-glass"></i>
 						<span class="ml-3"><?php echo $title['search-light']; ?></span>
 					</a>

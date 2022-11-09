@@ -1,6 +1,6 @@
 <?php
 include "db/dbconnection.php";    
-isMainPageLoggedIn();
+isMainPageLoggedIn(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -729,10 +729,10 @@ function stock_validation(){
     var date = document.getElementById('date').value;     
     var receipt = document.getElementById('receipt').value;  
     var stock = document.getElementById('stock-in').value;
-    var balance = document.getElementById('balance').value; 
- 
-    var v1,v2,v3,v4,v5,v6,v7 = false;  
-    if(id == "" || !id.match(regex_spec_char)){  
+    var balance = document.getElementById('balance1').value; 
+
+    var v1,v2,v3,v4,v5 = false;  
+    if(id == ""){  
         document.getElementById('search').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
         //document.getElementById('p_id').style.display = "block";
         v1 = false; 
@@ -742,6 +742,7 @@ function stock_validation(){
         //document.getElementById('p_id').style.display = "none";
         v1 = true; 
     }
+     
     if(!date || !date.match(regex_dob)){ 
         document.getElementById('date').className  = "bg-gray-50 border border-red-500 text-gray-900 sm:text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
         //document.getElementById('p_r_date').style.display = "block"; 
@@ -773,12 +774,12 @@ function stock_validation(){
         v4 = true;
     } 
     if(!balance || !balance.match(regex_price)){ 
-        document.getElementById('balance').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
+        document.getElementById('balance1').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
         //document.getElementById('p_price').style.display = "block"; 
         v5= false;
     }    
     else{ 
-        document.getElementById('balance').className = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
+        document.getElementById('balance1').className = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
         //document.getElementById('p_price').style.display = "none";
         v5 = true;
     } 
@@ -787,6 +788,86 @@ function stock_validation(){
     }
     else{
         return true;    // in success case
-    }   
+    }  
+     
+}
+
+   
+function stockout_validation(){ 
+
+    var regex_price = /^[\d.]+$/; 
+    var regex_number = /^[\d]+$/; 
+    var regex_spec_char = /^[a-zA-Z\d\_]+$/; 
+    var regex_symbols= /[-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/;
+    var regex_add_symbols= /[-!$%^&*()_+|~=`{}\[\]:\/;<>?.@#]/; // without comma
+    var regex_ic_symbols= /[a-zA-Z!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/; // without - symbol
+    var regex_num_symbols= /[-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/;
+    var regex_dob= /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/; 
+
+    var id = document.getElementById('search').value; 
+    var date = document.getElementById('date').value;     
+    var receipt = document.getElementById('receipt').value;  
+    var stock = document.getElementById('stock-out').value;
+    var balance = document.getElementById('balance1').value; 
     
+
+    var v1,v2,v3,v4,v5 = false;  
+    if(id == ""){  
+        document.getElementById('search').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
+        //document.getElementById('p_id').style.display = "block";
+        v1 = false; 
+    }   
+    else{  
+        document.getElementById('search').className = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
+        //document.getElementById('p_id').style.display = "none";
+        v1 = true; 
+    }
+     
+    if(!date || !date.match(regex_dob)){ 
+        document.getElementById('date').className  = "bg-gray-50 border border-red-500 text-gray-900 sm:text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
+        //document.getElementById('p_r_date').style.display = "block"; 
+        v2= false;
+    }    
+    else{ 
+        document.getElementById('date').className  = "bg-gray-50 border border-green-500 text-gray-900 sm:text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
+        //document.getElementById('p_r_date').style.display = "none"; 
+        v2 = true;
+    } 
+    if(receipt == "" || !receipt.match(regex_spec_char)){  
+        document.getElementById('receipt').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
+        //document.getElementById('p_receipt').style.display = "block";
+        v3 = false; 
+    }   
+    else{  
+        document.getElementById('receipt').className = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
+        //document.getElementById('p_receipt').style.display = "none";
+        v3 = true; 
+    }   
+    if(!stock || !stock.match(regex_price)){ 
+        document.getElementById('stock-out').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
+        //document.getElementById('p_price').style.display = "block"; 
+        v4= false;
+    }    
+    else{ 
+        document.getElementById('stock-out').className = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
+        //document.getElementById('p_price').style.display = "none";
+        v4 = true;
+    } 
+    if(!balance || !balance.match(regex_price)){ 
+        document.getElementById('balance1').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
+        //document.getElementById('p_price').style.display = "block"; 
+        v5= false;
+    }    
+    else{ 
+        document.getElementById('balance1').className = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
+        //document.getElementById('p_price').style.display = "none";
+        v5 = true;
+    } 
+    if(v1 == false || v2 == false || v3 == false || v4 == false || v5 == false){  
+        return false;
+    }
+    else{
+        return true;    // in success case
+    }  
+     
 }

@@ -118,17 +118,21 @@
 
 	$toast = array(
 		//index
-		"toast-success-password" => "Password modified successfully.",
-		"toast-add-reminder" => "Reminder created successfully.",
-		"toast-edit-reminder" => "Reminder modified successfully.",
-		"toast-delete-reminder" => "Reminder has been deleted.",
-		"toast-success-filter" => "Shortcuts modified successfully.",
-		"toast-new-notification" => "New notification",
-		"toast-notification-today" => "Today",
-		//record
-		"toast-success-create-record" => "Record created successfully",
-		"toast-fail-create-record" => "Record has been created before",
-		"toast-success-edit-record" => "Record modified successfully"
+		"toast-success-password" => "帐户密码已顺利被修改。",
+		"toast-add-reminder" => "新笔录已顺利被添加。",
+		"toast-edit-reminder" => "笔录已顺利被修改。",
+		"toast-delete-reminder" => "笔录已顺利被删除。",
+		"toast-success-filter" => "经纪快捷已顺利被修改。",
+		"toast-new-notification" => "新通知",
+		"toast-notification-today" => "今日",
+		//member
+		"toast-success-create-record" => "记录已顺利被添加。",
+		"toast-fail-create-record" => "记录已存在于档案中。",
+		"toast-success-edit-record" => "记录已顺利被修改。",
+		"toast-fail-edit-record" => "记录不顺利被修改。",
+		"toast-success-delete-record" => "记录已顺利被删除。",
+		"toast-fail-delete-record" => "记录不顺利被删除。"
+
 	);
 
 	$index = array(

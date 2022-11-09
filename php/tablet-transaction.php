@@ -28,11 +28,11 @@ if($method === "add")
             VALUES
             ('$id','$receipt','$receiptdate','$amount','$english','$chinese','$remarks', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')";  
         if (mysqli_query($conn,$sql)) {
-            header("Location: ../transactions/create-tablet-transaction.php?name=transaction&Id=$id&aside=tablet-transaction&success=success");
+            header("Location: ../transactions/create-tablet-transaction.php?name=transaction&Id=$id&aside=tablet-transaction&success=success&lang=".$_SESSION['lang']."");
         } 
     }
     else{
-        header("Location: ../transactions/create-tablet-transaction.php?name=transaction&Id=$id&aside=tablet-transaction&success=fail");
+        header("Location: ../transactions/create-tablet-transaction.php?name=transaction&Id=$id&aside=tablet-transaction&success=fail&lang=".$_SESSION['lang']."");
     }  
 
 }
@@ -47,11 +47,12 @@ if($method === "delete")
    
    $sql = "
         DELETE FROM TABLET_Receipt WHERE Tablet_id = '$M_id' AND receipt_num = '$rNum' AND receipt_date = '$rDate'
-    ";
-    $result = $conn->query($sql);
-        header("Location: ../transactions/view-tablet.php?name=transaction&Id=$M_id");
-    
-   
+    "; 
+    if (mysqli_query($conn,$sql)) {
+        header("Location: ../transactions/view-tablet.php?name=transaction&Id=$M_id&status=success&lang=".$_SESSION['lang']."");
+    }
+    else
+        header("Location: ../transactions/view-tablet.php?name=transaction&Id=$M_id&status=fail&lang=".$_SESSION['lang']."");
 }
 
 
@@ -79,11 +80,11 @@ if($method === "update")
        WHERE Tablet_id = '$M_id' AND receipt_num = '$rNum' AND receipt_date = '$rDate'
     
     "; 
-    if (!mysqli_query($conn,$sql)) {
-        header("Location: ../transactions/view-tablet.php?name=transaction&Id=$M_id");
+    if (mysqli_query($conn,$sql)) {
+        header("Location: ../transactions/edit-tablet-transaction.php?name=transaction&Id=$M_id&receiptNum=$rNum&receiptDate=$rDate&status=success&lang=".$_SESSION['lang']."");
     } 
     else{
-        header("Location: ../transactions/view-tablet.php?name=transaction&Id=$M_id");
+        header("Location: ../transactions/edit-tablet-transaction.php?name=transaction&Id=$M_id&receiptNum=$rNum&receiptDate=$rDate&status=fail&lang=".$_SESSION['lang']."");
     }  
 }
 

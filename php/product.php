@@ -33,23 +33,7 @@ if($method === "add")
         header("Location: ../products/create-product.php?name=product&aside=create-product&success=success");
     }  
 
-}
-
-if($method === "delete")
-{
-    global $conn;
-
-    $id = $_GET["Id"];
-   
-   $sql = "
-        DELETE FROM product WHERE product_id = '$id'
-    ";
-    $result = $conn->query($sql);
-    header("Location: ../products/search-product.php?name=product&aside=search-product");
-    
-   
-}
-
+} 
 
 if($method === "update")
 {
@@ -67,10 +51,14 @@ if($method === "update")
         SET product_status = '$status', product_eng_name = '$english', product_chi_name = '$chinese', unit_price = '$price', remarks = '$remarks', recordedBy = '".$_SESSION['name']."', recordedOn = '".date("Y-m-d h:i:s")."'
        WHERE product_id = '$id'
     
-    ";
-    $result = $conn->query($sql);
+    "; 
    
-   header("Location: ../products/edit-product.php?name=product&Id=$id");
+    if (mysqli_query($conn,$sql)) {
+        header("Location: ../products/edit-product.php?name=product&Id=$id&status=success&lang=".$_SESSION['lang']."");
+    } 
+    else{
+        header("Location: ../products/edit-product.php?name=product&Id=$id&status=success&lang=".$_SESSION['lang']."");
+    } 
 
 }
 

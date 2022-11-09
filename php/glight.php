@@ -21,11 +21,11 @@ if($method === "add")
         //$rresult = $conn->query($rsql);
         //header("Location: ../transactions/create-glight.php?name=transaction&aside=create-glight"); 
         if ($result = $conn->query($sql) && $rresult = $conn->query($rsql)) { 
-            header("Location: ../transactions/create-glight.php?name=transaction&aside=create-glight&success=success");
+            header("Location: ../transactions/create-glight.php?name=transaction&aside=create-glight&success=success&lang=".$_SESSION['lang']."");
         } 
     }
     else{ 
-        header("Location: ../transactions/create-glight.php?name=transaction&aside=create-glight&success=fail");
+        header("Location: ../transactions/create-glight.php?name=transaction&aside=create-glight&success=fail&lang=".$_SESSION['lang']."");
     }
     
 }
@@ -42,7 +42,7 @@ if($method === "delete")
 
     $result = $conn->query($ssql);
     $rresult = $conn->query($sql);
-    header("Location: ../transactions/search-glight.php?name=transaction&aside=search-glight");
+    header("Location: ../transactions/search-glight.php?name=transaction&aside=search-glight&status=success&lang=".$_SESSION['lang']."");
     
    
 }
@@ -64,10 +64,10 @@ if($method === "update")
    
 
     if ($result = $conn->query($sql) &&  $rresult = $conn->query($rsql)) { 
-        header("Location: ../transactions/edit-glight.php?name=transaction&Id=".$id."&method=update&success=success");
+        header("Location: ../transactions/edit-glight.php?name=transaction&Id=".$id."&method=update&status=success&lang=".$_SESSION['lang']."");
     } 
     else{ 
-        header("Location: ../transactions/edit-glight.php?name=transaction&Id=".$id."&method=update&success=fail");
+        header("Location: ../transactions/edit-glight.php?name=transaction&Id=".$id."&method=update&status=fail&lang=".$_SESSION['lang']."");
     }
      
 }

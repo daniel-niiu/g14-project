@@ -37,11 +37,11 @@ if($method === "add")
         ";  
        
         if (mysqli_query($conn,$sql)) {
-            header("Location: ../transactions/create-tablet.php?name=transaction&aside=create-tabletl&success=success");
+            header("Location: ../transactions/create-tablet.php?name=transaction&aside=create-tabletl&success=success&lang=".$_SESSION['lang']."");
         } 
     }
     else{
-        header("Location: ../transactions/create-tablet.php?name=transaction&aside=create-tabletl&success=fail");
+        header("Location: ../transactions/create-tablet.php?name=transaction&aside=create-tabletl&success=fail&lang=".$_SESSION['lang']."");
     }  
 
 }
@@ -51,12 +51,20 @@ if($method === "delete")
     global $conn;
 
     $id = $_GET["Id"];
-   
-   $sql = "
-        DELETE FROM tablet WHERE tablet_id = '$id'
-    ";
-    $result = $conn->query($sql);
-    header("Location: ../transactions/search-tablet.php?name=transaction");
+    $mid_sql = "SELECT EXISTS (SELECT * FROM TABLET_Receipt WHERE Tablet_id = '$id') AS row";
+    $result = $conn->query($mid_sql);  
+    $row = mysqli_fetch_array($result); 
+    if($row['row'] == 0){
+
+       $sql = "
+            DELETE FROM tablet WHERE tablet_id = '$id'
+        "; 
+        if (mysqli_query($conn,$sql)) {
+            header("Location: ../transactions/search-tablet.php?name=transaction&status=success&lang=".$_SESSION['lang']."");
+        } 
+    }
+    else
+        header("Location: ../transactions/search-tablet.php?name=transaction&status=fail&lang=".$_SESSION['lang']."");
     
    
 }
@@ -90,9 +98,11 @@ if($method === "update")
        WHERE tablet_id = '$id'
     
     ";
-    $result = $conn->query($sql);
-   
-    header("Location: ../transactions/edit-tablet.php?name=transaction&Id=$id");
+    if (mysqli_query($conn,$sql)) {
+        header("Location: ../transactions/edit-tablet.php?name=transaction&Id=$id&status=success&lang=".$_SESSION['lang']."");
+    } 
+    else
+        header("Location: ../transactions/edit-tablet.php?name=transaction&Id=$id&status=fail&lang=".$_SESSION['lang'].""); 
 
 }
 

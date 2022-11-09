@@ -33,6 +33,16 @@ isLoggedIn();
 		include('../templates/stock-aside.php');
 	?>
 	
+		<?php   
+			$name = $_GET['productName'];
+			$receipt_No = $_GET['receiptNum']; 
+			$receipt_Date = $_GET['receiptDate']; 
+		    $sql = "SELECT p.remarks AS p_remarks, s.remarks AS s_remarks, s.product_name AS PName, receipt_no AS receipt, reciept_date AS date, stock_summary AS summary, stock_out AS stock_out, balance_left AS balance FROM stockout AS s, product AS p WHERE s.product_name = p.product_eng_name AND s.product_name = '".$name."' AND receipt_no = '".$receipt_No."' AND reciept_date = '".$receipt_Date."'";  	  
+		    $result = $conn->query($sql);  
+			if (mysqli_num_rows($result) > 0) {
+		  	// output data of each row
+		  		$row = mysqli_fetch_array($result);  
+		?>
 	<div class="mx-auto">
 		<nav class="flex mb-4" aria-label="Breadcrumb">
 		  <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -45,7 +55,7 @@ isLoggedIn();
 			<li>
 			  <div class="flex items-center">
 				<svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-				<a href="view-stock.php" class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400"><?php echo $title['view-stock']; ?></a>
+				<a href="view-stock-out.php?name=stock<?php echo "&productName=".$name."&receiptNum=".$receipt_No."&receiptDate=".$receipt_Date."" ?>" class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400"><?php echo $title['view-stock']; ?></a>
 			  </div>
 			</li>
 			<li>
@@ -57,16 +67,6 @@ isLoggedIn();
 		  </ol>
 		</nav>
 		
-		<?php   
-			$name = $_GET['productName'];
-			$receipt_No = $_GET['receiptNum']; 
-			$receipt_Date = $_GET['receiptDate']; 
-		    $sql = "SELECT p.remarks AS p_remarks, s.remarks AS s_remarks, s.product_name AS PName, receipt_no AS receipt, reciept_date AS date, stock_summary AS summary, stock_out AS stock_out, balance_left AS balance FROM stockout AS s, product AS p WHERE s.product_name = p.product_eng_name AND s.product_name = '".$name."' AND receipt_no = '".$receipt_No."' AND reciept_date = '".$receipt_Date."'";  	  
-		    $result = $conn->query($sql);  
-			if (mysqli_num_rows($result) > 0) {
-		  	// output data of each row
-		  		$row = mysqli_fetch_array($result);  
-		?>
 		<div>
 			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['edit-stock']; ?></h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
@@ -134,6 +134,36 @@ isLoggedIn();
 	</div>
 	</div>
 	
+	<?php 
+	$success = $_GET['status']; 
+	if($success == "success"){
+
+	?>
+	<div id="toast-success" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
+		<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+		</div>
+		<div class="ml-3 text-sm font-normal"><?php echo $toast['toast-success-edit-record']; ?></div>
+		<button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close">
+			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+		</button>
+	</div>
+	<?php
+	}
+	else if($success == "fail"){
+	?>
+	<div id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 fixed bottom-5 left-5" role="alert">
+		<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+		</div>
+		<div class="ml-3 text-sm font-normal"><?php echo $toast['toast-fail-edit-record']; ?></div>
+		<button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-danger" aria-label="Close">
+			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+		</button>
+	</div> 
+	<?php
+	} 
+	?>
 	<hr class="border-gray-300 dark:border-gray-600 mt-4"/>
 	
 	<footer>
