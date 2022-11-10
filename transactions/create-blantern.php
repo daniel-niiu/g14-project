@@ -71,7 +71,13 @@ isLoggedIn();
 									<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $import['import-record']; ?></h3>
 									<form class="space-y-6" method="post" action="blantern_import.php" id="import_excel_form" enctype="multipart/form-data">
 										<div>
-											<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input"><?php echo $import['upload-file']; ?></label>
+                                            <div class="grid xl:grid-cols-2 xl:gap-6">
+                                                <div class="relative z-0 w-full group">
+                                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input"><?php echo $import['upload-file']; ?></label></div>
+                                                <div class="relative z-0 w-full group">
+                                                    <a class="text-sm font-medium text-blue-700 dark:text-gray-300 hover:text-blue-800 dark:hover:text-white hover:underline cursor-pointer" style="float:right;"><?php echo $import['download-template']; ?></a>
+                                                </div>
+                                            </div>
 											<input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" name="excel" type="file">
 											<p class="mt-1 ml-1 text-xs text-gray-500 dark:text-gray-300"><?php echo $import['upload-warning']; ?></p>
 										</div>

@@ -178,6 +178,7 @@
 	$import = array(
 		"import-record" => "上传资料",
 		"import" => "上传",
+		"download-template" => "下载模板",
 		//import file
 		"upload-file" => "选择文件",
 		"upload-warning" => "**仅可上传 Excel (.xlsx) 文件而已。",

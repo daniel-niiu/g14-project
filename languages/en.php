@@ -178,6 +178,7 @@
 	$import = array(
 		"import-record" => "Import Record",
 		"import" => "Import",
+		"download-template" => "Save Template",
 		//import file
 		"upload-file" => "Upload File",
 		"upload-warning" => "**Only Excel (.xlsx) File is accepted.",

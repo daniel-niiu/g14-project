@@ -1,10 +1,12 @@
-<div id="loginTemplate" tabindex="-1" class="hidden flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full justify-center items-center bg-gray-900 bg-opacity-50">
+<div id="loginTemplate" tabindex="-1" class="hidden flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full justify-center items-center bg-gray-200 dark:bg-gray-800">
 	<div class="relative p-4 w-full max-w-lg h-full md:h-auto">
 
 		<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-				
 			<div class="py-6 px-6 lg:px-8">
-				<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Sign in to the platform</h3>
+                <div class="container block inline-flex mb-4">
+                    <img src="images/logo.png" class="mr-4 h-10 sm:h-10" alt="Home">
+                    <h3 class="text-xl font-medium text-gray-900 dark:text-white mt-1">Sign in to the platform</h3>
+                </div>
 				<form class="space-y-6">
 					<div>
 						<label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email Address</label>
@@ -43,7 +45,7 @@
 					
 				</form>
 				
-				<div id="forget-popup-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+				<div id="forget-popup-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full bg-gray-900 bg-opacity-50">
 					<div class="relative p-4 w-full max-w-md h-full md:h-auto">
 						<div class="relative bg-gray-200 rounded-lg shadow dark:bg-gray-500">
 							<button type="button" id="close_forgot_modal" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="forget-popup-modal">

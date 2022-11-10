@@ -68,10 +68,16 @@ isLoggedIn();
 									<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
 								</button>
 								<div class="py-6 px-6 lg:px-8">
-									<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $import['import-record']; ?></h3>
+                                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $import['import-record']; ?></h3>
 									<form class="space-y-6" method="post" id="import_excel_form" action="member-import.php" enctype="multipart/form-data">
 										<div>
-											<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input"><?php echo $import['upload-file']; ?></label>
+                                            <div class="grid xl:grid-cols-2 xl:gap-6">
+                                                <div class="relative z-0 w-full group">
+                                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input"><?php echo $import['upload-file']; ?></label></div>
+                                                <div class="relative z-0 w-full group">
+                                                    <a class="text-sm font-medium text-blue-700 dark:text-gray-300 hover:text-blue-800 dark:hover:text-white hover:underline cursor-pointer" style="float:right;"><?php echo $import['download-template']; ?></a>
+                                                </div>
+                                            </div>
 											<input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" name="excel" type="file">
 											<p class="mt-1 ml-1 text-xs text-gray-500 dark:text-gray-300"><?php echo $import['upload-warning']; ?></p>
 										</div>
