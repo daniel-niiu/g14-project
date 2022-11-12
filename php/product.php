@@ -63,5 +63,18 @@ if($method === "update")
 }
 
 
+if($method === "quick_export")
+{ 
+    include("../php/SimpleXLSXGen.php"); 
+    
+    $fields = array('PRODUCT ID', 'PRODUCT STATUS', 'PRODUCT ENG NAME', 'PRODUCT CHI NAME', 'UNIT PRICE', 'REMARKS');   
+    $fileName = "product_data_" . date('Y-m-d') . ".xlsx"; 
+    $excelData = array($fields);   
+    $xlsx = SimpleXLSXGen::fromArray($excelData);
+    $xlsx->downloadAs($fileName); // This will download the file to your local system 
+    exit;  
+}
+
+
 
 ?>
