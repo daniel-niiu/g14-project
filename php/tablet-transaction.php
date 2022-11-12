@@ -87,7 +87,19 @@ if($method === "update")
         header("Location: ../transactions/edit-tablet-transaction.php?name=transaction&Id=$M_id&receiptNum=$rNum&receiptDate=$rDate&status=fail&lang=".$_SESSION['lang']."");
     }  
 }
+ 
+if($method === "quick_export")
+{ 
+    include("../php/SimpleXLSXGen.php"); 
+    
+    $fields = array('TABLET ID', 'RECEIPT NO', 'RECEIPT DATE', 'RECEIPT AMOUNT', 'MEMBER ENGLISH NAME', 'MEMBER CHINESE NAME', 'REMARKS');
 
+    $fileName = "tablet_transaction_data_" . date('Y-m-d') . ".xlsx"; 
+    $excelData = array($fields);   
+    $xlsx = SimpleXLSXGen::fromArray($excelData);
+    $xlsx->downloadAs($fileName); // This will download the file to your local system 
+    exit;  
+}
 
 
 ?>

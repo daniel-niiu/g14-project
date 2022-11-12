@@ -104,8 +104,19 @@ if($method === "update")
     else
         header("Location: ../transactions/edit-tablet.php?name=transaction&Id=$id&status=fail&lang=".$_SESSION['lang'].""); 
 
-}
+} 
 
+if($method === "quick_export")
+{ 
+    include("../php/SimpleXLSXGen.php"); 
+    
+    $fields = array('TABLET ID', 'INSTALMENT DATE', 'ZONE', 'TIER', 'ROW', 'PRICE', 'ANCESTOR ENGLISH NAME', 'ANCESTOR CHINESE NAME', 'CONTACT NO 1', 'CONTACT NO 2','ADDRESS', 'MEMBER ENGLISH NAME', 'MEMBER CHINESE NAME',  'PAYMENT TYPE', 'REMARKS'); 
+    $fileName = "tablet_data_" . date('Y-m-d') . ".xlsx"; 
+    $excelData = array($fields);   
+    $xlsx = SimpleXLSXGen::fromArray($excelData);
+    $xlsx->downloadAs($fileName); // This will download the file to your local system 
+    exit;  
+}
 
 
 ?>

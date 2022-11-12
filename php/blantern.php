@@ -64,5 +64,18 @@ if($method === "update")
 }
 
 
+if($method === "quick_export")
+{ 
+    include("../php/SimpleXLSXGen.php"); 
+    
+    $fields = array('BLANTERN ID', 'MEMBER ENG NAME', 'MEMBER CHI NAME', 'CONTACT NO', 'BLESSING PRICE', 'VOTIVE PRICE', 'BRECEIPT NUM', 'VRECEIPT NUM', 'RECEIPT DATE', 'PRICE', 'REMARKS');
+
+    $fileName = "blantern_data_" . date('Y-m-d') . ".xlsx"; 
+    $excelData = array($fields);   
+    $xlsx = SimpleXLSXGen::fromArray($excelData);
+    $xlsx->downloadAs($fileName); // This will download the file to your local system 
+    exit;  
+}
+
 
 ?>

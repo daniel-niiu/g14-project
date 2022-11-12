@@ -75,6 +75,17 @@ if($method === "update")
 
 }
 
+if($method === "quick_export")
+{ 
+    include("../php/SimpleXLSXGen.php"); 
+    
+    $fields = array('MEMBER ID', 'MEMBER ENG NAME', 'MEMBER CHI NAME', 'MEMBER IC', 'MEMBER CITIZENSHIP', 'MEMBER GENDER' ,'MEMBER DOB', 'MEMBER TEL' ,'MEMBER JOB', 'MEMBER ADDRESS', 'MEMBER TYPE', 'ACCEPT DATE', 'RECOMMENDER ID', 'RECOMMENDER NAME','REMARKS');   
+    $fileName = "member_data_" . date('Y-m-d') . ".xlsx"; 
+    $excelData = array($fields);   
+    $xlsx = SimpleXLSXGen::fromArray($excelData);
+    $xlsx->downloadAs($fileName); // This will download the file to your local system 
+    exit;  
+}
 
 
 ?>

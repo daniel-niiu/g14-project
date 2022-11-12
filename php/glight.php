@@ -73,5 +73,17 @@ if($method === "update")
 }
 
 
+if($method === "quick_export")
+{ 
+    include("../php/SimpleXLSXGen.php"); 
+    
+    $fields = array('GLIGHT ID', 'MEMBER ENG NAME', 'MEMBER CHI NAME', 'PRICE', 'CONTACT NUM' , 'RECEIPT NUM', 'RECEIPT DATE', 'RECEIPT AMOUNT', 'REMARKS'); 
+
+    $fileName = "glight_data_" . date('Y-m-d') . ".xlsx"; 
+    $excelData = array($fields);   
+    $xlsx = SimpleXLSXGen::fromArray($excelData);
+    $xlsx->downloadAs($fileName); // This will download the file to your local system 
+    exit;  
+}
 
 ?>
