@@ -23,36 +23,7 @@ if($_FILES["excel"]["name"] != '')
         $data = $spreadsheet->getActiveSheet()->toArray();
         //print_r($data);  
         $header = "";
-        $i=0;
-        /*
-        foreach($data as $row)
-        { 
-            $q="";
-            foreach ($row as $key => $cell) {  
-                if($i!=0){
-                    if (strtotime($cell) !== false){ 
-                        $date = explode("/", $cell); 
-                        $cell = $date[1]."/".$date[0]."/".$date[2];
-                        $date1 = str_replace('/', '-', $cell);
-                        $date = date('Y-m-d',strtotime($date1));   
-
-                        $q .="'".$date. "',";
-                    }
-                    else
-                        $q.="'".$cell. "',";
-                }
-                else{
-                    $cell = str_replace(" ", "_", $cell);
-                    $header.="".strtolower($cell).",";
-                }
-            } 
-            if($i != 0){
-                echo $qquery="INSERT INTO member(".rtrim($header,",").") values (".rtrim($q,",").");";  
-                //mysqli_query($conn,$qquery);
-            } 
-            $i++;
-        }  
-        */
+        $i=0; 
         
         date_default_timezone_set("Asia/Kuala_Lumpur");
             $member_data = "member_id, member_eng_name, member_chi_name, member_ic, member_citizenship, member_gender, member_dob, member_tel, member_job, member_address, member_type, accept_date, recommender_id, recommender_name, remarks, recordedBy, recordedOn"; 

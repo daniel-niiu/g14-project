@@ -5,14 +5,19 @@
     $query = "";
     $fields = "";  
     $fileName = "";
+    $from_date = $_POST['from-date'];
+    $to_date = $_POST['to-date'];
 
     // Column names   
 
-    $fields = array('PRODUCT ID', 'PRODUCT STATUS', 'PRODUCT ENG NAME', 'PRODUCT CHI NAME', 'UNIT PRICE', 'REMARKS');   
-    $sql = "SELECT * FROM product ORDER BY product_id ASC";  
-
-    $fileName = "product_data_" . date('Y-m-d') . ".xlsx";   
-    $field_data = array('product_id', 'product_status', 'product_eng_name', 'product_chi_name', 'unit_price', 'remarks');
+    $fields = array('PRODUCT NAME', 'RECEIPT DATE', 'STOCK SUMMARY', 'RECEIPT NO', 'STOCK OUT', 'BALANCE LEFT', 'REMARKS');   
+    if($from_date != "" && $to_date != "") 
+        $sql = "SELECT * FROM stockout WHERE reciept_date BETWEEN '".$from_date."' AND '".$to_date."' ORDER BY reciept_date ASC";  
+    else 
+        $sql = "SELECT * FROM stockout ORDER BY reciept_date ASC";
+    
+    $fileName = "stock_out_data_" . date('Y-m-d') . ".xlsx";   
+    $field_data = array('product_name', 'reciept_date', 'stock_summary', 'receipt_no', 'stock_out', 'balance_left', 'remarks');
     $excelData = array($fields);  
     $res = mysqli_query($conn, $sql);
     if (mysqli_num_rows($res) > 0) { 

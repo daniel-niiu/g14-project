@@ -1,8 +1,8 @@
 <?php 
 error_reporting(0);
 	$fileparts = explode('/',$_SERVER['REQUEST_URI']); 
-	$filename = array_pop($fileparts);    
-if (str_contains($filename, 'index.php')) { 
+	$filename = array_pop($fileparts);     
+if (str_contains($filename, 'index.php') || $filename == "") { 
 	include "php/config.php"; 
 } 
 else 
