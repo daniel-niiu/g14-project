@@ -126,14 +126,14 @@
 		"toast-new-notification" => "新通知",
 		"toast-notification-today" => "今日",
 		//member
-		"toast-success-create-record" => "记录已顺利被添加。",
-		"toast-fail-create-record" => "记录已存在于档案中。",
-		"toast-success-edit-record" => "记录已顺利被修改。",
-		"toast-fail-edit-record" => "记录不顺利被修改。",
-		"toast-success-delete-record" => "记录已顺利被删除。",
-		"toast-fail-delete-record" => "记录不顺利被删除。"
+		"toast-success-create-record" => "Record created successfully",
+		"toast-fail-create-record" => "Record has been created before",
+		"toast-success-edit-record" => "Record modified successfully",
+		"toast-fail-edit-record" => "Record has been modified before",
+		"toast-success-delete-record" => "Record deleted successfully",
+		"toast-fail-delete-record" => "Record deleted unsuccessfully"
 
-	);
+	); 
 
 	$index = array(
 		//titles
