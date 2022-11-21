@@ -58,7 +58,7 @@ if(isset($_POST['page'])){
                         while($row = $query->fetch_assoc()){
                 ?>
                         <tr class='border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700'>
-                            <th scope='row' class='px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap'><a href='view-product.php?name=product&productName=<?php echo $row['product_eng_name'];?>&Id=<?php echo $row["product_id"];?>' class='dark:hover:text-blue-500 md:hover:text-blue-700'><?php echo $row['product_id']; ?></a></th>
+                            <th scope='row' class='px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap'><a href='view-product.php?name=product&productName=<?php echo $row['product_chi_name'];?>&Id=<?php echo $row["product_id"];?>' class='dark:hover:text-blue-500 md:hover:text-blue-700'><?php echo $row['product_id']; ?></a></th>
                             <td class='px-6 py-4'><?php echo $row['product_eng_name'];?></td>
                             <td class='px-6 py-4'><?php echo $row['product_chi_name'];?></td>
                             <td class='px-6 py-4'><?php echo $row['product_status']; ?></td>

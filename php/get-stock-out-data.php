@@ -9,14 +9,14 @@ if(isset($_POST['page'])){
     include "../php/config.php";  
     
     // Set some useful configuration 
-    $baseURL = '../php/get-stock-data.php'; 
+    $baseURL = '../php/get-stock-out-data.php'; 
     $offset = !empty($_POST['page'])?$_POST['page']:0; 
     $limit = 10; 
      
     // Set conditions for search  
 
     // Count of all records 
-    $query   = $conn->query("SELECT COUNT(*) as rowNum FROM stockin AS s, product AS p WHERE p.product_id = s.product_name AND s.product_name = '".$_SESSION['prod_id']."'");  
+    $query   = $conn->query("SELECT COUNT(*) as rowNum FROM stockout AS s, product AS p WHERE p.product_id = s.product_name AND s.product_name = '".$_SESSION['prod_id']."'");  
     $result  = $query->fetch_assoc(); 
     $rowCount= $result['rowNum']; 
      
@@ -26,12 +26,12 @@ if(isset($_POST['page'])){
         'totalRows' => $rowCount, 
         'perPage' => $limit, 
         'currentPage' => $offset, 
-        'contentDiv' => 'dataContainer'
+        'contentDiv' => 'dataContainer1'
     ); 
     $pagination =  new Pagination($pagConfig);  
 
     // Fetch records based on the offset and limit   
-    $query = $conn->query("SELECT s.stock_in as stock, p.product_id AS PName, s.receipt_no AS receipt, s.reciept_date AS date, s.balance_left AS balance FROM stockin AS s, product AS p WHERE p.product_id = s.product_name AND s.product_name = '".$_SESSION['prod_id']."' ORDER BY reciept_date LIMIT $offset,$limit"); 
+    $query = $conn->query("SELECT s.stock_out as stock, p.product_id AS PName, s.receipt_no AS receipt, s.reciept_date AS date, s.balance_left AS balance FROM stockout AS s, product AS p WHERE p.product_id = s.product_name AND s.product_name = '".$_SESSION['prod_id']."' ORDER BY reciept_date LIMIT $offset,$limit"); 
 ?> 
     <!-- Data list container --> 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -54,13 +54,13 @@ if(isset($_POST['page'])){
                         ?>
                              <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                    <a href="../stocks/view-stock-in.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt"]; ?></a>
+                                    <a href="../stocks/view-stock-out.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt"]; ?></a>
                                 </th> 
                                 <td class="px-6 py-4"><?php echo $row["date"]; ?></td>
                                 <td class="px-6 py-4"><?php echo $row["stock"]; ?></td> 
                                 <td class="px-6 py-4"><?php echo $row["balance"]; ?></td>
                                 <td class="px-6 py-4 text-right">
-                                    <a href="../stocks/edit-stock-in.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
+                                    <a href="../stocks/edit-stock-out.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
                                 </td>
                             </tr>
                         <?php

@@ -10,7 +10,7 @@ $baseURL = '../php/get-stock-data.php';
 $limit = 10; 
  
 // Count of all records 
-$query = $conn->query("SELECT COUNT(*) as rowNum FROM stockin AS s, product AS p WHERE p.product_eng_name = s.product_name AND s.product_name = '".$_GET['productName']."'");  
+$query = $conn->query("SELECT COUNT(*) as rowNum FROM stockin AS s, product AS p WHERE p.product_id = s.product_name AND s.product_name = '".$_GET['Id']."'");  
 $result  = $query->fetch_assoc(); 
 $rowCount= $result['rowNum']; 
  
@@ -19,33 +19,36 @@ $pagConfig = array(
     'baseURL' => $baseURL, 
     'totalRows' => $rowCount, 
     'perPage' => $limit, 
-    'contentDiv' => 'dataContainer', 
-    'link_func' => 'searchFilter' 
+    'contentDiv' => 'dataContainer'
 ); 
 $pagination =  new Pagination($pagConfig); 
-// Fetch records based on the limit     
+// Fetch records based on the limit       
 
-$query = $conn->query("SELECT s.stock_in as stock, p.product_eng_name AS PName, s.receipt_no AS receipt, s.reciept_date AS date, s.balance_left AS balance FROM stockin AS s, product AS p WHERE p.product_eng_name = s.product_name AND s.product_name = '".$_GET['productName']."' ORDER BY reciept_date LIMIT 10");  
+$query = $conn->query("SELECT s.stock_in as stock, p.product_id AS PName, s.receipt_no AS receipt, s.reciept_date AS date, s.balance_left AS balance FROM stockin AS s, product AS p WHERE p.product_id = s.product_name AND s.product_name = '".$_GET['Id']."' ORDER BY reciept_date LIMIT 10");  
+
+
+
 //stock out
 $baseURL1 = '../php/get-stock-out-data.php';  
  
 // Count of all records 
-$query1 = $conn->query("SELECT COUNT(*) as rowNum FROM stockin AS s, product AS p WHERE p.product_eng_name = s.product_name AND s.product_name = '".$_GET['productName']."'");  
+$query1 = $conn->query("SELECT COUNT(*) as rowNum FROM stockout AS s, product AS p WHERE p.product_id = s.product_name AND s.product_name = '".$_GET['Id']."'");  
 $result1  = $query1->fetch_assoc(); 
 $rowCount1= $result1['rowNum']; 
  
 // Initialize pagination class 
 $pagConfig1 = array( 
-    'baseURL' => $baseURL, 
+    'baseURL' => $baseURL1, 
     'totalRows' => $rowCount1, 
     'perPage' => $limit, 
-    'contentDiv' => 'dataContainer', 
-    'link_func' => 'searchFilter' 
+    'contentDiv' => 'dataContainer1'
 ); 
 $pagination1 =  new Pagination($pagConfig1); 
 // Fetch records based on the limit     
 
-$query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName, s.receipt_no AS receipt, s.reciept_date AS date, s.balance_left AS balance FROM stockout AS s, product AS p WHERE p.product_eng_name = s.product_name AND s.product_name = '".$_GET['productName']."' ORDER BY reciept_date LIMIT 10");   
+$query1 = $conn->query("SELECT s.stock_out as stock, p.product_id AS PName, s.receipt_no AS receipt, s.reciept_date AS date, s.balance_left AS balance FROM stockout AS s, product AS p WHERE p.product_id = s.product_name AND s.product_name = '".$_GET['Id']."' ORDER BY reciept_date LIMIT 10"); 
+$_SESSION['prod_id'] = $_GET['Id'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +63,7 @@ $query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName
 			document.documentElement.classList.remove('dark');
 		}
 	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
@@ -173,50 +177,50 @@ $query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName
 			
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			
-			<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-						<tr>
-							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-num']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-date']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $stock['quantity-in']; ?></th> 
-							<th scope="col" class="px-6 py-3"><?php echo $stock['balance']; ?></th>
-							<th scope="col" class="px-6 py-3">
-								<span class="sr-only"><?php echo $form['btnedit']; ?></span>
-							</th>
-						</tr>
-					</thead>
-					<tbody> 
-                    	<?php  	 
-			            if($query->num_rows > 0){
-			                while($row = $query->fetch_assoc()){
-			            ?>
-			                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-			                 	<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-			                    	<a href="../stocks/view-stock-in.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt"]; ?></a>
-			                    </th> 
-			                    <td class="px-6 py-4"><?php echo $row["date"]; ?></td>
-			                    <td class="px-6 py-4"><?php echo $row["stock"]; ?></td> 
-			                    <td class="px-6 py-4"><?php echo $row["balance"]; ?></td>
-			                    <td class="px-6 py-4 text-right">
-			                    	<a href="../stocks/edit-stock-in.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
-			                    </td>
-			                </tr>
-			            <?php
+			<div id="dataContainer">  
+				<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+					<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+						<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+							<tr>
+								<th scope="col" class="px-6 py-3"><?php echo $form['receipt-num']; ?></th>
+								<th scope="col" class="px-6 py-3"><?php echo $form['receipt-date']; ?></th>
+								<th scope="col" class="px-6 py-3"><?php echo $stock['quantity-in']; ?></th> 
+								<th scope="col" class="px-6 py-3"><?php echo $stock['balance']; ?></th>
+								<th scope="col" class="px-6 py-3">
+									<span class="sr-only"><?php echo $form['btnedit']; ?></span>
+								</th>
+							</tr>
+						</thead>
+						<tbody> 
+	                    	<?php  	 
+				            if($query->num_rows > 0){
+				                while($row = $query->fetch_assoc()){
+				            ?>
+				                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+				                 	<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+				                    	<a href="../stocks/view-stock-in.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="dark:hover:text-blue-500 md:hover:text-blue-700"><?php echo $row["receipt"]; ?></a>
+				                    </th> 
+				                    <td class="px-6 py-4"><?php echo $row["date"]; ?></td>
+				                    <td class="px-6 py-4"><?php echo $row["stock"]; ?></td> 
+				                    <td class="px-6 py-4"><?php echo $row["balance"]; ?></td>
+				                    <td class="px-6 py-4 text-right">
+				                    	<a href="../stocks/edit-stock-in.php?name=stock&productName=<?php echo $row["PName"]; ?>&receiptNum=<?php echo $row['receipt']; ?>&receiptDate=<?php echo $row["date"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><?php echo $form['btnedit']; ?></a>
+				                    </td>
+				                </tr>
+				            <?php
+				                } 
+				            }
+			                else{ 
+				                echo '<tr><td colspan="6">'.$form['no-record-warning'].'</td></tr>'; 
 			                } 
-			            }
-		                else{ 
-			                echo '<tr><td colspan="6">'.$form['no-record-warning'].'</td></tr>'; 
-		                } 
-                    	?> 
-					</tbody>
-				</table>
-			</div>
-			
+	                    	?> 
+						</tbody>
+					</table>
+				</div>
 			<nav aria-label="Page navigation" class="mt-6 mb-2 text-center"> 
 			    <?php echo $pagination->createLinks(); ?>   
-			</nav>	
-
+			</nav>	 
+			</div>
 
 			<div class="container flex flex-wrap justify-between items-center mx-auto pt-4">
 				<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['view-product-stock-out']; ?></h2>
@@ -224,6 +228,7 @@ $query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName
 			
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			
+			<div id="dataContainer1">  
 			<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -266,7 +271,8 @@ $query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName
 			
 			<nav aria-label="Page navigation" class="mt-6 mb-2 text-center"> 
 			    <?php echo $pagination1->createLinks(); ?>   
-			</nav>		
+			</nav>	
+			</div>	
 		</div>
 	</div>
 	</div>

@@ -60,7 +60,7 @@ isLoggedIn();
 			$name = $_GET['productName']; 
 			$receipt_No = $_GET['receiptNum']; 
 			$receipt_Date = $_GET['receiptDate']; 
-		    $sql = "SELECT p.product_id, stock_out,s.recordedBy, s.recordedOn, p.remarks AS p_remarks, s.remarks AS s_remarks, s.product_name AS PName, receipt_no AS receipt, reciept_date AS date, balance_left AS balance FROM stockout AS s, product AS p WHERE s.product_name = p.product_eng_name AND s.product_name = '".$name."' AND receipt_no = '".$receipt_No."' AND reciept_date = '".$receipt_Date."'"; 
+		    $sql = "SELECT p.product_id, stock_out,s.recordedBy, s.recordedOn, p.remarks AS p_remarks, s.remarks AS s_remarks, s.product_name AS PName, receipt_no AS receipt, reciept_date AS date, balance_left AS balance FROM stockout AS s, product AS p WHERE s.product_name = p.product_id AND s.product_name = '".$name."' AND receipt_no = '".$receipt_No."' AND reciept_date = '".$receipt_Date."'"; 
 
 		    $result = $conn->query($sql);  
 			if (mysqli_num_rows($result) > 0) {
