@@ -14,9 +14,9 @@ isLoggedIn();
 			document.documentElement.classList.remove('dark');
 		}
 	</script>
-	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 	<script src="https://kit.fontawesome.com/b41521ee1f.js"></script>
-	<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/datepicker.js"></script>
 	<script src="../script/script.js" type="text/javascript"></script> 
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
@@ -74,28 +74,25 @@ isLoggedIn();
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			
 			<form method="post" action="../php/tablet-transaction.php?method=update&Id=<?php echo $row["Tablet_id"]; ?>&receiptNum=<?php echo $row['receipt_num']; ?>&receiptDate=<?php echo $row['receipt_date'];?>" onsubmit="return tablet_transaction_validation()">
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['tablet-id']; ?></label>
-						<input type="text" id="id" name="t_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['Tablet_id']; ?>" disabled>
+    			<div class="grid gap-6 mb-6 md:grid-cols-2">
+					<div>
+						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['tablet-id']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
+						<input type="text" id="id" name="t_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-not-allowed" value="<?php echo $row['Tablet_id']; ?>" disabled readonly>
 						<input type="hidden" name="id"value="<?php echo $row['Tablet_id']; ?>"> 
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="receipt" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['receipt-num']; ?></label>
-						<input type="text" id="receipt" name="t_receipt" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['receipt_num']; ?>" disabled>
-						<input type="hidden" name="receipt"value="<?php echo $row['receipt_num']; ?>"> 
-						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_r_no" style="display:none;"><?php echo $form['id-warning']; ?>
+					<div>
+						<label for="receipt" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['receipt-num']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
+						<input type="text" id="receipt" name="t_receipt" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-not-allowed" value="<?php echo $row['receipt_num']; ?>" disabled readonly>
+						<input type="hidden" name="receipt"value="<?php echo $row['receipt_num']; ?>">
 						</p>
-					 </div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">			
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['receipt-date']; ?></label>
+					 </div>		
+					<div>
+						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['receipt-date']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<div class="relative">
   							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-    							<svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+    							<svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
   							</div>
-  							<input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="date" name="t_date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php  
+  							<input datepicker datepicker-format="dd/mm/yyyy" datepicker-autohide type="text" id="date" name="t_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php  
  								$date = $row['receipt_date'];
 							    $date = date('d-m-Y', strtotime($date)); 
 							    $date = str_replace('-', '/', $date); 
@@ -109,26 +106,21 @@ isLoggedIn();
   							 ?>">
 						</div>
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_r_date" style="display:none;"><?php echo $form['empty-warning']; ?></p>
-					
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['receipt-amount']; ?></label>
+					<div>
+						<label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['receipt-amount']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<div class="flex">
 						  	<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							<input type="text" id="amount" name="amount" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['receipt_amount']; ?>">
 						</div>
 						 <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_amount" style="display:none;"><?php echo $form['number-warning']; ?></p>
-						</div>
-					 </div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-				 	<div class="relative z-0 w-full mb-6 group">
+					</div>
+				 	<div>
 						<label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['eng-name']; ?></label>
 						<input type="text" id="english" name="english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_eng_name']; ?>">
-						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_eng" style="display:none;"><?php echo $form['word-warning']; ?></p>
 					 </div>	
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['chi-name']; ?></label>
+					<div>
+						<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['chi-name']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="chinese" name="chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['member_chi_name']; ?>">
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_chi" style="display:none;"><?php echo $form['word-warning']; ?></p>
 					</div>
@@ -183,7 +175,7 @@ isLoggedIn();
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 	
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

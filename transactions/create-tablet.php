@@ -14,9 +14,9 @@ isLoggedIn();
 			document.documentElement.classList.remove('dark');
 		}
 	</script>
-	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 	<script src="https://kit.fontawesome.com/b41521ee1f.js"></script>
-	<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/datepicker.js"></script>
 	<script src="../script/script.js" type="text/javascript"></script> 
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
@@ -69,12 +69,13 @@ isLoggedIn();
 								</button>
 								<div class="py-6 px-6 lg:px-8">
 									<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $import['import-tablet']; ?></h3>
-									<form class="space-y-6" method="post" action="tablet_transaction_import.php?type=tablet" id="import_excel_form" enctype="multipart/form-data">
-										<div>
-                                            <div class="grid xl:grid-cols-2 xl:gap-6">
-                                                <div class="relative z-0 w-full group">
-                                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input"><?php echo $import['upload-file']; ?></label></div>
-                                                <div class="relative z-0 w-full group">
+									<form method="post" action="tablet_transaction_import.php?type=tablet" id="import_excel_form" enctype="multipart/form-data">
+										<div class="mb-4">
+											<div class="grid gap-6 md:grid-cols-2">
+												<div>
+                                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input"><?php echo $import['upload-file']; ?></label>
+												</div>
+                                                <div>
                                                     <a href="../php/tablet.php?method=quick_export" class="text-sm font-medium text-blue-700 dark:text-gray-300 hover:text-blue-800 dark:hover:text-white hover:underline cursor-pointer" style="float:right;"><?php echo $import['download-template']; ?></a>
                                                 </div>
                                             </div>
@@ -92,97 +93,79 @@ isLoggedIn();
 			
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			<form method="post" action="../php/tablet.php?method=add" onsubmit="return tablet_validation()">
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['tablet-id']; ?></label>
+    			<div class="grid gap-6 mb-6 md:grid-cols-2">
+					<div>
+						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['tablet-id']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="id" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['tablet-id']; ?>">
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_tid" style="display:none;"><?php echo $form['id-warning']; ?>
 						</p>
 					</div>
-				 	<div class="relative z-0 w-full mb-6 group">
+				 	<div>
 						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['inst-date']; ?></label>
 						<div class="relative">
   							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-    							<svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+    							<svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
   							</div>
-  							<input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
+  							<input datepicker datepicker-format="dd/mm/yyyy" datepicker-autohide type="text" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
 						</div>
-  							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_ins_date" style="display:none;"><?php echo $form['empty-warning']; ?></p>
 					 </div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="zone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['zone']; ?></label>
+					<div>
+						<label for="zone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['zone']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="zone" name="zone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['zone']; ?>">
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_zone" style="display:none;"><?php echo $form['number-warning']; ?></p>
 					 </div>
-					 <div class="relative z-0 w-full mb-6 group">
-						<label for="tier" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['tier']; ?></label>
+					 <div>
+						<label for="tier" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['tier']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="tier" name="tier" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['tier']; ?>">
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_tier" style="display:none;"><?php echo $form['number-warning']; ?></p>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="row" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['row']; ?></label>
+					<div>
+						<label for="row" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['row']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="row" name="row" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['row']; ?>">
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_row" style="display:none;"><?php echo $form['number-warning']; ?></p>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['price']; ?></label>
 						<div class="flex">
 						  <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 						  <input type="text" id="price" name="price" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['price']; ?>">
 						</div>
-						  <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_price" style="display:none;"><?php echo $form['number-warning']; ?></p>
-				 </div>
-				</div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
+				 	</div>
+					<div>
 						<label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['eng-name']; ?></label>
 						<input type="text" id="english" name="english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $member['eng-name']; ?>">
-						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_m_eng" style="display:none;"><?php echo $form['word-warning']; ?></p>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['chi-name']; ?></label>
+					<div>
+						<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['chi-name']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="chinese" name="chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $member['chi-name']; ?>">
-						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_m_chi" style="display:none;"><?php echo $form['word-warning']; ?></p>
 					</div>
-				</div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="contact1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['contact-num1']; ?></label>
+					<div>
+						<label for="contact1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['contact-num1']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="contact1" name="contact1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['contact-num1']; ?>">
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co1" style="display:none;"><?php echo $form['number-warning']; ?></p>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="contact2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['contact-num2']; ?></label>
 						<input type="text" id="contact2" name="contact2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['contact-num2']; ?>">
-						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co2" style="display:none;"><?php echo $form['number-warning']; ?></p>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['address']; ?></label>
+					<div>
+						<label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['address']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="address" name="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $member['address']; ?>">
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_add" style="display:none;"><?php echo $form['id-warning']; ?></p>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['payment-type']; ?></label>
 						<select id="t_payment" name="payment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 						  <option value="lump-sum"><?php echo $transaction['type-lump-sum']; ?></option>
 						  <option value="over-time"><?php echo $transaction['type-over-time']; ?></option>
 						</select>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="ancestor-english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['anc-eng-name']; ?></label>
 						<input type="text" id="ancestor-english" name="ancestor_english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['anc-eng-name']; ?>">
-						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_anc_eng" style="display:none;"><?php echo $form['word-warning']; ?></p>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="ancestor-chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['anc-chi-name']; ?></label>
+					<div>
+						<label for="ancestor-chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['anc-chi-name']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="ancestor-chinese" name="ancestor_chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['anc-chi-name']; ?>">
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_anc_chi" style="display:none;"><?php echo $form['word-warning']; ?></p>
 					</div>
@@ -266,7 +249,7 @@ isLoggedIn();
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 	
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

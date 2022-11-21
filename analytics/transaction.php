@@ -15,9 +15,18 @@ isLoggedIn();
 			document.documentElement.classList.remove('dark');
 		}
 	</script> 
-	<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/datepicker.js"></script>
 	<script src="../script/script.js" type="text/javascript"></script> 
-	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+	
+	<style>		
+	@media screen and (min-width:1490px){
+    #horizontal{
+        margin-left: 8.5rem;
+    	}
+	}
+	</style>
+	
+	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
@@ -52,40 +61,48 @@ isLoggedIn();
 		  </ol>
 		</nav>
 		
-        <div style="width:860px; margin-bottom: 60px;">
+        <div class="mb-2.5" style="width:860px;">
             <h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $analytics['transaction']; ?></h2>
             <hr class="border-gray-300 dark:border-gray-600 my-3"/> 
  
-                    <div class="relative z-0 w-full mb-6 group">
-                        <label for="department" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $analytics['category']; ?></label>
-                        <input id="check_tablet" type="checkbox" name="checkbox[]" value="Tablet" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="check_member" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['memorial-tablet']; ?></label>
+                <div class="relative z-0 w-full mb-6 group">
+                    <label for="department" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $analytics['category']; ?></label>
+                    
+					<input id="check_tablet" type="checkbox" name="checkbox[]" value="Tablet" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+					<label for="check_tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['memorial-tablet']; ?></label>
+                    
+					<input id="check_blessing" type="checkbox" name="checkbox[]" value="Blessing" class="ml-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="check_blessing" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['blessing-lantern']; ?></label>
+                    
+					<input id="check_glight" type="checkbox" name="checkbox[]" value="Guang" class="ml-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="check_glight" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['guang-ming-light']; ?></label> 
+                </div> 
 
-                        <input id="check_blessing" type="checkbox" name="checkbox[]" value="Blessing" class="ml-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="check_trans" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['blessing-lantern']; ?></label>
-
-                        <input id="check_guang" type="checkbox" name="checkbox[]" value="Guang" class="ml-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="check_prod" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['guang-ming-light']; ?></label> 
-                    </div> 
+                <div class="inline-flex justify-center items-center w-full">
+                    <hr class="my-6 w-full h-px bg-gray-200 border dark:bg-gray-500 dark:border-gray-500">
+                    <span id="horizontal" class="absolute left-1/2 px-3 font-medium text-sm text-gray-900 bg-white -translate-x-1/2 dark:text-white dark:bg-gray-900">
+						<?php echo $analytics['receipt-date']; ?>
+					</span>
+                </div>
 				
-                <div class="grid xl:grid-cols-2 xl:gap-6"> 
-                    <div class="relative z-0 w-full mb-6 group">
+   				<div date-rangepicker class="grid gap-6 mb-6 md:grid-cols-2">
+                    <div>
                         <label for="start-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $export['period-from']; ?></label>
                         <div class="relative">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                             </div>
-                            <input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="start-date" name="start-date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
+                             <input datepicker-format="dd/mm/yyyy" type="text" id="start-date" name="start-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
                         </div>
                         <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_dob" style="display:none;"><?php echo $form['empty-warning']; ?></p>
                     </div>
-                    <div class="relative z-0 w-full mb-6 group">
+                    <div>
                         <label for="end-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $export['period-to']; ?></label>
                         <div class="relative">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                             </div>
-                            <input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="end-date" name="end-date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
+                            <input datepicker-format="dd/mm/yyyy" type="text" id="end-date" name="end-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
                         </div>
                         <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_dob" style="display:none;"><?php echo $form['empty-warning']; ?></p>
                     </div>
@@ -114,7 +131,7 @@ isLoggedIn();
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 	
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

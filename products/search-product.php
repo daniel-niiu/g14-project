@@ -42,7 +42,7 @@ $query = $conn->query("SELECT * FROM product ORDER BY product_id LIMIT $limit");
 		}
 	</script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
@@ -144,7 +144,7 @@ $query = $conn->query("SELECT * FROM product ORDER BY product_id LIMIT $limit");
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 	
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

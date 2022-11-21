@@ -15,8 +15,7 @@ isLoggedIn();
 				document.documentElement.classList.remove('dark');
 			}
 		</script>
-		<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
-		<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+		<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 		<link rel="stylesheet" href="../styles/style.css">
 		<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 		<title>Tze Yin Membership Management Portal</title>
@@ -55,19 +54,16 @@ isLoggedIn();
 			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['create-account']; ?></h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/> 
 			<form method="post" action="../php/account.php?method=add">
-				<div class="grid xl:grid-cols-2 xl:gap-6"> 
-                    <div class="relative z-0 w-full mb-6 group">
+    			<div class="grid gap-6 mb-6 md:grid-cols-2">
+                    <div>
                         <label for="name" class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['full-name']; ?></label>
                         <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $account['full-name']; ?>">
                     </div> 
-                    <div class="relative z-0 w-full mb-6 group">
+                    <div>
                         <label for="email" class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['email-address']; ?></label>
                         <input type="text" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $account['email-address']; ?>">
                     </div> 
-				 </div>
-				
-                <div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['account-status']; ?></label>
 						<label for="checkbox" class="inline-flex relative items-center cursor-pointer mt-1">
 						  <input type="checkbox" id="checkbox" name="checkbox" class="sr-only peer"  value="T" checked>
@@ -76,22 +72,23 @@ isLoggedIn();
 						  <input type="hidden" id="checkbox_value" name="checkbox_value" value="T">
 						</label>
 					</div>
-				<script>
-					document.getElementById('checkbox').addEventListener('click', function(){
-					if(this.checked){
-						this.value = 'T';
-						document.getElementById('status').innerHTML = '<?php echo $account['status-active']; ?>'; 
-						document.getElementById('checkbox_value').value = "T";
-					} 
-					else{ 
-						this.value = 'F'; 
-						document.getElementById('status').innerHTML = '<?php echo $account['status-inactive']; ?>'; 
-						document.getElementById('checkbox_value').value = "F";
-					}
-				});
-				</script>
+					
+					<script>
+						document.getElementById('checkbox').addEventListener('click', function(){
+						if(this.checked){
+							this.value = 'T';
+							document.getElementById('status').innerHTML = '<?php echo $account['status-active']; ?>'; 
+							document.getElementById('checkbox_value').value = "T";
+						} 
+						else{ 
+							this.value = 'F'; 
+							document.getElementById('status').innerHTML = '<?php echo $account['status-inactive']; ?>'; 
+							document.getElementById('checkbox_value').value = "F";
+						}
+					});
+					</script>
 				
-                    <div class="relative z-0 w-full mb-6 group">
+                    <div>
                         <label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['account-type']; ?></label> 
 						<input type="radio" name="account-type" id="admin" value="admin" onclick="verifyCheck()">
 						<label for="admin" class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['type-admin']; ?></label>
@@ -99,10 +96,7 @@ isLoggedIn();
 						<input type="radio" name="account-type" id="oper" class="ml-6" value="oper" onclick="verifyCheck()">
 						<label for="oper" class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['type-oper']; ?></label>
                 	</div>
-				</div>
-				
-                <div class="grid xl:grid-cols-2 xl:gap-6">
-                    <div class="relative z-0 w-full mb-6 group">
+                    <div>
                         <label for="department" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $account['department']; ?></label>
                         <input id="check_member" type="checkbox" name="checkbox[]" value="M" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                         <label for="check_member" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $page['membership']; ?></label>
@@ -162,7 +156,7 @@ isLoggedIn();
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 	 
 	
 	<script>

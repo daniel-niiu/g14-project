@@ -14,9 +14,9 @@ isLoggedIn();
 			document.documentElement.classList.remove('dark');
 		}
 	</script>
-	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 	<script src="https://kit.fontawesome.com/b41521ee1f.js"></script>
-	<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/datepicker.js"></script>
 	<script src="../script/script.js" type="text/javascript"></script> 
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
@@ -69,12 +69,13 @@ isLoggedIn();
 								</button>
 								<div class="py-6 px-6 lg:px-8">
 									<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $import['import-record']; ?></h3>
-									<form class="space-y-6" method="post" action="blantern_import.php" id="import_excel_form" enctype="multipart/form-data">
-										<div>
-                                            <div class="grid xl:grid-cols-2 xl:gap-6">
-                                                <div class="relative z-0 w-full group">
-                                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input"><?php echo $import['upload-file']; ?></label></div>
-                                                <div class="relative z-0 w-full group">
+									<form method="post" action="blantern_import.php" id="import_excel_form" enctype="multipart/form-data">
+										<div class="mb-4">
+											<div class="grid gap-6 md:grid-cols-2">
+												<div>
+                                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input"><?php echo $import['upload-file']; ?></label>
+												</div>
+                                                <div>
                                                     <a href="../php/blantern.php?method=quick_export" class="text-sm font-medium text-blue-700 dark:text-gray-300 hover:text-blue-800 dark:hover:text-white hover:underline cursor-pointer" style="float:right;"><?php echo $import['download-template']; ?></a>
                                                 </div>
                                             </div>
@@ -92,82 +93,69 @@ isLoggedIn();
 			
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			<form method="post" action="../php/blantern.php?method=add" onsubmit="return blessing_validation()">
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['lantern-id']; ?></label>
+    			<div class="grid gap-6 mb-6 md:grid-cols-2">
+					<div>
+						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['lantern-id']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="id" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['lantern-id']; ?>">
-
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_id" style="display:none;"><?php echo $form['id-warning']; ?>
 						</p>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['eng-name']; ?></label>
 						<input type="text" id="english" name="english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $member['eng-name']; ?>">
-						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_eng" style="display:none;"><?php echo $form['word-warning']; ?></p>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['chi-name']; ?></label>
+					<div>
+						<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['chi-name']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="chinese" name="chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $member['chi-name']; ?>">
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_chi" style="display:none;"><?php echo $form['word-warning']; ?></p>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['contact']; ?></label>
+					<div>
+						<label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['contact']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="contact" name="contact" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $member['contact']; ?>">
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_co" style="display:none;"><?php echo $form['number-warning']; ?></p>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="blessing" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['blessing-price']; ?></label>
+					<div>
+						<label for="blessing" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['blessing-price']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<div class="flex">
 						  	<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							<input type="text" id="blessing" name="blessing_price" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['blessing-price']; ?>">
 						</div>
 						 <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="b_price" style="display:none;"><?php echo $form['number-warning']; ?></p>
 					 </div>
-					 <div class="relative z-0 w-full mb-6 group">
+					 <div>
 						<label for="votive" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['votive-price']; ?></label>
 						<div class="flex">
 						  	<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							<input type="text" id="votive" name="votive_price" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['votive-price']; ?>">
 						</div>
-						 <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="v_price" style="display:none;"><?php echo $form['number-warning']; ?></p>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="blessing" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['blessing-receipt']; ?></label>
+					<div>
+						<label for="blessing" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['blessing-receipt']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="blessing_receipt" name="blessing_receipt" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['blessing-receipt']; ?>">
 						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_b_receipt" style="display:none;"><?php echo $form['id-warning']; ?>
 						</p>
 					 </div>
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="votive" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['votive-receipt']; ?></label>
 						<input type="text" id="votive_receipt" name="votive_receipt" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $transaction['votive-receipt']; ?>">
-						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_v_receipt" style="display:none;"><?php echo $form['id-warning']; ?>
 						</p>
 					 </div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['receipt-date']; ?></label>
+					<div>
+						<label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['receipt-date']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<div class="relative">
   							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-    							<svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+    							<svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
   							</div>
-  							<input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
+  							<input datepicker datepicker-format="dd/mm/yyyy" datepicker-autohide type="text" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
 						</div>
   						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_r_date" style="display:none;"><?php echo $form['empty-warning']; ?></p>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['receipt-amount']; ?></label>
 						<div class="flex">
 						  	<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							<input type="text" id="amount" name="amount" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $form['receipt-amount']; ?>">
 						</div>
-						 <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="r_amount" style="display:none;"><?php echo $form['number-warning']; ?></p>
 					 </div>
 				</div>
 				<div class="relative z-0 w-full mb-6 group">
@@ -251,7 +239,7 @@ isLoggedIn();
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 	
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

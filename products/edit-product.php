@@ -15,9 +15,8 @@ isLoggedIn();
 				document.documentElement.classList.remove('dark');
 			}
 		</script>
-		<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+		<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 		<link rel="stylesheet" href="../styles/style.css">
-		<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
 		<script src="../script/script.js" type="text/javascript"></script> 
 		<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 		<title>Tze Yin Membership Management Portal</title>
@@ -71,73 +70,68 @@ isLoggedIn();
   				while($row = mysqli_fetch_array($result)){   
 			?>
 			<form method="post" action="../php/product.php?method=update&Id=<?php echo $M_ID; ?>" onsubmit="return product_validation()">
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-						<div class="relative z-0 w-full mb-6 group">
-							<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['product-id']; ?></label>
-							<input type="text"  id="id" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required value="<?php echo $row['product_id']; ?>" disabled="disabled">
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_id" style="display:none;"><?php echo $form['id-warning']; ?>
-							</p>
-						</div>
-					 	<div class="relative z-0 w-full mb-6 group">
-							<label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['product-status']; ?></label>
-							<label for="checkbox" class="inline-flex relative items-center cursor-pointer mt-1">
-							  <input type="checkbox"id="checkbox" name="checkbox" value="<?php echo $row['product_status']; ?>"  class="sr-only peer" 
-							  <?php 
-							  if($row['product_status'] == "Available"){
-							  	echo "checked";
-							  }
-							  else{ 
-							  }
-								?>>
-							  <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-							  <span id="status" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $row['product_status']; ?></span> 
-						  		<input type="hidden" id="checkbox_value" name="checkbox_value" value="<?php echo $row['product_status']; ?>">
-							</label>
-						</div> 
-					 </div>
-				
-					<script>
-					document.getElementById('checkbox').addEventListener('click', function(){
-					if(this.checked){
-						this.value = 'Available';
-						document.getElementById('status').innerHTML = '<?php echo $product['status-available']; ?>'; 
-						document.getElementById('checkbox_value').value = "Available";
-					} 
-					else{ 
-						this.value = 'Unavailable'; 
-						document.getElementById('status').innerHTML = '<?php echo $product['status-unavailable']; ?>'; 
-						document.getElementById('checkbox_value').value = "Unavailable";
-					}
-				});
-				</script>
-				
-					<div class="grid xl:grid-cols-2 xl:gap-6">
-					 	<div class="relative z-0 w-full mb-6 group">
-							<label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['eng-name']; ?></label>
-							<input type="text" id="english" name="english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['product_eng_name']; ?>">
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_eng" style="display:none;"><?php echo $form['id-warning']; ?></p>
-						 </div>
-					 	<div class="relative z-0 w-full mb-6 group">
-							<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['chi-name']; ?></label>
-							<input type="text" id="chinese" name="chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['product_chi_name']; ?>" >
-							<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_chi" style="display:none;"><?php echo $form['id-warning']; ?></p>
-						 </div>
-					</div>
-					<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['unit-price']; ?></label>
-						<div class="flex">
-							 	<span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
-							 	<input type="text" id="price" name="price" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['unit_price']; ?>">
-						</div>
-						  		<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_price" style="display:none;"><?php echo $form['number-warning']; ?></p>
-					 </div>
-				</div>
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['remarks']; ?></label>
-						<textarea id="remarks" name="remarks" rows="3" cols="125" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $form['remarks']; ?>"><?php echo $row['remarks']; ?></textarea>
-					</div>
-					 <button type="submit" name="btn_submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="float:right;"><?php echo $form['submit']; ?></button>
+    			<div class="grid gap-6 mb-6 md:grid-cols-2">
+                    <div>
+                        <label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['product-id']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
+                        <input type="text"  id="id" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-not-allowed" required value="<?php echo $row['product_id']; ?>" disabled readonly>
+                        <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_id" style="display:none;"><?php echo $form['id-warning']; ?>
+                        </p>
+                    </div>
+                    <div>
+                        <label class="block mt-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['product-status']; ?></label>
+                        <label for="checkbox" class="inline-flex relative items-center cursor-pointer mt-1">
+                          <input type="checkbox"id="checkbox" name="checkbox" value="<?php echo $row['product_status']; ?>"  class="sr-only peer" 
+                          <?php 
+                          if($row['product_status'] == "Available"){
+                            echo "checked";
+                          }
+                          else{ 
+                          }
+                            ?>>
+                          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                          <span id="status" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $row['product_status']; ?></span> 
+                            <input type="hidden" id="checkbox_value" name="checkbox_value" value="<?php echo $row['product_status']; ?>">
+                        </label>
+                    </div> 
+
+                    <script>
+                    document.getElementById('checkbox').addEventListener('click', function(){
+                    if(this.checked){
+                        this.value = 'Available';
+                        document.getElementById('status').innerHTML = '<?php echo $product['status-available']; ?>'; 
+                        document.getElementById('checkbox_value').value = "Available";
+                    } 
+                    else{ 
+                        this.value = 'Unavailable'; 
+                        document.getElementById('status').innerHTML = '<?php echo $product['status-unavailable']; ?>'; 
+                        document.getElementById('checkbox_value').value = "Unavailable";
+                    }
+                    });
+                    </script>
+
+                    <div>
+                        <label for="english" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['eng-name']; ?></label>
+                        <input type="text" id="english" name="english" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['product_eng_name']; ?>">
+                     </div>
+                    <div>
+                        <label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['chi-name']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
+                        <input type="text" id="chinese" name="chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['product_chi_name']; ?>" >
+                        <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_chi" style="display:none;"><?php echo $form['id-warning']; ?></p>
+                     </div>
+                    <div>
+                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['unit-price']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
+                        <div class="flex">
+                                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
+                                <input type="text" id="price" name="price" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $row['unit_price']; ?>">
+                        </div>
+                        <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_price" style="display:none;"><?php echo $form['number-warning']; ?></p>
+                     </div>
+                </div>
+                <div class="relative z-0 w-full mb-6 group">
+                    <label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['remarks']; ?></label>
+                    <textarea id="remarks" name="remarks" rows="3" cols="125" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $form['remarks']; ?>"><?php echo $row['remarks']; ?></textarea>
+                </div>
+                 <button type="submit" name="btn_submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="float:right;"><?php echo $form['submit']; ?></button>
 			</form>
 			<?php  
   				}
@@ -186,7 +180,7 @@ isLoggedIn();
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 	
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

@@ -60,7 +60,7 @@ $query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName
 			document.documentElement.classList.remove('dark');
 		}
 	</script>
-	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
@@ -125,41 +125,35 @@ $query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			
 			<form>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['product-id']; ?></label>
+    			<div class="grid gap-6 mb-6 md:grid-cols-2">
+					<div>
+						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['product-id']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="id" name="id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['product_id']; ?>" disabled readonly>
 					</div>
-				 	<div class="relative z-0 w-full mb-6 group">
+				 	<div>
 						<label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['product-status']; ?></label>
 						<input type="text" id="status" name="status" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['product_status']; ?>"disabled readonly>
 					 </div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="eng" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['eng-name']; ?></label>
 						<input type="text" id="eng" name="eng" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['product_eng_name']; ?>" disabled readonly>
 					</div>
-				 	<div class="relative z-0 w-full mb-6 group">
-						<label for="chi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['chi-name']; ?></label>
+				 	<div>
+						<label for="chi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['chi-name']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="chi" name="chi" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['product_chi_name']; ?>"disabled readonly>
 					 </div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['unit-price']; ?></label>
+					<div>
+						<label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $product['unit-price']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<div class="flex">
 							 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
 							 <input type="text" id="price" name="price" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-none rounded-r-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['unit_price']; ?>" disabled readonly>
 						</div>
 					 </div>
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['recorded-by']; ?></label>
 						<input type="text" id="user" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['recordedBy']; ?>" disabled readonly>
 					</div>
-				</div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="record-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['recorded-on']; ?></label>
 						<input type="text" id="record-date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['recordedOn']; ?>" disabled readonly>
 					</div>
@@ -185,7 +179,7 @@ $query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName
 						<tr>
 							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-num']; ?></th>
 							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-date']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $title['stock-in']; ?></th> 
+							<th scope="col" class="px-6 py-3"><?php echo $stock['quantity-in']; ?></th> 
 							<th scope="col" class="px-6 py-3"><?php echo $stock['balance']; ?></th>
 							<th scope="col" class="px-6 py-3">
 								<span class="sr-only"><?php echo $form['btnedit']; ?></span>
@@ -236,7 +230,7 @@ $query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName
 						<tr>
 							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-num']; ?></th>
 							<th scope="col" class="px-6 py-3"><?php echo $form['receipt-date']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $title['stock-out']; ?></th> 
+							<th scope="col" class="px-6 py-3"><?php echo $stock['quantity-out']; ?></th> 
 							<th scope="col" class="px-6 py-3"><?php echo $stock['balance']; ?></th>
 							<th scope="col" class="px-6 py-3">
 								<span class="sr-only"><?php echo $form['btnedit']; ?></span>
@@ -316,7 +310,7 @@ $query1 = $conn->query("SELECT s.stock_out as stock, p.product_eng_name AS PName
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 	
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

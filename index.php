@@ -15,7 +15,7 @@ isMainPageLoggedIn();
 			document.documentElement.classList.remove('dark');
 		}
 	</script>
-	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 	<link rel="stylesheet" href="styles/style.css">
 	<link rel="icon" type="image/x-icon" href="images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
@@ -78,7 +78,7 @@ isMainPageLoggedIn();
 							</button>
 							<div class="py-6 px-6 lg:px-8">
 								<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $index['index-whatsapp-title']; ?></h3>
-								<form class="space-y-6" action="members/whatsapp.php" method="post">
+								<form class="space-y-6" action="members/whatsapp.php" method="post" target=”_blank”>
 									<div>
 										<label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"><?php echo $index['index-whatsapp-message']; ?></label>
 										<textarea id="message" name="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $index['whatsapp-content-placeholder']; ?>" required></textarea>
@@ -154,7 +154,7 @@ isMainPageLoggedIn();
             			</button>
             			<div class="px-6 py-6 lg:px-8"> 
                 			<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $index['index-reminder-edit-title']; ?></h3>
-                			<form class="space-y-6" method="post" action="php/reminder.php?method=update">
+                			<form method="post" action="php/reminder.php?method=update">
                     			<div>
                         			<label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $index['index-reminder-title']; ?></label>
                         			<input type="text" name="title" id="edit-reminder-title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="" required>
@@ -213,95 +213,58 @@ isMainPageLoggedIn();
             				</button>
             				<div class="px-6 py-6 lg:px-8">
                 				<h3 class="mb-6 text-xl font-medium text-gray-900 dark:text-white"><?php echo $index['index-filter-title']; ?></h3>
-                <form class="space-y-6" action="../members/member-excel.php" method="post">	
-                				<div id= "form1" name="form1" class="space-y-6">
-									<div class="grid xl:grid-cols-2 xl:gap-6">
-										<div class="relative z-0 w-full group">
-											<div class="flex items-center">
-												 <input id="create-members" name="preference" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
-												 <label for="create-members" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['create-member']; ?></label>
-											 </div>
-										</div>
-										<div class="relative z-0 w-full group">
-											<div class="flex items-center">
-												 <input id="search-members" name="preference" type="checkbox" value="2" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-												 <label for="search-members" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['search-member']; ?></label>
-											 </div>
-										</div>
-									</div>
-									<div class="grid xl:grid-cols-2 xl:gap-6">
-										<div class="relative z-0 w-full group">
-											<div class="flex items-center">
-												 <input id="create-tablet" name="preference" type="checkbox" value="3" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-												 <label for="create-tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['create-tablet']; ?></label>
-											 </div>
-										</div>
-										<div class="relative z-0 w-full group">
-											<div class="flex items-center">
-												 <input id="search-tablet" name="preference" type="checkbox" value="4" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-												 <label for="search-tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['search-tablet']; ?></label>
-											 </div>
-										</div>
-									</div>
-									<div class="grid xl:grid-cols-2 xl:gap-6">
-										<div class="relative z-0 w-full group">
-											<div class="flex items-center">
-												 <input id="create-blantern" name="preference" type="checkbox" value="5" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-												 <label for="create-blantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['create-blessing']; ?></label>
-											 </div>
-										</div>
-										<div class="relative z-0 w-full group">
-											 <div class="flex items-center">
-												 <input id="search-blantern" name="preference" type="checkbox" value="6" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-												 <label for="search-blantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['search-blessing']; ?></label>
-											 </div>
-										</div>
-									</div>
-									<div class="grid xl:grid-cols-2 xl:gap-6">
-										<div class="relative z-0 w-full group">
-											<div class="flex items-center">
-												 <input id="create-glantern" name="preference" type="checkbox" value="7" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-												 <label for="create-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['create-light']; ?></label>
-											 </div>
-										</div>
-										<div class="relative z-0 w-full group">
-											 <div class="flex items-center">
-												 <input id="search-glantern" name="preference" type="checkbox" value="8" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-												 <label for="search-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['search-light']; ?></label>
-											 </div>
-										</div>
-									</div>
-									<div class="grid xl:grid-cols-2 xl:gap-6">
-										<div class="relative z-0 w-full group">
-											<div class="flex items-center">
-												 <input id="create-product" name="preference" type="checkbox" value="9" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-												 <label for="create-product" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['create-product']; ?></label>
-											 </div>
-										</div>
-										<div class="relative z-0 w-full group">
-											 <div class="flex items-center">
-												 <input id="search-product" name="preference" type="checkbox" value="10" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-												 <label for="search-product" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['search-product']; ?></label>
-											 </div>
-										</div>
-									</div>
-									<div class="grid xl:grid-cols-2 xl:gap-6">
-										<div class="relative z-0 w-full group">
-											<div class="flex items-center">
-												 <input id="stock-in" name="preference" type="checkbox" value="11" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-												 <label for="stock-in" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['stock-in']; ?></label>
-											 </div>
-										</div>
-										<div class="relative z-0 w-full group">
-									 		<div class="flex items-center">
-												 <input id="stock-out" name="preference" type="checkbox" value="12" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-												 <label for="stock-out" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['stock-out']; ?></label>
-											 </div>
-										</div>
-									</div>
-
-                    				<button id="btn_submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-modal-toggle="authentication-modal3"><?php echo $form['submit']; ?></button>
+                				<form class="space-y-6" action="../members/member-excel.php" method="post">	
+    								<div class="grid gap-6 md:grid-cols-2">
+                                        <div>
+                                             <input id="create-members" name="preference" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
+                                             <label for="create-members" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['create-member']; ?></label>
+                                        </div>
+                                        <div>
+                                             <input id="search-members" name="preference" type="checkbox" value="2" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                             <label for="search-members" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['search-member']; ?></label>
+                                         </div>
+                                        <div>
+                                             <input id="create-tablet" name="preference" type="checkbox" value="3" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                             <label for="create-tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['create-tablet']; ?></label>
+                                         </div>
+                                        <div>
+                                             <input id="search-tablet" name="preference" type="checkbox" value="4" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                             <label for="search-tablet" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['search-tablet']; ?></label>
+                                         </div>
+                                        <div>
+                                             <input id="create-blantern" name="preference" type="checkbox" value="5" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                             <label for="create-blantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['create-blessing']; ?></label>
+                                         </div>
+                                         <div>
+                                             <input id="search-blantern" name="preference" type="checkbox" value="6" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                             <label for="search-blantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['search-blessing']; ?></label>
+                                         </div>
+                                        <div>
+                                             <input id="create-glantern" name="preference" type="checkbox" value="7" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                             <label for="create-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['create-light']; ?></label>
+                                         </div>
+                                         <div>
+                                             <input id="search-glantern" name="preference" type="checkbox" value="8" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                             <label for="search-glantern" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['search-light']; ?></label>
+                                         </div>
+                                        <div>
+                                             <input id="create-product" name="preference" type="checkbox" value="9" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                             <label for="create-product" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['create-product']; ?></label>
+                                         </div>
+                                         <div>
+                                             <input id="search-product" name="preference" type="checkbox" value="10" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                             <label for="search-product" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['search-product']; ?></label>
+                                         </div>
+                                        <div>
+                                             <input id="stock-in" name="preference" type="checkbox" value="11" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                             <label for="stock-in" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['stock-in']; ?></label>
+                                         </div>
+                                        <div>
+                                             <input id="stock-out" name="preference" type="checkbox" value="12" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                             <label for="stock-out" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $title['stock-out']; ?></label>
+                                         </div>
                 				</div>
+                    				<button id="btn_submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-modal-toggle="authentication-modal3"><?php echo $form['submit']; ?></button>
             				</div>
         			</div>
     			</div>
@@ -466,7 +429,7 @@ isMainPageLoggedIn();
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 	
 	<script>
 		var login = document.getElementById('loginTemplate');

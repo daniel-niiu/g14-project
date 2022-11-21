@@ -15,7 +15,7 @@ isLoggedIn();
 			document.documentElement.classList.remove('dark');
 		}
 	</script>
-	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
@@ -103,39 +103,33 @@ isLoggedIn();
 		<hr class="border-gray-300 dark:border-gray-600 my-3"/>
 			
 			<form>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['member-id']; ?></label>
+    			<div class="grid gap-6 mb-6 md:grid-cols-2">
+					<div>
+						<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['member-id']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="id" name="id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_id']; ?>" disabled readonly>
 					</div>
-				 	<div class="relative z-0 w-full mb-6 group">
-						<label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['member-status']; ?></label>
+				 	<div>
+						<label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['member-status']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="status" name="status" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_status']; ?>"disabled readonly>
 					 </div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="eng" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['eng-name']; ?></label>
+					<div>
+						<label for="eng" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['eng-name']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="eng" name="eng" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_eng_name']; ?>" disabled readonly>
 					</div>
-				 	<div class="relative z-0 w-full mb-6 group">
-						<label for="chi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['chi-name']; ?></label>
+				 	<div>
+						<label for="chi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['chi-name']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="chi" name="chi" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_chi_name']; ?>"disabled readonly>
 					 </div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="ic" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['nric']; ?></label>
+					<div>
+						<label for="ic" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['nric']; ?><span class="text-blue-500 dark:text-blue-300">*</span></label>
 						<input type="text" id="ic" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php 
 						echo $row['member_ic']; ?>" disabled readonly>
 					 </div>
-					 <div class="relative z-0 w-full mb-6 group">
-						<label for="citizen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['citizenship']; ?></label>
+					 <div>
+						<label for="citizen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['citizenship']; ?><span class="text-blue-500 dark:text-blue-300">*</span></label>
 						<input type="text" id="citizen" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_citizenship']; ?>" disabled readonly>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['age']; ?></label>
 						<input type="text" id="age" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php  
     					date_default_timezone_set("Asia/Kuala_Lumpur");
@@ -144,57 +138,47 @@ isLoggedIn();
 					  	echo $diff->format('%y');
 					?>" disabled readonly>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['gender']; ?></label>
+					<div>
+						<label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['gender']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="gender" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_gender']; ?>"disabled readonly>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="dob" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['dob']; ?></label>
+					<div>
+						<label for="dob" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['dob']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo date("d-m-Y", strtotime($row['member_dob'])); ?>"disabled readonly>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['contact']; ?></label>
+					<div>
+						<label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['contact']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="contact" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_tel']; ?>"disabled readonly>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="job" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['occupation']; ?></label>
 						<input type="text" id="job" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_job']; ?>"disabled readonly>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['address']; ?></label>
+					<div>
+						<label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['address']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="address" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_address']; ?>"disabled readonly>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="member" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['member-type']; ?></label>
 						<input type="text" id="member" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['member_type']; ?>"disabled readonly>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
-						<label for="accept-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['admission']; ?></label>
+					<div>
+						<label for="accept-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['admission']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="accept-date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo date("d-m-Y", strtotime($row['accept_date'])); ?>"disabled readonly>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="recommender-id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['recommender-id']; ?></label>
 						<input type="text" id="recommender-id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['recommender_id']; ?>"disabled readonly>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="recommender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['recommender-name']; ?></label>
 						<input type="text" id="recommender" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['recommender_name']; ?>"disabled readonly>
 					</div>
-				 </div>
-				<div class="grid xl:grid-cols-2 xl:gap-6">
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['recorded-by']; ?></label>
 						<input type="text" id="user" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['recordedBy']; ?>" disabled readonly>
 					</div>
-					<div class="relative z-0 w-full mb-6 group">
+					<div>
 						<label for="record-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $form['recorded-on']; ?></label>
 						<input type="text" id="record-date" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" value="<?php echo $row['recordedOn']; ?>" disabled readonly>
 					</div>
@@ -229,7 +213,7 @@ isLoggedIn();
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 	
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

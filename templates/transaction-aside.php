@@ -71,7 +71,7 @@
                                 <label for="receipts" class="ml-1 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $export['tablet-transactions']; ?></label>
 							</div>
 							
-                            <label class="block text-sm font-medium text-gray-900 dark:text-gray-400"><?php echo $export['choose-period']; ?></label>
+                            <label class="block text-sm font-medium text-gray-900 dark:text-gray-400"><?php echo $export['choose-period-record']; ?></label>
 							
                             <div class="inline-flex justify-center items-center w-full">
                                 <hr class="my-8 w-64 h-px bg-gray-200 border dark:bg-gray-500 dark:border-gray-500">
@@ -134,7 +134,7 @@
                     <div class="px-6 py-6 lg:px-8">
                         <h3 class="mb-6 text-xl font-medium text-gray-900 dark:text-white"><?php echo $export['export-record-title']; ?></h3>
                         <form action="../transactions/blantern_export.php" method="post">
-                            <label class="block text-sm font-medium text-gray-900 dark:text-gray-400"><?php echo $export['choose-period']; ?></label>
+                            <label class="block text-sm font-medium text-gray-900 dark:text-gray-400"><?php echo $export['choose-period-receipt']; ?></label>
 							
                             <div class="inline-flex justify-center items-center w-full">
                                 <hr class="my-8 w-64 h-px bg-gray-200 border dark:bg-gray-500 dark:border-gray-500">
@@ -197,7 +197,7 @@
                     <div class="px-6 py-6 lg:px-8">
                         <h3 class="mb-6 text-xl font-medium text-gray-900 dark:text-white"><?php echo $export['export-record-title']; ?></h3>
                         <form action="../transactions/glight_export.php" method="post">
-                            <label class="block text-sm font-medium text-gray-900 dark:text-gray-400"><?php echo $export['choose-period']; ?></label>
+                            <label class="block text-sm font-medium text-gray-900 dark:text-gray-400"><?php echo $export['choose-period-receipt']; ?></label>
 							
                             <div class="inline-flex justify-center items-center w-full">
                                 <hr class="my-8 w-64 h-px bg-gray-200 border dark:bg-gray-500 dark:border-gray-500">

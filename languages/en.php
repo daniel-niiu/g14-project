@@ -1,14 +1,16 @@
 <?php
 	$page = array(
 		//navbar
-		"portal" => "Tze Yin Membership <br/> Management Portal",
+		"portal" => "Tze Yin Membership<br/>Management Portal",
 		"membership" => "Membership",
 		"transaction" => "Transaction",
 		"product" => "Product",
 		"stock" => "Stock",
 		"analytics" => "Analytics",
 		//footer
-		"footer" => "Disclaimer: This is a student work in progress for SWE40001/SWE40002 Software Engineering Project A/B of Swinburne University of Technology, Sarawak (2022).",
+		"footer" => "© Tze Yin Membership Management Portal: All rights reserved to Kuching Tze Yin Buddhist Orthodox Association.",
+		//Disclaimer: This is a student work in progress for SWE40001/SWE40002 Software Engineering Project A/B of Swinburne University of Technology, Sarawak (2022).
+		
 		//quick-export
 		"quick-export" => "Quick Export",
 		"quick-export-popout" => "Export a detailed record of 'Over Time Payment' from Tablet Transaction.",
@@ -118,21 +120,20 @@
 
 	$toast = array(
 		//index
-		"toast-success-password" => "帐户密码已顺利被修改。",
-		"toast-add-reminder" => "新笔录已顺利被添加。",
-		"toast-edit-reminder" => "笔录已顺利被修改。",
-		"toast-delete-reminder" => "笔录已顺利被删除。",
-		"toast-success-filter" => "经纪快捷已顺利被修改。",
-		"toast-new-notification" => "新通知",
-		"toast-notification-today" => "今日",
+		"toast-success-password" => "Password modified successfully.",
+		"toast-add-reminder" => "Reminder created successfully.",
+		"toast-edit-reminder" => "Reminder modified successfully.",
+		"toast-delete-reminder" => "Reminder deleted successfully.",
+		"toast-success-filter" => "Shortcuts modified successfully.",
+		"toast-new-notification" => "New notification",
+		"toast-notification-today" => "Today",
 		//member
-		"toast-success-create-record" => "Record created successfully",
-		"toast-fail-create-record" => "Record has been created before",
-		"toast-success-edit-record" => "Record modified successfully",
-		"toast-fail-edit-record" => "Record has been modified before",
-		"toast-success-delete-record" => "Record deleted successfully",
-		"toast-fail-delete-record" => "Record deleted unsuccessfully"
-
+		"toast-success-create-record" => "Record created successfully.",
+		"toast-fail-create-record" => "Record has been created before.",
+		"toast-success-edit-record" => "Record modified successfully.",
+		"toast-fail-edit-record" => "Record has failed to be modified.",
+		"toast-success-delete-record" => "Record deleted successfully.",
+		"toast-fail-delete-record" => "Record has failed to be removed."
 	); 
 
 	$index = array(
@@ -191,12 +192,13 @@
 		"export-record" => "Export Record",
 		"export" => "Export",
 		//export file
+		"export-product-title" => "Are you sure you want to export<br/>record of all products?",
 		"export-record-title" => "What would you like to export?",
 		"choose-type" => "Choose a type",
-		"choose-period" => "Choose a period",
+		"choose-period-receipt" => "Choose a period <b>(According to Receipt Date)</b>",
+		"choose-period-record" => "Choose a period <b>(According to Record Date)</b>",
 		"period-from" => "Starting Date",
 		"period-to" => "Ending Date",
-		"choose-product" => "Choose a product",
 		//export: transaction
 		"tablet-transactions" => "Tablet Transactions"
 	);  
@@ -278,10 +280,14 @@
 
 	$stock = array(
 		"manage-stock" => "Manage Stocks",
+		"record-in" => "Record Stock-in",
+		"record-out" => "Record Stock-out",
 		//form: product
 		"product-name" => "Product Name",
 		"summary" => "Summary",
-		"balance" => "Balance"
+		"balance" => "Balance",
+		"quantity-in" => "Quantity (Stock In)",
+		"quantity-out" => "Quantity (Stock Out)"
 	);
 
 	$analytics = array(
@@ -289,6 +295,8 @@
 		"membership" => "Membership Analytics",
 		"transaction" => "Transaction Analytics",
 		"product" => "Stock Analytics",
-		"category" => "Category"
+		"category" => "Category",
+		"receipt-date" => "According to Receipt Date",
+		"admission-date" => "According to Admission Date"
 	);
 ?>

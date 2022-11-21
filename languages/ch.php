@@ -8,7 +8,9 @@
 		"stock" => "库存管理",
 		"analytics" => "统计管理",
 		//footer
-		"footer" => "声明：此作品为斯威本科技大学生于 2022 年为 SWE40001/SWE40002 软件工程科（甲、丙）所制的在制品。",
+		"footer" => "© 慈云会员管理中心于古晋慈云佛教正信会发行。版权所有，侵权必究。",
+		//声明：此作品为斯威本科技大学生于 2022 年为 SWE40001/SWE40002 软件工程科（甲、丙）所制的在制品。
+		
 		//quick-export
 		"quick-export" => "快速下载",
 		"quick-export-popout" => "下载于<莲座交易>里选择“分期付款”的详细记录。",
@@ -32,8 +34,8 @@
 		"full-name" => "完整姓名",
 		"email-address" => "电子邮件",
 		"account-status" => "帐户状态",
-		"status-active" => "有效",
-		"status-inactive" => "无效",
+		"status-active" => "开通",
+		"status-inactive" => "关停",
 		"account-type" => "帐户类型",
 		"type-admin" => "管理员",
 		"type-oper" => "操作员",
@@ -103,11 +105,11 @@
 		"search-product" => "搜索产品",
 		"view-product" => "鉴别产品",
 		"edit-product" => "编辑产品",
-		"view-product-stock-in" => "鉴别产品进货",
-		"view-product-stock-out" => "鉴别产品出货",
+		"view-product-stock-in" => "鉴别进货",
+		"view-product-stock-out" => "鉴别退货",
 		//stocks
-		"stock-in" => "库存进货",
-		"stock-out" => "库存出货",
+		"stock-in" => "进货",
+		"stock-out" => "退货",
 		"view-stock" => "鉴别库存",
 		"edit-stock" => "编辑库存",
 		//account
@@ -129,9 +131,9 @@
 		"toast-success-create-record" => "记录已顺利被添加。",
 		"toast-fail-create-record" => "记录已存在于档案中。",
 		"toast-success-edit-record" => "记录已顺利被修改。",
-		"toast-fail-edit-record" => "记录不顺利被修改。",
+		"toast-fail-edit-record" => "记录修改失败。",
 		"toast-success-delete-record" => "记录已顺利被删除。",
-		"toast-fail-delete-record" => "记录不顺利被删除。"
+		"toast-fail-delete-record" => "记录删除失败。"
 
 	);
 	
@@ -168,7 +170,7 @@
 		"body-create-product" => "添加新产品记录。",
 		"body-search-product" => "搜索产品记录。",
 		"body-stock-in" => "添加新进货记录。",
-		"body-stock-out" => "添加新出货记录。",
+		"body-stock-out" => "添加新退货记录。",
 		//placeholder
 		"reminder-title-placeholder" => "请输入您的标题",
 		"reminder-content-placeholder" => "请输入您的笔录内容",
@@ -191,12 +193,13 @@
 		"export-record" => "下载资料",
 		"export" => "下载",
 		//export file
+		"export-product-title" => "您确定要下载所有产品的资料吗？",
 		"export-record-title" => "您想要下载哪些资料?",
 		"choose-type" => "请选择您想要的类型",
-		"choose-period" => "请选择您想要的时间段",
+		"choose-period-receipt" => "请选择您想要的时间段<b>（依照收据日期）</b>",
+		"choose-period-record" => "请选择您想要的时间段<b>（依照记录日期）</b>",
 		"period-from" => "开始日期",
 		"period-to" => "结束日期",
-		"choose-product" => "请选择您想要的产品",
 		//export: transaction
 		"tablet-transactions" => "莲座交易"
 	);  
@@ -233,7 +236,7 @@
 
 	$transaction = array(
 		"manage-transaction" => "交易管理",
-		"memorial-tablet" => "祖先莲座",
+		"memorial-tablet" => "逝者莲座",
 		"blessing-lantern" => "祈福灯",
 		"guang-ming-light" => "光明灯",
 		//form: memorial tablet
@@ -257,10 +260,10 @@
 		"search-mem-chi" => "会员中文姓名",
 		//form: blessing lantern
 		"lantern-id" => "祈福灯编号",
-		"blessing-price" => "Blessing Price",
-		"votive-price" => "Votive Price",
-		"blessing-receipt" => "Blessing Receipt",
-		"votive-receipt" => "Votive Receipt",
+		"blessing-price" => "金额（祈福)",
+		"votive-price" => "金额（还愿)",
+		"blessing-receipt" => "收据（祈福)",
+		"votive-receipt" => "收据（还愿)",
 		//form: guang-ming light
 		"light-id" => "光明灯编号"
 	);
@@ -279,10 +282,14 @@
 
 	$stock = array(
 		"manage-stock" => "库存管理",
+		"record-in" => "添加记录",
+		"record-out" => "添加记录",
 		//form: product
 		"product-name" => "产品名称",
 		"summary" => "摘要",
-		"balance" => "结存"
+		"balance" => "结存",
+		"quantity-in" => "总数（进货)",
+		"quantity-out" => "总数（退货)"
 	);
 
 	$analytics = array(
@@ -290,6 +297,8 @@
 		"membership" => "会员统计",
 		"transaction" => "交易统计",
 		"product" => "库存统计",
-		"category" => "类别"
+		"category" => "类别",
+		"receipt-date" => "依照收据日期",
+		"admission-date" => "依照入会日期"
 	);
 ?>

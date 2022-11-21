@@ -1,7 +1,7 @@
 <?php 
 error_reporting(0);
 	$fileparts = explode('/',$_SERVER['REQUEST_URI']); 
-	$filename = array_pop($fileparts);     
+	$filename = array_pop($fileparts);
 if (str_contains($filename, 'index.php') || $filename == "") { 
 	include "php/config.php"; 
 } 
@@ -184,7 +184,7 @@ else
 										</div> 
 	                                    <div id="correct_pass" class="hidden flex text-green-500 dark:text-green-400">
 	                                        <i class="fa-solid fa-check"></i>
-	                                        <p class="ml-2 text-xs">The password is match.</p>
+	                                        <p class="ml-2 text-xs">Matching password.</p>
 	                                    </div>	
 	                                    <div id="wrong_pass" class="hidden flex text-red-500 dark:text-red-400">
 	                                        <i class="fa-solid fa-xmark"></i>
@@ -398,15 +398,15 @@ else
 	</nav>
 </header>
 
-<button type="button" class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 hover:text-white focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-full text-sm p-3 text-center mr-2 mb-2 fixed bottom-5 right-5" data-popover-target="popover-left" data-popover-placement="left" data-modal-toggle="quick-export-modal">
+<button type="button" class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 hover:text-white focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-full text-sm p-3 text-center mr-2 mb-4 fixed bottom-5 right-5" data-popover-target="popover-left" data-popover-placement="left" data-modal-toggle="quick-export-modal">
     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path></svg>
 </button>
 
-<div id="popover-left" role="tooltip" class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-    <div class="py-2 px-4 bg-gray-100 rounded-t-lg border-b border-gray-200 dark:border-gray-600 dark:bg-gray-700">
+<div data-popover id="popover-left" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm font-light text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+    <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
         <h3 class="font-semibold text-gray-900 dark:text-white"><?php echo $page['quick-export'];?></h3>
     </div>
-    <div class="py-2 px-4">
+    <div class="px-3 py-2">
         <p><?php echo $page['quick-export-popout'];?></p>
     </div>
     <div data-popper-arrow></div>
