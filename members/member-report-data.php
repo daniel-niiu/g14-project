@@ -1,9 +1,10 @@
 <?php
 
 include "../db/dbconnection.php";
-$sql = "SELECT 
-       SUM(member_status='active') active,
-       SUM(member_status='inactive') inactive
+$sql = "SELECT r.*, 
+       COUNT(s.current_status), 
+       SUM(current_status='active') active,
+       SUM(current_status='inactive') inactive
        from member
        ";
 $result = $conn->query($sql);
