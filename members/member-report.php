@@ -86,145 +86,301 @@ include('../templates/header.php');
 
         <!-- Chart code -->
         <script>
-            $(document).ready(function(){
+            jQuery(document).ready(function () {
                 expense_report();
             });
 
-            function expense_report()
-            {
-                $.ajax({
-                    url:"member-report-data.php",
-                    type:"POST",
+            function expense_report() {
+                jQuery.ajax({
+                    url: "member-report-data.php",
+                    type: "POST",
                     dataType: 'json',
-                    success:function(response){
-//                        if(response.status == true)
-//                        {
+                    success: function (response) {
+console.log(response);
+                        am5.ready(function () {
+                            var root = am5.Root.new("chartdiv");
+                            root.setThemes([
+                                am5themes_Animated.new(root)
+                            ]);
+                            var chart = root.container.children.push(am5xy.XYChart.new(root, {
+                                panX: false,
+                                panY: false,
+                                wheelX: "panX",
+                                wheelY: "zoomX",
+                                layout: root.verticalLayout
+                            }));
 
-                            am5.ready(function() {
-                                // Create root element
-                                // https://www.amcharts.com/docs/v5/getting-started/#Root_element
-                                var root = am5.Root.new("chartdiv");
+                            var legend = chart.children.push(am5.Legend.new(root, {
+                                centerX: am5.p50,
+                                x: am5.p50
+                            }));
+// Data
+                            var data = [];
+                            for(var i = 0; i < response.length; i++)
+                            {
+                                data.push({
+                                    "active" : response[i].active,
+                                    "inactive"  : parseInt(response[i].inactive),
 
-                                // Set themes
-                                // https://www.amcharts.com/docs/v5/concepts/themes/
-                                root.setThemes([
-                                    am5themes_Animated.new(root)
-                                ]);
-
-
-                                // Create chart
-                                // https://www.amcharts.com/docs/v5/charts/xy-chart/
-                                var chart = root.container.children.push(am5xy.XYChart.new(root, {
-                                    panX: true,
-                                    panY: true,
-                                    wheelX: "panX",
-                                    wheelY: "zoomX",
-                                    pinchZoomX:true
-                                }));
-
-                                // Add cursor
-                                // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
-                                var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
-                                cursor.lineY.set("visible", false);
-
-
-                                // Create axes
-                                // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
-                                var xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30 });
-                                xRenderer.labels.template.setAll({
-                                    rotation: -90,
-                                    centerY: am5.p50,
-                                    centerX: am5.p100,
-                                    paddingRight: 15
                                 });
+                            }
+                            var yAxis = chart.yAxes.push(am5xy.CategoryAxis.new(root, {
+                                categoryField: "product",
+                                renderer: am5xy.AxisRendererY.new(root, {
+                                    inversed: true,
+                                    cellStartLocation: 0.1,
+                                    cellEndLocation: 0.9
+                                })
+                            }));
 
-                                var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
-                                    maxDeviation: 0.3,
-                                    categoryField: "active", //add your field name
-                                    renderer: xRenderer,
-                                    tooltip: am5.Tooltip.new(root, {})
-                                }));
+                            yAxis.data.setAll(data);
 
-                                var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
-                                    maxDeviation: 0.3,
-                                    //min: 0,
-                                    renderer: am5xy.AxisRendererY.new(root, {})
-                                }));
+                            var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+                                renderer: am5xy.AxisRendererX.new(root, {}),
+                                min: 0
+                            }));
 
-
-                                // Create series
-                                // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+                            function createSeries(field, name) {
                                 var series = chart.series.push(am5xy.ColumnSeries.new(root, {
-                                    name: "Members",
+                                    name: name,
                                     xAxis: xAxis,
                                     yAxis: yAxis,
-                                    valueYField: "value", //add your field name
+                                    valueXField: field,
+                                    categoryYField: "Product",
                                     sequencedInterpolation: true,
-                                    categoryXField: "active", //add your field name
                                     tooltip: am5.Tooltip.new(root, {
-                                        labelText:"{valueY}"
+                                        labelText: "[bold]{name}[/]\n{categoryY}: {valueX}"
                                     })
                                 }));
 
-                                series.columns.template.setAll({ cornerRadiusTL: 5, cornerRadiusTR: 5 });
-                                series.columns.template.adapters.add("fill", function(fill, target) {
-                                    return chart.get("colors").getIndex(series.columns.indexOf(target));
+                                series.columns.template.setAll({
+                                    height: am5.p100
                                 });
 
-                                series.columns.template.adapters.add("stroke", function(stroke, target) {
-                                    return chart.get("colors").getIndex(series.columns.indexOf(target));
-                                });
 
-                                // Set data
-                                //static data
-                                /*
-                                 var data = [{
-                                 country: "USA",
-                                 value: 2025
-                                 }, {
-                                 country: "China",
-                                 value: 1882
-                                 }, {
-                                 country: "Japan",
-                                 value: 1809
-                                 }];
-                                 */
-
-                                //dynamic data pass
-                                var chart_data = [];
-                                for(var i = 0; i < response.length; i++)
-                                {
-                                    chart_data.push({
-                                        "active" : response[i].active,
-                                        "inactive"  : parseInt(response[i].inactive)
+                                series.bullets.push(function () {
+                                    return am5.Bullet.new(root, {
+                                        locationX: 1,
+                                        locationY: 0.5,
+                                        sprite: am5.Label.new(root, {
+                                            centerY: am5.p50,
+                                            text: "{valueX}",
+                                            populateText: true
+                                        })
                                     });
-                                }
-                                console.log(chart_data);
+                                });
 
-                                xAxis.data.setAll(chart_data);
-                                series.data.setAll(chart_data);
+                                series.bullets.push(function () {
+                                    return am5.Bullet.new(root, {
+                                        locationX: 1,
+                                        locationY: 0.5,
+                                        sprite: am5.Label.new(root, {
+                                            centerX: am5.p100,
+                                            centerY: am5.p50,
+                                            text: "{name}",
+                                            fill: am5.color(0xffffff),
+                                            populateText: true
+                                        })
+                                    });
+                                });
 
-                                // Make stuff animate on load
-                                // https://www.amcharts.com/docs/v5/concepts/animations/
-                                series.appear(1000);
-                                chart.appear(1000, 100);
+                                series.data.setAll(data);
+                                series.appear();
 
-                            }); // end am5.ready()
+                                return series;
+                            }
 
-//                        }
-//                        else
-//                        {
-//                            alert(response.msg);
-//                        }
-                    },
-                    error: function (xhr, status) {
-                        console.log('ajax error = ' + xhr.statusText);
-                        alert(response.msg);
-                    }
-                });
+                            createSeries("stock_in", "Stock In");
+                            createSeries("stock_out", "Stock Out");
+
+
+// Add legend
+// https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
+                            var legend = chart.children.push(am5.Legend.new(root, {
+                                centerX: am5.p50,
+                                x: am5.p50
+                            }));
+
+                            legend.data.setAll(chart.series.values);
+
+
+// Add cursor
+// https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+                            var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
+                                behavior: "zoomY"
+                            }));
+                            cursor.lineY.set("forceHidden", true);
+                            cursor.lineX.set("forceHidden", true);
+
+// Make stuff animate on load
+// https://www.amcharts.com/docs/v5/concepts/animations/
+                            chart.appear(1000, 100);
+
+                        }); // end am5.ready()
+
+            },
+            error: function (xhr, status) {
+                console.log('ajax error = ' + xhr.statusText);
+                alert(response.msg);
+            }
+            })
+            ;
 
             }
-            //--- END
+            //
+            //    var data = [];
+            //
+            //    jQuery.ajax({
+            //        url: "stocks-report-data.php",
+            //        type: "POST",
+            //        dataType: 'json',
+            //        success: function (response) {
+            //            if (response.status == true) {
+            //                              for (var i = 0; i < response.data.length; i++) {
+            //                    data.push({
+            //                        "product": response.data[i].Product,
+            //                        "stock_in": parseInt(response.data[i].stock_in),
+            //                        "stock_out": parseInt(response.data[i].stock_out)
+            //                    });
+            //
+            //    am5.ready(function() {
+            //
+            //// Create root element
+            //// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+            //        var root = am5.Root.new("chartdiv");
+            //
+            //
+            //// Set themes
+            //// https://www.amcharts.com/docs/v5/concepts/themes/
+            //        root.setThemes([
+            //            am5themes_Animated.new(root)
+            //        ]);
+            //
+            //
+            //// Create chart
+            //// https://www.amcharts.com/docs/v5/charts/xy-chart/
+            //        var chart = root.container.children.push(am5xy.XYChart.new(root, {
+            //            panX: false,
+            //            panY: false,
+            //            wheelX: "panX",
+            //            wheelY: "zoomX",
+            //            layout: root.verticalLayout
+            //        }));
+            //
+            //
+            //// Add legend
+            //// https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
+            //        var legend = chart.children.push(am5.Legend.new(root, {
+            //            centerX: am5.p50,
+            //            x: am5.p50
+            //        }))
+            //
+            //
+            //// Data
+            //
+            //
+            //// Create axes
+            //// https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+            //        var yAxis = chart.yAxes.push(am5xy.CategoryAxis.new(root, {
+            //            categoryField: "product",
+            //            renderer: am5xy.AxisRendererY.new(root, {
+            //                inversed: true,
+            //                cellStartLocation: 0.1,
+            //                cellEndLocation: 0.9
+            //            })
+            //        }));
+            //
+            //        yAxis.data.setAll(data);
+            //
+            //        var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+            //            renderer: am5xy.AxisRendererX.new(root, {}),
+            //            min: 0
+            //        }));
+            //
+            //
+            //// Add series
+            //// https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+            //        function createSeries(field, name) {
+            //            var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+            //                name: name,
+            //                xAxis: xAxis,
+            //                yAxis: yAxis,
+            //                valueXField: field,
+            //                categoryYField: "product",
+            //                sequencedInterpolation: true,
+            //                tooltip: am5.Tooltip.new(root, {
+            //                    labelText: "[bold]{name}[/]\n{categoryY}: {valueX}"
+            //                })
+            //            }));
+            //
+            //            series.columns.template.setAll({
+            //                height: am5.p100
+            //            });
+            //
+            //
+            //            series.bullets.push(function() {
+            //                return am5.Bullet.new(root, {
+            //                    locationX: 1,
+            //                    locationY: 0.5,
+            //                    sprite: am5.Label.new(root, {
+            //                        centerY: am5.p50,
+            //                        text: "{valueX}",
+            //                        populateText: true
+            //                    })
+            //                });
+            //            });
+            //
+            //            series.bullets.push(function() {
+            //                return am5.Bullet.new(root, {
+            //                    locationX: 1,
+            //                    locationY: 0.5,
+            //                    sprite: am5.Label.new(root, {
+            //                        centerX: am5.p100,
+            //                        centerY: am5.p50,
+            //                        text: "{name}",
+            //                        fill: am5.color(0xffffff),
+            //                        populateText: true
+            //                    })
+            //                });
+            //            });
+            //
+            //            series.data.setAll(data);
+            //            series.appear();
+            //
+            //            return series;
+            //        }
+            //
+            //        createSeries("stock_in", "Stock In");
+            //        createSeries("stock_out", "Stock Out");
+            //
+            //
+            //// Add legend
+            //// https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
+            //        var legend = chart.children.push(am5.Legend.new(root, {
+            //            centerX: am5.p50,
+            //            x: am5.p50
+            //        }));
+            //
+            //        legend.data.setAll(chart.series.values);
+            //
+            //
+            //// Add cursor
+            //// https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+            //        var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
+            //            behavior: "zoomY"
+            //        }));
+            //        cursor.lineY.set("forceHidden", true);
+            //        cursor.lineX.set("forceHidden", true);
+            //
+            //// Make stuff animate on load
+            //// https://www.amcharts.com/docs/v5/concepts/animations/
+            //        chart.appear(1000, 100);
+            //
+            //    }); // end am5.ready()
+            //                              }
+            //            }
+            //        }
+            //    });
         </script>
 
         <!-- HTML -->
