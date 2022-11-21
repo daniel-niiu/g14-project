@@ -33,9 +33,10 @@ if($_FILES["excel"]["name"] != '')
         foreach($data as $row)
         { 
             $q="";
-            if($i!=0){  
-                $row[1] = str_replace('/', '-', $row[1]);
-                $date = date('Y-m-d',strtotime($row[1])); 
+            if($i!=0){   
+                $date = str_replace('/', '-', $row[1]); 
+                $date = explode("-", $date);
+                $date = $date[2].'-'.$date[0].'-'.$date[1]; 
                 $insert_stock_data = "'$row[0]', '$date', '$row[2]', '$row[3]', '$row[4]', '$row[5]', '$row[6]', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."'";  
 
                 $query="INSERT INTO stockin(".$stock_data.") values (".$insert_stock_data.");"; 
