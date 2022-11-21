@@ -136,7 +136,8 @@ isLoggedIn();
 						<label for="balance" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $stock['balance'];?></label>
 						<div class="flex">
 							 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">RM</span>
-							 <input type="text" id="balance1" name="balance" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $stock['balance'];?>">
+							 <input type="text" id="balance1" name="balance1" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $stock['balance'];?>" disabled>
+							 <input type="hidden" id="balance" name="balance">
 						</div>
 						 <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_balance" style="display:none;"><?php echo $form['number-warning']; ?></p>
 					 </div>
@@ -287,6 +288,25 @@ isLoggedIn();
             		}
             	}) 
             });  
+
+            $("#stock-in").keyup(function(){ 
+            	var quantity = $('#stock-in').val(); 
+            	var searchField = $('#search').val(); 
+            	$.ajax({
+            		url: "fetch_stock_productname.php",
+            		type: "post",
+            		data: { 
+            			value: searchField,
+            			quantity: quantity,
+            			type: "calculate"
+            		},
+            		success: function(d){ 
+            			$('#balance1').val(d);
+            			$('#balance').val(d);
+            		}
+            	}) 
+            });  
+
 			$(document).on('click','.clickme', function(){
 
 			    var value = $(this).text();
@@ -297,6 +317,6 @@ isLoggedIn();
 
 			 }); 
         });
-	</script> 
+	</script>  
 </body>
 </html>
