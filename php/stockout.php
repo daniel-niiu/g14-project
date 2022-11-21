@@ -22,7 +22,7 @@ if($method === "add")
 		$balance = $_POST["balance"];
 	    $remarks = $_POST["remarks"];
 
-	    $sql = "INSERT INTO STOCKOUT(product_name, reciept_date, stock_summary, receipt_no, stock_out, balance_left, remarks, recordedBy, recordedOn) VALUES('$prodname[1]','$date','$summary','$receiptno','$stockout','$balance','$remarks', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')";  
+	    $sql = "INSERT INTO STOCKOUT(product_name, reciept_date, stock_summary, receipt_no, stock_out, balance_left, remarks, recordedBy, recordedOn) VALUES('$prodname[2]','$date','$summary','$receiptno','$stockout','$balance','$remarks', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')";  
 	    if (mysqli_query($conn,$sql)) {
 			
 	        header("Location: ../stocks/stock-out.php?name=stock&aside=stock-out&success=success");
