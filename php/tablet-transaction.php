@@ -92,9 +92,9 @@ if($method === "quick_export")
 { 
     include("../php/SimpleXLSXGen.php"); 
     
-    $fields = array('TABLET ID', 'RECEIPT NO', 'RECEIPT DATE', 'RECEIPT AMOUNT', 'MEMBER ENGLISH NAME', 'MEMBER CHINESE NAME', 'REMARKS');
+    $fields = array('莲座编号/TABLET ID(e.g T123)', '收据编号/RECEIPT NO(e.g 123)', '收据日期/RECEIPT DATE(e.g 20/05/1001)', '收据总额/RECEIPT AMOUNT(e.g 100)', '英文姓名/MEMBER ENGLISH NAME(e.g John Doe)', '中文姓名/MEMBER CHINESE NAME(e.g 约翰', '备注/REMARKS');
 
-    $fileName = "tablet_transaction_data_" . date('Y-m-d') . ".xlsx"; 
+    $fileName = "tablet_transaction_template_" . date('Y-m-d') . ".xlsx"; 
     $excelData = array($fields);   
     $xlsx = SimpleXLSXGen::fromArray($excelData);
     $xlsx->downloadAs($fileName); // This will download the file to your local system 

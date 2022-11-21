@@ -67,8 +67,8 @@ if($method === "quick_export")
 { 
     include("../php/SimpleXLSXGen.php"); 
     
-    $fields = array('PRODUCT ID', 'PRODUCT STATUS', 'PRODUCT ENG NAME', 'PRODUCT CHI NAME', 'UNIT PRICE', 'REMARKS');   
-    $fileName = "product_data_" . date('Y-m-d') . ".xlsx"; 
+    $fields = array('产品编号/PRODUCT ID(e.g P123)', '产品状态/PRODUCT STATUS(e.g Available/Unavailable)', '产品英文名称/PRODUCT ENG NAME(e.g IPhone13)', '产品华文名称/PRODUCT CHI NAME(苹果手机13)', '产品单价/UNIT PRICE(e.g 23)', '备注/REMARKS');   
+    $fileName = "product_template_" . date('Y-m-d') . ".xlsx"; 
     $excelData = array($fields);   
     $xlsx = SimpleXLSXGen::fromArray($excelData);
     $xlsx->downloadAs($fileName); // This will download the file to your local system 

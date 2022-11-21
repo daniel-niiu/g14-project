@@ -110,8 +110,8 @@ if($method === "quick_export")
 { 
     include("../php/SimpleXLSXGen.php"); 
     
-    $fields = array('TABLET ID', 'INSTALMENT DATE', 'ZONE', 'TIER', 'ROW', 'PRICE', 'ANCESTOR ENGLISH NAME', 'ANCESTOR CHINESE NAME', 'CONTACT NO 1', 'CONTACT NO 2','ADDRESS', 'MEMBER ENGLISH NAME', 'MEMBER CHINESE NAME',  'PAYMENT TYPE', 'REMARKS'); 
-    $fileName = "tablet_data_" . date('Y-m-d') . ".xlsx"; 
+    $fields = array('莲座编号/TABLET ID(e.g T123)', '安座日期/INSTALMENT DATE(e.g 20/05/1990)', '区号/ZONE(e.g 1)', '层次/TIER(e.g 1)', '编号/ROW(e.g 1)', '总额/PRICE(e.g 11)', '逝者英文姓名/ANCESTOR ENGLISH NAME(e.g John Doe)', '逝者华文姓名/ANCESTOR CHINESE NAME(e.g 约翰)', '主要联络号码/CONTACT NO 1(e.g 0108889999)', '次要联络号码/CONTACT NO 2(e.g 0108889999)','地址/ADDRESS(e.g 46, Jalan Sia)','英文姓名/MEMBER ENGLISH NAME(e.g John Doe)', '华文姓名/MEMBER CHINESE NAME(e.g 约翰)',  '付费类型/PAYMENT TYPE(e.g over-time/lump-sum)', '备注/REMARKS'); 
+    $fileName = "tablet_template_" . date('Y-m-d') . ".xlsx"; 
     $excelData = array($fields);   
     $xlsx = SimpleXLSXGen::fromArray($excelData);
     $xlsx->downloadAs($fileName); // This will download the file to your local system 

@@ -17,9 +17,7 @@ if($method === "add")
        
         $receiptdate = str_replace('/', '-', $_POST['date']);
         $receiptdate = date("Y-m-d", strtotime($receiptdate));
-        $rsql = "INSERT INTO GLight_receipt (GLight_id, receipt_num, receipt_date , receipt_amount, recordedBy , recordedOn) VALUES ('".$_POST['gl-id']."','".$_POST['receipt']."','".$receiptdate."','".$_POST['amount']."', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')";  
-        //$rresult = $conn->query($rsql);
-        //header("Location: ../transactions/create-glight.php?name=transaction&aside=create-glight"); 
+        $rsql = "INSERT INTO GLight_receipt (GLight_id, receipt_num, receipt_date , receipt_amount, recordedBy , recordedOn) VALUES ('".$_POST['gl-id']."','".$_POST['receipt']."','".$receiptdate."','".$_POST['amount']."', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')";   
         if ($result = $conn->query($sql) && $rresult = $conn->query($rsql)) { 
             header("Location: ../transactions/create-glight.php?name=transaction&aside=create-glight&success=success&lang=".$_SESSION['lang']."");
         } 
@@ -77,9 +75,9 @@ if($method === "quick_export")
 { 
     include("../php/SimpleXLSXGen.php"); 
     
-    $fields = array('GLIGHT ID', 'MEMBER ENG NAME', 'MEMBER CHI NAME', 'PRICE', 'CONTACT NUM' , 'RECEIPT NUM', 'RECEIPT DATE', 'RECEIPT AMOUNT', 'REMARKS'); 
+    $fields = array('光明灯编号/GLIGHT ID(e.g G123)', '英文姓名/MEMBER ENG NAME(e.g John Doe)', '中文姓名/MEMBER CHI NAME(e.g 约翰)', '总额/PRICE(e.g 123)', '联络号码/CONTACT NUM(e.g 0108889999)' , '收据编号/RECEIPT NUM(e.g 123)', '收据日期/RECEIPT DATE(e.g 20/01/1231)', '收据总额/RECEIPT AMOUNT(e.g 123)', '备注/REMARKS'); 
 
-    $fileName = "glight_data_" . date('Y-m-d') . ".xlsx"; 
+    $fileName = "glight_template_" . date('Y-m-d') . ".xlsx"; 
     $excelData = array($fields);   
     $xlsx = SimpleXLSXGen::fromArray($excelData);
     $xlsx->downloadAs($fileName); // This will download the file to your local system 

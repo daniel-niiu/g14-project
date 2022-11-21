@@ -60,7 +60,7 @@ isLoggedIn();
 					<button type="button" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" data-modal-toggle="import-modal">
 						<i class="fa-solid fa-file-import"></i>&nbsp; <?php echo $import['import-tablet']; ?>
 					</button>
-
+					
 					<div id="import-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
 						<div class="relative p-4 w-full max-w-md h-full md:h-auto">
 							<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -138,6 +138,7 @@ isLoggedIn();
 					<div>
 						<label for="chinese" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $member['chi-name']; ?><span class="text-red-500 dark:text-red-300">*</span></label>
 						<input type="text" id="chinese" name="chinese" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $member['chi-name']; ?>">
+						<p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_m_chi" style="display:none;"><?php echo $form['word-warning']; ?></p>
 					</div>
 					<div>
 						<label for="contact1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $transaction['contact-num1']; ?><span class="text-red-500 dark:text-red-300">*</span></label>

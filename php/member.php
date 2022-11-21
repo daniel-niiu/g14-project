@@ -79,8 +79,8 @@ if($method === "quick_export")
 { 
     include("../php/SimpleXLSXGen.php"); 
     
-    $fields = array('MEMBER ID', 'MEMBER ENG NAME', 'MEMBER CHI NAME', 'MEMBER IC', 'MEMBER CITIZENSHIP', 'MEMBER GENDER' ,'MEMBER DOB', 'MEMBER TEL' ,'MEMBER JOB', 'MEMBER ADDRESS', 'MEMBER TYPE', 'ACCEPT DATE', 'RECOMMENDER ID', 'RECOMMENDER NAME','REMARKS');   
-    $fileName = "member_data_" . date('Y-m-d') . ".xlsx"; 
+    $fields = array('会员编号/MEMBER ID (e.g M123)', '英文姓名/ENG NAME(e.g John Doe)', '中文姓名/CHI NAME(e.g 约翰)', '身份证号/IC(e.g 979797-13-8889)', '国籍/CITIZENSHIP(e.g 979797-13-8889)', '性别/GENDER(e.g Male)' ,'出生日期/DOB(e.g 20/01/1231)', '联络号码/MEMBER TEL(e.g 0108889999)' ,'职业/JOB(e.g students)', '地址/ADDRESS(e.g 46, Jalan Sia)', '会员类型/MEMBER TYPE (Normal/Permanent/Non Member)', '入会日期/ ACCEPT DATE(e.g 20/01/1231)', '推荐人编号/RECOMMENDER ID(e.g R123)', '推荐人姓名/RECOMMENDER NAME(e.g John Doe)','备注/REMARKS');   
+    $fileName = "member_template_" . date('Y-m-d') . ".xlsx"; 
     $excelData = array($fields);   
     $xlsx = SimpleXLSXGen::fromArray($excelData);
     $xlsx->downloadAs($fileName); // This will download the file to your local system 

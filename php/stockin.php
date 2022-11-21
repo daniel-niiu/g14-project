@@ -93,4 +93,17 @@ if($method === "delete")
 	
 
 }
+
+if($method === "quick_export")
+{ 
+    include("../php/SimpleXLSXGen.php");  
+
+    $fields = array('产品名称/PRODUCT NAME (e.g 铅笔)', '收据日期/RECEIPT DATE(e.g 20/01/1234)', '摘要/STOCK SUMMARY(e.g any)', '收据编号/RECEIPT NO(e.g 123)', '总数(进货)/STOCK IN(e.g 10)', '结存/BALANCE LEFT(e.g 10)' ,'备注/REMARKS');   
+    $fileName = "stockin_template_" . date('Y-m-d') . ".xlsx"; 
+    $excelData = array($fields);   
+    $xlsx = SimpleXLSXGen::fromArray($excelData);
+    $xlsx->downloadAs($fileName); // This will download the file to your local system 
+    exit;  
+}
+
 ?>

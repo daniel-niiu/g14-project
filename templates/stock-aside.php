@@ -43,13 +43,7 @@
                         </li>
                     </ul>
 				</div>
-			</li>
-            <li>
-                <a class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-white dark:text-gray-400 group cursor-pointer"  data-modal-toggle="export-modal1">
-                    <i class="fa-solid fa-file-export"></i>
-                    <span class="ml-3"><?php echo $export['export-record']; ?></span>
-                </a>
-            </li>
+			</li> 
 		</ul>
 
         <div id="export-in-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
@@ -110,7 +104,7 @@
         	</div>
 		</ul>
 
-        <div id="export-out-modal" tabindex="-2" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+        <div id="export-out-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
             <div class="relative w-full h-full max-w-md p-4 md:h-auto">
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="export-out-modal">

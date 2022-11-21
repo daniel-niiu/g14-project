@@ -68,9 +68,9 @@ if($method === "quick_export")
 { 
     include("../php/SimpleXLSXGen.php"); 
     
-    $fields = array('BLANTERN ID', 'MEMBER ENG NAME', 'MEMBER CHI NAME', 'CONTACT NO', 'BLESSING PRICE', 'VOTIVE PRICE', 'BRECEIPT NUM', 'VRECEIPT NUM', 'RECEIPT DATE', 'PRICE', 'REMARKS');
+    $fields = array('祈福灯编号/BLANTERN ID(e.g B001)', '英文姓名/ENG NAME(e.g John Doe)', '中文姓名/CHI NAME(e.g 约翰)', '联络号码/CONTACT NO(e.g 0101110010)', '金额(祈福)/BLESSING PRICE(e.g 23)', '金额(还愿)/VOTIVE PRICE(e.g 23)', '收据(祈福)/BRECEIPT NUM(e.g 123)', '收据(还愿)/VRECEIPT NUM(e.g 123)', '收据日期/RECEIPT DATE(e.g 20/09/1990)', '收据总额/PRICE(e.g 123)', '备注/REMARKS');
 
-    $fileName = "blantern_data_" . date('Y-m-d') . ".xlsx"; 
+    $fileName = "blantern_template_" . date('Y-m-d') . ".xlsx"; 
     $excelData = array($fields);   
     $xlsx = SimpleXLSXGen::fromArray($excelData);
     $xlsx->downloadAs($fileName); // This will download the file to your local system 
