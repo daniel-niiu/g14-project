@@ -15,18 +15,9 @@ isLoggedIn();
 			document.documentElement.classList.remove('dark');
 		}
 	</script> 
-	<script src="https://unpkg.com/flowbite@1.5.4/dist/datepicker.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
 	<script src="../script/script.js" type="text/javascript"></script> 
-	
-	<style>		
-	@media screen and (min-width:1490px){
-    #horizontal{
-        margin-left: 8.5rem;
-    	}
-	}
-	</style>
-	
-	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 	<title>Tze Yin Membership Management Portal</title>
@@ -64,49 +55,218 @@ isLoggedIn();
         <div style="width:860px;">
             <h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $analytics['product']; ?></h2>
             <hr class="border-gray-300 dark:border-gray-600 my-3"/>
-            <form method="post">
-                <div class="relative z-0 w-full mb-4 group">
+            <form method="post" action="#" onsubmit="#">
+                <div class="relative z-0 w-full mb-6 group">
                     <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $stock['product-name']; ?></label>
                     <select id="title" name="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="Product 1" selected>Product 1</option>
-                        <option value="Product 2">Product 2</option>
-                        <option value="Product 3">Product 3</option>
+                    
+				<option value="" selected>Select Product</option>
+					<?php
+					$sql = "SELECT s.product_name  FROM stockin AS s LEFT Join stockout AS so on s.product_name = so.product_name  Group by s.product_name";
+					$result = $conn->query($sql);
+					if (mysqli_num_rows($result) > 0) {
+						// output data of each row
+						$rows = mysqli_fetch_all($result,MYSQLI_ASSOC);
+						foreach($rows as $row){
+							echo '<option value="'.$row['product_name'].'">'.$row['product_name'].'</option>';
+						}
+					}
+					?>
                     </select>
                 </div>
 
-                <div class="inline-flex justify-center items-center w-full">
-                    <hr class="my-6 w-full h-px bg-gray-200 border dark:bg-gray-500 dark:border-gray-500">
-                    <span id="horizontal" class="absolute left-1/2 px-3 font-medium text-sm text-gray-900 bg-white -translate-x-1/2 dark:text-white dark:bg-gray-900">
-						<?php echo $analytics['receipt-date']; ?>
-					</span>
-                </div>
-
-                <div date-rangepicker class="grid gap-6 mb-6 md:grid-cols-2">
-                    <div>
+                <div class="grid xl:grid-cols-2 xl:gap-6"> 
+                    <div class="relative z-0 w-full mb-6 group">
                         <label for="start-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $export['period-from']; ?></label>
                         <div class="relative">
-                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                             </div>
-                            <input datepicker-format="dd/mm/yyyy" type="text" id="start-date" name="start-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
+                            <input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="start-date" name="start-date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
                         </div>
                         <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_dob" style="display:none;"><?php echo $form['empty-warning']; ?></p>
                     </div>
-                    <div>
+                    <div class="relative z-0 w-full mb-6 group">
                         <label for="end-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $export['period-to']; ?></label>
                         <div class="relative">
-                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                             </div>
-                            <input datepicker-format="dd/mm/yyyy" type="text" id="end-date" name="end-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
+                            <input datepicker datepicker-format="dd/mm/yyyy" datepicker-buttons type="text" id="end-date" name="end-date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="dd/mm/yyyy">
                         </div>
                         <p class='text-xs font-normal text-red-500 dark:text-red-300 mt-1 ml-1' id="p_dob" style="display:none;"><?php echo $form['empty-warning']; ?></p>
                     </div>
                </div>
 
-               <button type="submit" name="btn_submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="float:right;"><?php echo $form['submit']; ?></button>
+               <button type="button" name="btn_submit" class="chart-btn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="float:right;"><?php echo $form['submit']; ?></button>
             </form>
 		</div>
+		<div style="clear:both;height:auto"></div>
+		<style>
+            #chartdiv {
+                width: 100%;
+                height: 500px;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+                integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <!-- Resources -->
+        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+        <!-- Chart code -->
+        <script>
+            jQuery(document).ready(function () {
+				jQuery('.chart-btn').click(function(){
+					var data = jQuery(this).parents('form').serializeArray();
+					expense_report(data);
+				})
+               
+            });
+
+            function expense_report(data) {
+                jQuery.ajax({
+                    url: "stocks-report-data.php",
+                    type: "POST",
+                    dataType: 'json',
+					data:data,
+                    success: function (response) {
+						if(!response){
+							jQuery('#chartdiv').empty();
+						}
+						else{
+						jQuery('#chartdiv').empty();
+						am5.array.each(am5.registry.rootElements, function(root) {
+							if (root) {
+							if (root.dom.id == "chartdiv") {
+								root.dispose();
+							}
+							}
+						});
+                        am5.ready(function () {
+                            var root = am5.Root.new("chartdiv");
+                            root.setThemes([
+                                am5themes_Animated.new(root)
+                            ]);
+                            var chart = root.container.children.push(am5xy.XYChart.new(root, {
+                                panX: false,
+                                panY: false,
+                                wheelX: "panX",
+                                wheelY: "zoomX",
+                                layout: root.verticalLayout
+                            }));
+
+                            var legend = chart.children.push(am5.Legend.new(root, {
+                                centerX: am5.p50,
+                                x: am5.p50
+                            }));
+// Data
+                            var data = [];
+                            for(var i = 0; i < response.length; i++)
+                            {
+                                data.push({
+                                    "Product" : response[i].Product,
+                                    "stock_in"  : parseInt(response[i].stock_in),
+                                    "stock_out"  : parseInt(response[i].stock_out)
+                                });
+                            }
+                            var yAxis = chart.yAxes.push(am5xy.CategoryAxis.new(root, {
+                                categoryField: "Product",
+                                renderer: am5xy.AxisRendererY.new(root, {
+                                    inversed: true,
+                                    cellStartLocation: 0.1,
+                                    cellEndLocation: 0.9
+                                })
+                            }));
+
+                            yAxis.data.setAll(data);
+
+                            var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+                                renderer: am5xy.AxisRendererX.new(root, {}),
+                                min: 0
+                            }));
+
+                            function createSeries(field, name) {
+                                var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+                                    name: name,
+                                    xAxis: xAxis,
+                                    yAxis: yAxis,
+                                    valueXField: field,
+                                    categoryYField: "Product",
+                                    sequencedInterpolation: true,
+                                    tooltip: am5.Tooltip.new(root, {
+                                        labelText: "[bold]{name}[/]\n{categoryY}: {valueX}"
+                                    })
+                                }));
+
+                                series.columns.template.setAll({
+                                    height: am5.p100
+                                });
+
+
+                                series.bullets.push(function () {
+                                    return am5.Bullet.new(root, {
+                                        locationX: 1,
+                                        locationY: 0.5,
+                                        sprite: am5.Label.new(root, {
+                                            centerY: am5.p50,
+                                            text: "{valueX}",
+                                            populateText: true
+                                        })
+                                    });
+                                });
+
+                                series.bullets.push(function () {
+                                    return am5.Bullet.new(root, {
+                                        locationX: 1,
+                                        locationY: 0.5,
+                                        sprite: am5.Label.new(root, {
+                                            centerX: am5.p100,
+                                            centerY: am5.p50,
+                                            text: "{name}",
+                                            fill: am5.color(0xffffff),
+                                            populateText: true
+                                        })
+                                    });
+                                });
+
+                                series.data.setAll(data);
+                                series.appear();
+
+                                return series;
+                            }
+                            createSeries("stock_in", "Stock In");
+                            createSeries("stock_out", "Stock Out");
+                            var legend = chart.children.push(am5.Legend.new(root, {
+                                centerX: am5.p50,
+                                x: am5.p50
+                            }));
+
+                            legend.data.setAll(chart.series.values);
+                            var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
+                                behavior: "zoomY"
+                            }));
+                            cursor.lineY.set("forceHidden", true);
+                            cursor.lineX.set("forceHidden", true);
+                            chart.appear(1000, 100);
+
+                        }); // end am5.ready()
+					}
+
+            },
+            error: function (xhr, status) {
+                console.log('ajax error = ' + xhr.statusText);
+                jQuery('#chartdiv').html('No Data Found');
+            }
+            })
+            ;
+
+            }
+           
+        </script>
+		
+        <div id="chartdiv"></div>
 	</div>
 	</div>
 	
@@ -116,7 +276,7 @@ isLoggedIn();
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
 	
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
