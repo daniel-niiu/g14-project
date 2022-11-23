@@ -64,8 +64,7 @@ function member_validation(){
         document.getElementById('p_ic').style.display = "none"; 
         document.getElementById('p_citizen').style.display = "none"; 
         if(NRIC != "" && NRIC.match(regex_ic_symbols))
-        { 
-            alert("asd");
+        {  
             document.getElementById('nric').className  = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
             document.getElementById('p_ic').style.display = "block"; 
             v4 = false;
@@ -210,8 +209,7 @@ function tablet_validation(){
     	document.getElementById('chinese').className  = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
 		document.getElementById('p_m_chi').style.display = "none";
 		v5 = true;
-    } 
- return false;
+    }  
     if(!contact1 || !contact1.match(regex_number)){ 
 		document.getElementById('contact1').className  = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
         document.getElementById('p_co1').style.display = "block"; 

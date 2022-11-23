@@ -163,8 +163,7 @@ $("#btn_forgot_pass").on("click", function(e) {
 	        // setting a timeout
             //$("#btn_forgot_pass").attr("disabled", true); 
 	    },
-        success:function(response) { 
-        	alert(response);
+        success:function(response) {  
         	if(response=="success")
         	{
         		$("#email_pass1").removeClass("hidden");  
