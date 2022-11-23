@@ -3,11 +3,13 @@
 	$data = $_POST['transaction_type'];
 
 	//convert to Y-m-d format
-    $start_date = str_replace('/', '-', $_POST['start_date']);
-    $start_date = date("Y-m-d", strtotime($start_date));
-	//convert to Y-m-d format
-    $end_date = str_replace('/', '-', $_POST['end_date']);
-    $end_date = date("Y-m-d", strtotime($end_date)); 
+	$start_date = str_replace('/', '-', $_POST['start_date']); 
+        $date = explode("-", $start_date);
+        $start_date = $date[2].'-'.$date[0].'-'.$date[1];   
+	//convert to Y-m-d format 
+	$date = str_replace('/', '-', $_POST['end_date']); 
+        $date = explode("-", $date);
+        $end_date = $date[2].'-'.$date[0].'-'.$date[1];  
 
 	$index="";
 	$date_array = array();
@@ -21,7 +23,7 @@
 	$result_data_array = array(); 
 
 	$status = ""; // 
-	//if the year of start date is same as end date
+	//if the year of start date is same as end date 
 	if($start_date1 == $end_date1)
 	{  
 		//if the start date same month with others, show daily 	
