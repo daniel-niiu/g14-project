@@ -299,6 +299,7 @@
 		"product" => "库存统计",
 		"category" => "类别",
 		"receipt-date" => "依照收据日期",
-		"admission-date" => "依照入会日期"
+		"admission-date" => "依照入会日期",
+		"select-product" => "选择产品"
 	);
 ?>

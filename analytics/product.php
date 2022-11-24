@@ -17,6 +17,7 @@ isLoggedIn();
 	</script> 
 	<script src="https://unpkg.com/flowbite@1.5.4/dist/datepicker.js"></script>
 	<script src="../script/script.js" type="text/javascript"></script> 
+	
 	<style>		
 	@media screen and (min-width:1490px){
     #horizontal{
@@ -24,6 +25,7 @@ isLoggedIn();
     	}
 	}
 	</style>
+	
 	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
@@ -63,34 +65,38 @@ isLoggedIn();
             <h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $analytics['product']; ?></h2>
             <hr class="border-gray-300 dark:border-gray-600 my-3"/>
             <form method="post" action="#" onsubmit="#">
-                <div class="relative z-0 w-full mb-6 group">
+                <div class="relative z-0 w-full mb-4 group">
                     <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $stock['product-name']; ?></label>
-                    <select id="title" name="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     
-				<option value="" selected>Select Product</option>
-					<?php 
+					<select id="title" name="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    
+					<option value="" selected><?php echo $analytics['select-product']; ?></option>
+						<?php 
 
-					$sql = "SELECT s.product_name as product_id, p.product_chi_name as product_chi_name, p.product_eng_name as product_eng_name FROM (stockin s JOIN stockout so ON s.product_name = so.product_name)
-						JOIN product p ON p.product_id = s.product_name
-						Group by s.product_name";
-					
-					$result = $conn->query($sql);
-					if (mysqli_num_rows($result) > 0) {
-						// output data of each row
-						$rows = mysqli_fetch_all($result,MYSQLI_ASSOC);
-						foreach($rows as $row){
-							echo '<option value="'.$row['product_id'].'">'.$row['product_chi_name']. "-" . $row['product_eng_name'].'</option>';
+						$sql = "SELECT s.product_name as product_id, p.product_chi_name as product_chi_name, p.product_eng_name as product_eng_name FROM (stockin s JOIN stockout so ON s.product_name = so.product_name)
+							JOIN product p ON p.product_id = s.product_name
+							Group by s.product_name";
+
+						$result = $conn->query($sql);
+						if (mysqli_num_rows($result) > 0) {
+							// output data of each row
+							$rows = mysqli_fetch_all($result,MYSQLI_ASSOC);
+							foreach($rows as $row){
+								echo '<option value="'.$row['product_id'].'">'.$row['product_chi_name']. "-" . $row['product_eng_name'].'</option>';
+							}
 						}
-					}
-					?>
+						?>
+						
                     </select>
                 </div> 
+				
                 <div class="inline-flex justify-center items-center w-full">
 	                <hr class="my-6 w-full h-px bg-gray-200 border dark:bg-gray-500 dark:border-gray-500">
 	                <span id="horizontal" class="absolute left-1/2 px-3 font-medium text-sm text-gray-900 bg-white -translate-x-1/2 dark:text-white dark:bg-gray-900">
-							<?php echo $analytics['receipt-date']; ?>
+					<?php echo $analytics['receipt-date']; ?>
 					</span>
 	            </div>
+				
 	            <div date-rangepicker class="grid gap-6 mb-6 md:grid-cols-2">
                 	<div>
                       	<label for="start-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $export['period-from']; ?></label>
@@ -116,15 +122,17 @@ isLoggedIn();
                <button type="button" name="btn_submit" class="chart-btn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="float:right;"><?php echo $form['submit']; ?></button>
             </form>
 		</div>
+		
 		<div style="clear:both;height:auto"></div>
+		
 		<style>
             #chartdiv {
                 width: 100%;
                 height: 500px;
             }
         </style>
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-                integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+		
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         <!-- Resources -->
         <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
         <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
@@ -283,6 +291,7 @@ isLoggedIn();
         </script>
 		
         <div id="chartdiv"></div>
+		
 	</div>
 	</div>
 	
@@ -292,7 +301,7 @@ isLoggedIn();
 		<p class="text-center text-xs font-normal text-gray-500 dark:text-gray-400 my-4"><?php echo $page['footer']; ?></p>
 	</footer>
 	
-	<script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+	<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 	
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

@@ -297,6 +297,7 @@
 		"product" => "Stock Analytics",
 		"category" => "Category",
 		"receipt-date" => "According to Receipt Date",
-		"admission-date" => "According to Admission Date"
+		"admission-date" => "According to Admission Date",
+		"select-product" => "Select a Product"
 	);
 ?>

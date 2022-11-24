@@ -61,7 +61,7 @@ isLoggedIn();
 		  </ol>
 		</nav>
 		
-        <div class="mb-2.5" style="width:860px; margin-bottom: 60px;">
+        <div style="width: 860px; margin-bottom: 100px;">
             <h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $analytics['transaction']; ?></h2>
             <hr class="border-gray-300 dark:border-gray-600 my-3"/> 
  
