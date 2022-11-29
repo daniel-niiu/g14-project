@@ -70,19 +70,15 @@ isLoggedIn();
                     
 					<select id="title" name="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     
-					<option value="" selected><?php echo $analytics['select-product']; ?></option>
-						<?php 
-
-						$sql = "SELECT s.product_name as product_id, p.product_chi_name as product_chi_name, p.product_eng_name as product_eng_name FROM (stockin s JOIN stockout so ON s.product_name = so.product_name)
-							JOIN product p ON p.product_id = s.product_name
-							Group by s.product_name";
-
+					<option value="" selected><?php echo $analytics['select-product']; ?></option> 
+						<?php
+						$sql = "SELECT s.product_name  FROM stockin AS s LEFT Join stockout AS so on s.product_name = so.product_name Group by s.product_name";
 						$result = $conn->query($sql);
 						if (mysqli_num_rows($result) > 0) {
 							// output data of each row
 							$rows = mysqli_fetch_all($result,MYSQLI_ASSOC);
 							foreach($rows as $row){
-								echo '<option value="'.$row['product_id'].'">'.$row['product_chi_name']. "-" . $row['product_eng_name'].'</option>';
+								echo '<option value="'.$row['product_name'].'">'.$row['product_name'].'</option>';
 							}
 						}
 						?>
