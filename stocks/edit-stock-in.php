@@ -207,6 +207,5 @@ isLoggedIn();
 
 		});
 	</script>	
-</body>
-	
+</body>	
 </html>
