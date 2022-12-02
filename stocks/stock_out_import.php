@@ -31,32 +31,63 @@ if($_FILES["excel"]["name"] != '')
         $insert_stock_data = ""; 
 
         foreach($data as $row)
-        { 
-            $q="";
-            if($i!=0){  
+        {  
+            if($i!=0){    
                 $date = str_replace('/', '-', $row[1]); 
                 $date = explode("-", $date);
                 $date = $date[2].'-'.$date[0].'-'.$date[1]; 
-                $insert_stock_data = "'$row[0]', '$date', '$row[2]', '$row[3]', '$row[4]', '$row[5]', '$row[6]', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."'";  
-
-                $query="INSERT INTO stockout(".$stock_data.") values (".$insert_stock_data.");"; 
-                
-                mysqli_query($conn,$query); 
+                $query="SELECT product_name,reciept_date,receipt_no FROM stockout WHERE product_name = '".$row[0]."' AND reciept_date = '".$date."' AND receipt_no = '".$row[3]."'"; 
+                $result = mysqli_query($conn,$query); 
+                if ($result->num_rows > 0) { 
+                    while($row = $result->fetch_assoc()) {
+                        $non_empty_array[] = $row['product_name'].",".$row['reciept_date'].",".$row['receipt_no'];
+                    }
+                }
             } 
             $i++;
-        } 
-        header("Location: stock-out.php?name=stock&aside=stock-in&lang=".$_SESSION['lang']."&import_status=success");
-        $message = '<div class="alert alert-success">Data Imported Successfully</div>';
+        }  
+        if(!empty($non_empty_array))
+        {
+            $var = "";
+            $a = 1;
+            foreach($non_empty_array as $data)
+            { 
+                $var .= $data."<br>"; 
+            }
+            $var = rtrim($var, "<br>"); 
+            $_SESSION['duplicated_data'] = $var;
+            header("Location: stock-out.php?name=stock&aside=stock-out&lang=".$_SESSION['lang']."&import_status=fail");
+        }
+        else
+        {
+            foreach($data as $row)
+            { 
+                $q="";
+                if($i!=0){  
+                    $date = str_replace('/', '-', $row[1]); 
+                    $date = explode("-", $date);
+                    $date = $date[2].'-'.$date[0].'-'.$date[1]; 
+                    $insert_stock_data = "'$row[0]', '$date', '$row[2]', '$row[3]', '$row[4]', '$row[5]', '$row[6]', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."'";  
+
+                    $query="INSERT INTO stockout(".$stock_data.") values (".$insert_stock_data.");";  
+                    mysqli_query($conn,$query); 
+                } 
+                $i++;
+                } 
+            header("Location: stock-out.php?name=stock&aside=stock-out&lang=".$_SESSION['lang']."&import_status=success"); 
+        }
         //header("Location: create-glight.php?name=transaction&aside=create-glight");
     }
     else
     {
-        $message = '<div class="alert alert-danger">Only .xls or .xlsx file allowed</div>';
+        $_SESSION['duplicated_data'] = "";
+        header("Location: stock-out.php?name=stock&aside=stock-out&lang=".$_SESSION['lang']."&import_status=fail"); 
     }
 }
 else
 {
-    $message = '<div class="alert alert-danger">Please Select File</div>';
+        $_SESSION['duplicated_data'] = "";
+        header("Location: stock-out.php?name=stock&aside=stock-out&lang=".$_SESSION['lang']."&import_status=fail");
 }
 
 //echo $message;

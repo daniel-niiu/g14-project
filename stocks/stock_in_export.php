@@ -30,10 +30,7 @@
         $xlsx = SimpleXLSXGen::fromArray($excelData);
         $xlsx->downloadAs($fileName); // This will download the file to your local system 
         exit; 
-        header('Location: create-blantern.php?name=transaction&aside=create-blantern&export=success');
-    }else{ 
-        header('Location: create-blantern.php?name=transaction&aside=create-blantern&export=fail');
-    }    
+    }
     
 // Load the database configuration file 
 ?>

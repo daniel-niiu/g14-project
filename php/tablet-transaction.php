@@ -30,6 +30,9 @@ if($method === "add")
         if (mysqli_query($conn,$sql)) {
             header("Location: ../transactions/create-tablet-transaction.php?name=transaction&Id=$id&aside=tablet-transaction&success=success&lang=".$_SESSION['lang']."");
         } 
+        else{
+            header("Location: ../transactions/create-tablet-transaction.php?name=transaction&Id=$id&aside=tablet-transaction&success=fail&lang=".$_SESSION['lang']."");
+        }  
     }
     else{
         header("Location: ../transactions/create-tablet-transaction.php?name=transaction&Id=$id&aside=tablet-transaction&success=fail&lang=".$_SESSION['lang']."");

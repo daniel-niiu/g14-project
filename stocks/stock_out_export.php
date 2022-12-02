@@ -15,7 +15,6 @@
         $sql = "SELECT * FROM stockout WHERE reciept_date BETWEEN '".$from_date."' AND '".$to_date."' ORDER BY reciept_date ASC";  
     else 
         $sql = "SELECT * FROM stockout ORDER BY reciept_date ASC";
-    
     $fileName = "stock_out_data_" . date('Y-m-d') . ".xlsx";   
     $field_data = array('product_name', 'reciept_date', 'stock_summary', 'receipt_no', 'stock_out', 'balance_left', 'remarks');
     $excelData = array($fields);  
@@ -30,10 +29,7 @@
         }   
         $xlsx = SimpleXLSXGen::fromArray($excelData);
         $xlsx->downloadAs($fileName); // This will download the file to your local system 
-        exit; 
-        header('Location: create-blantern.php?name=transaction&aside=create-blantern&export=success');
-    }else{ 
-        header('Location: create-blantern.php?name=transaction&aside=create-blantern&export=fail');
-    }    
+        exit;  
+    }   
 // Load the database configuration file 
 ?>

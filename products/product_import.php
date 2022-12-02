@@ -33,24 +33,58 @@ if($_FILES["excel"]["name"] != '')
 
         foreach($data as $row)
         {  
-            if($i!=0){ 
-                $insert_product_data = "'$row[0]', '$row[1]', '$row[2]', '$row[3]', '$row[4]', '$row[5]', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."'"; 
-                echo $query="INSERT INTO product(".$product_data.") values (".$insert_product_data.");"; 
-                
-                mysqli_query($conn,$query); 
+            if($i!=0){   
+                $query="SELECT product_id FROM product WHERE product_id = '".$row[0]."'"; 
+                $result = mysqli_query($conn,$query); 
+                if ($result->num_rows > 0) { 
+                    while($row = $result->fetch_assoc()) {
+                        $non_empty_array[] = $row['product_id'];
+                    }
+                }
             } 
             $i++;
+        }  
+        if(!empty($non_empty_array))
+        {
+            $var = "";
+            $a = 1;
+            foreach($non_empty_array as $data)
+            {
+                if($a % 4 == 0)
+                    $var .= $data.",<br>";
+                else
+                    $var .= $data.",";
+                $a++;
+            }
+            $var = rtrim($var, ",<br>");
+            $var = rtrim($var, ",");
+            $_SESSION['duplicated_data'] = $var;
+            header("Location: create-product.php?name=product&aside=create-product&lang=".$_SESSION['lang']."&import_status=fail");
+        }
+        else
+            {
+            foreach($data as $row)
+            {  
+                if($i!=0){ 
+                    $insert_product_data = "'$row[0]', '$row[1]', '$row[2]', '$row[3]', '$row[4]', '$row[5]', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."'"; 
+                    echo $query="INSERT INTO product(".$product_data.") values (".$insert_product_data.");"; 
+                    
+                    mysqli_query($conn,$query); 
+                } 
+                $i++;
+            } 
+            header("Location: create-product.php?name=product&aside=create-product&lang=".$_SESSION['lang']."&import_status=success");
         } 
-        header("Location: create-product.php?name=product&aside=create-product&lang=".$_SESSION['lang']."&import_status=success");
-        $message = '<div class="alert alert-success">Data Imported Successfully</div>';
     }
     else
     {
+        $_SESSION['duplicated_data'] = "";
         header("Location: create-product.php?name=product&aside=create-product&lang=".$_SESSION['lang']."&import_status=fail");
     }
 }
 else
 {
+        $_SESSION['duplicated_data'] = "";
     header("Location: create-product.php?name=product&aside=create-product&lang=".$_SESSION['lang']."&import_status=fail");
 }
 

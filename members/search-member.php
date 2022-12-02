@@ -1,32 +1,7 @@
-<?php 
-// Include pagination library file 
-include_once '../php/Pagination.class.php'; 
- 
+<?php   
 // Include database configuration file 
 require_once '../db/dbconnection.php';  
-isLoggedIn();
-// Set some useful configuration 
-$baseURL = 'get-member-data.php'; 
-$limit = 10; 
- 
-// Count of all records 
-$query   = $conn->query("SELECT COUNT(*) as rowNum FROM member"); 
-
-$result  = $query->fetch_assoc(); 
-$rowCount= $result['rowNum']; 
- 
-// Initialize pagination class 
-$pagConfig = array( 
-    'baseURL' => $baseURL, 
-    'totalRows' => $rowCount, 
-    'perPage' => $limit, 
-    'contentDiv' => 'dataContainer', 
-    'link_func' => 'searchFilter' 
-); 
-$pagination =  new Pagination($pagConfig); 
- 
-// Fetch records based on the limit 
-$query = $conn->query("SELECT * FROM member ORDER BY member_id LIMIT $limit");  
+isLoggedIn(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,9 +17,11 @@ $query = $conn->query("SELECT * FROM member ORDER BY member_id LIMIT $limit");
 		}
 	</script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.6.0/dt-1.13.1/datatables.min.js"></script> 
 	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
+	<link rel="stylesheet" href="../styles/search.css">
 	<link rel="stylesheet" href="../styles/style.css">
-	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
+	<link rel="icon" type="image/x-icon" href="../images/logo.ico"> 
 	<title>Tze Yin Membership Management Portal</title>
 </head> 
 
@@ -76,50 +53,41 @@ $query = $conn->query("SELECT * FROM member ORDER BY member_id LIMIT $limit");
 			</li>
 		  </ol>
 		</nav>
-	
 		<div>
 			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['search-member']; ?></h2>
-			<hr class="border-gray-300 dark:border-gray-600 my-3"/>
-			<form>
-				<div class="relative z-0 w-full mb-6 group"> 
-					<label for="simple-search" class="sr-only"><?php echo $form['search']; ?></label>
-						<div class="relative w-full search-box">
-							<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none ">
-								<svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
-							</div>
- 
-							<input type="text" size="120" id="keywords" class="keywords form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $form['search']; ?>" onkeyup="searchFilter();">
-						</div>
-				</div>
-			</form> 	
-			
-			<div id="dataContainer">  
-				<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+			<hr class="border-gray-300 dark:border-gray-600 my-3"/> 
+				<div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="width:850px;">
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-							<th scope="col" class="px-6 py-3"><?php echo $member['member-id']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $member['eng-name']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $member['chi-name']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $member['member-type']; ?></th>
-							<th scope="col" class="px-6 py-3"><?php echo $member['member-status']; ?></th>
-                            <th scope="col" class="px-6 py-3">
+							<th scope="col" class=" py-3"><?php echo $member['member-id']; ?></th>
+							<th scope="col" class=" py-3"><?php echo $member['eng-name']; ?></th>
+							<th scope="col" class=" py-3"><?php echo $member['chi-name']; ?></th>
+							<th scope="col" class=" py-3"><?php echo $member['member-type']; ?></th>
+							<th scope="col" class=" py-3" style="width: 50px"><?php echo $member['member-status']; ?></th>
+							<!--
+                            <th scope="col" class=" py-3">
                                 <span class="sr-only"><?php echo $form['btnedit']; ?></span>
                             </th>
+                        	-->
                         </tr>
                     </thead>
                     <tbody> 
 			            <?php 
+						$query = $conn->query("SELECT * FROM member ORDER BY member_id");  
 			            if($query->num_rows > 0){
 			                while($row = $query->fetch_assoc()){
 			            ?>
                         <tr class='border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700'>
-                            <th scope='row' class='px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap'><a href='view-member.php?name=member&Id=<?php echo $row["member_id"]; ?>' class='dark:hover:text-blue-500 md:hover:text-blue-700'><?php echo $row['member_id']; ?></a></th>
-                            <td class='px-6 py-4'><?php echo $row['member_eng_name'];?></td>
-                            <td class='px-6 py-4'><?php echo $row['member_chi_name'];?></td>
-                            <td class='px-6 py-4'><?php echo $row['member_type']; ?></td>
-                            <td class='px-6 py-4'><?php echo $row['member_status']; ?></td>
-                            <td class='px-6 py-4 text-right'><a href='edit-member.php?name=member&Id=<?php echo $row["member_id"];?>' class='font-medium text-blue-600 dark:text-blue-500 hover:underline'><?php echo $form['btnedit']; ?></a></td>
+                            <th scope='row' class='py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap'><a href='view-member.php?name=member&Id=<?php echo $row["member_id"]; ?>' class='dark:hover:text-blue-500 md:hover:text-blue-700'><?php echo $row['member_id']; ?></a>
+                            </th>
+                            <td class='py-4'><?php echo $row['member_eng_name'];?></td>
+                            <td class='py-4'><?php echo $row['member_chi_name'];?></td>
+                            <td class='py-4'><?php echo $row['member_type']; ?></td>
+                            <td class='py-4' style="width: 100px"><?php echo $row['member_status']; ?></td>
+                            <!--
+                            <td class=' py-4 text-right'><a href='edit-member.php?name=member&Id=<?php echo $row["member_id"];?>' class='font-medium text-blue-600 dark:text-blue-500 hover:underline'><?php echo $form['btnedit']; ?></a></td>
+                        	-->
                         </tr>
 			            <?php 
 			                } 
@@ -130,11 +98,7 @@ $query = $conn->query("SELECT * FROM member ORDER BY member_id LIMIT $limit");
                     </tbody>
                 </table> 
 
-			</div> 
-				<nav aria-label="Page navigation" class="mt-6 mb-2 text-center"> 
-			    		<?php echo $pagination->createLinks(); ?>   
-			    </nav>
-			</div> 
+			</div>    
 			
 		</div>
 	</div>
@@ -219,24 +183,11 @@ $query = $conn->query("SELECT * FROM member ORDER BY member_id LIMIT $limit");
 			}
 
 		}); 
-	</script> 
-	<script> 
-	function searchFilter(page_num) {
-	    page_num = page_num?page_num:0;
-	    var keywords = $('#keywords').val();  
-	    $.ajax({
-	        type: 'POST',
-	        url: 'get-member-data.php',
-	        data:'page='+page_num+'&keywords='+keywords,
-	        beforeSend: function () {
-	            //$('.loading-overlay').show();
-	        },
-	        success: function (html) {
-	            $('#dataContainer').html(html);
-	            //$('.loading-overlay').fadeOut("slow");
-	        }
-	    });
-	} 
-	</script>
+	</script>  
+ <script type="text/javascript">
+ 	$(document).ready(function(){
+ 		$('table').DataTable();
+ 	})
+ </script>
 </body>
 </html>
