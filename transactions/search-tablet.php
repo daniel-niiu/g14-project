@@ -64,7 +64,7 @@ isLoggedIn();
 		<div>
 			<h2 class="flex items-center mb-1 text-xl font-bold text-gray-900 dark:text-white"><?php echo $title['search-tablet']; ?></h2>
 			<hr class="border-gray-300 dark:border-gray-600 my-3"/> 
-				<div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="width:850px;">
+				<div class="relative sm:rounded-lg" style="width:850px;">
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
