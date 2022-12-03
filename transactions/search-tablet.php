@@ -27,7 +27,7 @@ isLoggedIn();
 	<link rel="icon" type="image/x-icon" href="../images/logo.ico">
 
 	<link rel="stylesheet" href="../styles/search.css">
-	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.6.0/dt-1.13.1/datatables.min.js"></script> 
+	<script type="text/javascript" src="../script/search.js"></script> 
 	<title>Tze Yin Membership Management Portal</title>
 </head>
 
@@ -196,6 +196,8 @@ isLoggedIn();
  <script type="text/javascript">
  	$(document).ready(function(){
  		$('table').DataTable();
+ 		$("div .row:first-child").addClass("text-gray-700 rounded hover:bg-gray-100 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700");
+ 		$("div .row:last-child").addClass("text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700");
  	})
  </script>
 </body>

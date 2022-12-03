@@ -17,7 +17,7 @@ isLoggedIn();
 		}
 	</script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.6.0/dt-1.13.1/datatables.min.js"></script> 
+	<script type="text/javascript" src="../script/search.js"></script> 
 	<link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
 	<link rel="stylesheet" href="../styles/search.css">
 	<link rel="stylesheet" href="../styles/style.css">
@@ -60,11 +60,11 @@ isLoggedIn();
 				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-							<th scope="col" class=" py-3"><?php echo $member['member-id']; ?></th>
-							<th scope="col" class=" py-3"><?php echo $member['eng-name']; ?></th>
-							<th scope="col" class=" py-3"><?php echo $member['chi-name']; ?></th>
-							<th scope="col" class=" py-3"><?php echo $member['member-type']; ?></th>
-							<th scope="col" class=" py-3" style="width: 50px"><?php echo $member['member-status']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $member['member-id']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $member['eng-name']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $member['chi-name']; ?></th>
+							<th scope="col" class="px-6 py-3"><?php echo $member['member-type']; ?></th>
+							<th scope="col" class="px-6 py-3" style="width: 50px"><?php echo $member['member-status']; ?></th>
 							<!--
                             <th scope="col" class=" py-3">
                                 <span class="sr-only"><?php echo $form['btnedit']; ?></span>
@@ -79,12 +79,12 @@ isLoggedIn();
 			                while($row = $query->fetch_assoc()){
 			            ?>
                         <tr class='border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700'>
-                            <th scope='row' class='py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap'><a href='view-member.php?name=member&Id=<?php echo $row["member_id"]; ?>' class='dark:hover:text-blue-500 md:hover:text-blue-700'><?php echo $row['member_id']; ?></a>
+                            <th scope='row' class='px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap'><a href='view-member.php?name=member&Id=<?php echo $row["member_id"]; ?>' class='dark:hover:text-blue-500 md:hover:text-blue-700'><?php echo $row['member_id']; ?></a>
                             </th>
-                            <td class='py-4'><?php echo $row['member_eng_name'];?></td>
-                            <td class='py-4'><?php echo $row['member_chi_name'];?></td>
-                            <td class='py-4'><?php echo $row['member_type']; ?></td>
-                            <td class='py-4' style="width: 100px"><?php echo $row['member_status']; ?></td>
+                            <td class='px-6 py-4'><?php echo $row['member_eng_name'];?></td>
+                            <td class='px-6 py-4'><?php echo $row['member_chi_name'];?></td>
+                            <td class='px-6 py-4'><?php echo $row['member_type']; ?></td>
+                            <td class='px-6 py-4' style="width: 100px"><?php echo $row['member_status']; ?></td>
                             <!--
                             <td class=' py-4 text-right'><a href='edit-member.php?name=member&Id=<?php echo $row["member_id"];?>' class='font-medium text-blue-600 dark:text-blue-500 hover:underline'><?php echo $form['btnedit']; ?></a></td>
                         	-->
@@ -187,6 +187,8 @@ isLoggedIn();
  <script type="text/javascript">
  	$(document).ready(function(){
  		$('table').DataTable();
+ 		$("div .row:first-child").addClass("text-gray-700 rounded hover:bg-gray-100 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700");
+ 		$("div .row:last-child").addClass("text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700");
  	})
  </script>
 </body>
