@@ -18,21 +18,22 @@ if($method === "add")
 	$price = $_POST["price"]; 
     $remarks = $_POST["remarks"];
 
-    $sql = "  
-        INSERT INTO PRODUCT(product_id, product_status, product_eng_name, product_chi_name, unit_price, remarks, recordedBy, recordedOn)
-        VALUES
-        ('$id','$status','$english','$chinese','$price','$remarks', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')
-    ";
-    //echo $sql; 
-    //$result = $conn->query($sql);
-   
-    if (!mysqli_query($conn,$sql)) {
-        header("Location: ../products/create-product.php?name=product&aside=create-product&success=fail");
-    } 
-    else{
-        header("Location: ../products/create-product.php?name=product&aside=create-product&success=success");
+    $mid_sql = "SELECT EXISTS (SELECT * FROM PRODUCT WHERE product_id = '".$_POST['id']."') AS row";
+    $check_result = $conn->query($mid_sql);   
+    $row = mysqli_fetch_array($check_result); 
+    if ($row['row'] == 0) { 
+        $sql = "  
+            INSERT INTO PRODUCT(product_id, product_status, product_eng_name, product_chi_name, unit_price, remarks, recordedBy, recordedOn)
+            VALUES
+            ('$id','$status','$english','$chinese','$price','$remarks', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."')
+        ";
+        if (mysqli_query($conn,$sql)) {
+            header("Location: ../products/create-product.php?name=product&aside=create-product&success=success&lang=".$_SESSION['lang']);
+        } 
     }  
-
+    else{
+        header("Location: ../products/create-product.php?name=product&aside=create-product&success=fail&lang=".$_SESSION['lang']);
+    }   
 } 
 
 if($method === "update")

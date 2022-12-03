@@ -13,11 +13,10 @@ if(isset($_POST['page'])){
     $offset = !empty($_POST['page'])?$_POST['page']:0; 
     $limit = 10; 
      
-    // Set conditions for search 
-    $whereSQL = '';   
+    // Set conditions for search  
 
     // Count of all records 
-    $query   = $conn->query("SELECT COUNT(*) as rowNum FROM tablet ".$whereSQL);  
+$query   = $conn->query("SELECT COUNT(*) as rowNum FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.tablet_id = tr.Tablet_id  AND t.tablet_id = '".$_SESSION['t_id']."'"); 
     $result  = $query->fetch_assoc(); 
     $rowCount= $result['rowNum']; 
      
@@ -32,7 +31,7 @@ if(isset($_POST['page'])){
     ); 
     $pagination =  new Pagination($pagConfig);  
     // Fetch records based on the offset and limit   
-    $query = $conn->query("SELECT * FROM tablet $whereSQL LIMIT $offset,$limit"); 
+    $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.tablet_id = tr.Tablet_id AND t.tablet_id = '".$_SESSION['t_id']."' ORDER BY tr.receipt_num LIMIT $offset,$limit");  
 ?> 
     <!-- Data list container --> 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
