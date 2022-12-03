@@ -72,13 +72,17 @@ isLoggedIn();
                     
 					<option value="" selected><?php echo $analytics['select-product']; ?></option> 
 						<?php
-						$sql = "SELECT s.product_name  FROM stockin AS s LEFT Join stockout AS so on s.product_name = so.product_name Group by s.product_name";
+
+						$sql = "SELECT s.product_name as product_id, p.product_chi_name as product_chi_name, p.product_eng_name as product_eng_name FROM (stockin s JOIN stockout so ON s.product_name = so.product_name)
+						JOIN product p ON p.product_id = s.product_name
+						Group by s.product_name";
+					
 						$result = $conn->query($sql);
 						if (mysqli_num_rows($result) > 0) {
 							// output data of each row
 							$rows = mysqli_fetch_all($result,MYSQLI_ASSOC);
 							foreach($rows as $row){
-								echo '<option value="'.$row['product_name'].'">'.$row['product_name'].'</option>';
+								echo '<option value="'.$row['product_chi_name'].'">'.$row['product_chi_name'].'</option>';
 							}
 						}
 						?>
@@ -125,6 +129,7 @@ isLoggedIn();
             #chartdiv {
                 width: 100%;
                 height: 500px;
+                display: none;
             }
         </style>
 		
@@ -157,6 +162,8 @@ isLoggedIn();
 						}
 						else{
 						jQuery('#chartdiv').empty();
+						jQuery('#chartdiv').css('display','block');
+						console.log(response);
 						am5.array.each(am5.registry.rootElements, function(root) {
 							if (root) {
 							if (root.dom.id == "chartdiv") {
