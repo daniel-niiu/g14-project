@@ -2,8 +2,8 @@ function member_validation(){
 	var regex_number = /^[\d]+$/; 
 	var regex_spec_char = /^[a-zA-Z\d\_]+$/; 
 	var regex_symbols= /[-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/;
-	var regex_add_symbols= /[-!$%^&*()_+|~=`{}\[\]:\/;<>?.@#]/; // without comma
-	var regex_ic_symbols= /[a-zA-Z!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/; // without - symbol
+	var regex_add_symbols= /[-!$%^&*()_+|~=`{}\[\]:\/;<>?.@#]/; // without comma 
+    var regex_ic_symbols= /[a-zA-Z!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/; // without - symbol
 	var regex_num_symbols= /[\d-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/;
 	var regex_dob= /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 
@@ -48,43 +48,27 @@ function member_validation(){
 		document.getElementById('p_m_chi').style.display = "none"; 
 		v3 = true;
     } 
-    if(NRIC == "" && citizen == "")
-    {
-        v4 = false;
-        v5 = false;
+    if(!NRIC || NRIC.match(regex_ic_symbols))
+    {  
         document.getElementById('nric').className  = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
         document.getElementById('p_ic').style.display = "block"; 
-        document.getElementById('citizen').className  = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
-        document.getElementById('p_citizen').style.display = "block"; 
+        v4 = false;
     }
     else
     {
-        document.getElementById('nric').className  = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
-        document.getElementById('citizen').className  = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+        document.getElementById('nric').className  = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
         document.getElementById('p_ic').style.display = "none"; 
+        v4 = true; 
+    } 
+    if(!citizen || citizen.match(regex_num_symbols)){ 
+        document.getElementById('citizen').className  = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
+        document.getElementById('p_citizen').style.display = "block"; 
+        v5 = false; 
+    }    
+    else{ 
+        document.getElementById('citizen').className  = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
         document.getElementById('p_citizen').style.display = "none"; 
-        if(NRIC != "" && NRIC.match(regex_ic_symbols))
-        {  
-            document.getElementById('nric').className  = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
-            document.getElementById('p_ic').style.display = "block"; 
-            v4 = false;
-        }
-        else
-        {
-            document.getElementById('nric').className  = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
-            document.getElementById('p_ic').style.display = "none"; 
-            v4 = true;
-        }
-        if(citizen != "" && citizen.match(regex_ic_symbols)){ 
-            document.getElementById('citizen').className  = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
-            document.getElementById('p_citizen').style.display = "block"; 
-            v5 = false;
-        }   
-        else{ 
-            document.getElementById('citizen').className  = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
-            document.getElementById('p_citizen').style.display = "none"; 
-            v5 = true;
-        }  
+        v5 = true;
     } 
     if(!dob || !dob.match(regex_dob)){ 
 		document.getElementById('m_dob').className  = "bg-gray-50 border border-red-500 text-gray-900 sm:text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
@@ -419,8 +403,9 @@ function glight_validation(){
     var receipt = document.getElementById('receipt').value;   
     var contact = document.getElementById('contact').value;
     var date = document.getElementById('date').value;  
+    var amount = document.getElementById('amount').value;
 
-	var v1,v2,v3,v4,v5 = false;     
+	var v1,v2,v3,v4,v5,v6 = false;     
     if(id == "" || !id.match(regex_spec_char)){   
 		document.getElementById('gl-id').className = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
 		document.getElementById('p_id').style.display = "block";
@@ -471,7 +456,17 @@ function glight_validation(){
 		document.getElementById('p_co').style.display = "none"; 
 		v5 = true;
     }   
-    if(v1 == true && v2 == true && v3 == true && v4 == true && v5 == true){  
+    if(!amount || !amount.match(regex_price)){ 
+        document.getElementById('amount').className  = "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500";
+        document.getElementById('p_r_amount').style.display = "block"; 
+        v6= false;
+    }   
+    else{ 
+        document.getElementById('amount').className  = "bg-gray-50 border border-green-500 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-700 dark:border-green-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500";
+        document.getElementById('p_r_amount').style.display = "none"; 
+        v6 = true;
+    } 
+    if(v1 == true && v2 == true && v3 == true && v4 == true && v5 == true && v6 == true){  
     	return true;
     } 
     else{
