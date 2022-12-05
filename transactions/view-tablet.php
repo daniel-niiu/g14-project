@@ -27,6 +27,8 @@ $pagination =  new Pagination($pagConfig);
  
 // Fetch records based on the limit    
 $query = $conn->query("SELECT * FROM Tablet AS t, Tablet_Receipt AS tr WHERE t.tablet_id = tr.Tablet_id AND t.tablet_id = '".$_GET['Id']."' ORDER BY tr.receipt_num LIMIT $limit");  
+
+$_SESSION['t_id'] = $_GET['Id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
