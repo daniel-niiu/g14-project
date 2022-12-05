@@ -4,6 +4,8 @@
 include_once '../db/dbconnection.php';
 include '../../phpspreadsheet/vendor/autoload.php';
  
+date_default_timezone_set("Asia/Kuala_Lumpur");
+
 
 if($_FILES["excel"]["name"] != '')
 {
@@ -25,7 +27,7 @@ if($_FILES["excel"]["name"] != '')
         $i=0;
         if($_GET['type'] == "tablet")
         { 
-            $tablet_data = "tablet_id, inst_date, tablet_zone, tablet_tier, tablet_row, price, ancestor_eng_name, ancestor_chi_name, contact_num1, contact_num2, address, member_eng_name, member_chi_name, payment_type, remarks"; 
+            $tablet_data = "tablet_id, inst_date, tablet_zone, tablet_tier, tablet_row, price, ancestor_eng_name, ancestor_chi_name, contact_num1, contact_num2, address, member_eng_name, member_chi_name, payment_type, remarks, recordedBy, recordedOn"; 
 
             foreach($data as $row)
             {  
@@ -66,7 +68,7 @@ if($_FILES["excel"]["name"] != '')
                         $row[1] = $date[1]."/".$date[0]."/".$date[2];
                         $row[1] = str_replace('/', '-', $row[1]);
                         $date = date('Y-m-d',strtotime($row[1]));  
-                        $insert_tablet_data = "'$row[0]', '$date', '$row[2]', '$row[3]', '$row[4]', '$row[5]', '$row[6]', '$row[7]', '$row[8]', '$row[9]', '$row[10]', '$row[11]', '$row[12]', '$row[13]', '$row[14]'";  
+                        $insert_tablet_data = "'$row[0]', '$date', '$row[2]', '$row[3]', '$row[4]', '$row[5]', '$row[6]', '$row[7]', '$row[8]', '$row[9]', '$row[10]', '$row[11]', '$row[12]', '$row[13]', '$row[14]', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."'";  
 
                         $query="INSERT INTO tablet(".$tablet_data.") values (".$insert_tablet_data.");"; 
                         mysqli_query($conn,$query);
@@ -78,7 +80,7 @@ if($_FILES["excel"]["name"] != '')
         }
         else if($_GET['type'] == "transaction")
         { 
-            $transaction_data = "Tablet_id, receipt_num, receipt_date, receipt_amount, member_eng_name, member_chi_name, remarks";
+            $transaction_data = "Tablet_id, receipt_num, receipt_date, receipt_amount, member_eng_name, member_chi_name, remarks, recordedBy, recordedOn";
             foreach($data as $row)
             {  
                 if($i!=0){   
@@ -119,7 +121,7 @@ if($_FILES["excel"]["name"] != '')
                         $row[2] = $date[1]."/".$date[0]."/".$date[2];
                         $row[2] = str_replace('/', '-', $row[2]);
                         $date = date('Y-m-d',strtotime($row[2]));  
-                        $insert_tablet_data = "'$row[0]', '$row[1]', '$date', '$row[3]', '$row[4]', '$row[5]', '$row[6]'";  
+                        $insert_tablet_data = "'$row[0]', '$row[1]', '$date', '$row[3]', '$row[4]', '$row[5]', '$row[6]', '".$_SESSION['name']."', '".date("Y-m-d H:i:s")."'";  
 
                         $query="INSERT INTO tablet_receipt(".$transaction_data.") values (".$insert_tablet_data.");"; 
                         mysqli_query($conn,$query);
