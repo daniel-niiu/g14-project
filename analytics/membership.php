@@ -83,7 +83,7 @@ isLoggedIn();
                 <div class="inline-flex justify-center items-center w-full">
                     <hr class="my-6 w-full h-px bg-gray-200 border dark:bg-gray-500 dark:border-gray-500">
                     <span id="horizontal" class="absolute left-1/2 px-3 font-medium text-sm text-gray-900 bg-white -translate-x-1/2 dark:text-white dark:bg-gray-900">
-                        <?php echo $analytics['receipt-date']; ?>
+                        <?php echo $analytics['admission-date']; ?>
                     </span>
                 </div>
 
