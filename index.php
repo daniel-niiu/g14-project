@@ -154,7 +154,7 @@ isMainPageLoggedIn();
             			</button>
             			<div class="px-6 py-6 lg:px-8"> 
                 			<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"><?php echo $index['index-reminder-edit-title']; ?></h3>
-                			<form method="post" action="php/reminder.php?method=update">
+                			<form class="space-y-6" method="post" action="php/reminder.php?method=update">
                     			<div>
                         			<label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"><?php echo $index['index-reminder-title']; ?></label>
                         			<input type="text" name="title" id="edit-reminder-title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value="" required>
