@@ -58,6 +58,7 @@ if($_FILES["excel"]["name"] != '')
             }
             else
             {  
+                $i=0;
                 foreach($data as $row)
                 {  
                     if($i!=0){ 
@@ -107,7 +108,8 @@ if($_FILES["excel"]["name"] != '')
                 header("Location: create-tablet.php?name=transaction&aside=create-tablet&lang=".$_SESSION['lang']."&import=fail");
             }
             else
-            {
+            { 
+                $i=0;
                 foreach($data as $row)
                 { 
                     $q="";

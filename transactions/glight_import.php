@@ -64,6 +64,7 @@ if($_FILES["excel"]["name"] != '')
         }
         else
         {
+            $i=0;
             foreach($data as $row)
             { 
                 $q="";
